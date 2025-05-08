@@ -269,6 +269,7 @@
       margin: 0 auto;
       padding: 20px 15px;
       position: relative;
+      min-height: 600px; /* Ensure container has height for timeline */
     }
     
     .testimonials-timeline {
@@ -288,22 +289,23 @@
       margin-bottom: 60px;
       width: 100%;
       display: flex;
-      opacity: 0;
-      transform: translateY(30px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
     
     .testimonial-item.left {
       justify-content: flex-start;
+      padding-right: 50%;
     }
     
     .testimonial-item.right {
       justify-content: flex-end;
+      padding-left: 50%;
     }
     
     .testimonial-bubble {
       position: relative;
-      max-width: 400px;
+      max-width: 450px;
+      width: 100%;
       padding: 30px;
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -363,6 +365,7 @@
       font-family: 'Playfair Display', serif;
       opacity: 0.07;
       z-index: 0;
+      line-height: 1;
     }
     
     .testimonial-item.left .testimonial-quote {
@@ -426,6 +429,7 @@
       border: 4px solid var(--coral);
       box-shadow: 0 0 0 4px rgba(255, 111, 97, 0.2);
       left: 50%;
+      top: 30px;
       transform: translateX(-50%);
       z-index: 2;
     }
@@ -439,18 +443,24 @@
     }
     
     @media (max-width: 768px) {
+      .testimonials-container {
+        padding-left: 50px;
+      }
+      
       .testimonials-timeline {
         left: 30px;
+        transform: none;
       }
       
       .testimonial-item.left,
       .testimonial-item.right {
-        justify-content: flex-end;
-        padding-left: 60px;
+        justify-content: flex-start;
+        padding-left: 0;
+        padding-right: 0;
       }
       
       .testimonial-bubble {
-        margin: 0;
+        margin: 0 0 0 30px;
         max-width: 100%;
       }
       
@@ -468,6 +478,7 @@
       
       .testimonial-dot {
         left: 30px;
+        transform: none;
       }
     }
     
@@ -871,31 +882,51 @@
   <!-- TEAM TESTIMONIALS SECTION -->
   <section class="section" id="testimonials">
     <h2>Team Testimonials</h2>
-    <div class="grid grid-3">
-      <div class="quote-block">
-        <div class="quote-mark">"</div>
-        <p class="quote-content">VCA North Atlantic provided me with incredible growth opportunities and mentorship that helped advance my career. The collaborative team environment makes every day rewarding.</p>
-        <div class="quote-author">
-          <strong>Dr. Smith</strong>
-          <span>Veterinarian</span>
+    <div class="testimonials-container">
+      <div class="testimonials-timeline"></div>
+      
+      <div class="testimonial-item left" style="opacity: 0; transform: translateY(30px);">
+        <div class="testimonial-dot"></div>
+        <div class="testimonial-bubble">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-content">VCA North Atlantic provided me with incredible growth opportunities and mentorship that helped advance my career. The collaborative team environment makes every day rewarding.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">DS</div>
+            <div>
+              <div class="testimonial-name">Dr. Smith</div>
+              <div class="testimonial-role">Veterinarian</div>
+            </div>
+          </div>
         </div>
       </div>
       
-      <div class="quote-block">
-        <div class="quote-mark">"</div>
-        <p class="quote-content">I love the supportive environment at VCA. My colleagues feel like family, and I'm given all the tools I need to provide the best possible care for our patients.</p>
-        <div class="quote-author">
-          <strong>Tech Jane</strong>
-          <span>Technician</span>
+      <div class="testimonial-item right" style="opacity: 0; transform: translateY(30px);">
+        <div class="testimonial-dot"></div>
+        <div class="testimonial-bubble">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-content">I love the supportive environment at VCA. My colleagues feel like family, and I'm given all the tools I need to provide the best possible care for our patients.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">TJ</div>
+            <div>
+              <div class="testimonial-name">Tech Jane</div>
+              <div class="testimonial-role">Technician</div>
+            </div>
+          </div>
         </div>
       </div>
       
-      <div class="quote-block">
-        <div class="quote-mark">"</div>
-        <p class="quote-content">Joining VCA North Atlantic was the best career move I've made. The emphasis on work-life balance combined with excellent professional development has allowed me to thrive both personally and professionally.</p>
-        <div class="quote-author">
-          <strong>Mark Johnson</strong>
-          <span>Practice Manager</span>
+      <div class="testimonial-item left" style="opacity: 0; transform: translateY(30px);">
+        <div class="testimonial-dot"></div>
+        <div class="testimonial-bubble">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-content">Joining VCA North Atlantic was the best career move I've made. The emphasis on work-life balance combined with excellent professional development has allowed me to thrive both personally and professionally.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MJ</div>
+            <div>
+              <div class="testimonial-name">Mark Johnson</div>
+              <div class="testimonial-role">Practice Manager</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1468,8 +1499,8 @@
         });
       });
       
-      // Animation on scroll
-      const fadeElements = document.querySelectorAll('.card, .quote-block, .spotlight-item, .value-item, .hospital-type, .benefits-cta');
+      // Animation on scroll for most elements
+      const fadeElements = document.querySelectorAll('.card, .spotlight-item, .value-item, .hospital-type, .benefits-cta');
       
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -1485,6 +1516,32 @@
         element.style.transform = 'translateY(20px)';
         element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(element);
+      });
+      
+      // Special handling for testimonials
+      const testimonialItems = document.querySelectorAll('.testimonial-item');
+      
+      // Create a separate observer for testimonial items
+      const testimonialObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }, 100); // Small delay for more natural appearance
+          }
+        });
+      }, { 
+        threshold: 0.2,
+        rootMargin: '-50px 0px'
+      });
+      
+      // Apply the observer to each testimonial item
+      testimonialItems.forEach((item, index) => {
+        // Add a slight delay based on index for cascading effect
+        setTimeout(() => {
+          testimonialObserver.observe(item);
+        }, index * 100);
       });
       
       // Mobile spotlight enhancement
