@@ -3,649 +3,1508 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VCA North Atlantic Recruitment</title>
+  <meta name="description" content="Join the VCA North Atlantic Region veterinary team - explore career opportunities across New England, New York, Michigan and beyond.">
+  <title>VCA North Atlantic Recruitment | Veterinary Careers</title>
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    html { scroll-behavior: smooth; }
-    @keyframes fadeInUp {0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
-    @keyframes pawSequence {0%,100%{opacity:0;transform:scale(1);}16.66%,33.33%{opacity:1;transform:scale(1.1);}}
-    :root{--blue:#003B71;--teal:#00A99D;--purple:#B19CD9;--heading-purple:#7D3F98;--coral:#FF6F61;--light:#F7F7F7;--grey:#f8f8f8;}
-    html,body{background:var(--light);margin:0;font-family:'Inter',sans-serif;color:#333;line-height:1.6;}
-    h1{font-size:2em;font-weight:700;margin:0 0 .5em;color:#fff;max-width:600px;line-height:1.3;animation:fadeInUp 1s forwards .3s;}
-    h2{font-family:'Playfair Display',serif;font-size:2em;font-weight:600;color:var(--heading-purple);text-align:left;max-width:1000px;margin:0 auto 20px;position:relative;animation:fadeInUp 1s forwards .3s;}
-    h2:after{content:'';display:block;width:60px;height:4px;background:var(--coral);margin-top:8px;}
-    p,.card p,.benefit-item p{margin:0 0 1em;}strong{font-weight:600;}
-    .btn{font-weight:600;margin-top:20px;padding:12px 24px;background:var(--coral);color:#fff;border:none;border-radius:4px;cursor:pointer;transition:background .3s,transform .2s;text-decoration:none;display:inline-block;animation:fadeInUp 1s forwards .7s;}
-    .btn:hover{background:var(--purple);transform:scale(1.03);}
-    .header{position:sticky;top:0;background:rgba(247,247,247,0.9);backdrop-filter:blur(10px);display:flex;justify-content:space-between;padding:10px 20px;border-bottom:2px solid var(--teal);z-index:1000;}
-    .header img{height:50px;}
-    .nav-links a{margin-left:20px;text-decoration:none;color:var(--blue);font-weight:600;transition:color .3s;}
-    .nav-links a:hover{color:var(--coral);}
-    .hero{position:relative;min-height:50vh;padding:60px 20px;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border-radius:50px;margin-bottom:0;}
-    .hero-text{position:relative;z-index:2;}
-    .hero-subtitle{font-size:1.2em;color:rgba(255,255,255,0.9);margin-top:.5em;animation:fadeInUp 1s forwards .5s;}
-    .paw-print{position:absolute;font-size:4em;color:rgba(255,255,255,0.8);opacity:0;animation:pawSequence 6s infinite;}
-    .section{margin:0;padding:66px 20px;}
-    .section:nth-of-type(odd){background:linear-gradient(180deg,var(--light),rgba(0,169,157,0.1));}
-    .section:nth-of-type(even){background:linear-gradient(180deg,rgba(0,169,157,0.1),var(--light));}
-    .map-placeholder{width:100%;max-width:800px;height:400px;margin:0 auto;background:#e0e0e0;display:flex;align-items:center;justify-content:center;border:2px dashed #ccc;color:#666;}
-    .carousel-container{width:100%;max-width:1000px;margin:0 auto;position:relative;overflow:hidden;padding:20px 0;font-family:'Inter',sans-serif;}
-.carousel-track{display:flex;transition:transform 0.5s ease;}
-.carousel-item{min-width:300px;width:300px;padding:10px;box-sizing:border-box;transition:all 0.3s ease;flex-shrink:0;opacity:0.7;transform:scale(0.85);}
-.carousel-item.active{opacity:1;transform:scale(1);}
-.img-container{width:100%;height:250px;border-radius:10px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,0.2);cursor:pointer;transition:transform 0.3s ease;}
-.img-container:hover{transform:translateY(-5px);}
-.carousel-item img{width:100%;height:100%;object-fit:cover;}
-.carousel-nav{position:absolute;top:50%;width:100%;display:flex;justify-content:space-between;transform:translateY(-50%);z-index:2;}
-.carousel-button{background-color:var(--blue);color:white;border:none;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background-color 0.3s ease;box-shadow:0 3px 6px rgba(0,0,0,0.2);}
-.carousel-button:hover{background-color:var(--coral);}
-.carousel-button.prev{margin-left:20px;}
-.carousel-button.next{margin-right:20px;}
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,0.8);z-index:1000;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s ease;}
-.modal.active{display:flex;opacity:1;}
-.modal-content{max-width:80%;max-height:80%;position:relative;}
-.modal img{width:100%;height:auto;max-height:80vh;object-fit:contain;border-radius:5px;}
-.close-modal{position:absolute;top:-40px;right:0;color:white;font-size:24px;cursor:pointer;background:transparent;border:none;width:30px;height:30px;display:flex;align-items:center;justify-content:center;}
-.carousel-indicators{display:flex;justify-content:center;margin-top:20px;}
-.indicator{width:10px;height:10px;border-radius:50%;background-color:#ccc;margin:0 5px;cursor:pointer;transition:background-color 0.3s ease;}
-.indicator.active{background-color:var(--blue);}
-    .grid-3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}
-    .card{position:relative;width:100%;max-width:280px;padding:20px;background:var(--grey);background-image:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(255,255,255,0.1) 10px,rgba(255,255,255,0.1) 20px);border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,0.2);border:3px solid var(--purple);overflow:hidden;transition:transform .2s,box-shadow .2s,border-color .2s,background .3s;text-align:center;}
-    .card-icon{display:block;font-size:1.5em;opacity:0.2;position:absolute;top:12px;right:12px;}
-    #spotlights .card{max-width:340px;padding:30px 30px 10px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;}
-    #spotlights .card-icon{font-size:4em;opacity:0.3;margin-bottom:12px;position:static;}
-    #spotlights .card strong,#spotlights .card p{margin:0 0 8px;}
-    .card:hover{transform:translateY(-4px);box-shadow:0 6px 16px rgba(0,0,0,0.25);border-color:var(--coral);background:linear-gradient(135deg,rgba(248,248,248,0.8),rgba(255,111,97,0.1));}
-    .card::before{content:'';position:absolute;top:0;left:0;width:100%;height:6px;background:linear-gradient(135deg,var(--coral),var(--teal));display:none;}
-    .section#career-paths .card::before,.section#recruiters .card::before{display:block;}
-    .benefits-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;max-width:1000px;margin:0 auto;text-align:center;}
-    .benefit-item{display:flex;flex-direction:column;align-items:center;}
-    .benefit-item strong{margin-bottom:8px;}
-    .benefit-icon-circle{width:100px;height:100px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.5em;color:#fff;margin-bottom:12px;transition:background .3s;}
-    .benefit-item:hover .benefit-icon-circle{background:var(--coral);}
-    #careers{text-align:center;}
-    #careers .btn{margin:0 auto;}
-    /* Restore grid layouts */
-.grid{display:grid !important;gap:20px !important;max-width:1000px !important;margin:0 auto !important;justify-items:center !important;}
-.grid-3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr)) !important;}
-.card{display:block !important;position:relative !important;width:100% !important;max-width:280px !important;padding:20px !important;background:var(--grey) !important;border-radius:8px !important;box-shadow:0 4px 8px rgba(0,0,0,0.2) !important;border:3px solid var(--purple) !important;overflow:hidden !important;transition:transform .2s,box-shadow .2s,border-color .2s,background .3s !important;text-align:center !important;}  
-  /* Ensure carousel styles only affect the culture section */
-#culture .carousel-container,
-#culture .carousel-track,
-#culture .carousel-item,
-#culture .carousel-button,
-#culture .carousel-indicators,
-#culture .img-container,
-#culture .indicator {
-  /* Reset styles that might affect other sections */
-  display: initial;
-  flex: initial;
-  grid: initial;
-  max-width: initial;
-  width: initial;
-  position: initial;
-  margin: initial;
-  padding: initial;
-}
+    /* CSS Variables for consistent theming */
+    :root {
+      --blue: #003B71;
+      --blue-light: #1c5c94;
+      --teal: #00A99D;
+      --teal-light: #25c4b8;
+      --purple: #B19CD9;
+      --heading-purple: #7D3F98;
+      --coral: #FF6F61;
+      --coral-light: #ff8a7f;
+      --light: #F7F7F7;
+      --grey: #f8f8f8;
+      --grey-dark: #e0e0e0;
+      --text: #333;
+      --text-light: #666;
+      --white: #fff;
+      --border-radius: 8px;
+      --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --transition-fast: 0.2s ease;
+      --transition-medium: 0.3s ease;
+      --transition-slow: 0.5s ease;
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Inter', sans-serif;
+    }
 
-/* Restore grid layout for other sections */
-section:not(#culture) .grid {
-  display: grid;
-  gap: 20px;
-  max-width: 1000px;
-  margin: 0 auto;
-  justify-items: center;
-}
+    /* Base Styles */
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
 
-section:not(#culture) .grid-3 {
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-}
+    body {
+      background: var(--light);
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
 
-section:not(#culture) .card {
-  position: relative;
-  width: 100%;
-  max-width: 280px;
-  padding: 20px;
-  background: var(--grey);
-  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px);
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  border: 3px solid var(--purple);
-  overflow: hidden;
-  transition: transform .2s, box-shadow .2s, border-color .2s, background .3s;
-  text-align: center;
-}
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 0;
+    }
 
-/* Then re-add the carousel specific styles with #culture prefixed to ensure they only apply to carousel */
-#culture .carousel-container {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  position: relative;
-  overflow: hidden;
-  padding: 20px 0;
-  font-family: 'Inter', sans-serif;
-}
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin: 0 0 1rem;
+      color: var(--white);
+      max-width: 800px;
+      line-height: 1.3;
+    }
 
-#culture .carousel-track {
-  display: flex;
-  transition: transform 0.5s ease;
-}
+    h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 600;
+      color: var(--heading-purple);
+      text-align: left;
+      max-width: 1000px;
+      margin: 0 auto 1.5rem;
+      position: relative;
+    }
 
-#culture .carousel-item {
-  min-width: 300px;
-  width: 300px;
-  padding: 10px;
-  box-sizing: border-box;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-  opacity: 0.7;
-  transform: scale(0.85);
-}
+    h2::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: var(--coral);
+      margin-top: 8px;
+      border-radius: 2px;
+    }
 
-#culture .carousel-item.active {
-  opacity: 1;
-  transform: scale(1);
-}
+    p {
+      margin: 0 0 1em;
+      font-size: 1rem;
+    }
 
-#culture .img-container {
-  width: 100%;
-  height: 250px;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
+    strong {
+      font-weight: 600;
+    }
 
-#culture .img-container:hover {
-  transform: translateY(-5px);
-}
+    a {
+      color: var(--blue);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
 
-#culture .carousel-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+    a:hover {
+      color: var(--coral);
+      text-decoration: underline;
+    }
 
-#culture .carousel-nav {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-  z-index: 2;
-}
+    img {
+      max-width: 100%;
+      height: auto;
+    }
 
-#culture .carousel-button {
-  background-color: var(--blue);
-  color: white;
-  border: none;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-}
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-#culture .carousel-button:hover {
-  background-color: var(--coral);
-}
+    /* Button Styles */
+    .btn {
+      font-weight: 600;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: var(--coral);
+      color: var(--white);
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: all var(--transition-medium);
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+      font-size: 1rem;
+    }
 
-#culture .carousel-button.prev {
-  margin-left: 20px;
-}
+    .btn:hover {
+      background: var(--coral-light);
+      transform: translateY(-2px);
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgba(255, 111, 97, 0.3);
+    }
 
-#culture .carousel-button.next {
-  margin-right: 20px;
-}
+    .btn-secondary {
+      background: var(--blue);
+    }
 
-#culture .carousel-indicators {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
+    .btn-secondary:hover {
+      background: var(--blue-light);
+      box-shadow: 0 4px 8px rgba(0, 59, 113, 0.3);
+    }
 
-#culture .indicator {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #ccc;
-  margin: 0 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+    /* Header */
+    .header {
+      position: sticky;
+      top: 0;
+      background: rgba(247, 247, 247, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--teal);
+      z-index: 1000;
+      padding: 0.75rem;
+      transition: all var(--transition-medium);
+    }
 
-#culture .indicator.active {
-  background-color: var(--blue);
-}
+    .header.scrolled {
+      padding: 0.5rem;
+      box-shadow: var(--box-shadow);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header img {
+      height: 50px;
+      transition: height var(--transition-medium);
+    }
+
+    .header.scrolled img {
+      height: 40px;
+    }
+
+    /* Mobile Navigation Toggle */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--blue);
+      cursor: pointer;
+      transition: color var(--transition-fast);
+      padding: 0.5rem;
+    }
+
+    .nav-toggle:hover {
+      color: var(--coral);
+    }
+
+    /* Navigation */
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--blue);
+      font-weight: 600;
+      transition: all var(--transition-fast);
+      position: relative;
+      padding: 0.25rem 0;
+    }
+
+    .nav-links a:hover {
+      color: var(--coral);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--coral);
+      transition: width var(--transition-medium);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 70vh;
+      padding: 5rem 2rem;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border-radius: 0 0 3rem 3rem;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 20%, rgba(177, 156, 217, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 169, 157, 0.15) 0%, transparent 50%);
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2em;
+      color: rgba(255, 255, 255, 0.9);
+      margin: 1rem 0 2rem;
+    }
+
+    /* Paw Print Animation */
+    .paw-print {
+      position: absolute;
+      font-size: 4em;
+      color: rgba(255, 255, 255, 0.8);
+      opacity: 0;
+      animation: pawSequence 6s infinite;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pawSequence {
+      0%, 100% {
+        opacity: 0;
+        transform: scale(1);
+      }
+      16.66%, 33.33% {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+    }
+
+    /* Sections */
+    .section {
+      padding: 5rem 2rem;
+    }
+
+    .section:nth-of-type(odd) {
+      background: linear-gradient(180deg, var(--light), rgba(0, 169, 157, 0.1));
+    }
+
+    .section:nth-of-type(even) {
+      background: linear-gradient(180deg, rgba(0, 169, 157, 0.1), var(--light));
+    }
+
+    /* Grid System */
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      justify-items: center;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    /* Cards */
+    .card {
+      position: relative;
+      width: 100%;
+      padding: 1.5rem;
+      background: var(--grey);
+      background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.1) 10px, rgba(255, 255, 255, 0.1) 20px);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      border: 3px solid var(--purple);
+      overflow: hidden;
+      transition: all var(--transition-medium);
+      text-align: center;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      width: 100%;
+    }
+
+    .card-icon {
+      display: block;
+      font-size: 1.5em;
+      opacity: 0.8;
+      margin-bottom: 1rem;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      border-color: var(--coral);
+      background: linear-gradient(135deg, rgba(248, 248, 248, 0.8), rgba(255, 111, 97, 0.1));
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(135deg, var(--coral), var(--teal));
+    }
+
+    /* Testimonials */
+    #testimonials .card {
+      padding: 2rem 1.5rem;
+    }
+
+    #testimonials .card-icon {
+      font-size: 2em;
+      color: var(--teal);
+    }
+
+    /* Career Paths */
+    #career-paths .card {
+      text-align: center;
+    }
+
+    /* Benefits */
+    .benefits-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .benefit-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform var(--transition-medium);
+    }
+
+    .benefit-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .benefit-icon-circle {
+      width: 100px;
+      height: 100px;
+      background: var(--teal);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5em;
+      color: var(--white);
+      margin-bottom: 1rem;
+      transition: all var(--transition-medium);
+      box-shadow: 0 5px 15px rgba(0, 169, 157, 0.2);
+    }
+
+    .benefit-item:hover .benefit-icon-circle {
+      background: var(--coral);
+      box-shadow: 0 8px 20px rgba(255, 111, 97, 0.3);
+      transform: scale(1.05);
+    }
+
+    .benefit-item strong {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--heading-purple);
+    }
+
+    /* Employee Spotlights */
+    #spotlights .card {
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+
+    #spotlights .card-icon {
+      font-size: 3em;
+      margin-bottom: 1rem;
+    }
+
+    /* Map Section */
+    .map-container {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .map-placeholder {
+      width: 100%;
+      height: 400px;
+      margin: 0 auto;
+      background: var(--grey-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed #ccc;
+      color: var(--text-light);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Carousel for Culture Section */
+    .carousel-container {
+      width: 100%;
+      max-width: 1000px;
+      margin: 2rem auto;
+      position: relative;
+      overflow: hidden;
+      padding: 1rem 0;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .carousel-item {
+      min-width: 300px;
+      width: 300px;
+      padding: 10px;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+      opacity: 0.7;
+      transform: scale(0.9);
+    }
+
+    .carousel-item.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .img-container {
+      width: 100%;
+      height: 250px;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .img-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .img-container:hover img {
+      transform: scale(1.05);
+    }
+
+    .carousel-nav {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .carousel-button {
+      background-color: var(--blue);
+      color: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--transition-medium);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+      pointer-events: auto;
+    }
+
+    .carousel-button:hover {
+      background-color: var(--coral);
+      transform: scale(1.1);
+    }
+
+    .carousel-button.prev {
+      margin-left: 20px;
+    }
+
+    .carousel-button.next {
+      margin-right: 20px;
+    }
+
+    .carousel-indicators {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: var(--grey-dark);
+      margin: 0 5px;
+      cursor: pointer;
+      transition: all var(--transition-medium);
+    }
+
+    .indicator:hover {
+      background-color: var(--blue-light);
+      transform: scale(1.2);
+    }
+
+    .indicator.active {
+      background-color: var(--blue);
+      transform: scale(1.2);
+    }
+
+    /* Modal for image viewing */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-content {
+      max-width: 90%;
+      max-height: 90%;
+      position: relative;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal img {
+      width: 100%;
+      height: auto;
+      max-height: 90vh;
+      object-fit: contain;
+      display: block;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--transition-fast);
+    }
+
+    .close-modal:hover {
+      transform: scale(1.2);
+    }
+
+    /* Animation classes */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in-up.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--blue);
+      color: var(--white);
+      padding: 3rem 0;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 0 1rem;
+    }
+
+    .footer-column {
+      text-align: left;
+    }
+
+    .footer-column h3 {
+      color: var(--teal);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .footer-column a {
+      color: var(--light);
+      display: block;
+      margin-bottom: 0.5rem;
+      transition: color var(--transition-fast);
+    }
+
+    .footer-column a:hover {
+      color: var(--coral);
+      text-decoration: none;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: var(--white);
+      font-size: 1.5rem;
+      transition: color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .social-links a:hover {
+      color: var(--coral);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Back to top button */
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: var(--blue);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition-medium);
+      z-index: 999;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      background: var(--coral);
+      transform: translateY(-5px);
+    }
+
+    /* Loading Animations */
+    .loading-placeholder {
+      background: linear-gradient(90deg, var(--grey) 0%, var(--grey-dark) 50%, var(--grey) 100%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+      border-radius: var(--border-radius);
+    }
+
+    @keyframes loading {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
+
+    /* Media Queries */
+    @media (max-width: 992px) {
+      .container {
+        padding: 0 15px;
+      }
+      .grid-3 {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+      }
+      .nav-links {
+        position: fixed;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: var(--light);
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+        gap: 1rem;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all var(--transition-medium);
+        z-index: 999;
+      }
+      .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+      .hero {
+        min-height: 60vh;
+        padding: 4rem 1rem;
+      }
+      .section {
+        padding: 3rem 1rem;
+      }
+      .grid {
+        gap: 1rem;
+      }
+      .benefit-icon-circle {
+        width: 80px;
+        height: 80px;
+        font-size: 2em;
+      }
+    }
+
+    @media (max-width: 576px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+      h2 {
+        font-size: 1.3rem;
+      }
+      .hero {
+        min-height: 50vh;
+        padding: 3rem 1rem;
+        border-radius: 0 0 2rem 2rem;
+      }
+      .section {
+        padding: 2rem 1rem;
+      }
+      .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+      .carousel-button {
+        width: 40px;
+        height: 40px;
+      }
+      .footer {
+        padding: 2rem 0;
+      }
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .footer-column {
+        text-align: center;
+      }
+      .social-links {
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 <body id="top">
-  <header class="header">
-    <a href="#top"><img src="a6b29e20-01e6-47d5-9693-fc4c1537de6b.png" alt="VCA Logo"></a>
-    <nav class="nav-links">
-      <a href="#region-at-a-glance">Our Region</a>
-      <a href="#testimonials">Team Testimonials</a>
-      <a href="#culture">Our Culture</a>
-      <a href="#career-paths">Career Paths</a>
-      <a href="#spotlights">Employee Spotlights</a>
-      <a href="#benefits">Benefits</a>
-      <a href="#values">Our Values</a>
-      <a href="#careers">Open Roles</a>
-      <a href="#recruiters">Contact Our Team</a>
-    </nav>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container header-container">
+      <a href="#top" aria-label="VCA Logo - Back to top">
+        <img src="a6b29e20-01e6-47d5-9693-fc4c1537de6b.png" alt="VCA Logo">
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav class="nav-links" id="nav-links">
+        <a href="#region-at-a-glance">Our Region</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#culture">Our Culture</a>
+        <a href="#career-paths">Career Paths</a>
+        <a href="#spotlights">Spotlights</a>
+        <a href="#benefits">Benefits</a>
+        <a href="#values">Values</a>
+        <a href="#careers">Open Roles</a>
+        <a href="#recruiters">Contact Us</a>
+      </nav>
+    </div>
   </header>
 
+  <!-- Hero Section -->
   <section class="hero">
-    <div class="hero-text">
-      <h1>We’re a region of hospitals within VCA spanning New England, New York, Michigan, and beyond—united by our passion for exceptional veterinary care and our commitment to community and personal connection.</h1>
+    <div class="hero-text fade-in-up active">
+      <h1>We're a region of hospitals within VCA spanning New England, New York, Michigan, and beyond—united by our passion for exceptional veterinary care and our commitment to community and personal connection.</h1>
       <p class="hero-subtitle">Join our team, where compassion meets community.</p>
       <a href="#careers" class="btn">See Open Roles</a>
     </div>
-    <span class="paw-print" style="bottom:15%; left:15%;animation-delay:0s;">🐾</span>
-    <span class="paw-print" style="top:15%; left:15%;animation-delay:1s;">🐾</span>
-    <span class="paw-print" style="top:10%; left:50%;transform:translateX(-50%);animation-delay:2s;">🐾</span>
-    <span class="paw-print" style="top:15%; right:15%;animation-delay:3s;">🐾</span>
-    <span class="paw-print" style="bottom:15%; right:15%;animation-delay:4s;">🐾</span>
-    <span class="paw-print" style="bottom:5%; left:50%;transform:translateX(-50%);animation-delay:5s;">🐾</span>
+    <!-- Animated Paw Prints -->
+    <span class="paw-print" style="bottom:15%; left:15%; animation-delay:0s;"><i class="fas fa-paw"></i></span>
+    <span class="paw-print" style="top:15%; left:15%; animation-delay:1s;"><i class="fas fa-paw"></i></span>
+    <span class="paw-print" style="top:10%; left:50%; transform:translateX(-50%); animation-delay:2s;"><i class="fas fa-paw"></i></span>
+    <span class="paw-print" style="top:15%; right:15%; animation-delay:3s;"><i class="fas fa-paw"></i></span>
+    <span class="paw-print" style="bottom:15%; right:15%; animation-delay:4s;"><i class="fas fa-paw"></i></span>
+    <span class="paw-print" style="bottom:5%; left:50%; transform:translateX(-50%); animation-delay:5s;"><i class="fas fa-paw"></i></span>
   </section>
 
+  <!-- Region Map Section -->
   <section class="section" id="region-at-a-glance">
-    <h2>Our Region at a Glance</h2>
-    <div class="map-placeholder">[Interactive Map Placeholder]</div>
+    <div class="container">
+      <h2 class="fade-in-up">Our Region at a Glance</h2>
+      <div class="map-container fade-in-up">
+        <div class="map-placeholder">
+          <div>
+            <i class="fas fa-map-marked-alt" style="font-size: 3rem; margin-bottom: 1rem; color: var(--blue);"></i>
+            <p>Interactive Map Coming Soon</p>
+            <p>Our region spans across New England, New York, Michigan and beyond</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
+  <!-- Testimonials Section -->
   <section class="section" id="testimonials">
-    <h2>Team Testimonials</h2>
-    <div class="grid grid-3">
-      <div class="card"><span class="card-icon">🐾</span>“Great place to grow!”<br><strong>Dr. Smith, Veterinarian</strong></div>
-      <div class="card"><span class="card-icon">🐾</span>“Supportive environment.”<br><strong>Tech Jane, Technician</strong></div>
+    <div class="container">
+      <h2 class="fade-in-up">Team Testimonials</h2>
+      <div class="grid grid-3">
+        <div class="card fade-in-up">
+          <span class="card-icon"><i class="fas fa-quote-left"></i></span>
+          <p>"VCA North Atlantic provided me with incredible growth opportunities and mentorship that helped advance my career. The collaborative team environment makes every day rewarding."</p>
+          <strong>Dr. Smith, Veterinarian</strong>
+        </div>
+        <div class="card fade-in-up">
+          <span class="card-icon"><i class="fas fa-quote-left"></i></span>
+          <p>"I love the supportive environment at VCA. My colleagues feel like family, and I'm given all the tools I need to provide the best possible care for our patients."</p>
+          <strong>Tech Jane, Veterinary Technician</strong>
+        </div>
+        <div class="card fade-in-up">
+          <span class="card-icon"><i class="fas fa-quote-left"></i></span>
+          <p>"Joining VCA North Atlantic was the best career move I've made. The emphasis on work-life balance combined with excellent professional development has allowed me to thrive both personally and professionally."</p>
+          <strong>Mark Johnson, Practice Manager</strong>
+        </div>
+      </div>
     </div>
   </section>
 
+  <!-- Culture Section with Carousel -->
   <section class="section" id="culture">
-  <h2>Our Culture</h2>
-  <div class="carousel-container">
-    <div class="carousel-track" id="carouselTrack">
-      <!-- Items will be dynamically generated -->
+    <div class="container">
+      <h2 class="fade-in-up">Our Culture</h2>
+      <p class="fade-in-up">At VCA North Atlantic, we foster a collaborative environment where learning, growth, and compassion are at the heart of everything we do. Explore our gallery to see our team in action!</p>
+      
+      <div class="carousel-container fade-in-up">
+        <div class="carousel-track" id="carouselTrack">
+          <!-- Items will be dynamically generated -->
+        </div>
+        
+        <div class="carousel-nav">
+          <button class="carousel-button prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-button next" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        
+        <div class="carousel-indicators" id="carouselIndicators">
+          <!-- Indicators will be dynamically generated -->
+        </div>
+      </div>
+      
+      <div class="modal" id="imageModal" aria-hidden="true" role="dialog">
+        <div class="modal-content">
+          <button class="close-modal" aria-label="Close modal">&times;</button>
+          <img id="modalImage" src="" alt="Enlarged image">
+        </div>
+      </div>
     </div>
-    
-    <div class="carousel-nav">
-      <button class="carousel-button prev">&#10094;</button>
-      <button class="carousel-button next">&#10095;</button>
-    </div>
-    
-    <div class="carousel-indicators" id="carouselIndicators">
-      <!-- Indicators will be dynamically generated -->
-    </div>
-  </div>
-  
-  <div class="modal" id="imageModal">
-    <div class="modal-content">
-      <button class="close-modal">&times;</button>
-      <img id="modalImage" src="" alt="Enlarged image">
-    </div>
-  </div>
-</section>
+  </section>
 
+  <!-- Career Paths Section -->
   <section class="section" id="career-paths">
-    <h2>Career Paths</h2>
-    <div class="grid grid-3">
-      <div class="card"><span class="card-icon">🩺</span><strong>General Practice</strong><p>Provide routine care and develop lasting client relationships.</p></div>
-      <div class="card"><span class="card-icon">🚑</span><strong>ER & Specialty</strong><p>Handle urgent cases and complex procedures.</p></div>
-      <div class="card"><span class="card-icon">🧰</span><strong>Technician</strong><p>Support the medical team with critical patient care.</p></div>
+    <div class="container">
+      <h2 class="fade-in-up">Career Paths</h2>
+      <div class="grid grid-3">
+        <div class="card fade-in-up">
+          <span class="card-icon">🩺</span>
+          <strong>General Practice</strong>
+          <p>Provide routine care and develop lasting client relationships. Our GP veterinarians enjoy collaborative support and growth opportunities.</p>
+          <a href="#careers" class="btn btn-secondary">Learn More</a>
+        </div>
+        <div class="card fade-in-up">
+          <span class="card-icon">🚑</span>
+          <strong>ER & Specialty</strong>
+          <p>Handle urgent cases and complex procedures. Join our team of specialists making a difference when pets need it most.</p>
+          <a href="#careers" class="btn btn-secondary">Learn More</a>
+        </div>
+        <div class="card fade-in-up">
+          <span class="card-icon">🧰</span>
+          <strong>Technician</strong>
+          <p>Support the medical team with critical patient care. Our technicians are the backbone of our practice with clear advancement paths.</p>
+          <a href="#careers" class="btn btn-secondary">Learn More</a>
+        </div>
+      </div>
     </div>
-  </section>
 
+  <!-- Employee Spotlights Section -->
   <section class="section" id="spotlights">
-    <h2>Employee Spotlights</h2>
-    <div class="grid grid-3">
-      <a href="alex-doe.html" class="card-link"><div class="card"><span class="card-icon">👤</span><strong>Alex Doe</strong><p>Veterinarian</p></div></a>
-      <div class="card"><span class="card-icon">👤</span><strong>Sam Lee</strong><p>Technician</p></div>
+    <div class="container">
+      <h2 class="fade-in-up">Employee Spotlights</h2>
+      <div class="grid grid-3">
+        <a href="alex-doe.html" class="card-link fade-in-up">
+          <div class="card">
+            <span class="card-icon">👤</span>
+            <strong>Alex Doe</strong>
+            <p>Veterinarian</p>
+            <p>"I joined VCA North Atlantic three years ago and have found incredible mentorship and growth opportunities."</p>
+          </div>
+        </a>
+        <a href="#" class="card-link fade-in-up">
+          <div class="card">
+            <span class="card-icon">👤</span>
+            <strong>Sam Lee</strong>
+            <p>Technician</p>
+            <p>"The supportive culture at VCA has allowed me to expand my skills and take on leadership roles."</p>
+          </div>
+        </a>
+        <a href="#" class="card-link fade-in-up">
+          <div class="card">
+            <span class="card-icon">👤</span>
+            <strong>Jamie Wilson</strong>
+            <p>Practice Manager</p>
+            <p>"VCA provides the resources and autonomy to create a positive workplace culture and drive practice success."</p>
+          </div>
+        </a>
+      </div>
     </div>
   </section>
 
+  <!-- Benefits Section -->
   <section class="section" id="benefits">
-    <h2>Benefits</h2>
-    <div class="benefits-container">
-      <div class="benefit-item"><div class="benefit-icon-circle">💉</div><strong>Health Insurance</strong><p>Comprehensive plans to keep you and your loved ones covered.</p></div>
-      <div class="benefit-item"><div class="benefit-icon-circle">👓</div><strong>Dental & Vision</strong><p>Robust coverage for bright smiles and clear vision.</p></div>
-      <div class="benefit-item"><div class="benefit-icon-circle">💰</div><strong>401k Match</strong><p>Secure your future with generous employer contributions.</p></div>
-      <div class="benefit-item"><div class="benefit-icon-circle">💆‍♂️</div><strong>Mental Health Support</strong><p>Access counseling and resources for your well-being.</p></div>
-      <div class="benefit-item"><div class="benefit-icon-circle">🐶</div><strong>Pet Care Discount</strong><p>Special rates so your furry friends get the best care.</p></div>
-      <div class="benefit-item"><div class="benefit-icon-circle">🤱</div><strong>Paid Parental Leave</strong><p>Supportive time off for growing your family.</p></div>
-      <div class="benefit-item"><div class="benefit-icon-circle">🛡️</div><strong>Liability Insurance</strong><p>Company-paid coverage to protect you on the job.</p></div>
-      <div class="benefit-item"><div class="benefit-icon-circle">📚</div><strong>CE Budget</strong><p>Strong educational funds to advance your skills.</p></div>
+    <div class="container">
+      <h2 class="fade-in-up">Benefits</h2>
+      <div class="benefits-container">
+        <div class="benefit-item fade-in-up">
+          <div class="benefit-icon-circle">
+            💉
+          </div>
+          <strong>Health Insurance</strong>
+          <p>Comprehensive plans to keep you and your loved ones covered with multiple options to fit your needs.</p>
+        </div>
+        <div class="benefit-item fade-in-up">
+          <div class="benefit-icon-circle">
+            👓
+          </div>
+          <strong>Dental & Vision</strong>
+          <p>Robust coverage for bright smiles and clear vision with nationwide provider networks.</p>
+        </div>
+        <div class="benefit-item fade-in-up">
+          <div class="benefit-icon-circle">
+            💰
+          </div>
+          <strong>401k Match</strong>
+          <p>Secure your future with generous employer contributions and financial wellness resources.</p>
+        </div>
+        <div class="benefit-item fade-in-up">
+          <div class="benefit-icon-circle">
+            💆‍♂️
+          </div>
+          <strong>Mental Health Support</strong>
+          <p>Access counseling and resources for your well-being through our employee assistance program.</p>
+        </div>
+        <div class="benefit-item fade-in-up">
+          <div class="benefit-icon-circle">
+            🐶
+          </div>
+          <strong>Pet Care Discount</strong>
+          <p>Special rates so your furry family members get the best care at any VCA hospital.</p>
+        </div>
+        <div class="benefit-item fade-in-up">
+          <div class="benefit-icon-circle">
+            🤱
+          </div>
+          <strong>Paid Parental Leave</strong>
+          <p>Supportive time off for growing your family with job protection and benefits continuation.</p>
+        </div>
+        <div class="benefit-item fade-in-up">
+          <div class="benefit-icon-circle">
+            🛡️
+          </div>
+          <strong>Liability Insurance</strong>
+          <p>Company-paid coverage to protect you on the job with comprehensive professional liability protection.</p>
+        </div>
+        <div class="benefit-item fade-in-up">
+          <div class="benefit-icon-circle">
+            📚
+          </div>
+          <strong>CE Budget</strong>
+          <p>Strong educational funds to advance your skills with paid time off for continuing education.</p>
+        </div>
+      </div>
     </div>
   </section>
 
+  <!-- Values Section -->
   <section class="section" id="values">
-    <h2>Our Values</h2>
-    <div	class="grid grid-3">
-      <div	class="card"><span class="card-icon">🤝</span><strong>Mentorship</strong><p>Fostering growth through guidance & support.</p></div>
-      <div	class="card"><span class="card-icon">👥</span><strong>Collaboration</strong><p>Working together to achieve excellence.</p></div>
-      <div	class="card"><span class="card-icon">🏆</span><strong>Medical Excellence</strong><p>Delivering top-tier care to every patient.</p></div>
+    <div class="container">
+      <h2 class="fade-in-up">Our Values</h2>
+      <div class="grid grid-3">
+        <div class="card fade-in-up">
+          <span class="card-icon">🤝</span>
+          <strong>Mentorship</strong>
+          <p>Fostering growth through guidance & support. We believe in investing in our team's development at every career stage.</p>
+        </div>
+        <div class="card fade-in-up">
+          <span class="card-icon">👥</span>
+          <strong>Collaboration</strong>
+          <p>Working together to achieve excellence. Our team approach ensures the best outcomes for patients and a supportive environment for staff.</p>
+        </div>
+        <div class="card fade-in-up">
+          <span class="card-icon">🏆</span>
+          <strong>Medical Excellence</strong>
+          <p>Delivering top-tier care to every patient. We're committed to the highest standards of veterinary medicine and continuous improvement.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section	class="section" id="careers">
-    <h2>Open Roles</h2>
-    <a	href="#careers" class="btn">View Open Roles</a>
-  </section>
-
-  <section	class="section" id="recruiters">
-    <h2>Contact Our Team</h2>
-    <div	class="grid grid-3">
-      <div	class="card"><span class="card-icon">📧</span><strong>Dr. Jane Roe</strong><p>Veterinarian Recruiter</p><p><a href="mailto:jane.roe@vca.com">jane.roe@vca.com</a></p></div>
-      <div	class="card"><span class="card-icon">📧</span><strong>John Roe</strong><p>Student/New Grad Recruiter</p><p><a href="mailto:john.roe@vca.com">john.roe@vca.com</a></p></div>
+  <!-- Careers Section -->
+  <section class="section" id="careers">
+    <div class="container">
+      <h2 class="fade-in-up">Open Roles</h2>
+      <p class="fade-in-up">Join our team and make a difference in the lives of pets and their families across the North Atlantic region. We're currently hiring for the following positions:</p>
+      
+      <div class="grid grid-3">
+        <div class="card fade-in-up">
+          <span class="card-icon"><i class="fas fa-user-md"></i></span>
+          <strong>Veterinarians</strong>
+          <p>Multiple locations across New England and New York</p>
+          <a href="#" class="btn">Apply Now</a>
+        </div>
+        <div class="card fade-in-up">
+          <span class="card-icon"><i class="fas fa-syringe"></i></span>
+          <strong>Veterinary Technicians</strong>
+          <p>Full-time and part-time positions available</p>
+          <a href="#" class="btn">Apply Now</a>
+        </div>
+        <div class="card fade-in-up">
+          <span class="card-icon"><i class="fas fa-clipboard-list"></i></span>
+          <strong>Client Service Representatives</strong>
+          <p>Be the welcoming face of our hospitals</p>
+          <a href="#" class="btn">Apply Now</a>
+        </div>
+      </div>
+      
+      <div class="text-center" style="margin-top: 2rem; text-align: center;">
+        <a href="https://careers.vca.com" class="btn btn-secondary" style="font-size: 1.1rem;">View All Open Positions</a>
+      </div>
     </div>
   </section>
 
+  <!-- Recruiters Contact Section -->
+  <section class="section" id="recruiters">
+    <div class="container">
+      <h2 class="fade-in-up">Contact Our Team</h2>
+      <p class="fade-in-up">Have questions about joining VCA North Atlantic? Our dedicated recruitment team is here to help you find the perfect position.</p>
+      
+      <div class="grid grid-3">
+        <div class="card fade-in-up">
+          <span class="card-icon">📧</span>
+          <strong>Dr. Jane Roe</strong>
+          <p>Veterinarian Recruiter</p>
+          <p><a href="mailto:jane.roe@vca.com">jane.roe@vca.com</a></p>
+          <p><a href="tel:+1234567890"><i class="fas fa-phone"></i> (123) 456-7890</a></p>
+        </div>
+        <div class="card fade-in-up">
+          <span class="card-icon">📧</span>
+          <strong>John Roe</strong>
+          <p>Student/New Grad Recruiter</p>
+          <p><a href="mailto:john.roe@vca.com">john.roe@vca.com</a></p>
+          <p><a href="tel:+1234567891"><i class="fas fa-phone"></i> (123) 456-7891</a></p>
+        </div>
+        <div class="card fade-in-up">
+          <span class="card-icon">📧</span>
+          <strong>Sarah Johnson</strong>
+          <p>Technician & Support Staff Recruiter</p>
+          <p><a href="mailto:sarah.johnson@vca.com">sarah.johnson@vca.com</a></p>
+          <p><a href="tel:+1234567892"><i class="fas fa-phone"></i> (123) 456-7892</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <a href="#region-at-a-glance">Our Region</a>
+        <a href="#culture">Our Culture</a>
+        <a href="#benefits">Benefits</a>
+        <a href="#careers">Careers</a>
+      </div>
+      <div class="footer-column">
+        <h3>Resources</h3>
+        <a href="https://vcacareersite.com" target="_blank">VCA Careers</a>
+        <a href="#">New Grad Programs</a>
+        <a href="#">Internships</a>
+        <a href="#">Continuing Education</a>
+      </div>
+      <div class="footer-column">
+        <h3>Connect With Us</h3>
+        <p>Follow us on social media for the latest updates and opportunities.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 VCA North Atlantic. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <a href="#top" class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
+  <!-- Scripts -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-  // Image data - replace these with your actual images
-  const images = [
-    { src: 'https://via.placeholder.com/800x600?text=NAPOC+Team+1', alt: 'NAPOC Team Image 1' },
-    { src: 'https://via.placeholder.com/800x600?text=NAPOC+Team+2', alt: 'NAPOC Team Image 2' },
-    { src: 'https://via.placeholder.com/800x600?text=NAPOC+Team+3', alt: 'NAPOC Team Image 3' },
-    { src: 'https://via.placeholder.com/800x600?text=NAPOC+Team+4', alt: 'NAPOC Team Image 4' },
-    { src: 'https://via.placeholder.com/800x600?text=NAPOC+Team+5', alt: 'NAPOC Team Image 5' },
-    { src: 'https://via.placeholder.com/800x600?text=NAPOC+Team+6', alt: 'NAPOC Team Image 6' },
-    { src: 'https://via.placeholder.com/800x600?text=NAPOC+Team+7', alt: 'NAPOC Team Image 7' }
-  ];
+      // Header scroll effect
+      const header = document.getElementById('header');
+      const backToTop = document.getElementById('backToTop');
+      
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+          header.classList.add('scrolled');
+          backToTop.classList.add('visible');
+        } else {
+          header.classList.remove('scrolled');
+          backToTop.classList.remove('visible');
+        }
+      });
 
-  // Get DOM elements
-  const track = document.getElementById('carouselTrack');
-  const indicators = document.getElementById('carouselIndicators');
-  const prevButton = document.querySelector('.carousel-button.prev');
-  const nextButton = document.querySelector('.carousel-button.next');
-  const modal = document.getElementById('imageModal');
-  const modalImage = document.getElementById('modalImage');
-  const closeModal = document.querySelector('.close-modal');
-  const container = document.querySelector('.carousel-container');
-  
-  let currentIndex = 0;
-  let autoScrollInterval;
-  let isPaused = false;
-  
-  // Initialize carousel
-  function initCarousel() {
-    // Create original items first in the middle
-    images.forEach((image, index) => {
-      createCarouselItem(image, index, 'original');
-      createIndicator(index);
-    });
-    
-    // Clone images for beginning and end to create illusion of infinite scroll
-    for (let i = 0; i < images.length; i++) {
-      // Add clones at the beginning (show end of carousel)
-      createCarouselItem(images[images.length - 1 - i], images.length - 1 - i, 'clone-start');
+      // Mobile navigation toggle
+      const navToggle = document.querySelector('.nav-toggle');
+      const navLinks = document.getElementById('nav-links');
       
-      // Add clones at the end (show beginning of carousel)
-      createCarouselItem(images[i], i, 'clone-end');
-    }
-    
-    // Arrange items for initial view (show the originals in center)
-    setTimeout(() => {
-      // Position to show the first non-clone item
-      currentIndex = 0;
-      repositionCarousel(false);
+      navToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+        navToggle.setAttribute('aria-expanded', 
+          navLinks.classList.contains('active') ? 'true' : 'false'
+        );
+      });
       
-      // Start auto-scrolling
-      startAutoScroll();
-    }, 100);
-  }
-  
-  // Create carousel item
-  function createCarouselItem(image, index, className = '') {
-    const item = document.createElement('div');
-    item.className = `carousel-item ${className}`;
-    item.dataset.index = index;
-    
-    const imgContainer = document.createElement('div');
-    imgContainer.className = 'img-container';
-    
-    const img = document.createElement('img');
-    img.src = image.src;
-    img.alt = image.alt;
-    
-    imgContainer.appendChild(img);
-    item.appendChild(imgContainer);
-    
-    // If it's a clone for the start, prepend it
-    if (className === 'clone-start') {
-      track.prepend(item);
-    } else {
-      track.appendChild(item);
-    }
-    
-    // Add click event for modal
-    imgContainer.addEventListener('click', () => {
-      pauseAutoScroll();
-      modalImage.src = image.src;
-      modalImage.alt = image.alt;
-      modal.classList.add('active');
-    });
-    
-    // Add hover events to pause/resume auto-scroll
-    imgContainer.addEventListener('mouseenter', () => {
-      pauseAutoScroll();
-    });
-    
-    imgContainer.addEventListener('mouseleave', () => {
-      if (!modal.classList.contains('active')) {
+      // Close mobile menu when clicking on a link
+      const mobileLinks = navLinks.querySelectorAll('a');
+      
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          if (window.innerWidth <= 768) {
+            navLinks.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+
+      // Fade-in animations on scroll
+      const fadeElements = document.querySelectorAll('.fade-in-up:not(.active)');
+      
+      const fadeInObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            fadeInObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      
+      fadeElements.forEach(element => {
+        fadeInObserver.observe(element);
+      });
+
+      // Image carousel functionality
+      const images = [
+        { src: 'https://via.placeholder.com/800x600?text=Team+Event', alt: 'VCA Team Event' },
+        { src: 'https://via.placeholder.com/800x600?text=Surgery+Team', alt: 'Surgery Team in Action' },
+        { src: 'https://via.placeholder.com/800x600?text=Community+Outreach', alt: 'Community Outreach Program' },
+        { src: 'https://via.placeholder.com/800x600?text=Staff+Meeting', alt: 'Staff Meeting' },
+        { src: 'https://via.placeholder.com/800x600?text=Training+Session', alt: 'Training Session' },
+        { src: 'https://via.placeholder.com/800x600?text=Hospital+Tour', alt: 'Hospital Tour' },
+        { src: 'https://via.placeholder.com/800x600?text=Team+Building', alt: 'Team Building Activity' }
+      ];
+
+      const track = document.getElementById('carouselTrack');
+      const indicators = document.getElementById('carouselIndicators');
+      const prevButton = document.querySelector('.carousel-button.prev');
+      const nextButton = document.querySelector('.carousel-button.next');
+      const modal = document.getElementById('imageModal');
+      const modalImage = document.getElementById('modalImage');
+      const closeModal = document.querySelector('.close-modal');
+      
+      let currentIndex = 0;
+      let autoScrollInterval;
+      let isPaused = false;
+      
+      // Initialize carousel
+      function initCarousel() {
+        // Create carousel items
+        images.forEach((image, index) => {
+          createCarouselItem(image, index);
+          createIndicator(index);
+        });
+        
+        // Set initial active states
+        updateActiveItems();
+        
+        // Start auto-scrolling
         startAutoScroll();
       }
-    });
-  }
-  
-  // Create indicator
-  function createIndicator(index) {
-    const indicator = document.createElement('div');
-    indicator.className = `indicator ${index === currentIndex ? 'active' : ''}`;
-    indicator.dataset.index = index;
-    
-    indicator.addEventListener('click', () => {
-      pauseAutoScroll();
-      goToSlide(index);
       
-      // Resume auto-scroll after a delay
-      setTimeout(startAutoScroll, 5000);
-    });
-    
-    indicators.appendChild(indicator);
-  }
-  
-  // Reposition carousel based on current index
-  function repositionCarousel(animate = true) {
-    // Get all items to calculate width properly
-    const items = document.querySelectorAll('.carousel-item');
-    const itemWidth = items[0].offsetWidth;
-    
-    // Calculate center position for the carousel
-    // We need to offset by the number of clones at the beginning (images.length)
-    // and then move based on current index
-    const centerOffset = (window.innerWidth / 2) - (itemWidth / 2);
-    const offset = centerOffset - ((currentIndex + images.length) * itemWidth);
-    
-    // Apply or remove transition based on animate parameter
-    if (!animate) {
-      track.style.transition = 'none';
-    } else {
-      track.style.transition = 'transform 0.5s ease';
-    }
-    
-    // Update transform
-    track.style.transform = `translateX(${offset}px)`;
-    
-    // Force reflow if not animating
-    if (!animate) {
-      void track.offsetWidth;
-      track.style.transition = 'transform 0.5s ease';
-    }
-    
-    // Update active classes and indicators
-    updateActiveItems();
-    updateIndicators(currentIndex);
-  }
-  
-  // Update active items
-  function updateActiveItems() {
-    const items = document.querySelectorAll('.carousel-item');
-    
-    // Remove active class from all items
-    items.forEach(item => item.classList.remove('active'));
-    
-    // Calculate which item should be active (centered)
-    const centerIndex = images.length + currentIndex;
-    
-    // Make center item active
-    if (items[centerIndex]) {
-      items[centerIndex].classList.add('active');
-    }
-  }
-  
-  // Update indicators
-  function updateIndicators(index) {
-    const allIndicators = document.querySelectorAll('.indicator');
-    allIndicators.forEach(ind => ind.classList.remove('active'));
-    
-    // Calculate proper index using modulo to handle wrapping
-    const normalizedIndex = ((index % images.length) + images.length) % images.length;
-    const activeIndicator = document.querySelector(`.indicator[data-index="${normalizedIndex}"]`);
-    
-    if (activeIndicator) {
-      activeIndicator.classList.add('active');
-    }
-  }
-  
-  // Go to specific slide
-  function goToSlide(index) {
-    currentIndex = index;
-    repositionCarousel(true);
-  }
-  
-  // Handle transitions for infinite scrolling
-  function handleInfiniteScrollTransition() {
-    // Check if we've scrolled to a clone and need to seamlessly jump to the original
-    const totalOriginalItems = images.length;
-    
-    // If we've gone too far right (into the cloned section at the end)
-    if (currentIndex >= totalOriginalItems) {
-      setTimeout(() => {
-        // Calculate equivalent position at the beginning
-        currentIndex = currentIndex % totalOriginalItems;
-        repositionCarousel(false);
-      }, 500); // Wait for animation to complete
-    }
-    
-    // If we've gone too far left (into the cloned section at the beginning)
-    else if (currentIndex < 0) {
-      setTimeout(() => {
-        // Calculate equivalent position at the end
-        currentIndex = totalOriginalItems + (currentIndex % totalOriginalItems);
-        repositionCarousel(false);
-      }, 500); // Wait for animation to complete
-    }
-  }
-  
-  // Start auto-scrolling
-  function startAutoScroll() {
-    if (isPaused) return;
-    
-    // Clear any existing interval
-    if (autoScrollInterval) {
-      clearInterval(autoScrollInterval);
-    }
-    
-    // Set new interval
-    autoScrollInterval = setInterval(() => {
-      // Move to next slide
-      currentIndex++;
-      repositionCarousel(true);
+      // Create carousel item
+      function createCarouselItem(image, index) {
+        const item = document.createElement('div');
+        item.className = `carousel-item ${index === currentIndex ? 'active' : ''}`;
+        item.dataset.index = index;
+        
+        const imgContainer = document.createElement('div');
+        imgContainer.className = 'img-container';
+        
+        const img = document.createElement('img');
+        img.src = image.src;
+        img.alt = image.alt;
+        img.loading = 'lazy';
+        
+        imgContainer.appendChild(img);
+        item.appendChild(imgContainer);
+        track.appendChild(item);
+        
+        // Add click event for modal
+        imgContainer.addEventListener('click', () => {
+          pauseAutoScroll();
+          modalImage.src = image.src;
+          modalImage.alt = image.alt;
+          modal.classList.add('active');
+          modal.setAttribute('aria-hidden', 'false');
+        });
+        
+        // Add hover events to pause/resume auto-scroll
+        imgContainer.addEventListener('mouseenter', pauseAutoScroll);
+        imgContainer.addEventListener('mouseleave', () => {
+          if (!modal.classList.contains('active')) {
+            resumeAutoScroll();
+          }
+        });
+      }
       
-      // Handle infinite scroll transition if needed
-      handleInfiniteScrollTransition();
-    }, 3000); // Change slides every 3 seconds
-  }
-  
-  // Pause auto-scrolling
-  function pauseAutoScroll() {
-    isPaused = true;
-    if (autoScrollInterval) {
-      clearInterval(autoScrollInterval);
-      autoScrollInterval = null;
-    }
-  }
-  
-  // Resume auto-scrolling
-  function resumeAutoScroll() {
-    isPaused = false;
-    startAutoScroll();
-  }
-  
-  // Event listeners for navigation buttons
-  prevButton.addEventListener('click', () => {
-    pauseAutoScroll();
-    currentIndex--;
-    repositionCarousel(true);
-    handleInfiniteScrollTransition();
-    
-    // Resume auto-scroll after a delay
-    setTimeout(resumeAutoScroll, 5000);
-  });
-  
-  nextButton.addEventListener('click', () => {
-    pauseAutoScroll();
-    currentIndex++;
-    repositionCarousel(true);
-    handleInfiniteScrollTransition();
-    
-    // Resume auto-scroll after a delay
-    setTimeout(resumeAutoScroll, 5000);
-  });
-  
-  // Close modal and resume auto-scroll
-  closeModal.addEventListener('click', () => {
-    modal.classList.remove('active');
-    setTimeout(resumeAutoScroll, 1000);
-  });
-  
-  // Close modal when clicking outside
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.classList.remove('active');
-      setTimeout(resumeAutoScroll, 1000);
-    }
-  });
-  
-  // Carousel container hover events
-  container.addEventListener('mouseenter', () => {
-    pauseAutoScroll();
-  });
-  
-  container.addEventListener('mouseleave', () => {
-    if (!modal.classList.contains('active')) {
-      resumeAutoScroll();
-    }
-  });
-  
-  // Window resize handling
-  window.addEventListener('resize', () => {
-    repositionCarousel(false);
-  });
-  
-  // Initialize the carousel
-  initCarousel();
-});
+      // Create indicator
+      function createIndicator(index) {
+        const indicator = document.createElement('button');
+        indicator.className = `indicator ${index === currentIndex ? 'active' : ''}`;
+        indicator.dataset.index = index;
+        indicator.setAttribute('aria-label', `Go to slide ${index + 1}`);
+        
+        indicator.addEventListener('click', () => {
+          goToSlide(parseInt(index));
+        });
+        
+        indicators.appendChild(indicator);
+      }
+      
+      // Update which items are active
+      function updateActiveItems() {
+        // Update carousel items
+        const items = track.querySelectorAll('.carousel-item');
+        items.forEach(item => {
+          const itemIndex = parseInt(item.dataset.index);
+          if (itemIndex === currentIndex) {
+            item.classList.add('active');
+          } else {
+            item.classList.remove('active');
+          }
+        });
+        
+        // Update position of track
+        const activeItem = track.querySelector('.carousel-item.active');
+        if (activeItem) {
+          const slideWidth = activeItem.offsetWidth;
+          track.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
+        }
+        
+        // Update indicators
+        const dots = indicators.querySelectorAll('.indicator');
+        dots.forEach(dot => {
+          const dotIndex = parseInt(dot.dataset.index);
+          if (dotIndex === currentIndex) {
+            dot.classList.add('active');
+            dot.setAttribute('aria-current', 'true');
+          } else {
+            dot.classList.remove('active');
+            dot.removeAttribute('aria-current');
+          }
+        });
+      }
+      
+      // Go to a specific slide
+      function goToSlide(index) {
+        pauseAutoScroll();
+        
+        // Ensure index is within bounds
+        if (index < 0) {
+          index = images.length - 1;
+        } else if (index >= images.length) {
+          index = 0;
+        }
+        
+        currentIndex = index;
+        updateActiveItems();
+        
+        // Resume auto-scroll after delay
+        setTimeout(resumeAutoScroll, 5000);
+      }
+      
+      // Start auto-scrolling
+      function startAutoScroll() {
+        if (isPaused) return;
+        
+        // Clear any existing interval
+        clearInterval(autoScrollInterval);
+        
+        // Set new interval
+        autoScrollInterval = setInterval(() => {
+          currentIndex = (currentIndex + 1) % images.length;
+          updateActiveItems();
+        }, 4000);
+      }
+      
+      // Pause auto-scrolling
+      function pauseAutoScroll() {
+        isPaused = true;
+        clearInterval(autoScrollInterval);
+      }
+      
+      // Resume auto-scrolling
+      function resumeAutoScroll() {
+        isPaused = false;
+        startAutoScroll();
+      }
+      
+      // Event listeners for navigation buttons
+      prevButton.addEventListener('click', () => {
+        goToSlide(currentIndex - 1);
+      });
+      
+      nextButton.addEventListener('click', () => {
+        goToSlide(currentIndex + 1);
+      });
+      
+      // Close modal
+      function closeImageModal() {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        setTimeout(resumeAutoScroll, 1000);
+      }
+      
+      closeModal.addEventListener('click', closeImageModal);
+      
+      // Close modal when clicking outside
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closeImageModal();
+        }
+      });
+      
+      // Keyboard accessibility for modal
+      document.addEventListener('keydown', (e) => {
+        if (modal.classList.contains('active')) {
+          if (e.key === 'Escape') {
+            closeImageModal();
+          }
+        }
+      });
+      
+      // Initialize the carousel
+      initCarousel();
+      
+      // Handle window resize
+      window.addEventListener('resize', () => {
+        updateActiveItems();
+      });
+    });
   </script>
 </body>
 </html>
