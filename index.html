@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,7 +68,7 @@
     .map-placeholder{width:100%;height:400px;margin:0 auto;background:#e0e0e0;display:flex;align-items:center;justify-content:center;border:2px dashed #ccc;color:#666;border-radius:8px;overflow:hidden;}
     
     /* Grid Layout for Cards with Spacing */
-    .grid{display:grid !important;gap:30px !important;max-width:1000px !important;margin:0 auto !important;justify-items:center !important;padding:20px !important;}
+    .grid{display:grid !important;gap:40px !important;max-width:1000px !important;margin:0 auto !important;justify-items:center !important;padding:20px !important;}
     .grid-3{grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)) !important;}
     @media (min-width:992px){.grid-3{grid-template-columns:repeat(3,1fr) !important;}}
     @media (min-width:768px) and (max-width:991px){.grid-3{grid-template-columns:repeat(2,1fr) !important;}}
@@ -81,6 +80,213 @@
     .card:hover{transform:translateY(-4px) !important;box-shadow:0 6px 16px rgba(0,0,0,0.25) !important;border-color:var(--coral) !important;background:linear-gradient(135deg,rgba(248,248,248,0.8),rgba(255,111,97,0.1)) !important;}
     .card::before{content:'';position:absolute;top:0;left:0;width:100%;height:6px;background:linear-gradient(135deg,var(--coral),var(--teal));display:block;}
     .card-link{text-decoration:none;color:inherit;display:block;width:100%;}
+    
+    /* NEW - Quote Blocks for Testimonials */
+    .quote-block {
+      position: relative;
+      padding: 30px 35px 25px;
+      background: linear-gradient(to bottom right, #f7f7f7, #f0f0f0);
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
+      border-left: 4px solid var(--coral);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .quote-block:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .quote-mark {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      font-size: 40px;
+      color: rgba(125, 63, 152, 0.1);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .quote-content {
+      font-style: italic;
+      margin-bottom: 15px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .quote-author {
+      display: flex;
+      align-items: center;
+      margin-top: 15px;
+    }
+
+    .quote-author strong {
+      color: var(--heading-purple);
+      margin-right: 8px;
+    }
+
+    .quote-author span {
+      color: #777;
+    }
+
+    /* NEW - Image Grid with Overlay for Employee Spotlights */
+    .spotlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .spotlight-item {
+      position: relative;
+      height: 320px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+    }
+
+    .spotlight-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .spotlight-item:hover .spotlight-image {
+      transform: scale(1.05);
+    }
+
+    .spotlight-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0, 59, 113, 0.9), transparent);
+      padding: 20px;
+      transform: translateY(70%);
+      transition: transform 0.4s ease;
+    }
+
+    .spotlight-item:hover .spotlight-overlay {
+      transform: translateY(0);
+    }
+
+    .spotlight-title {
+      color: white;
+      margin: 0 0 5px;
+      font-weight: 600;
+      font-size: 1.2em;
+    }
+
+    .spotlight-role {
+      color: rgba(255, 255, 255, 0.9);
+      margin: 0 0 10px;
+      font-size: 0.9em;
+    }
+
+    .spotlight-quote {
+      color: white;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      transition-delay: 0.1s;
+    }
+
+    .spotlight-item:hover .spotlight-quote {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .spotlight-link {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    /* NEW - Values with Background Images */
+    .values-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .value-item {
+      position: relative;
+      height: 250px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .value-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .value-item:hover .value-bg {
+      transform: scale(1.05);
+    }
+
+    .value-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background: rgba(0, 59, 113, 0.75);
+      color: white;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .value-icon {
+      width: 70px;
+      height: 70px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5em;
+      color: #fff;
+      margin-bottom: 12px;
+      transition: background 0.3s;
+    }
+
+    .value-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5em;
+      margin: 0 0 10px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .value-description {
+      max-width: 90%;
+      line-height: 1.5;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .spotlight-grid, .values-container {
+        grid-template-columns: 1fr;
+      }
+    }
     
     /* Carousel for Culture Section */
     .carousel-container{width:100%;max-width:1000px;margin:0 auto;position:relative;overflow:hidden;padding:20px 0;font-family:'Inter',sans-serif;}
@@ -186,14 +392,35 @@
     </div>
   </section>
 
+  <!-- UPDATED: Team Testimonials Section (Quote Blocks) -->
   <section class="section" id="testimonials">
     <h2>Team Testimonials</h2>
     <div class="grid grid-3">
-      <div class="card"><span class="card-icon">🐾</span>"VCA North Atlantic provided me with incredible growth opportunities and mentorship that helped advance my career. The collaborative team environment makes every day rewarding."<br><strong>Dr. Smith, Veterinarian</strong>
+      <div class="quote-block">
+        <div class="quote-mark">"</div>
+        <p class="quote-content">VCA North Atlantic provided me with incredible growth opportunities and mentorship that helped advance my career. The collaborative team environment makes every day rewarding.</p>
+        <div class="quote-author">
+          <strong>Dr. Smith</strong>
+          <span>Veterinarian</span>
+        </div>
       </div>
-      <div class="card"><span class="card-icon">🐾</span>"I love the supportive environment at VCA. My colleagues feel like family, and I'm given all the tools I need to provide the best possible care for our patients."<br><strong>Tech Jane, Technician</strong>
+      
+      <div class="quote-block">
+        <div class="quote-mark">"</div>
+        <p class="quote-content">I love the supportive environment at VCA. My colleagues feel like family, and I'm given all the tools I need to provide the best possible care for our patients.</p>
+        <div class="quote-author">
+          <strong>Tech Jane</strong>
+          <span>Technician</span>
+        </div>
       </div>
-      <div class="card"><span class="card-icon">🐾</span>"Joining VCA North Atlantic was the best career move I've made. The emphasis on work-life balance combined with excellent professional development has allowed me to thrive both personally and professionally."<br><strong>Mark Johnson, Practice Manager</strong>
+      
+      <div class="quote-block">
+        <div class="quote-mark">"</div>
+        <p class="quote-content">Joining VCA North Atlantic was the best career move I've made. The emphasis on work-life balance combined with excellent professional development has allowed me to thrive both personally and professionally.</p>
+        <div class="quote-author">
+          <strong>Mark Johnson</strong>
+          <span>Practice Manager</span>
+        </div>
       </div>
     </div>
   </section>
@@ -239,24 +466,39 @@
     </div>
   </section>
 
+  <!-- UPDATED: Employee Spotlights Section (Image Grid with Overlay) -->
   <section class="section" id="spotlights">
     <h2>Employee Spotlights</h2>
-    <div class="grid grid-3">
-      <a href="alex-doe.html" class="card-link">
-        <div class="card"><span class="card-icon">👤</span><strong>Alex Doe</strong><p>Veterinarian</p>
-          <p>"I joined VCA North Atlantic three years ago and have found incredible mentorship and growth opportunities."</p>
+    <div class="spotlight-grid">
+      <div class="spotlight-item">
+        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Alex Doe" class="spotlight-image">
+        <div class="spotlight-overlay">
+          <h3 class="spotlight-title">Alex Doe</h3>
+          <p class="spotlight-role">Veterinarian</p>
+          <p class="spotlight-quote">"I joined VCA North Atlantic three years ago and have found incredible mentorship and growth opportunities."</p>
         </div>
-      </a>
-      <a href="#" class="card-link">
-        <div class="card"><span class="card-icon">👤</span><strong>Sam Lee</strong><p>Technician</p>
-          <p>"The supportive culture at VCA has allowed me to expand my skills and take on leadership roles."</p>
+        <a href="alex-doe.html" class="spotlight-link" aria-label="Read more about Alex Doe"></a>
+      </div>
+      
+      <div class="spotlight-item">
+        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Sam Lee" class="spotlight-image">
+        <div class="spotlight-overlay">
+          <h3 class="spotlight-title">Sam Lee</h3>
+          <p class="spotlight-role">Technician</p>
+          <p class="spotlight-quote">"The supportive culture at VCA has allowed me to expand my skills and take on leadership roles."</p>
         </div>
-      </a>
-      <a href="#" class="card-link">
-        <div class="card"><span class="card-icon">👤</span><strong>Jamie Wilson</strong><p>Practice Manager</p>
-          <p>"VCA provides the resources and autonomy to create a positive workplace culture and drive practice success."</p>
+        <a href="#" class="spotlight-link" aria-label="Read more about Sam Lee"></a>
+      </div>
+      
+      <div class="spotlight-item">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Jamie Wilson" class="spotlight-image">
+        <div class="spotlight-overlay">
+          <h3 class="spotlight-title">Jamie Wilson</h3>
+          <p class="spotlight-role">Practice Manager</p>
+          <p class="spotlight-quote">"VCA provides the resources and autonomy to create a positive workplace culture and drive practice success."</p>
         </div>
-      </a>
+        <a href="#" class="spotlight-link" aria-label="Read more about Jamie Wilson"></a>
+      </div>
     </div>
   </section>
 
@@ -274,14 +516,35 @@
     </div>
   </section>
 
+  <!-- UPDATED: Values Section (Background Images) -->
   <section class="section" id="values">
     <h2>Our Values</h2>
-    <div class="grid grid-3">
-      <div class="card"><span class="card-icon">🤝</span><strong>Mentorship</strong><p>Fostering growth through guidance & support. We believe in investing in our team's development at every career stage.</p>
+    <div class="values-container">
+      <div class="value-item">
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="" class="value-bg">
+        <div class="value-content">
+          <div class="value-icon">🤝</div>
+          <h3 class="value-title">Mentorship</h3>
+          <p class="value-description">Fostering growth through guidance & support. We believe in investing in our team's development at every career stage.</p>
+        </div>
       </div>
-      <div class="card"><span class="card-icon">👥</span><strong>Collaboration</strong><p>Working together to achieve excellence. Our team approach ensures the best outcomes for patients and a supportive environment for staff.</p>
+      
+      <div class="value-item">
+        <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="" class="value-bg">
+        <div class="value-content">
+          <div class="value-icon">👥</div>
+          <h3 class="value-title">Collaboration</h3>
+          <p class="value-description">Working together to achieve excellence. Our team approach ensures the best outcomes for patients and a supportive environment for staff.</p>
+        </div>
       </div>
-      <div class="card"><span class="card-icon">🏆</span><strong>Medical Excellence</strong><p>Delivering top-tier care to every patient. We're committed to the highest standards of veterinary medicine and continuous improvement.</p>
+      
+      <div class="value-item">
+        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="" class="value-bg">
+        <div class="value-content">
+          <div class="value-icon">🏆</div>
+          <h3 class="value-title">Medical Excellence</h3>
+          <p class="value-description">Delivering top-tier care to every patient. We're committed to the highest standards of veterinary medicine and continuous improvement.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -708,7 +971,7 @@
       });
       
       // Animation on scroll
-      const fadeElements = document.querySelectorAll('.card, .benefit-item');
+      const fadeElements = document.querySelectorAll('.card, .benefit-item, .quote-block, .spotlight-item, .value-item');
       
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -727,5 +990,3 @@
       });
     });
   </script>
-</body>
-</html>
