@@ -1,4 +1,45 @@
-<!DOCTYPE html>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mobile Menu Toggle
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
+      const navOverlay = document.getElementById('navOverlay');
+      
+      function toggleMenu() {
+        navLinks.classList.toggle('active');
+        navOverlay.classList.toggle('active');
+        
+        // Update aria-expanded attribute for accessibility
+        const isExpanded = navLinks.classList.contains('active');
+        menuToggle.setAttribute('aria-expanded', isExpanded);
+        
+        // Change menu icon
+        menuToggle.textContent = isExpanded ? '✕' : '☰';
+      }
+      
+      menuToggle.addEventListener('click', toggleMenu);
+      navOverlay.addEventListener('click', toggleMenu);
+      
+      // Close menu when clicking on a link
+      const menuLinks = navLinks.querySelectorAll('a');
+      menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks.classList.contains('active')) {
+            toggleMenu();
+          }
+        });
+      });
+      
+      // Image data for carousel
+      const images = [
+        { src: 'https://images.unsplash.com/photo-1551887373-2a2a2a9e678d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Veterinary team during procedure' },
+        { src: 'https://images.unsplash.com/photo-1599443015574-be5fe8a05783?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Veterinarian examining dog' },
+        { src: 'https://images.unsplash.com/photo-1516734212186-a967f081c1f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Team building event' },
+        { src: 'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Veterinary staff meeting' },
+        { src: 'https://images.unsplash.com/photo-1579165466949-3180a3d056d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Veterinarian with cat' },
+        { src: 'https://images.unsplash.com/photo-1570624090866-d3496a3d9291?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Veterinary team with pet owner' },
+        { src: 'https://images.unsplash.com/photo-1588943211346-0908a1fb0b01?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Hospital tour' }
+      ];<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -141,7 +182,7 @@
 </head>
 <body id="top">
   <header class="header">
-    <a href="#top"><img src="a6b29e20-01e6-47d5-9693-fc4c1537de6b.png" alt="VCA Logo"></a>
+    <a href="#top"><img src="https://vcahospitals.com/-/media/vca/images/global/global-branding/vca-logo.svg" alt="VCA Logo"></a>
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
     <div class="nav-overlay" id="navOverlay"></div>
     <nav class="nav-links" id="navLinks">
