@@ -12,7 +12,8 @@
     @keyframes fadeInUp {0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
     @keyframes pawSequence {0%,100%{opacity:0;transform:scale(1);}16.66%,33.33%{opacity:1;transform:scale(1.1);}}
     :root{--blue:#003B71;--teal:#00A99D;--purple:#B19CD9;--heading-purple:#7D3F98;--coral:#FF6F61;--light:#F7F7F7;--grey:#f8f8f8;}
-    html,body{background:var(--light);margin:0;font-family:'Inter',sans-serif;color:#333;line-height:1.6;}
+    html{overflow-x:hidden; width:100%; position:relative; scroll-behavior: smooth;}
+body{overflow-x:hidden; width:100%; position:relative; max-width:100%; background:var(--light);margin:0;font-family:'Inter',sans-serif;color:#333;line-height:1.6;}
     h1{font-size:2em;font-weight:700;margin:0 0 .5em;color:#fff;max-width:600px;line-height:1.3;animation:fadeInUp 1s forwards .3s;}
     h2{font-family:'Playfair Display',serif;font-size:1.8em;font-weight:600;color:var(--heading-purple);text-align:left;max-width:1000px;margin:0 auto 15px;position:relative;animation:fadeInUp 1s forwards .3s;}
     h2:after{content:'';display:block;width:50px;height:3px;background:var(--coral);margin-top:6px;}
@@ -128,6 +129,8 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       border-left: 4px solid var(--teal);
       overflow: hidden;
+      width: 100%;
+      box-sizing: border-box;
     }
     
     .hospital-type:before {
@@ -457,6 +460,7 @@
       transform: scale(1.05);
     }
 
+    /* Spotlight Overlay */
     .spotlight-overlay {
       position: absolute;
       bottom: 0;
@@ -497,16 +501,6 @@
     .spotlight-item:hover .spotlight-quote {
       opacity: 1;
       transform: translateY(0);
-    }
-
-    .spotlight-link {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: auto;
     }
 
     .spotlight-item.mobile-active .spotlight-overlay {
@@ -599,10 +593,23 @@
       .hospital-types {
         flex-direction: column;
         align-items: center;
+        padding: 0 5px;
       }
       
       .hospital-type {
         width: 100%;
+        max-width: 100%;
+        min-width: unset;
+        padding: 20px 15px;
+      }
+      
+      .state-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      }
+      
+      .state-item {
+        padding: 8px 2px;
+        font-size: 0.9em;
       }
     }
     
@@ -741,16 +748,55 @@
     
     /* Media Queries */
     @media (max-width:768px){
-      .header{flex-direction:column;align-items:center;padding:15px 10px;}
-      .nav-links{margin-top:15px;display:flex;flex-wrap:wrap;justify-content:center;}
-      .nav-links a{margin:5px 10px;}
-      .hero{min-height:60vh;padding:40px 15px;}
-      h1{font-size:1.6em;}
+      .header{flex-direction:column;align-items:center;padding:10px 10px; position: sticky;}
+      .header img{height:40px;}
+      .hero{min-height:60vh;padding:40px 15px;border-radius:0 0 30px 30px;}
+      h1{font-size:1.5em;}
       .grid{gap:20px !important;}
+      .testimonial-item.left, .testimonial-item.right {
+        padding: 0;
+      }
+      .testimonial-bubble {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+      }
+      .hospital-type {
+        padding: 20px 15px;
+      }
+      .spotlight-item {
+        height: 280px;
+      }
+      .value-item {
+        height: 220px;
+      }
     }
     @media (max-width:576px){
-      .hero{border-radius:0 0 30px 30px;}
-      .section{padding:40px 15px;}
+      .hero{border-radius:0 0 20px 20px;}
+      .section{padding:30px 10px;}
+      .hospital-type h3 {
+        font-size: 1.5em;
+      }
+      .hospital-type {
+        padding: 20px 12px;
+      }
+      .state-grid {
+        gap: 8px;
+      }
+      .state-item {
+        padding: 6px 2px;
+        font-size: 0.85em;
+      }
+      .card {
+        min-height: 220px !important;
+        padding: 20px 15px !important;
+      }
+      .spotlight-grid, .values-container, .grid {
+        padding: 5px;
+      }
+      .testimonial-bubble {
+        padding: 20px;
+      }
     }
     
     /* Hero Background Overlay */
@@ -944,12 +990,12 @@
           <h3><span>🏥</span> General Practice</h3>
           <p>Our general practice hospitals provide comprehensive preventive care, diagnostics, and treatment for pets across the Northeast. Located in communities large and small, these hospitals offer diverse practice settings and clientele.</p>
           <div class="state-grid">
-            <div class="state-item">Connecticut</div>
-            <div class="state-item">Massachusetts</div>
-            <div class="state-item">Rhode Island</div>
-            <div class="state-item">Maine</div>
-            <div class="state-item">Vermont</div>
-            <div class="state-item">New Hampshire</div>
+            <div class="state-item">CT</div>
+            <div class="state-item">MA</div>
+            <div class="state-item">RI</div>
+            <div class="state-item">ME</div>
+            <div class="state-item">VT</div>
+            <div class="state-item">NH</div>
           </div>
         </div>
         
@@ -957,12 +1003,12 @@
           <h3><span>🚑</span> Emergency & Specialty</h3>
           <p>Our emergency and specialty hospitals provide advanced, 24/7 care for critical cases and specialized treatment. These state-of-the-art facilities offer unique career opportunities in high-acuity medicine.</p>
           <div class="state-grid">
-            <div class="state-item">Connecticut</div>
-            <div class="state-item">Massachusetts</div>
-            <div class="state-item">New Hampshire</div>
-            <div class="state-item">New York</div>
-            <div class="state-item">Michigan</div>
-            <div class="state-item">Ohio</div>
+            <div class="state-item">CT</div>
+            <div class="state-item">MA</div>
+            <div class="state-item">NH</div>
+            <div class="state-item">NY</div>
+            <div class="state-item">MI</div>
+            <div class="state-item">OH</div>
           </div>
         </div>
       </div>
@@ -1091,6 +1137,17 @@
       
       menuToggle.addEventListener('click', toggleMenu);
       navOverlay.addEventListener('click', toggleMenu);
+      
+      // Close menu when clicking outside
+      document.addEventListener('click', function(e) {
+        const isMenuOpen = navLinks.classList.contains('active');
+        const isClickInsideMenu = navLinks.contains(e.target);
+        const isClickOnMenuToggle = menuToggle.contains(e.target);
+        
+        if (isMenuOpen && !isClickInsideMenu && !isClickOnMenuToggle) {
+          toggleMenu();
+        }
+      });
       
       // Close menu when clicking on a link - UPDATED
       const menuLinks = navLinks.querySelectorAll('a');
@@ -1499,6 +1556,16 @@
           // Observe all spotlight items
           spotlightItems.forEach(item => {
             observer.observe(item);
+            
+            // Add touch event for mobile devices
+            item.addEventListener('touchstart', function() {
+              spotlightItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                  otherItem.classList.remove('mobile-active');
+                }
+              });
+              this.classList.toggle('mobile-active');
+            }, {passive: true});
           });
           
           // Handle scroll events for smoother experience
@@ -1541,7 +1608,7 @@
               
               ticking = true;
             }
-          });
+          }, {passive: true});
         }
       }
       
