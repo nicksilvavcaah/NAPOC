@@ -34,17 +34,46 @@
     .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--coral);transition:width .3s ease;}
     .nav-links a:hover::after{width:100%;}
     
-    /* Media Queries for Responsive Navigation */
+    /* Media Queries for Responsive Navigation - UPDATED */
     @media (max-width:992px){
       .menu-toggle{display:block;}
-      .nav-links{position:fixed;top:70px;right:-300px;flex-direction:column;background:var(--light);width:250px;height:calc(100vh - 70px);padding:20px;box-shadow:-5px 0 15px rgba(0,0,0,0.1);transition:right .3s ease;align-items:flex-start;}
+      .nav-links{
+        position: fixed;
+        top: 70px;
+        right: -300px;
+        flex-direction: column;
+        background: var(--light);
+        width: 250px;
+        height: calc(100vh - 70px);
+        padding: 20px;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        transition: right .3s ease;
+        align-items: flex-start;
+        z-index: 1000; /* Ensure the nav links are above the overlay */
+      }
       .nav-links.active{right:0;}
-      .nav-links a{width:100%;padding:12px 0;border-bottom:1px solid rgba(0,0,0,0.05);}
+      .nav-links a{
+        width: 100%;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        display: block; /* Ensure the link takes up the full width */
+      }
       .nav-links a:last-child{border-bottom:none;}
       /* Ensure body doesn't scroll when menu is open */
       body.menu-open{overflow:hidden;}
-      /* Add overlay behind menu when open */
-      .nav-overlay{display:none;position:fixed;top:70px;left:0;width:100%;height:calc(100vh - 70px);background:rgba(0,0,0,0.5);z-index:999;opacity:0;transition:opacity .3s ease;}
+      /* Make the overlay less dark */
+      .nav-overlay{
+        display: none;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: rgba(0,0,0,0.3); /* Reduced opacity from 0.5 to 0.3 */
+        z-index: 999;
+        opacity: 0;
+        transition: opacity .3s ease;
+      }
       .nav-overlay.active{display:block;opacity:1;}
     }
     
@@ -63,25 +92,140 @@
     .section:nth-of-type(odd){background:linear-gradient(180deg,var(--light),rgba(0,169,157,0.1));}
     .section:nth-of-type(even){background:linear-gradient(180deg,rgba(0,169,157,0.1),var(--light));}
     
-    /* Map Section */
-    .map-container{width:100%;max-width:1000px;margin:0 auto;position:relative;}
-    .map-placeholder{width:100%;height:400px;margin:0 auto;background:#e0e0e0;display:flex;align-items:center;justify-content:center;border:2px dashed #ccc;color:#666;border-radius:8px;overflow:hidden;}
+    /* NEW - Region at a Glance Redesign */
+    .region-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 1000px;
+      margin: 0 auto;
+      gap: 30px;
+    }
     
-    /* Grid Layout for Cards with Spacing */
-    .grid{display:grid !important;gap:40px !important;max-width:1000px !important;margin:0 auto !important;justify-items:center !important;padding:20px !important;}
-    .grid-3{grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)) !important;}
-    @media (min-width:992px){.grid-3{grid-template-columns:repeat(3,1fr) !important;}}
-    @media (min-width:768px) and (max-width:991px){.grid-3{grid-template-columns:repeat(2,1fr) !important;}}
-    @media (max-width:767px){.grid-3{grid-template-columns:1fr !important;}}
+    .region-intro {
+      text-align: center;
+      max-width: 800px;
+      margin-bottom: 20px;
+    }
     
-    /* Card Styling */
-    .card{position:relative !important;width:100% !important;max-width:300px !important;padding:20px !important;background:var(--grey) !important;border-radius:8px !important;box-shadow:0 4px 8px rgba(0,0,0,0.2) !important;border:3px solid var(--purple) !important;overflow:hidden !important;transition:transform .2s,box-shadow .2s,border-color .2s,background .3s !important;text-align:center !important;height:auto !important;min-height:220px !important;display:flex !important;flex-direction:column !important;}
-    .card-icon{display:block !important;font-size:2em !important;opacity:0.8 !important;margin-bottom:15px !important;}
-    .card:hover{transform:translateY(-4px) !important;box-shadow:0 6px 16px rgba(0,0,0,0.25) !important;border-color:var(--coral) !important;background:linear-gradient(135deg,rgba(248,248,248,0.8),rgba(255,111,97,0.1)) !important;}
-    .card::before{content:'';position:absolute;top:0;left:0;width:100%;height:6px;background:linear-gradient(135deg,var(--coral),var(--teal));display:block;}
-    .card-link{text-decoration:none;color:inherit;display:block;width:100%;}
+    .hospital-types {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      width: 100%;
+      flex-wrap: wrap;
+    }
     
-    /* NEW - Quote Blocks for Testimonials */
+    .hospital-type {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      flex: 1;
+      min-width: 280px;
+      max-width: 440px;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .hospital-type:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .hospital-type h3 {
+      color: var(--heading-purple);
+      margin-top: 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .hospital-type h3 span {
+      font-size: 1.4em;
+      color: var(--coral);
+    }
+    
+    .state-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .state-item {
+      background: var(--light);
+      border-radius: 6px;
+      padding: 8px 5px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      font-weight: 600;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    
+    .state-item:hover {
+      background: rgba(0, 169, 157, 0.1);
+      transform: scale(1.05);
+    }
+    
+    /* Benefits Button */
+    .benefits-cta {
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(to right, var(--blue), var(--teal));
+      border-radius: 15px;
+      margin: 60px auto;
+      max-width: 800px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 59, 113, 0.2);
+    }
+    
+    .benefits-cta h3 {
+      font-size: 1.8em;
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-family: 'Playfair Display', serif;
+    }
+    
+    .benefits-cta p {
+      font-size: 1.1em;
+      margin-bottom: 25px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .benefits-cta .btn {
+      background: white;
+      color: var(--blue);
+      font-size: 1.1em;
+      padding: 14px 30px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    }
+    
+    .benefits-cta .btn:hover {
+      background: var(--light);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .benefits-icon {
+      position: absolute;
+      font-size: 12em;
+      opacity: 0.1;
+      color: white;
+      z-index: 0;
+      right: -40px;
+      bottom: -40px;
+      transform: rotate(-5deg);
+    }
+    
+    /* Quote Blocks for Testimonials */
     .quote-block {
       position: relative;
       padding: 30px 35px 25px;
@@ -128,8 +272,15 @@
     .quote-author span {
       color: #777;
     }
+    
+    /* Grid Layout for Cards with Spacing */
+    .grid{display:grid !important;gap:40px !important;max-width:1000px !important;margin:0 auto !important;justify-items:center !important;padding:20px !important;}
+    .grid-3{grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)) !important;}
+    @media (min-width:992px){.grid-3{grid-template-columns:repeat(3,1fr) !important;}}
+    @media (min-width:768px) and (max-width:991px){.grid-3{grid-template-columns:repeat(2,1fr) !important;}}
+    @media (max-width:767px){.grid-3{grid-template-columns:1fr !important;}}
 
-    /* NEW - Image Grid with Overlay for Employee Spotlights */
+    /* Image Grid with Overlay for Employee Spotlights */
     .spotlight-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -168,6 +319,7 @@
       padding: 20px;
       transform: translateY(70%);
       transition: transform 0.4s ease;
+      pointer-events: none;
     }
 
     .spotlight-item:hover .spotlight-overlay {
@@ -207,9 +359,19 @@
       width: 100%;
       height: 100%;
       z-index: 1;
+      pointer-events: auto;
     }
 
-    /* NEW - Values with Background Images */
+    .spotlight-item.mobile-active .spotlight-overlay {
+      transform: translateY(0);
+    }
+
+    .spotlight-item.mobile-active .spotlight-quote {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Values with Background Images */
     .values-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -286,6 +448,15 @@
       .spotlight-grid, .values-container {
         grid-template-columns: 1fr;
       }
+      
+      .hospital-types {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .hospital-type {
+        width: 100%;
+      }
     }
     
     /* Carousel for Culture Section */
@@ -312,11 +483,12 @@
     .modal img{width:100%;height:auto;max-height:80vh;object-fit:contain;border-radius:5px;}
     .close-modal{position:absolute;top:-40px;right:0;color:white;font-size:24px;cursor:pointer;background:transparent;border:none;width:30px;height:30px;display:flex;align-items:center;justify-content:center;}
     
-    /* Benefits Section */
-    .benefits-container{display:grid !important;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)) !important;gap:30px !important;max-width:1000px !important;margin:0 auto !important;padding:20px !important;}
-    .benefit-item{display:flex;flex-direction:column;align-items:center;text-align:center;}
-    .benefit-icon-circle{width:100px;height:100px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.5em;color:#fff;margin-bottom:12px;transition:background .3s;}
-    .benefit-item:hover .benefit-icon-circle{background:var(--coral);}
+    /* Card Styling - kept for open roles section */
+    .card{position:relative !important;width:100% !important;max-width:300px !important;padding:20px !important;background:var(--grey) !important;border-radius:8px !important;box-shadow:0 4px 8px rgba(0,0,0,0.2) !important;border:3px solid var(--purple) !important;overflow:hidden !important;transition:transform .2s,box-shadow .2s,border-color .2s,background .3s !important;text-align:center !important;height:auto !important;min-height:220px !important;display:flex !important;flex-direction:column !important;}
+    .card-icon{display:block !important;font-size:2em !important;opacity:0.8 !important;margin-bottom:15px !important;}
+    .card:hover{transform:translateY(-4px) !important;box-shadow:0 6px 16px rgba(0,0,0,0.25) !important;border-color:var(--coral) !important;background:linear-gradient(135deg,rgba(248,248,248,0.8),rgba(255,111,97,0.1)) !important;}
+    .card::before{content:'';position:absolute;top:0;left:0;width:100%;height:6px;background:linear-gradient(135deg,var(--coral),var(--teal));display:block;}
+    .card-link{text-decoration:none;color:inherit;display:block;width:100%;}
     
     /* Footer */
     .footer{background:var(--blue);color:#fff;padding:40px 20px;text-align:center;margin-top:40px;}
@@ -338,34 +510,11 @@
     }
     @media (max-width:576px){
       .hero{border-radius:0 0 30px 30px;}
-      .benefit-icon-circle{width:80px;height:80px;font-size:2em;}
       .section{padding:40px 15px;}
     }
     
     /* Hero Background Overlay */
     .hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-image:url('https://images.unsplash.com/photo-1581888227599-779811939961?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');background-size:cover;background-position:center;z-index:0;opacity:0.15;mix-blend-mode:overlay;}
-<style>
-    /* Your existing CSS... */
-    
-    /* Add the new CSS here, at the bottom of your style section */
-    /* Mobile Spotlight Enhancements */
-    .spotlight-overlay {
-      pointer-events: none;
-    }
-    
-    .spotlight-link {
-      pointer-events: auto;
-    }
-    
-    .spotlight-item.mobile-active .spotlight-overlay {
-      transform: translateY(0);
-    }
-    
-    .spotlight-item.mobile-active .spotlight-quote {
-      opacity: 1;
-      transform: translateY(0);
-    }
-</style>
   </style>
 </head>
 <body id="top">
@@ -377,9 +526,7 @@
       <a href="#region-at-a-glance">Our Region</a>
       <a href="#testimonials">Team Testimonials</a>
       <a href="#culture">Our Culture</a>
-      <a href="#career-paths">Career Paths</a>
       <a href="#spotlights">Employee Spotlights</a>
-      <a href="#benefits">Benefits</a>
       <a href="#values">Our Values</a>
       <a href="#careers">Open Roles</a>
       <a href="#recruiters">Contact Our Team</a>
@@ -401,20 +548,52 @@
     <div class="hero-overlay"></div>
   </section>
 
+  <!-- NEW: Redesigned Region at a Glance Section -->
   <section class="section" id="region-at-a-glance">
     <h2>Our Region at a Glance</h2>
-    <div class="map-container">
-      <div class="map-placeholder">
-        <div>
-          <i style="font-size: 3rem; margin-bottom: 1rem; color: var(--blue);">🗺️</i>
-          <p>Our region spans across New England, New York, Michigan and beyond</p>
-          <p>With hospitals in major cities and suburban communities, we offer diverse practice settings</p>
+    <div class="region-container">
+      <div class="region-intro">
+        <p>Our North Atlantic region offers diverse opportunities in both general practice and emergency medicine across multiple states, providing a wide range of clinical experiences in both urban and rural settings.</p>
+      </div>
+      
+      <div class="hospital-types">
+        <div class="hospital-type">
+          <h3><span>🏥</span> General Practice</h3>
+          <p>Our general practice hospitals provide comprehensive preventive care, diagnostics, and treatment for pets across the Northeast. Located in communities large and small, these hospitals offer diverse practice settings and clientele.</p>
+          <div class="state-grid">
+            <div class="state-item">Connecticut</div>
+            <div class="state-item">Massachusetts</div>
+            <div class="state-item">Rhode Island</div>
+            <div class="state-item">Maine</div>
+            <div class="state-item">Vermont</div>
+            <div class="state-item">New Hampshire</div>
+          </div>
         </div>
+        
+        <div class="hospital-type">
+          <h3><span>🚑</span> Emergency & Specialty</h3>
+          <p>Our emergency and specialty hospitals provide advanced, 24/7 care for critical cases and specialized treatment. These state-of-the-art facilities offer unique career opportunities in high-acuity medicine.</p>
+          <div class="state-grid">
+            <div class="state-item">Connecticut</div>
+            <div class="state-item">Massachusetts</div>
+            <div class="state-item">New Hampshire</div>
+            <div class="state-item">Michigan</div>
+            <div class="state-item">Ohio</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Benefits CTA Button -->
+      <div class="benefits-cta">
+        <h3>Comprehensive Benefits Package</h3>
+        <p>We're proud to offer an industry-leading benefits package including health insurance, 401(k) matching, CE allowance, pet care discounts, and more.</p>
+        <a href="benefits.pdf" class="btn" target="_blank">View Our Benefits Guide</a>
+        <div class="benefits-icon">📋</div>
       </div>
     </div>
   </section>
 
-  <!-- UPDATED: Team Testimonials Section (Quote Blocks) -->
+  <!-- Team Testimonials Section (Quote Blocks) -->
   <section class="section" id="testimonials">
     <h2>Team Testimonials</h2>
     <div class="grid grid-3">
@@ -473,22 +652,7 @@
     </div>
   </section>
 
-  <section class="section" id="career-paths">
-    <h2>Career Paths</h2>
-    <div class="grid grid-3">
-      <div class="card"><span class="card-icon">🩺</span><strong>General Practice</strong><p>Provide routine care and develop lasting client relationships. Our GP veterinarians enjoy collaborative support and growth opportunities.</p>
-        <a href="#careers" class="btn">Learn More</a>
-      </div>
-      <div class="card"><span class="card-icon">🚑</span><strong>ER & Specialty</strong><p>Handle urgent cases and complex procedures. Join our team of specialists making a difference when pets need it most.</p>
-        <a href="#careers" class="btn">Learn More</a>
-      </div>
-      <div class="card"><span class="card-icon">🧰</span><strong>Technician</strong><p>Support the medical team with critical patient care. Our technicians are the backbone of our practice with clear advancement paths.</p>
-        <a href="#careers" class="btn">Learn More</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- UPDATED: Employee Spotlights Section (Image Grid with Overlay) -->
+  <!-- Employee Spotlights Section (Image Grid with Overlay) -->
   <section class="section" id="spotlights">
     <h2>Employee Spotlights</h2>
     <div class="spotlight-grid">
@@ -524,21 +688,7 @@
     </div>
   </section>
 
-  <section class="section" id="benefits">
-    <h2>Benefits</h2>
-    <div class="benefits-container">
-      <div class="benefit-item"><div class="benefit-icon-circle">💉</div><strong>Health Insurance</strong><p>Comprehensive plans to keep you and your loved ones covered with multiple options to fit your needs.</p></div>
-      <div class="benefit-item"><div class="benefit-icon-circle">👓</div><strong>Dental & Vision</strong><p>Robust coverage for bright smiles and clear vision with nationwide provider networks.</p></div>
-      <div class="benefit-item"><div class="benefit-icon-circle">💰</div><strong>401k Match</strong><p>Secure your future with generous employer contributions and financial wellness resources.</p></div>
-      <div class="benefit-item"><div class="benefit-icon-circle">💆‍♂️</div><strong>Mental Health Support</strong><p>Access counseling and resources for your well-being through our employee assistance program.</p></div>
-      <div class="benefit-item"><div class="benefit-icon-circle">🐶</div><strong>Pet Care Discount</strong><p>Special rates so your furry family members get the best care at any VCA hospital.</p></div>
-      <div class="benefit-item"><div class="benefit-icon-circle">🤱</div><strong>Paid Parental Leave</strong><p>Supportive time off for growing your family with job protection and benefits continuation.</p></div>
-      <div class="benefit-item"><div class="benefit-icon-circle">🛡️</div><strong>Liability Insurance</strong><p>Company-paid coverage to protect you on the job with comprehensive professional liability protection.</p></div>
-      <div class="benefit-item"><div class="benefit-icon-circle">📚</div><strong>CE Budget</strong><p>Strong educational funds to advance your skills with paid time off for continuing education.</p></div>
-    </div>
-  </section>
-
-  <!-- UPDATED: Values Section (Background Images) -->
+  <!-- Values Section (Background Images) -->
   <section class="section" id="values">
     <h2>Our Values</h2>
     <div class="values-container">
@@ -621,7 +771,6 @@
         <h3>Quick Links</h3>
         <a href="#region-at-a-glance">Our Region</a>
         <a href="#culture">Our Culture</a>
-        <a href="#benefits">Benefits</a>
         <a href="#careers">Careers</a>
       </div>
       <div class="footer-column">
@@ -645,11 +794,9 @@
     <div class="copyright">
       <p>&copy; 2025 VCA North Atlantic. All rights reserved.</p>
     </div>
-  </footer>
-
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Mobile Menu Toggle
+      // Mobile Menu Toggle - UPDATED
       const menuToggle = document.getElementById('menuToggle');
       const navLinks = document.getElementById('navLinks');
       const navOverlay = document.getElementById('navOverlay');
@@ -671,10 +818,26 @@
       menuToggle.addEventListener('click', toggleMenu);
       navOverlay.addEventListener('click', toggleMenu);
       
-      // Close menu when clicking on a link
+      // Close menu when clicking on a link - UPDATED
       const menuLinks = navLinks.querySelectorAll('a');
       menuLinks.forEach(link => {
-        link.addEventListener('click', () => {
+        link.addEventListener('click', (e) => {
+          // Only apply smooth scrolling behavior here
+          const href = link.getAttribute('href');
+          if (href.startsWith('#')) {
+            e.preventDefault();
+            const targetId = href;
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 80, // Adjust for header height
+                behavior: 'smooth'
+              });
+            }
+          }
+          
+          // Close the mobile menu if it's open
           if (navLinks.classList.contains('active')) {
             toggleMenu();
           }
@@ -993,7 +1156,7 @@
       });
       
       // Animation on scroll
-      const fadeElements = document.querySelectorAll('.card, .benefit-item, .quote-block, .spotlight-item, .value-item');
+      const fadeElements = document.querySelectorAll('.card, .quote-block, .spotlight-item, .value-item, .hospital-type, .benefits-cta');
       
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -1010,21 +1173,84 @@
         element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(element);
       });
-   document.addEventListener('DOMContentLoaded', function() {
-    // Your existing JavaScript...
-    
-    // Add the new function at the bottom, before the final closing bracket
-    // Mobile spotlight enhancement
-    function setupMobileSpotlights() {
-        // Function code here...
-    }
-    
-    // Call the function
-    setupMobileSpotlights();
-    
-    // Re-run on resize
-    window.addEventListener('resize', setupMobileSpotlights);
-    
-}); // <-- This is the closing bracket of your DOMContentLoaded function
+      
+      // Mobile spotlight enhancement
+      function setupMobileSpotlights() {
+        // Only run this code on mobile devices
+        if (window.innerWidth <= 768) {
+          const spotlightItems = document.querySelectorAll('.spotlight-item');
+          
+          // Use Intersection Observer to detect when spotlights are in view
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              // If the spotlight is at least 80% visible, activate it
+              if (entry.isIntersecting && entry.intersectionRatio > 0.8) {
+                entry.target.classList.add('mobile-active');
+              } else {
+                entry.target.classList.remove('mobile-active');
+              }
+            });
+          }, {
+            root: null, // viewport
+            rootMargin: '0px',
+            threshold: 0.8 // 80% visibility
+          });
+          
+          // Observe all spotlight items
+          spotlightItems.forEach(item => {
+            observer.observe(item);
+          });
+          
+          // Handle scroll events for smoother experience
+          let lastScrollPosition = window.scrollY;
+          let ticking = false;
+          
+          window.addEventListener('scroll', () => {
+            lastScrollPosition = window.scrollY;
+            if (!ticking) {
+              window.requestAnimationFrame(() => {
+                // Check which spotlight is most centered in the viewport
+                let mostCenteredItem = null;
+                let closestToCenter = Infinity;
+                
+                spotlightItems.forEach(item => {
+                  const rect = item.getBoundingClientRect();
+                  const itemCenter = rect.top + (rect.height / 2);
+                  const viewportCenter = window.innerHeight / 2;
+                  const distanceToCenter = Math.abs(itemCenter - viewportCenter);
+                  
+                  if (distanceToCenter < closestToCenter) {
+                    closestToCenter = distanceToCenter;
+                    mostCenteredItem = item;
+                  }
+                });
+                
+                // Only activate the most centered item
+                if (mostCenteredItem) {
+                  spotlightItems.forEach(item => {
+                    if (item === mostCenteredItem) {
+                      item.classList.add('mobile-active');
+                    } else {
+                      item.classList.remove('mobile-active');
+                    }
+                  });
+                }
+                
+                ticking = false;
+              });
+              
+              ticking = true;
+            }
+          });
+        }
+      }
+      
+      // Call the function once DOM is loaded
+      setupMobileSpotlights();
+      
+      // Re-run the setup when window resizes (e.g., orientation change)
+      window.addEventListener('resize', setupMobileSpotlights);
     });
   </script>
+</body>
+</html>
