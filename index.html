@@ -19,10 +19,42 @@
     p,.card p,.benefit-item p{margin:0 0 1em;}strong{font-weight:600;}
     .btn{font-weight:600;margin-top:20px;padding:12px 24px;background:var(--coral);color:#fff;border:none;border-radius:4px;cursor:pointer;transition:background .3s,transform .2s;text-decoration:none;display:inline-block;animation:fadeInUp 1s forwards .7s;}
     .btn:hover{background:var(--purple);transform:scale(1.03);}
-    .header{position:sticky;top:0;background:rgba(247,247,247,0.9);backdrop-filter:blur(10px);display:flex;justify-content:space-between;padding:10px 20px;border-bottom:2px solid var(--teal);z-index:1000;}
+    /* Header & Navigation Styles */
+    .header{position:sticky;top:0;background:rgba(247,247,247,0.9);backdrop-filter:blur(10px);display:flex;justify-content:space-between;align-items:center;padding:10px 20px;border-bottom:2px solid var(--teal);z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.1);}
     .header img{height:50px;}
-    .nav-links a{margin-left:20px;text-decoration:none;color:var(--blue);font-weight:600;transition:color .3s;}
-    .nav-links a:hover{color:var(--coral);}
+    
+    /* Mobile Menu Button */
+    .menu-toggle{display:none;background:none;border:none;font-size:1.5rem;color:var(--blue);cursor:pointer;padding:5px;}
+    .menu-toggle:focus{outline:none;}
+    
+    /* Navigation Links */
+    .nav-links{display:flex;align-items:center;gap:20px;}
+    .nav-links a{text-decoration:none;color:var(--blue);font-weight:600;transition:color .3s,transform .2s;position:relative;padding:5px 0;}
+    .nav-links a:hover{color:var(--coral);transform:translateY(-2px);}
+    .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--coral);transition:width .3s ease;}
+    .nav-links a:hover::after{width:100%;}
+    
+    /* Media Queries for Responsive Navigation */
+    @media (max-width:992px){
+      .menu-toggle{display:block;}
+      .nav-links{position:fixed;top:70px;right:-300px;flex-direction:column;background:var(--light);width:250px;height:calc(100vh - 70px);padding:20px;box-shadow:-5px 0 15px rgba(0,0,0,0.1);transition:right .3s ease;align-items:flex-start;}
+      .nav-links.active{right:0;}
+      .nav-links a{width:100%;padding:12px 0;border-bottom:1px solid rgba(0,0,0,0.05);}
+      .nav-links a:last-child{border-bottom:none;}
+      /* Ensure body doesn't scroll when menu is open */
+      body.menu-open{overflow:hidden;}
+      /* Add overlay behind menu when open */
+      .nav-overlay{display:none;position:fixed;top:70px;left:0;width:100%;height:calc(100vh - 70px);background:rgba(0,0,0,0.5);z-index:999;opacity:0;transition:opacity .3s ease;}
+      .nav-overlay.active{display:block;opacity:1;}
+    }
+    
+    @media (max-width:768px){
+      .header{padding:10px 15px;}
+      .header img{height:40px;}
+      .menu-toggle{font-size:1.3rem;}
+      .nav-links{top:60px;height:calc(100vh - 60px);}
+      .nav-overlay{top:60px;height:calc(100vh - 60px);}
+    }
     .hero{position:relative;min-height:70vh;padding:60px 20px;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border-radius:50px;margin-bottom:0;overflow:hidden;}
     .hero-text{position:relative;z-index:2;}
     .hero-subtitle{font-size:1.2em;color:rgba(255,255,255,0.9);margin-top:.5em;animation:fadeInUp 1s forwards .5s;}
@@ -110,7 +142,9 @@
 <body id="top">
   <header class="header">
     <a href="#top"><img src="a6b29e20-01e6-47d5-9693-fc4c1537de6b.png" alt="VCA Logo"></a>
-    <nav class="nav-links">
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <div class="nav-overlay" id="navOverlay"></div>
+    <nav class="nav-links" id="navLinks">
       <a href="#region-at-a-glance">Our Region</a>
       <a href="#testimonials">Team Testimonials</a>
       <a href="#culture">Our Culture</a>
@@ -329,6 +363,38 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Mobile Menu Toggle
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
+      const navOverlay = document.getElementById('navOverlay');
+      const body = document.body;
+      
+      function toggleMenu() {
+        navLinks.classList.toggle('active');
+        navOverlay.classList.toggle('active');
+        body.classList.toggle('menu-open');
+        
+        // Update aria-expanded attribute for accessibility
+        const isExpanded = navLinks.classList.contains('active');
+        menuToggle.setAttribute('aria-expanded', isExpanded);
+        
+        // Change menu icon
+        menuToggle.textContent = isExpanded ? '✕' : '☰';
+      }
+      
+      menuToggle.addEventListener('click', toggleMenu);
+      navOverlay.addEventListener('click', toggleMenu);
+      
+      // Close menu when clicking on a link
+      const menuLinks = navLinks.querySelectorAll('a');
+      menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks.classList.contains('active')) {
+            toggleMenu();
+          }
+        });
+      });
+      
       // Image data for carousel
       const images = [
         { src: 'https://images.unsplash.com/photo-1551887373-2a2a2a9e678d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Veterinary team during procedure' },
