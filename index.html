@@ -323,7 +323,7 @@
     /* Grid System */
     .grid {
       display: grid;
-      gap: 1.5rem;
+      gap: 2rem;
       max-width: 1200px;
       margin: 0 auto;
       justify-items: center;
@@ -337,6 +337,7 @@
     .card {
       position: relative;
       width: 100%;
+      max-width: 280px;
       padding: 1.5rem;
       background: var(--grey);
       background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.1) 10px, rgba(255, 255, 255, 0.1) 20px);
@@ -346,7 +347,7 @@
       overflow: hidden;
       transition: all var(--transition-medium);
       text-align: center;
-      height: 100%;
+      height: calc(100% - 3rem);
       display: flex;
       flex-direction: column;
     }
@@ -876,9 +877,61 @@
         justify-content: center;
       }
     }
+  <!-- Grid Layout Adjustments for Better Card Spacing -->
+  <style>
+    /* Additional styles to fix card spacing issues */
+    @media (min-width: 992px) {
+      .grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (min-width: 768px) and (max-width: 991px) {
+      .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .card {
+        max-width: 320px;
+      }
+    }
+    
+    @media (max-width: 767px) {
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+      
+      .card {
+        max-width: 350px;
+      }
+    }
+    
+    /* Ensure consistent card styling */
+    .card-link {
+      display: block;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .card {
+      height: auto;
+      min-height: 200px;
+      margin-bottom: 1rem;
+    }
+    
+    #testimonials .card,
+    #career-paths .card,
+    #spotlights .card,
+    #values .card,
+    #recruiters .card {
+      height: 100%;
+      width: 100%;
+    }
   </style>
-</head>
-<body id="top">
+  </head>
+  <body id="top">
   <!-- Header -->
   <header class="header" id="header">
     <div class="container header-container">
