@@ -117,57 +117,95 @@
     }
     
     .hospital-type {
-      background: white;
-      border-radius: 12px;
-      padding: 25px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      background: linear-gradient(to bottom right, #ffffff, #f8f8f8);
+      border-radius: 20px;
+      padding: 35px 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       flex: 1;
       min-width: 280px;
       max-width: 440px;
       position: relative;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 4px solid var(--teal);
+      overflow: hidden;
+    }
+    
+    .hospital-type:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, rgba(177, 156, 217, 0.2), rgba(255, 255, 255, 0));
+      border-radius: 0 0 0 120px;
+      z-index: 0;
     }
     
     .hospital-type:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
     }
     
     .hospital-type h3 {
       color: var(--heading-purple);
       margin-top: 0;
       font-family: 'Playfair Display', serif;
-      font-size: 1.6em;
+      font-size: 1.8em;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 15px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
     }
     
     .hospital-type h3 span {
       font-size: 1.4em;
       color: var(--coral);
+      background: rgba(255, 111, 97, 0.1);
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 15px rgba(255, 111, 97, 0.2);
+    }
+    
+    .hospital-type p {
+      margin-bottom: 25px;
+      line-height: 1.7;
+      color: #555;
+      position: relative;
+      z-index: 1;
     }
     
     .state-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-      gap: 15px;
+      gap: 12px;
       margin-top: 20px;
+      position: relative;
+      z-index: 1;
     }
     
     .state-item {
-      background: var(--light);
-      border-radius: 6px;
-      padding: 8px 5px;
+      background: white;
+      border-radius: 10px;
+      padding: 10px 8px;
       text-align: center;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
       font-weight: 600;
-      transition: background 0.2s ease, transform 0.2s ease;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 169, 157, 0.1);
     }
     
     .state-item:hover {
-      background: rgba(0, 169, 157, 0.1);
-      transform: scale(1.05);
+      background: rgba(0, 169, 157, 0.08);
+      transform: translateY(-5px) scale(1.05);
+      border-color: var(--teal);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
     }
     
     /* Benefits Button */
