@@ -31,14 +31,26 @@
     .section:nth-of-type(odd){background:linear-gradient(180deg,var(--light),rgba(0,169,157,0.1));}
     .section:nth-of-type(even){background:linear-gradient(180deg,rgba(0,169,157,0.1),var(--light));}
     .map-placeholder{width:100%;max-width:800px;height:400px;margin:0 auto;background:#e0e0e0;display:flex;align-items:center;justify-content:center;border:2px dashed #ccc;color:#666;}
-    .carousel-wrapper{position:relative;max-width:1000px;margin:0 auto;overflow:hidden;}
-    .carousel-track{display:flex;gap:20px;transition:transform .5s ease;padding:20px 0;justify-content:center;}
-    .carousel-item{flex:0 0 180px;height:120px;background:#ddd;border-radius:8px;display:flex;align-items:center;justify-content:center;transition:transform .3s;}
-    .carousel-item.active{transform:scale(1.1);}
-    .arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:#fff;width:40px;height:40px;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;}
-    .arrow.left{left:10px;} .arrow.right{right:10px;}
-    .dots{text-align:center;margin-top:10px;} .dot{display:inline-block;width:10px;height:10px;margin:0 5px;background:rgba(255,255,255,0.6);border-radius:50%;cursor:pointer;transition:background .3s;} .dot.active{background:rgba(255,255,255,1);}
-    .grid{display:grid;gap:20px;max-width:1000px;margin:0 auto;justify-items:center;}
+    .carousel-container{width:100%;max-width:1000px;margin:0 auto;position:relative;overflow:hidden;padding:20px 0;font-family:'Inter',sans-serif;}
+.carousel-track{display:flex;transition:transform 0.5s ease;}
+.carousel-item{min-width:300px;width:300px;padding:10px;box-sizing:border-box;transition:all 0.3s ease;flex-shrink:0;opacity:0.7;transform:scale(0.85);}
+.carousel-item.active{opacity:1;transform:scale(1);}
+.img-container{width:100%;height:250px;border-radius:10px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,0.2);cursor:pointer;transition:transform 0.3s ease;}
+.img-container:hover{transform:translateY(-5px);}
+.carousel-item img{width:100%;height:100%;object-fit:cover;}
+.carousel-nav{position:absolute;top:50%;width:100%;display:flex;justify-content:space-between;transform:translateY(-50%);z-index:2;}
+.carousel-button{background-color:var(--blue);color:white;border:none;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background-color 0.3s ease;box-shadow:0 3px 6px rgba(0,0,0,0.2);}
+.carousel-button:hover{background-color:var(--coral);}
+.carousel-button.prev{margin-left:20px;}
+.carousel-button.next{margin-right:20px;}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,0.8);z-index:1000;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s ease;}
+.modal.active{display:flex;opacity:1;}
+.modal-content{max-width:80%;max-height:80%;position:relative;}
+.modal img{width:100%;height:auto;max-height:80vh;object-fit:contain;border-radius:5px;}
+.close-modal{position:absolute;top:-40px;right:0;color:white;font-size:24px;cursor:pointer;background:transparent;border:none;width:30px;height:30px;display:flex;align-items:center;justify-content:center;}
+.carousel-indicators{display:flex;justify-content:center;margin-top:20px;}
+.indicator{width:10px;height:10px;border-radius:50%;background-color:#ccc;margin:0 5px;cursor:pointer;transition:background-color 0.3s ease;}
+.indicator.active{background-color:var(--blue);}
     .grid-3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}
     .card{position:relative;width:100%;max-width:280px;padding:20px;background:var(--grey);background-image:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(255,255,255,0.1) 10px,rgba(255,255,255,0.1) 20px);border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,0.2);border:3px solid var(--purple);overflow:hidden;transition:transform .2s,box-shadow .2s,border-color .2s,background .3s;text-align:center;}
     .card-icon{display:block;font-size:1.5em;opacity:0.2;position:absolute;top:12px;right:12px;}
@@ -101,23 +113,29 @@
   </section>
 
   <section class="section" id="culture">
-    <h2>Our Culture</h2>
-    <div class="carousel-wrapper">
-      <button class="arrow left">‹</button>
-      <div class="carousel-track">
-        <div class="carousel-item">Photo 1</div>
-        <div class="carousel-item">Photo 2</div>
-        <div class="carousel-item">Photo 3</div>
-        <div class="carousel-item">Photo 4</div>
-        <div class="carousel-item">Photo 5</div>
-        <div class="carousel-item">Photo 6</div>
-        <div class="carousel-item">Photo 7</div>
-        <div class="carousel-item">Photo 8</div>
-      </div>
-      <button class="arrow right">›</button>
+  <h2>Our Culture</h2>
+  <div class="carousel-container">
+    <div class="carousel-track" id="carouselTrack">
+      <!-- Items will be dynamically generated -->
     </div>
-    <div class="dots"></div>
-  </section>
+    
+    <div class="carousel-nav">
+      <button class="carousel-button prev">&#10094;</button>
+      <button class="carousel-button next">&#10095;</button>
+    </div>
+    
+    <div class="carousel-indicators" id="carouselIndicators">
+      <!-- Indicators will be dynamically generated -->
+    </div>
+  </div>
+  
+  <div class="modal" id="imageModal">
+    <div class="modal-content">
+      <button class="close-modal">&times;</button>
+      <img id="modalImage" src="" alt="Enlarged image">
+    </div>
+  </div>
+</section>
 
   <section class="section" id="career-paths">
     <h2>Career Paths</h2>
@@ -173,31 +191,302 @@
   </section>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const track = document.querySelector('.carousel-track');
-      const items = Array.from(track.children);
-      const dotsContainer = document.querySelector('.dots');
-      let currentIndex = 0;
-      const gap = 20;
-      items.forEach((_, i) => {
-        const dot = document.createElement('span');
-        dot.classList.add('dot');
-        if (i===0) dot.classList.add('active');
-        dot.addEventListener('click', () => { currentIndex = i; updateCarousel(); });
-        dotsContainer.appendChild(dot);
-      });
-      const dots = Array.from(dotsContainer.children);
-      function updateCarousel() {
-        const itemWidth = items[0].getBoundingClientRect().width + gap;
-        track.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
-        items.forEach((item, idx) => item.classList.toggle('active', idx===currentIndex));
-        dots.forEach((dot, idx) => dot.classList.toggle('active', idx===currentIndex));
-      }
-      document.querySelector('.arrow.left').addEventListener('click', () => { currentIndex = currentIndex>0 ? currentIndex-1 : items.length-1; updateCarousel(); });
-      document.querySelector('.arrow.right').addEventListener('click', () => { currentIndex = currentIndex<items.length-1 ? currentIndex+1 : 0; updateCarousel(); });
-      setInterval(() => { currentIndex = currentIndex<items.length-1 ? currentIndex+1 : 0; updateCarousel(); }, 3000);
-      items[0].classList.add('active');
+    document.addEventListener('DOMContentLoaded', function() {
+  // Image data - replace these with your actual images
+  const images = [
+    { src: 'https://via.placeholder.com/800x600?text=NAPOC+Team+1', alt: 'NAPOC Team Image 1' },
+    { src: 'https://via.placeholder.com/800x600?text=NAPOC+Team+2', alt: 'NAPOC Team Image 2' },
+    { src: 'https://via.placeholder.com/800x600?text=NAPOC+Team+3', alt: 'NAPOC Team Image 3' },
+    { src: 'https://via.placeholder.com/800x600?text=NAPOC+Team+4', alt: 'NAPOC Team Image 4' },
+    { src: 'https://via.placeholder.com/800x600?text=NAPOC+Team+5', alt: 'NAPOC Team Image 5' },
+    { src: 'https://via.placeholder.com/800x600?text=NAPOC+Team+6', alt: 'NAPOC Team Image 6' },
+    { src: 'https://via.placeholder.com/800x600?text=NAPOC+Team+7', alt: 'NAPOC Team Image 7' }
+  ];
+
+  // Get DOM elements
+  const track = document.getElementById('carouselTrack');
+  const indicators = document.getElementById('carouselIndicators');
+  const prevButton = document.querySelector('.carousel-button.prev');
+  const nextButton = document.querySelector('.carousel-button.next');
+  const modal = document.getElementById('imageModal');
+  const modalImage = document.getElementById('modalImage');
+  const closeModal = document.querySelector('.close-modal');
+  const container = document.querySelector('.carousel-container');
+  
+  let currentIndex = 0;
+  let autoScrollInterval;
+  let isPaused = false;
+  
+  // Initialize carousel
+  function initCarousel() {
+    // Create original items first in the middle
+    images.forEach((image, index) => {
+      createCarouselItem(image, index, 'original');
+      createIndicator(index);
     });
+    
+    // Clone images for beginning and end to create illusion of infinite scroll
+    for (let i = 0; i < images.length; i++) {
+      // Add clones at the beginning (show end of carousel)
+      createCarouselItem(images[images.length - 1 - i], images.length - 1 - i, 'clone-start');
+      
+      // Add clones at the end (show beginning of carousel)
+      createCarouselItem(images[i], i, 'clone-end');
+    }
+    
+    // Arrange items for initial view (show the originals in center)
+    setTimeout(() => {
+      // Position to show the first non-clone item
+      currentIndex = 0;
+      repositionCarousel(false);
+      
+      // Start auto-scrolling
+      startAutoScroll();
+    }, 100);
+  }
+  
+  // Create carousel item
+  function createCarouselItem(image, index, className = '') {
+    const item = document.createElement('div');
+    item.className = `carousel-item ${className}`;
+    item.dataset.index = index;
+    
+    const imgContainer = document.createElement('div');
+    imgContainer.className = 'img-container';
+    
+    const img = document.createElement('img');
+    img.src = image.src;
+    img.alt = image.alt;
+    
+    imgContainer.appendChild(img);
+    item.appendChild(imgContainer);
+    
+    // If it's a clone for the start, prepend it
+    if (className === 'clone-start') {
+      track.prepend(item);
+    } else {
+      track.appendChild(item);
+    }
+    
+    // Add click event for modal
+    imgContainer.addEventListener('click', () => {
+      pauseAutoScroll();
+      modalImage.src = image.src;
+      modalImage.alt = image.alt;
+      modal.classList.add('active');
+    });
+    
+    // Add hover events to pause/resume auto-scroll
+    imgContainer.addEventListener('mouseenter', () => {
+      pauseAutoScroll();
+    });
+    
+    imgContainer.addEventListener('mouseleave', () => {
+      if (!modal.classList.contains('active')) {
+        startAutoScroll();
+      }
+    });
+  }
+  
+  // Create indicator
+  function createIndicator(index) {
+    const indicator = document.createElement('div');
+    indicator.className = `indicator ${index === currentIndex ? 'active' : ''}`;
+    indicator.dataset.index = index;
+    
+    indicator.addEventListener('click', () => {
+      pauseAutoScroll();
+      goToSlide(index);
+      
+      // Resume auto-scroll after a delay
+      setTimeout(startAutoScroll, 5000);
+    });
+    
+    indicators.appendChild(indicator);
+  }
+  
+  // Reposition carousel based on current index
+  function repositionCarousel(animate = true) {
+    // Get all items to calculate width properly
+    const items = document.querySelectorAll('.carousel-item');
+    const itemWidth = items[0].offsetWidth;
+    
+    // Calculate center position for the carousel
+    // We need to offset by the number of clones at the beginning (images.length)
+    // and then move based on current index
+    const centerOffset = (window.innerWidth / 2) - (itemWidth / 2);
+    const offset = centerOffset - ((currentIndex + images.length) * itemWidth);
+    
+    // Apply or remove transition based on animate parameter
+    if (!animate) {
+      track.style.transition = 'none';
+    } else {
+      track.style.transition = 'transform 0.5s ease';
+    }
+    
+    // Update transform
+    track.style.transform = `translateX(${offset}px)`;
+    
+    // Force reflow if not animating
+    if (!animate) {
+      void track.offsetWidth;
+      track.style.transition = 'transform 0.5s ease';
+    }
+    
+    // Update active classes and indicators
+    updateActiveItems();
+    updateIndicators(currentIndex);
+  }
+  
+  // Update active items
+  function updateActiveItems() {
+    const items = document.querySelectorAll('.carousel-item');
+    
+    // Remove active class from all items
+    items.forEach(item => item.classList.remove('active'));
+    
+    // Calculate which item should be active (centered)
+    const centerIndex = images.length + currentIndex;
+    
+    // Make center item active
+    if (items[centerIndex]) {
+      items[centerIndex].classList.add('active');
+    }
+  }
+  
+  // Update indicators
+  function updateIndicators(index) {
+    const allIndicators = document.querySelectorAll('.indicator');
+    allIndicators.forEach(ind => ind.classList.remove('active'));
+    
+    // Calculate proper index using modulo to handle wrapping
+    const normalizedIndex = ((index % images.length) + images.length) % images.length;
+    const activeIndicator = document.querySelector(`.indicator[data-index="${normalizedIndex}"]`);
+    
+    if (activeIndicator) {
+      activeIndicator.classList.add('active');
+    }
+  }
+  
+  // Go to specific slide
+  function goToSlide(index) {
+    currentIndex = index;
+    repositionCarousel(true);
+  }
+  
+  // Handle transitions for infinite scrolling
+  function handleInfiniteScrollTransition() {
+    // Check if we've scrolled to a clone and need to seamlessly jump to the original
+    const totalOriginalItems = images.length;
+    
+    // If we've gone too far right (into the cloned section at the end)
+    if (currentIndex >= totalOriginalItems) {
+      setTimeout(() => {
+        // Calculate equivalent position at the beginning
+        currentIndex = currentIndex % totalOriginalItems;
+        repositionCarousel(false);
+      }, 500); // Wait for animation to complete
+    }
+    
+    // If we've gone too far left (into the cloned section at the beginning)
+    else if (currentIndex < 0) {
+      setTimeout(() => {
+        // Calculate equivalent position at the end
+        currentIndex = totalOriginalItems + (currentIndex % totalOriginalItems);
+        repositionCarousel(false);
+      }, 500); // Wait for animation to complete
+    }
+  }
+  
+  // Start auto-scrolling
+  function startAutoScroll() {
+    if (isPaused) return;
+    
+    // Clear any existing interval
+    if (autoScrollInterval) {
+      clearInterval(autoScrollInterval);
+    }
+    
+    // Set new interval
+    autoScrollInterval = setInterval(() => {
+      // Move to next slide
+      currentIndex++;
+      repositionCarousel(true);
+      
+      // Handle infinite scroll transition if needed
+      handleInfiniteScrollTransition();
+    }, 3000); // Change slides every 3 seconds
+  }
+  
+  // Pause auto-scrolling
+  function pauseAutoScroll() {
+    isPaused = true;
+    if (autoScrollInterval) {
+      clearInterval(autoScrollInterval);
+      autoScrollInterval = null;
+    }
+  }
+  
+  // Resume auto-scrolling
+  function resumeAutoScroll() {
+    isPaused = false;
+    startAutoScroll();
+  }
+  
+  // Event listeners for navigation buttons
+  prevButton.addEventListener('click', () => {
+    pauseAutoScroll();
+    currentIndex--;
+    repositionCarousel(true);
+    handleInfiniteScrollTransition();
+    
+    // Resume auto-scroll after a delay
+    setTimeout(resumeAutoScroll, 5000);
+  });
+  
+  nextButton.addEventListener('click', () => {
+    pauseAutoScroll();
+    currentIndex++;
+    repositionCarousel(true);
+    handleInfiniteScrollTransition();
+    
+    // Resume auto-scroll after a delay
+    setTimeout(resumeAutoScroll, 5000);
+  });
+  
+  // Close modal and resume auto-scroll
+  closeModal.addEventListener('click', () => {
+    modal.classList.remove('active');
+    setTimeout(resumeAutoScroll, 1000);
+  });
+  
+  // Close modal when clicking outside
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('active');
+      setTimeout(resumeAutoScroll, 1000);
+    }
+  });
+  
+  // Carousel container hover events
+  container.addEventListener('mouseenter', () => {
+    pauseAutoScroll();
+  });
+  
+  container.addEventListener('mouseleave', () => {
+    if (!modal.classList.contains('active')) {
+      resumeAutoScroll();
+    }
+  });
+  
+  // Window resize handling
+  window.addEventListener('resize', () => {
+    repositionCarousel(false);
+  });
+  
+  // Initialize the carousel
+  initCarousel();
+});
   </script>
 </body>
 </html>
