@@ -70,7 +70,163 @@
     /* Restore grid layouts */
 .grid{display:grid !important;gap:20px !important;max-width:1000px !important;margin:0 auto !important;justify-items:center !important;}
 .grid-3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr)) !important;}
-.card{display:block !important;position:relative !important;width:100% !important;max-width:280px !important;padding:20px !important;background:var(--grey) !important;border-radius:8px !important;box-shadow:0 4px 8px rgba(0,0,0,0.2) !important;border:3px solid var(--purple) !important;overflow:hidden !important;transition:transform .2s,box-shadow .2s,border-color .2s,background .3s !important;text-align:center !important;}  </style>
+.card{display:block !important;position:relative !important;width:100% !important;max-width:280px !important;padding:20px !important;background:var(--grey) !important;border-radius:8px !important;box-shadow:0 4px 8px rgba(0,0,0,0.2) !important;border:3px solid var(--purple) !important;overflow:hidden !important;transition:transform .2s,box-shadow .2s,border-color .2s,background .3s !important;text-align:center !important;}  
+  /* Ensure carousel styles only affect the culture section */
+#culture .carousel-container,
+#culture .carousel-track,
+#culture .carousel-item,
+#culture .carousel-button,
+#culture .carousel-indicators,
+#culture .img-container,
+#culture .indicator {
+  /* Reset styles that might affect other sections */
+  display: initial;
+  flex: initial;
+  grid: initial;
+  max-width: initial;
+  width: initial;
+  position: initial;
+  margin: initial;
+  padding: initial;
+}
+
+/* Restore grid layout for other sections */
+section:not(#culture) .grid {
+  display: grid;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+section:not(#culture) .grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+section:not(#culture) .card {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  padding: 20px;
+  background: var(--grey);
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  border: 3px solid var(--purple);
+  overflow: hidden;
+  transition: transform .2s, box-shadow .2s, border-color .2s, background .3s;
+  text-align: center;
+}
+
+/* Then re-add the carousel specific styles with #culture prefixed to ensure they only apply to carousel */
+#culture .carousel-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  padding: 20px 0;
+  font-family: 'Inter', sans-serif;
+}
+
+#culture .carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+#culture .carousel-item {
+  min-width: 300px;
+  width: 300px;
+  padding: 10px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  opacity: 0.7;
+  transform: scale(0.85);
+}
+
+#culture .carousel-item.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+#culture .img-container {
+  width: 100%;
+  height: 250px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+#culture .img-container:hover {
+  transform: translateY(-5px);
+}
+
+#culture .carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#culture .carousel-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+#culture .carousel-button {
+  background-color: var(--blue);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+#culture .carousel-button:hover {
+  background-color: var(--coral);
+}
+
+#culture .carousel-button.prev {
+  margin-left: 20px;
+}
+
+#culture .carousel-button.next {
+  margin-right: 20px;
+}
+
+#culture .carousel-indicators {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#culture .indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#culture .indicator.active {
+  background-color: var(--blue);
+}
+  </style>
 </head>
 <body id="top">
   <header class="header">
