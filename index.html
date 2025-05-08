@@ -523,16 +523,18 @@
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
     <div class="nav-overlay" id="navOverlay"></div>
     <nav class="nav-links" id="navLinks">
-      <a href="#region-at-a-glance">Our Region</a>
-      <a href="#testimonials">Team Testimonials</a>
       <a href="#culture">Our Culture</a>
+      <a href="#testimonials">Team Testimonials</a>
       <a href="#spotlights">Employee Spotlights</a>
       <a href="#values">Our Values</a>
+      <a href="#region-at-a-glance">Our Region</a>
       <a href="#careers">Open Roles</a>
+      <a href="#benefits">Benefits</a>
       <a href="#recruiters">Contact Our Team</a>
     </nav>
   </header>
 
+  <!-- HERO SECTION -->
   <section class="hero">
     <div class="hero-text">
       <h1>We're a region of hospitals within VCA spanning New England, New York, Michigan, and beyond—united by our passion for exceptional veterinary care and our commitment to community and personal connection.</h1>
@@ -548,52 +550,34 @@
     <div class="hero-overlay"></div>
   </section>
 
-  <!-- NEW: Redesigned Region at a Glance Section -->
-  <section class="section" id="region-at-a-glance">
-    <h2>Our Region at a Glance</h2>
-    <div class="region-container">
-      <div class="region-intro">
-        <p>Our North Atlantic region offers diverse opportunities in both general practice and emergency medicine across multiple states, providing a wide range of clinical experiences in both urban and rural settings.</p>
+  <!-- CULTURE SECTION -->
+  <section class="section" id="culture">
+    <h2>Our Culture</h2>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">At VCA North Atlantic, we foster a collaborative environment where learning, growth, and compassion are at the heart of everything we do. Explore our gallery to see our team in action!</p>
+    <div class="carousel-container">
+      <div class="carousel-track" id="carouselTrack">
+        <!-- Items will be dynamically generated -->
       </div>
       
-      <div class="hospital-types">
-        <div class="hospital-type">
-          <h3><span>🏥</span> General Practice</h3>
-          <p>Our general practice hospitals provide comprehensive preventive care, diagnostics, and treatment for pets across the Northeast. Located in communities large and small, these hospitals offer diverse practice settings and clientele.</p>
-          <div class="state-grid">
-            <div class="state-item">Connecticut</div>
-            <div class="state-item">Massachusetts</div>
-            <div class="state-item">Rhode Island</div>
-            <div class="state-item">Maine</div>
-            <div class="state-item">Vermont</div>
-            <div class="state-item">New Hampshire</div>
-          </div>
-        </div>
-        
-        <div class="hospital-type">
-          <h3><span>🚑</span> Emergency & Specialty</h3>
-          <p>Our emergency and specialty hospitals provide advanced, 24/7 care for critical cases and specialized treatment. These state-of-the-art facilities offer unique career opportunities in high-acuity medicine.</p>
-          <div class="state-grid">
-            <div class="state-item">Connecticut</div>
-            <div class="state-item">Massachusetts</div>
-            <div class="state-item">New Hampshire</div>
-            <div class="state-item">Michigan</div>
-            <div class="state-item">Ohio</div>
-          </div>
-        </div>
+      <div class="carousel-nav">
+        <button class="carousel-button prev">&#10094;</button>
+        <button class="carousel-button next">&#10095;</button>
       </div>
       
-      <!-- Benefits CTA Button -->
-      <div class="benefits-cta">
-        <h3>Comprehensive Benefits Package</h3>
-        <p>We're proud to offer an industry-leading benefits package including health insurance, 401(k) matching, CE allowance, pet care discounts, and more.</p>
-        <a href="benefits.pdf" class="btn" target="_blank">View Our Benefits Guide</a>
-        <div class="benefits-icon">📋</div>
+      <div class="carousel-indicators" id="carouselIndicators">
+        <!-- Indicators will be dynamically generated -->
+      </div>
+    </div>
+    
+    <div class="modal" id="imageModal">
+      <div class="modal-content">
+        <button class="close-modal">&times;</button>
+        <img id="modalImage" src="" alt="Enlarged image">
       </div>
     </div>
   </section>
 
-  <!-- Team Testimonials Section (Quote Blocks) -->
+  <!-- TEAM TESTIMONIALS SECTION -->
   <section class="section" id="testimonials">
     <h2>Team Testimonials</h2>
     <div class="grid grid-3">
@@ -626,33 +610,7 @@
     </div>
   </section>
 
-  <section class="section" id="culture">
-    <h2>Our Culture</h2>
-    <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">At VCA North Atlantic, we foster a collaborative environment where learning, growth, and compassion are at the heart of everything we do. Explore our gallery to see our team in action!</p>
-    <div class="carousel-container">
-      <div class="carousel-track" id="carouselTrack">
-        <!-- Items will be dynamically generated -->
-      </div>
-      
-      <div class="carousel-nav">
-        <button class="carousel-button prev">&#10094;</button>
-        <button class="carousel-button next">&#10095;</button>
-      </div>
-      
-      <div class="carousel-indicators" id="carouselIndicators">
-        <!-- Indicators will be dynamically generated -->
-      </div>
-    </div>
-    
-    <div class="modal" id="imageModal">
-      <div class="modal-content">
-        <button class="close-modal">&times;</button>
-        <img id="modalImage" src="" alt="Enlarged image">
-      </div>
-    </div>
-  </section>
-
-  <!-- Employee Spotlights Section (Image Grid with Overlay) -->
+  <!-- EMPLOYEE SPOTLIGHTS SECTION -->
   <section class="section" id="spotlights">
     <h2>Employee Spotlights</h2>
     <div class="spotlight-grid">
@@ -688,7 +646,7 @@
     </div>
   </section>
 
-  <!-- Values Section (Background Images) -->
+  <!-- VALUES SECTION -->
   <section class="section" id="values">
     <h2>Our Values</h2>
     <div class="values-container">
@@ -721,6 +679,44 @@
     </div>
   </section>
 
+  <!-- REGION AT A GLANCE SECTION -->
+  <section class="section" id="region-at-a-glance">
+    <h2>Our Region at a Glance</h2>
+    <div class="region-container">
+      <div class="region-intro">
+        <p>Our North Atlantic region offers diverse opportunities in both general practice and emergency medicine across multiple states, providing a wide range of clinical experiences in both urban and rural settings.</p>
+      </div>
+      
+      <div class="hospital-types">
+        <div class="hospital-type">
+          <h3><span>🏥</span> General Practice</h3>
+          <p>Our general practice hospitals provide comprehensive preventive care, diagnostics, and treatment for pets across the Northeast. Located in communities large and small, these hospitals offer diverse practice settings and clientele.</p>
+          <div class="state-grid">
+            <div class="state-item">Connecticut</div>
+            <div class="state-item">Massachusetts</div>
+            <div class="state-item">Rhode Island</div>
+            <div class="state-item">Maine</div>
+            <div class="state-item">Vermont</div>
+            <div class="state-item">New Hampshire</div>
+          </div>
+        </div>
+        
+        <div class="hospital-type">
+          <h3><span>🚑</span> Emergency & Specialty</h3>
+          <p>Our emergency and specialty hospitals provide advanced, 24/7 care for critical cases and specialized treatment. These state-of-the-art facilities offer unique career opportunities in high-acuity medicine.</p>
+          <div class="state-grid">
+            <div class="state-item">Connecticut</div>
+            <div class="state-item">Massachusetts</div>
+            <div class="state-item">New Hampshire</div>
+            <div class="state-item">Michigan</div>
+            <div class="state-item">Ohio</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPEN ROLES SECTION -->
   <section class="section" id="careers">
     <h2>Open Roles</h2>
     <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Join our team and make a difference in the lives of pets and their families across the North Atlantic region. We're currently hiring for the following positions:</p>
@@ -749,6 +745,18 @@
     </div>
   </section>
 
+  <!-- BENEFITS SECTION -->
+  <section class="section" id="benefits">
+    <h2>Benefits</h2>
+    <div class="benefits-cta">
+      <h3>Comprehensive Benefits Package</h3>
+      <p>We're proud to offer an industry-leading benefits package including health insurance, 401(k) matching, CE allowance, pet care discounts, and more.</p>
+      <a href="benefits.pdf" class="btn" target="_blank">View Our Benefits Guide</a>
+      <div class="benefits-icon">📋</div>
+    </div>
+  </section>
+
+  <!-- CONTACT INFO SECTION -->
   <section class="section" id="recruiters">
     <h2>Contact Our Team</h2>
     <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Have questions about joining VCA North Atlantic? Our dedicated recruitment team is here to help you find the perfect position.</p>
@@ -769,8 +777,8 @@
     <div class="footer-content">
       <div class="footer-column">
         <h3>Quick Links</h3>
-        <a href="#region-at-a-glance">Our Region</a>
         <a href="#culture">Our Culture</a>
+        <a href="#region-at-a-glance">Our Region</a>
         <a href="#careers">Careers</a>
       </div>
       <div class="footer-column">
@@ -794,6 +802,7 @@
     <div class="copyright">
       <p>&copy; 2025 VCA North Atlantic. All rights reserved.</p>
     </div>
+  </footer>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Mobile Menu Toggle - UPDATED
