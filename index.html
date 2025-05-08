@@ -14,8 +14,8 @@
     :root{--blue:#003B71;--teal:#00A99D;--purple:#B19CD9;--heading-purple:#7D3F98;--coral:#FF6F61;--light:#F7F7F7;--grey:#f8f8f8;}
     html,body{background:var(--light);margin:0;font-family:'Inter',sans-serif;color:#333;line-height:1.6;}
     h1{font-size:2em;font-weight:700;margin:0 0 .5em;color:#fff;max-width:600px;line-height:1.3;animation:fadeInUp 1s forwards .3s;}
-    h2{font-family:'Playfair Display',serif;font-size:2em;font-weight:600;color:var(--heading-purple);text-align:left;max-width:1000px;margin:0 auto 20px;position:relative;animation:fadeInUp 1s forwards .3s;}
-    h2:after{content:'';display:block;width:60px;height:4px;background:var(--coral);margin-top:8px;}
+    h2{font-family:'Playfair Display',serif;font-size:1.8em;font-weight:600;color:var(--heading-purple);text-align:left;max-width:1000px;margin:0 auto 15px;position:relative;animation:fadeInUp 1s forwards .3s;}
+    h2:after{content:'';display:block;width:50px;height:3px;background:var(--coral);margin-top:6px;}
     p,.card p,.benefit-item p{margin:0 0 1em;}strong{font-weight:600;}
     .btn{font-weight:600;margin-top:20px;padding:12px 24px;background:var(--coral);color:#fff;border:none;border-radius:4px;cursor:pointer;transition:background .3s,transform .2s;text-decoration:none;display:inline-block;animation:fadeInUp 1s forwards .7s;}
     .btn:hover{background:var(--purple);transform:scale(1.03);}
@@ -88,7 +88,7 @@
     .hero-text{position:relative;z-index:2;}
     .hero-subtitle{font-size:1.2em;color:rgba(255,255,255,0.9);margin-top:.5em;animation:fadeInUp 1s forwards .5s;}
     .paw-print{position:absolute;font-size:4em;color:rgba(255,255,255,0.8);opacity:0;animation:pawSequence 6s infinite;}
-    .section{margin:0;padding:66px 20px;}
+    .section{margin:0;padding:33px 20px;}
     .section:nth-of-type(odd){background:linear-gradient(180deg,var(--light),rgba(0,169,157,0.1));}
     .section:nth-of-type(even){background:linear-gradient(180deg,rgba(0,169,157,0.1),var(--light));}
     
@@ -119,7 +119,7 @@
     .hospital-type {
       background: linear-gradient(to bottom right, #ffffff, #f8f8f8);
       border-radius: 20px;
-      padding: 35px 30px;
+      padding: 25px 25px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       flex: 1;
       min-width: 280px;
@@ -211,10 +211,10 @@
     /* Benefits Button */
     .benefits-cta {
       text-align: center;
-      padding: 40px 20px;
+      padding: 30px 20px;
       background: linear-gradient(to right, var(--blue), var(--teal));
       border-radius: 15px;
-      margin: 60px auto;
+      margin: 30px auto;
       max-width: 800px;
       color: white;
       position: relative;
@@ -223,15 +223,15 @@
     }
     
     .benefits-cta h3 {
-      font-size: 1.8em;
+      font-size: 1.7em;
       margin-top: 0;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       font-family: 'Playfair Display', serif;
     }
     
     .benefits-cta p {
-      font-size: 1.1em;
-      margin-bottom: 25px;
+      font-size: 1.05em;
+      margin-bottom: 20px;
       max-width: 600px;
       margin-left: auto;
       margin-right: auto;
@@ -267,13 +267,13 @@
     .testimonials-container {
       max-width: 900px;
       margin: 0 auto;
-      padding: 10px 15px;
+      padding: 5px 15px;
       position: relative;
     }
     
     .testimonial-item {
       position: relative;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       width: 100%;
       display: flex;
       transition: opacity 0.6s ease, transform 0.6s ease;
@@ -421,7 +421,7 @@
     }
     
     /* Grid Layout for Cards with Spacing */
-    .grid{display:grid !important;gap:40px !important;max-width:1000px !important;margin:0 auto !important;justify-items:center !important;padding:20px !important;}
+    .grid{display:grid !important;gap:25px !important;max-width:1000px !important;margin:0 auto !important;justify-items:center !important;padding:15px !important;}
     .grid-3{grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)) !important;}
     @media (min-width:992px){.grid-3{grid-template-columns:repeat(3,1fr) !important;}}
     @media (min-width:768px) and (max-width:991px){.grid-3{grid-template-columns:repeat(2,1fr) !important;}}
@@ -431,10 +431,10 @@
     .spotlight-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
+      gap: 20px;
       max-width: 1000px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 15px;
     }
 
     .spotlight-item {
@@ -522,10 +522,10 @@
     .values-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
+      gap: 25px;
       max-width: 1000px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 15px;
     }
 
     .value-item {
@@ -635,7 +635,7 @@
       position: relative !important;
       width: 100% !important;
       max-width: 320px !important;
-      padding: 35px 25px !important;
+      padding: 25px 20px !important;
       background: linear-gradient(145deg, #ffffff, #f8f8f8) !important;
       border-radius: 20px !important;
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
@@ -644,7 +644,7 @@
       transition: transform .3s, box-shadow .3s !important;
       text-align: center !important;
       height: auto !important;
-      min-height: 270px !important;
+      min-height: 240px !important;
       display: flex !important;
       flex-direction: column !important;
       align-items: center !important;
@@ -655,12 +655,12 @@
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
-      width: 80px !important;
-      height: 80px !important;
+      width: 70px !important;
+      height: 70px !important;
       background: linear-gradient(135deg, rgba(0, 169, 157, 0.1), rgba(177, 156, 217, 0.2)) !important;
       border-radius: 50% !important;
-      font-size: 2.5em !important;
-      margin-bottom: 20px !important;
+      font-size: 2.2em !important;
+      margin-bottom: 15px !important;
       position: relative !important;
       z-index: 1 !important;
       color: var(--heading-purple) !important;
@@ -731,7 +731,7 @@
     }
     
     /* Footer */
-    .footer{background:var(--blue);color:#fff;padding:40px 20px;text-align:center;margin-top:40px;}
+    .footer{background:var(--blue);color:#fff;padding:30px 20px;text-align:center;margin-top:20px;}
     .footer-content{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:30px;}
     .footer-column{text-align:left;}
     .footer-column h3{color:var(--teal);margin-bottom:15px;}
@@ -821,10 +821,7 @@
   <section class="section" id="testimonials">
     <h2>Team Testimonials</h2>
     <div class="testimonials-container">
-      <div class="testimonials-timeline"></div>
-      
-      <div class="testimonial-item left" style="opacity: 0; transform: translateY(30px);">
-        <div class="testimonial-dot"></div>
+      <div class="testimonial-item left" style="opacity: 0; transform: translateY(20px);">
         <div class="testimonial-bubble">
           <div class="testimonial-quote">"</div>
           <p class="testimonial-content">VCA North Atlantic provided me with incredible growth opportunities and mentorship that helped advance my career. The collaborative team environment makes every day rewarding.</p>
@@ -838,8 +835,7 @@
         </div>
       </div>
       
-      <div class="testimonial-item right" style="opacity: 0; transform: translateY(30px);">
-        <div class="testimonial-dot"></div>
+      <div class="testimonial-item right" style="opacity: 0; transform: translateY(20px);">
         <div class="testimonial-bubble">
           <div class="testimonial-quote">"</div>
           <p class="testimonial-content">I love the supportive environment at VCA. My colleagues feel like family, and I'm given all the tools I need to provide the best possible care for our patients.</p>
@@ -853,8 +849,7 @@
         </div>
       </div>
       
-      <div class="testimonial-item left" style="opacity: 0; transform: translateY(30px);">
-        <div class="testimonial-dot"></div>
+      <div class="testimonial-item left" style="opacity: 0; transform: translateY(20px);">
         <div class="testimonial-bubble">
           <div class="testimonial-quote">"</div>
           <p class="testimonial-content">Joining VCA North Atlantic was the best career move I've made. The emphasis on work-life balance combined with excellent professional development has allowed me to thrive both personally and professionally.</p>
@@ -980,7 +975,7 @@
   <!-- OPEN ROLES SECTION -->
   <section class="section" id="careers">
     <h2>Open Roles</h2>
-    <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Join our team and make a difference in the lives of pets and their families across the North Atlantic region. We're currently hiring for the following positions:</p>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 20px;">Join our team and make a difference in the lives of pets and their families across the North Atlantic region. We're currently hiring for the following positions:</p>
     <div class="grid grid-3">
       <div class="card">
         <span class="card-icon">🩺</span>
@@ -1020,7 +1015,7 @@
   <!-- CONTACT INFO SECTION -->
   <section class="section" id="recruiters">
     <h2>Contact Our Team</h2>
-    <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Have questions about joining VCA North Atlantic? Our dedicated recruitment team is here to help you find the perfect position.</p>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 20px;">Have questions about joining VCA North Atlantic? Our dedicated recruitment team is here to help you find the perfect position.</p>
     <div class="grid grid-3">
       <div class="card">
         <span class="card-icon">📧</span>
