@@ -263,52 +263,212 @@
       transform: rotate(-5deg);
     }
     
-    /* Quote Blocks for Testimonials */
-    .quote-block {
+    /* Speech Bubble Testimonials */
+    .testimonials-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 15px;
       position: relative;
-      padding: 30px 35px 25px;
-      background: linear-gradient(to bottom right, #f7f7f7, #f0f0f0);
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      margin-bottom: 20px;
-      border-left: 4px solid var(--coral);
-      transition: transform 0.3s, box-shadow 0.3s;
     }
-
-    .quote-block:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    }
-
-    .quote-mark {
+    
+    .testimonials-timeline {
       position: absolute;
-      top: 15px;
-      left: 15px;
-      font-size: 40px;
-      color: rgba(125, 63, 152, 0.1);
-      font-family: 'Playfair Display', serif;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 4px;
+      background: linear-gradient(to bottom, rgba(0, 169, 157, 0.1), var(--teal), rgba(125, 63, 152, 0.3));
+      transform: translateX(-50%);
+      border-radius: 2px;
+      z-index: 1;
     }
-
-    .quote-content {
+    
+    .testimonial-item {
+      position: relative;
+      margin-bottom: 60px;
+      width: 100%;
+      display: flex;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .testimonial-item.left {
+      justify-content: flex-start;
+    }
+    
+    .testimonial-item.right {
+      justify-content: flex-end;
+    }
+    
+    .testimonial-bubble {
+      position: relative;
+      max-width: 400px;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      margin: 0 60px;
+      color: #333;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .testimonial-item.left .testimonial-bubble {
+      background: linear-gradient(120deg, #fff, rgba(0, 169, 157, 0.1));
+      border-bottom-left-radius: 0;
+    }
+    
+    .testimonial-item.right .testimonial-bubble {
+      background: linear-gradient(240deg, #fff, rgba(177, 156, 217, 0.15));
+      border-bottom-right-radius: 0;
+    }
+    
+    .testimonial-bubble:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+    
+    .testimonial-item.left .testimonial-bubble:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: -20px;
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(120deg, #fff, rgba(0, 169, 157, 0.1));
+      clip-path: polygon(100% 0, 0 0, 100% 100%);
+    }
+    
+    .testimonial-item.right .testimonial-bubble:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: -20px;
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(240deg, #fff, rgba(177, 156, 217, 0.15));
+      clip-path: polygon(0 0, 100% 0, 0 100%);
+    }
+    
+    .testimonial-content {
       font-style: italic;
-      margin-bottom: 15px;
-      color: #555;
       line-height: 1.7;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
     }
-
-    .quote-author {
+    
+    .testimonial-quote {
+      position: absolute;
+      font-size: 120px;
+      font-family: 'Playfair Display', serif;
+      opacity: 0.07;
+      z-index: 0;
+    }
+    
+    .testimonial-item.left .testimonial-quote {
+      top: -30px;
+      left: -20px;
+      color: var(--teal);
+    }
+    
+    .testimonial-item.right .testimonial-quote {
+      top: -30px;
+      right: -20px;
+      color: var(--heading-purple);
+    }
+    
+    .testimonial-author {
       display: flex;
       align-items: center;
-      margin-top: 15px;
+      position: relative;
+      z-index: 1;
     }
-
-    .quote-author strong {
+    
+    .testimonial-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--heading-purple);
+      color: white;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+      font-size: 16px;
+    }
+    
+    .testimonial-item.left .testimonial-avatar {
+      background: linear-gradient(to right, var(--teal), var(--blue));
+    }
+    
+    .testimonial-item.right .testimonial-avatar {
+      background: linear-gradient(to right, var(--purple), var(--heading-purple));
+    }
+    
+    .testimonial-name {
+      font-weight: 700;
       color: var(--heading-purple);
-      margin-right: 8px;
+      margin-bottom: 3px;
     }
-
-    .quote-author span {
+    
+    .testimonial-role {
+      font-size: 0.9em;
       color: #777;
+    }
+    
+    .testimonial-dot {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: white;
+      border: 4px solid var(--coral);
+      box-shadow: 0 0 0 4px rgba(255, 111, 97, 0.2);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+    
+    .testimonial-item.left .testimonial-dot {
+      background: var(--teal);
+    }
+    
+    .testimonial-item.right .testimonial-dot {
+      background: var(--purple);
+    }
+    
+    @media (max-width: 768px) {
+      .testimonials-timeline {
+        left: 30px;
+      }
+      
+      .testimonial-item.left,
+      .testimonial-item.right {
+        justify-content: flex-end;
+        padding-left: 60px;
+      }
+      
+      .testimonial-bubble {
+        margin: 0;
+        max-width: 100%;
+      }
+      
+      .testimonial-item.left .testimonial-bubble {
+        border-bottom-left-radius: 20px;
+        border-top-left-radius: 0;
+      }
+      
+      .testimonial-item.left .testimonial-bubble:before {
+        bottom: auto;
+        top: 0;
+        left: -20px;
+        clip-path: polygon(0 0, 100% 100%, 100% 0);
+      }
+      
+      .testimonial-dot {
+        left: 30px;
+      }
     }
     
     /* Grid Layout for Cards with Spacing */
@@ -521,12 +681,105 @@
     .modal img{width:100%;height:auto;max-height:80vh;object-fit:contain;border-radius:5px;}
     .close-modal{position:absolute;top:-40px;right:0;color:white;font-size:24px;cursor:pointer;background:transparent;border:none;width:30px;height:30px;display:flex;align-items:center;justify-content:center;}
     
-    /* Card Styling - kept for open roles section */
-    .card{position:relative !important;width:100% !important;max-width:300px !important;padding:20px !important;background:var(--grey) !important;border-radius:8px !important;box-shadow:0 4px 8px rgba(0,0,0,0.2) !important;border:3px solid var(--purple) !important;overflow:hidden !important;transition:transform .2s,box-shadow .2s,border-color .2s,background .3s !important;text-align:center !important;height:auto !important;min-height:220px !important;display:flex !important;flex-direction:column !important;}
-    .card-icon{display:block !important;font-size:2em !important;opacity:0.8 !important;margin-bottom:15px !important;}
-    .card:hover{transform:translateY(-4px) !important;box-shadow:0 6px 16px rgba(0,0,0,0.25) !important;border-color:var(--coral) !important;background:linear-gradient(135deg,rgba(248,248,248,0.8),rgba(255,111,97,0.1)) !important;}
-    .card::before{content:'';position:absolute;top:0;left:0;width:100%;height:6px;background:linear-gradient(135deg,var(--coral),var(--teal));display:block;}
-    .card-link{text-decoration:none;color:inherit;display:block;width:100%;}
+    /* Card Styling - modernized for open roles section */
+    .card {
+      position: relative !important;
+      width: 100% !important;
+      max-width: 320px !important;
+      padding: 35px 25px !important;
+      background: linear-gradient(145deg, #ffffff, #f8f8f8) !important;
+      border-radius: 20px !important;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
+      border: none !important;
+      overflow: hidden !important;
+      transition: transform .3s, box-shadow .3s !important;
+      text-align: center !important;
+      height: auto !important;
+      min-height: 270px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    
+    .card-icon {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 80px !important;
+      height: 80px !important;
+      background: linear-gradient(135deg, rgba(0, 169, 157, 0.1), rgba(177, 156, 217, 0.2)) !important;
+      border-radius: 50% !important;
+      font-size: 2.5em !important;
+      margin-bottom: 20px !important;
+      position: relative !important;
+      z-index: 1 !important;
+      color: var(--heading-purple) !important;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .card strong {
+      display: block !important;
+      font-size: 1.4em !important;
+      color: var(--heading-purple) !important;
+      margin-bottom: 12px !important;
+      font-family: 'Playfair Display', serif !important;
+    }
+    
+    .card p {
+      color: #555 !important;
+      margin-bottom: 20px !important;
+      line-height: 1.6 !important;
+    }
+    
+    .card:hover {
+      transform: translateY(-12px) !important;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+    }
+    
+    .card::before {
+      content: '' !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 8px !important;
+      background: linear-gradient(90deg, var(--coral), var(--teal)) !important;
+      display: block !important;
+    }
+    
+    .card::after {
+      content: '' !important;
+      position: absolute !important;
+      top: 0 !important;
+      right: 0 !important;
+      width: 150px !important;
+      height: 150px !important;
+      background: radial-gradient(circle, rgba(177, 156, 217, 0.2) 0%, rgba(255, 255, 255, 0) 70%) !important;
+      z-index: 0 !important;
+    }
+    
+    .card .btn {
+      margin-top: auto !important;
+      background: linear-gradient(to right, var(--coral), var(--purple)) !important;
+      border-radius: 30px !important;
+      padding: 12px 28px !important;
+      box-shadow: 0 8px 20px rgba(255, 111, 97, 0.25) !important;
+      transition: transform .3s, box-shadow .3s, background .3s !important;
+    }
+    
+    .card .btn:hover {
+      transform: translateY(-5px) !important;
+      box-shadow: 0 12px 25px rgba(255, 111, 97, 0.4) !important;
+      background: linear-gradient(to right, var(--purple), var(--teal)) !important;
+    }
+    
+    .card-link {
+      text-decoration: none !important;
+      color: inherit !important;
+      display: block !important;
+      width: 100% !important;
+    }
     
     /* Footer */
     .footer{background:var(--blue);color:#fff;padding:40px 20px;text-align:center;margin-top:40px;}
@@ -780,7 +1033,7 @@
       </div>
     </div>
     <div style="text-align: center; margin-top: 40px;">
-      <a href="https://careers.vca.com" class="btn" style="font-size: 1.1rem;">View All Open Positions</a>
+      <a href="https://careers.vca.com" class="btn" style="font-size: 1.1rem; padding: 14px 35px; border-radius: 30px; background: linear-gradient(to right, var(--heading-purple), var(--teal)); box-shadow: 0 10px 25px rgba(125, 63, 152, 0.25);">View All Open Positions</a>
     </div>
   </section>
 
@@ -800,14 +1053,26 @@
     <h2>Contact Our Team</h2>
     <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Have questions about joining VCA North Atlantic? Our dedicated recruitment team is here to help you find the perfect position.</p>
     <div class="grid grid-3">
-      <div class="card"><span class="card-icon">📧</span><strong>Nick Silva</strong><p>Veterinarian Recruiter</p><p><a href="mailto:jane.roe@vca.com">nick.silva@vca.com</a></p>
-        <p><a href="tel:+1234567890" style="color: var(--blue);"><i style="margin-right:5px;">📞</i> (123) 456-7890</a></p>
+      <div class="card">
+        <span class="card-icon">📧</span>
+        <strong>Nick Silva</strong>
+        <p>Veterinarian Recruiter</p>
+        <p><a href="mailto:jane.roe@vca.com" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">nick.silva@vca.com</a></p>
+        <p><a href="tel:+1234567890" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i style="margin-right:8px; font-size: 1.2em;">📞</i> (123) 456-7890</a></p>
       </div>
-      <div class="card"><span class="card-icon">📧</span><strong>Amy Trudeau</strong><p>Student/New Grad Recruiter</p><p><a href="mailto:john.roe@vca.com">john.doe@vca.com</a></p>
-        <p><a href="tel:+1234567891" style="color: var(--blue);"><i style="margin-right:5px;">📞</i> (123) 456-7891</a></p>
+      <div class="card">
+        <span class="card-icon">📧</span>
+        <strong>Amy Trudeau</strong>
+        <p>Student/New Grad Recruiter</p>
+        <p><a href="mailto:john.roe@vca.com" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">john.doe@vca.com</a></p>
+        <p><a href="tel:+1234567891" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i style="margin-right:8px; font-size: 1.2em;">📞</i> (123) 456-7891</a></p>
       </div>
-      <div class="card"><span class="card-icon">📧</span><strong>Lauren Gerrish</strong><p> CVT & Technician Recruiter </p><p><a href="mailto:sarah.johnson@vca.com">sarah.johnson@vca.com</a></p>
-        <p><a href="tel:+1234567892" style="color: var(--blue);"><i style="margin-right:5px;">📞</i> (123) 456-7892</a></p>
+      <div class="card">
+        <span class="card-icon">📧</span>
+        <strong>Lauren Gerrish</strong>
+        <p>CVT & Technician Recruiter</p>
+        <p><a href="mailto:sarah.johnson@vca.com" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">sarah.johnson@vca.com</a></p>
+        <p><a href="tel:+1234567892" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i style="margin-right:8px; font-size: 1.2em;">📞</i> (123) 456-7892</a></p>
       </div>
     </div>
   </section>
