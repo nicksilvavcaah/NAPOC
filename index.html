@@ -336,12 +336,14 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     }
 
     /* Benefits tile grid */
-    .benefit-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:22px;max-width:1150px;margin:0 auto 35px;padding:15px;}
+    .benefit-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:22px;max-width:1150px;margin:0 auto 35px;padding:15px;}
     .benefit-tile{background:linear-gradient(145deg,#ffffff,#f8f8f8);border-radius:16px;padding:26px 22px;box-shadow:0 10px 25px rgba(0,0,0,0.07);border-top:4px solid var(--teal-dark);transition:transform .3s ease, box-shadow .3s ease;}
     .benefit-tile:hover{transform:translateY(-6px);box-shadow:0 15px 30px rgba(0,0,0,0.12);}
     .benefit-tile:nth-child(2){border-top-color:var(--heading-purple);}
     .benefit-tile:nth-child(3){border-top-color:var(--coral-dark);}
     .benefit-tile:nth-child(4){border-top-color:var(--blue);}
+    .benefit-tile:nth-child(5){border-top-color:var(--coral-dark);}
+    .benefit-tile:nth-child(6){border-top-color:var(--teal-dark);}
     .benefit-tile-icon{font-size:2.1em;margin-bottom:10px;}
     .benefit-tile h3{font-family:'Playfair Display',serif;color:var(--heading-purple);font-size:1.2em;margin:0 0 8px;}
     .benefit-tile p{color:#555;margin:0;font-size:0.93em;line-height:1.6;}
@@ -349,12 +351,14 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     .benefits-comp-note strong{color:var(--heading-purple);}
 
     /* Why VCA differentiator grid */
-    .diff-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:22px;max-width:1150px;margin:0 auto;padding:15px;}
+    .diff-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:22px;max-width:1150px;margin:0 auto;padding:15px;}
     .diff-tile{background:linear-gradient(145deg,#ffffff,#f8f8f8);border-radius:16px;padding:26px 24px;box-shadow:0 10px 25px rgba(0,0,0,0.07);border-left:4px solid var(--coral-dark);transition:transform .3s ease, box-shadow .3s ease;}
     .diff-tile:hover{transform:translateY(-6px);box-shadow:0 15px 30px rgba(0,0,0,0.12);}
     .diff-tile:nth-child(2){border-left-color:var(--teal-dark);}
     .diff-tile:nth-child(3){border-left-color:var(--heading-purple);}
     .diff-tile:nth-child(4){border-left-color:var(--blue);}
+    .diff-tile:nth-child(5){border-left-color:var(--coral-dark);}
+    .diff-tile:nth-child(6){border-left-color:var(--teal-dark);}
     .diff-tile-icon{font-size:2.1em;margin-bottom:10px;}
     .diff-tile h3{font-family:'Playfair Display',serif;color:var(--heading-purple);font-size:1.2em;margin:0 0 8px;}
     .diff-tile p{color:#555;margin:0;font-size:0.93em;line-height:1.6;}
@@ -1221,14 +1225,24 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Beyond the culture and the people, here's what's actually backing you up.</p>
     <div class="diff-grid">
       <div class="diff-tile">
-        <div class="diff-tile-icon" aria-hidden="true">🎓</div>
-        <h3>The Largest Postgraduate Training Network</h3>
-        <p>VCA Academy is North America's largest provider of postgraduate veterinary education — real infrastructure behind the mentorship we talk about, not just a talking point. Every doctor has access to ongoing learning resources throughout their career.</p>
+        <div class="diff-tile-icon" aria-hidden="true">🧭</div>
+        <h3>Real Autonomy, Real Trust</h3>
+        <p>There's no corporate playbook dictating what you have to do when a case walks in the door — you make the plan of care. Compensation follows a production model, paid out quarterly with no negative accrual, so a slow quarter is never something you pay back.</p>
       </div>
       <div class="diff-tile">
         <div class="diff-tile-icon" aria-hidden="true">🩺</div>
         <h3>Real Mentorship for New Grads</h3>
         <p>New doctors join a structured 6-month program, paired one-on-one with a mentor and compensated on salary only — so you can focus on learning, not production numbers, from day one. You won't be scheduled alone during your first 60&ndash;90 days.</p>
+      </div>
+      <div class="diff-tile">
+        <div class="diff-tile-icon" aria-hidden="true">🏅</div>
+        <h3>A Path to Medical Leadership</h3>
+        <p>Our Medical Director track is open to associates with 6+ years of experience and doctors who already lead. Dedicated marketing, payroll, and operations teams handle the business side, so MDs can focus on medical teaching — while still seeing their own patients and clients on the floor.</p>
+      </div>
+      <div class="diff-tile">
+        <div class="diff-tile-icon" aria-hidden="true">🎓</div>
+        <h3>The Largest Postgraduate Training Network</h3>
+        <p>VCA Academy is North America's largest provider of postgraduate veterinary education — real infrastructure behind the mentorship we talk about, not just a talking point. Every doctor has access to ongoing learning resources throughout their career.</p>
       </div>
       <div class="diff-tile">
         <div class="diff-tile-icon" aria-hidden="true">⚖️</div>
@@ -1329,7 +1343,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
   <!-- BENEFITS SECTION -->
   <section class="section" id="benefits">
     <h2>Benefits</h2>
-    <p class="benefits-comp-note">We offer <strong>competitive, transparent pay</strong> for every role — your recruiter will walk you through specifics for your position and location early in the process. Here's what's on top of that:</p>
+    <p class="benefits-comp-note">We offer <strong>competitive, transparent pay</strong> for every role — including sign-on and anniversary bonuses in many cases — and your recruiter will walk you through specifics for your position and location early in the process. Here's what's on top of that:</p>
     <div class="benefit-grid">
       <div class="benefit-tile">
         <div class="benefit-tile-icon" aria-hidden="true">🏥</div>
@@ -1338,8 +1352,13 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       </div>
       <div class="benefit-tile">
         <div class="benefit-tile-icon" aria-hidden="true">💰</div>
-        <h3>Financial Security &amp; Growth</h3>
-        <p>A 401(k) with a 3.5% company match, plus free Life and Disability insurance for full-time associates. Also includes free legal assistance, identity theft protection, student loan repayment guidance, and online learning through VCA Academy.</p>
+        <h3>Financial Security</h3>
+        <p>A 401(k) with a 3.5% company match — you're 100% vested in your own contributions from day one. Full-time associates also get Life and Disability insurance at no cost.</p>
+      </div>
+      <div class="benefit-tile">
+        <div class="benefit-tile-icon" aria-hidden="true">🌴</div>
+        <h3>Time Off &amp; Continuing Education</h3>
+        <p>6 weeks of PTO for GP doctors, 5 for ER doctors, plus a $3,500/year continuing education budget to keep growing your skills on your terms.</p>
       </div>
       <div class="benefit-tile">
         <div class="benefit-tile-icon" aria-hidden="true">👶</div>
@@ -1349,7 +1368,12 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       <div class="benefit-tile">
         <div class="benefit-tile-icon" aria-hidden="true">🐾</div>
         <h3>For the Veterinary Team</h3>
-        <p>Generous discounts on care for your own pets — including 100% off vaccines and free care from any VCA DVM — plus free License Defense coverage and hundreds of everyday discounts through our associate perks program.</p>
+        <p>Generous discounts on care for your own pets — including 100% off vaccines and free care from any VCA DVM — plus free License Defense coverage if you're ever the subject of a state board complaint.</p>
+      </div>
+      <div class="benefit-tile">
+        <div class="benefit-tile-icon" aria-hidden="true">🎁</div>
+        <h3>Everyday Perks</h3>
+        <p>Free legal assistance, identity theft protection, student loan repayment guidance, and hundreds of everyday discounts on things like cell phone plans, gyms, and entertainment.</p>
       </div>
     </div>
     <div class="benefits-cta">
@@ -1365,12 +1389,24 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     <h2>Common Questions</h2>
     <div class="faq-list">
       <details class="faq-item">
-        <summary>What's the mentorship experience like for new grads?</summary>
-        <p class="faq-answer">New doctors join VCA Academy's structured 6-month mentorship program — paired one-on-one with a mentor, working a modified schedule that gradually eases you into a full caseload, and compensated on salary only so you're never pressured by production numbers while you're still learning. You won't be scheduled alone during your first 60&ndash;90 days.</p>
-      </details>
-      <details class="faq-item">
         <summary>What does the hiring process look like?</summary>
         <p class="faq-answer">It starts with a conversation with one of our recruiters (see Contact Our Team below), who will walk you through next steps specific to the role, hospital, and location you're interested in.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How does compensation work?</summary>
+        <p class="faq-answer">Doctors are paid on a production salary model, with payouts quarterly and no negative accrual — a slower quarter never means paying anything back. Offers often include sign-on and/or anniversary bonuses at the 1- and 2-year marks as well. Your recruiter will walk you through the specifics for your role and location.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What kind of clinical autonomy do I have as a doctor here?</summary>
+        <p class="faq-answer">Full autonomy on medical decisions. We collaborate as a team to find the best path for each patient, but there's no corporate playbook dictating what you have to do when a given case walks in the door — ultimately, you make the plan of care.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is there a path to medical leadership?</summary>
+        <p class="faq-answer">Yes. Our Medical Director track is open to associates with 6+ years of experience as well as doctors who already have medical leadership experience. MDs are backed by dedicated marketing, payroll, and operations teams, so you can focus on medical teaching and leadership — while still seeing your own patients and clients on the floor.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What's the mentorship experience like for new grads?</summary>
+        <p class="faq-answer">New doctors join VCA Academy's structured 6-month mentorship program — paired one-on-one with a mentor, working a modified schedule that gradually eases you into a full caseload, and compensated on salary only so you're never pressured by production numbers while you're still learning. You won't be scheduled alone during your first 60&ndash;90 days.</p>
       </details>
       <details class="faq-item">
         <summary>Can I use my benefits for my own pets?</summary>
@@ -1379,10 +1415,6 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       <details class="faq-item">
         <summary>What happens if I face a state board complaint?</summary>
         <p class="faq-answer">You're covered. VCA's License Defense program provides a dedicated attorney and covers your legal fees for board complaints related to your veterinary work at VCA, at no cost to you.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Is this a good fit if I'm an experienced DVM, not a new grad?</summary>
-        <p class="faq-answer">Definitely — VCA Academy's structured mentorship is built for new grads, but every doctor has access to the same benefits, discount programs, and ongoing learning resources, regardless of experience level.</p>
       </details>
       <details class="faq-item">
         <summary>What benefits am I eligible for, and when?</summary>
