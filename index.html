@@ -82,7 +82,7 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
       }
       .nav-links a:last-child{border-bottom:none;}
       /* Ensure body doesn't scroll when menu is open */
-      body.menu-open{overflow:hidden;}
+      html.menu-open, body.menu-open{overflow:hidden;height:100%;}
       /* Make the overlay less dark */
       .nav-overlay{
         display: none;
@@ -734,14 +734,15 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
     .close-modal{position:absolute;top:-40px;right:0;color:white;font-size:24px;cursor:pointer;background:transparent;border:none;width:30px;height:30px;display:flex;align-items:center;justify-content:center;}
 
     /* Employee Spotlight in-page modal */
-    body.spotlight-modal-open{overflow:hidden;}
+    html.spotlight-modal-open, body.spotlight-modal-open{overflow:hidden;height:100%;}
     .spotlight-modal{display:none;position:fixed;inset:0;z-index:2000;}
     .spotlight-modal.active{display:block;}
     .spotlight-modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.65);opacity:0;transition:opacity .3s ease;}
     .spotlight-modal.active .spotlight-modal-backdrop{opacity:1;}
     .spotlight-modal-panel{position:fixed;top:50%;left:50%;transform:translate(-50%,-48%) scale(.97);width:min(700px,92vw);max-height:88vh;overflow-y:auto;-webkit-overflow-scrolling:touch;background:#fff;border-radius:20px;box-shadow:0 25px 60px rgba(0,0,0,0.35);opacity:0;transition:opacity .25s ease, transform .25s ease;}
     .spotlight-modal.active .spotlight-modal-panel{opacity:1;transform:translate(-50%,-50%) scale(1);}
-    .spotlight-modal-close{position:fixed;top:20px;right:20px;z-index:2001;width:48px;height:48px;border-radius:50%;background:#fff;color:var(--blue);border:none;font-size:1.7em;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.3);transition:background .2s,color .2s,transform .2s;}
+    .spotlight-modal-close-bar{position:sticky;top:0;height:0;z-index:10;pointer-events:none;}
+    .spotlight-modal-close{position:absolute;top:14px;right:14px;pointer-events:auto;z-index:2001;width:44px;height:44px;border-radius:50%;background:#fff;color:var(--blue);border:none;font-size:1.6em;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.3);transition:background .2s,color .2s,transform .2s;}
     .spotlight-modal-close:hover{background:var(--coral-dark);color:#fff;transform:scale(1.08);}
     .spotlight-modal-header{position:relative;padding:45px 30px 30px;border-radius:20px 20px 0 0;text-align:center;color:#fff;overflow:hidden;}
     .spotlight-modal-header .avatar-tile{position:relative;width:110px;height:110px;margin:0 auto 16px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.15);border:4px solid rgba(255,255,255,0.5);box-shadow:0 10px 25px rgba(0,0,0,0.2);font-family:'Playfair Display',serif;font-size:2.1em;font-weight:700;color:#fff;}
@@ -764,7 +765,6 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
     @media (max-width:600px){
       .spotlight-modal-panel{width:100vw;max-height:100vh;height:100%;border-radius:0;top:0;left:0;transform:none;}
       .spotlight-modal.active .spotlight-modal-panel{transform:none;}
-      .spotlight-modal-close{top:14px;right:14px;}
       .spotlight-modal-body{padding:22px;}
     }
 
@@ -1099,8 +1099,10 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
   <!-- EMPLOYEE SPOTLIGHT MODAL (shared, populated by JS per employee) -->
   <div class="spotlight-modal" id="spotlightModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="spotlightModalName">
     <div class="spotlight-modal-backdrop" data-spotlight-close></div>
-    <button type="button" class="spotlight-modal-close" data-spotlight-close aria-label="Close spotlight">&times;</button>
     <div class="spotlight-modal-panel">
+      <div class="spotlight-modal-close-bar">
+        <button type="button" class="spotlight-modal-close" data-spotlight-close aria-label="Close spotlight">&times;</button>
+      </div>
       <div class="spotlight-modal-header" id="spotlightModalHeader">
         <div class="avatar-tile" id="spotlightModalAvatar" aria-hidden="true"></div>
         <h2 id="spotlightModalName"></h2>
@@ -1312,6 +1314,7 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
         navLinks.classList.toggle('active');
         navOverlay.classList.toggle('active');
         body.classList.toggle('menu-open');
+        document.documentElement.classList.toggle('menu-open');
         
         // Update aria-expanded attribute for accessibility
         const isExpanded = navLinks.classList.contains('active');
@@ -1881,6 +1884,7 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
         spotlightModal.classList.add('active');
         spotlightModal.setAttribute('aria-hidden', 'false');
         document.body.classList.add('spotlight-modal-open');
+        document.documentElement.classList.add('spotlight-modal-open');
         spotlightModalPanel.scrollTop = 0;
         spotlightModal.querySelector('.spotlight-modal-close').focus();
         document.addEventListener('keydown', handleSpotlightKeydown);
@@ -1890,6 +1894,7 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
         spotlightModal.classList.remove('active');
         spotlightModal.setAttribute('aria-hidden', 'true');
         document.body.classList.remove('spotlight-modal-open');
+        document.documentElement.classList.remove('spotlight-modal-open');
         document.removeEventListener('keydown', handleSpotlightKeydown);
         if (spotlightLastTrigger) spotlightLastTrigger.focus();
       }
