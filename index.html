@@ -31,6 +31,7 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
     p,.card p,.benefit-item p{margin:0 0 1em;}strong{font-weight:600;}
     .btn{font-weight:600;margin-top:20px;padding:12px 24px;background:var(--coral-dark);color:#fff;border:none;border-radius:4px;cursor:pointer;transition:background .3s,transform .2s;text-decoration:none;display:inline-block;animation:fadeInUp 1s forwards .7s;}
     .btn:hover{background:var(--heading-purple);transform:scale(1.03);}
+    button.btn{font-family:inherit;font-size:1em;}
     /* Skip link */
     .skip-link{position:absolute;left:-9999px;top:0;background:var(--blue);color:#fff;padding:10px 18px;z-index:2000;border-radius:0 0 6px 0;text-decoration:none;font-weight:600;}
     .skip-link:focus{left:0;}
@@ -510,14 +511,20 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
     .spotlight-item {
       position: relative;
       display: block;
+      width: 100%;
       height: 320px;
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       text-decoration: none;
       color: inherit;
+      background: none;
+      border: none;
+      padding: 0;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
     }
-    a.spotlight-item { cursor: pointer; }
 
     .spotlight-image {
       width: 100%;
@@ -702,7 +709,42 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
     .modal-content{max-width:80%;max-height:80%;position:relative;}
     .modal img{width:100%;height:auto;max-height:80vh;object-fit:contain;border-radius:5px;}
     .close-modal{position:absolute;top:-40px;right:0;color:white;font-size:24px;cursor:pointer;background:transparent;border:none;width:30px;height:30px;display:flex;align-items:center;justify-content:center;}
-    
+
+    /* Employee Spotlight in-page modal */
+    body.spotlight-modal-open{overflow:hidden;}
+    .spotlight-modal{display:none;position:fixed;inset:0;z-index:2000;}
+    .spotlight-modal.active{display:block;}
+    .spotlight-modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.65);opacity:0;transition:opacity .3s ease;}
+    .spotlight-modal.active .spotlight-modal-backdrop{opacity:1;}
+    .spotlight-modal-panel{position:fixed;top:50%;left:50%;transform:translate(-50%,-48%) scale(.97);width:min(700px,92vw);max-height:88vh;overflow-y:auto;-webkit-overflow-scrolling:touch;background:#fff;border-radius:20px;box-shadow:0 25px 60px rgba(0,0,0,0.35);opacity:0;transition:opacity .25s ease, transform .25s ease;}
+    .spotlight-modal.active .spotlight-modal-panel{opacity:1;transform:translate(-50%,-50%) scale(1);}
+    .spotlight-modal-close{position:fixed;top:20px;right:20px;z-index:2001;width:48px;height:48px;border-radius:50%;background:#fff;color:var(--blue);border:none;font-size:1.7em;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.3);transition:background .2s,color .2s,transform .2s;}
+    .spotlight-modal-close:hover{background:var(--coral-dark);color:#fff;transform:scale(1.08);}
+    .spotlight-modal-header{position:relative;padding:45px 30px 30px;border-radius:20px 20px 0 0;text-align:center;color:#fff;overflow:hidden;}
+    .spotlight-modal-header .avatar-tile{position:relative;width:110px;height:110px;margin:0 auto 16px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.15);border:4px solid rgba(255,255,255,0.5);box-shadow:0 10px 25px rgba(0,0,0,0.2);font-family:'Playfair Display',serif;font-size:2.1em;font-weight:700;color:#fff;}
+    .spotlight-modal-header h2{font-family:'Playfair Display',serif;font-size:1.8em;margin:0 0 6px;color:#fff;animation:none;opacity:1;}
+    .spotlight-modal-header p{margin:0;color:rgba(255,255,255,0.9);}
+    .spotlight-modal-body{padding:30px;}
+    .spotlight-modal-body h3{font-family:'Playfair Display',serif;color:var(--heading-purple);font-size:1.3em;margin:0 0 20px;}
+    .spotlight-interview-list{display:flex;flex-direction:column;gap:16px;}
+    .spotlight-interview-item{display:flex;gap:16px;background:linear-gradient(145deg,#ffffff,#f8f8f8);border-radius:14px;padding:18px 20px;box-shadow:0 6px 16px rgba(0,0,0,0.07);border-left:4px solid var(--item-color, var(--teal-dark));}
+    .spotlight-q-number{flex-shrink:0;width:34px;height:34px;border-radius:50%;color:#fff;font-weight:700;font-family:'Playfair Display',serif;font-size:1.05em;display:flex;align-items:center;justify-content:center;}
+    .spotlight-q-text{margin:0 0 6px;color:var(--heading-purple);font-size:1.02em;}
+    .spotlight-a-text{margin:0;color:#444;font-size:0.97em;}
+    .spotlight-modal-cta{margin-top:28px;text-align:center;padding:26px 20px;border-radius:14px;color:#fff;}
+    .spotlight-modal-cta h4{font-family:'Playfair Display',serif;margin:0 0 8px;font-size:1.25em;}
+    .spotlight-modal-cta p{margin:0 0 5px;color:rgba(255,255,255,0.92);font-size:0.95em;}
+    .spotlight-modal-cta .btn{background:#fff;color:var(--blue);}
+    .spotlight-modal-cta .btn:hover{background:var(--light);}
+    .spotlight-modal-exit{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:22px;padding:14px;background:none;border:none;border-top:1px solid #eee;color:var(--blue);font-weight:600;font-size:1em;cursor:pointer;transition:color .2s;}
+    .spotlight-modal-exit:hover{color:var(--coral-dark);}
+    @media (max-width:600px){
+      .spotlight-modal-panel{width:100vw;max-height:100vh;height:100%;border-radius:0;top:0;left:0;transform:none;}
+      .spotlight-modal.active .spotlight-modal-panel{transform:none;}
+      .spotlight-modal-close{top:14px;right:14px;}
+      .spotlight-modal-body{padding:22px;}
+    }
+
     /* Card Styling - modernized for open roles section */
     .card {
       position: relative !important;
@@ -998,34 +1040,57 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
   <section class="section" id="spotlights">
     <h2>Employee Spotlights</h2>
     <div class="spotlight-grid">
-      <a href="alex-doe.html" class="spotlight-item" aria-label="Read Alex Doe's full spotlight">
+      <button type="button" class="spotlight-item" data-spotlight="alex" aria-haspopup="dialog" aria-label="Read Alex Doe's full spotlight">
         <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Alex Doe" class="spotlight-image">
         <div class="spotlight-overlay">
           <h3 class="spotlight-title">Alex Doe</h3>
           <p class="spotlight-role">Veterinarian</p>
           <p class="spotlight-quote">"I joined VCA North Atlantic three years ago and have found incredible mentorship and growth opportunities." <span style="text-decoration:underline;">Read more &rarr;</span></p>
         </div>
-      </a>
-      
-      <a href="sam-lee.html" class="spotlight-item" aria-label="Read Sam Lee's full spotlight">
+      </button>
+
+      <button type="button" class="spotlight-item" data-spotlight="sam" aria-haspopup="dialog" aria-label="Read Sam Lee's full spotlight">
         <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Sam Lee" class="spotlight-image">
         <div class="spotlight-overlay">
           <h3 class="spotlight-title">Sam Lee</h3>
           <p class="spotlight-role">Technician</p>
           <p class="spotlight-quote">"The supportive culture at VCA has allowed me to expand my skills and take on leadership roles." <span style="text-decoration:underline;">Read more &rarr;</span></p>
         </div>
-      </a>
+      </button>
 
-      <a href="jamie-wilson.html" class="spotlight-item" aria-label="Read Jamie Wilson's full spotlight">
+      <button type="button" class="spotlight-item" data-spotlight="jamie" aria-haspopup="dialog" aria-label="Read Jamie Wilson's full spotlight">
         <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Jamie Wilson" class="spotlight-image">
         <div class="spotlight-overlay">
           <h3 class="spotlight-title">Jamie Wilson</h3>
           <p class="spotlight-role">Practice Manager</p>
           <p class="spotlight-quote">"VCA provides the resources and autonomy to create a positive workplace culture and drive practice success." <span style="text-decoration:underline;">Read more &rarr;</span></p>
         </div>
-      </a>
+      </button>
     </div>
   </section>
+
+  <!-- EMPLOYEE SPOTLIGHT MODAL (shared, populated by JS per employee) -->
+  <div class="spotlight-modal" id="spotlightModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="spotlightModalName">
+    <div class="spotlight-modal-backdrop" data-spotlight-close></div>
+    <button type="button" class="spotlight-modal-close" data-spotlight-close aria-label="Close spotlight">&times;</button>
+    <div class="spotlight-modal-panel">
+      <div class="spotlight-modal-header" id="spotlightModalHeader">
+        <div class="avatar-tile" id="spotlightModalAvatar" aria-hidden="true"></div>
+        <h2 id="spotlightModalName"></h2>
+        <p id="spotlightModalRole"></p>
+      </div>
+      <div class="spotlight-modal-body">
+        <h3 id="spotlightModalQHeading"></h3>
+        <div class="spotlight-interview-list" id="spotlightModalInterview"></div>
+        <div class="spotlight-modal-cta" id="spotlightModalCta">
+          <h4 id="spotlightModalCtaHeading"></h4>
+          <p>See where you could fit in at VCA North Atlantic.</p>
+          <button type="button" class="btn" id="spotlightModalCtaBtn"></button>
+        </div>
+        <button type="button" class="spotlight-modal-exit" data-spotlight-close>&larr; Back to Employee Spotlights</button>
+      </div>
+    </div>
+  </div>
 
   <!-- VALUES SECTION -->
   <section class="section" id="values">
@@ -1690,6 +1755,158 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
       }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
 
       sections.forEach(section => navObserver.observe(section));
+
+      // Employee Spotlight in-page modal
+      const spotlightData = {
+        alex: {
+          name: 'Alex Doe, DVM',
+          role: 'Veterinarian &middot; VCA North Atlantic',
+          initials: 'AD',
+          gradient: ['var(--blue)', 'var(--teal-dark)'],
+          ctaLabel: 'View Open Veterinarian Roles',
+          qas: [
+            ['What made you choose VCA North Atlantic over other practices?', "I wanted a place where I could keep growing clinically without losing the personal side of medicine. The mentorship here was obvious from my very first interview — everyone was genuinely invested in helping me succeed, not just filling a shift."],
+            ['What does a typical day look like for you?', "No two days are exactly alike, but it usually starts with morning rounds, a mix of wellness exams and more complex cases, and a lot of collaborating with our technicians — they catch things I'd miss if I were working solo."],
+            ["What's the most rewarding part of being a vet here?", "Watching a really sick patient walk out the door healthy. It sounds simple, but that moment never gets old, and having a team around me that celebrates those wins together makes it even better."],
+            ["What's one fun fact about you outside of work?", "I've run three marathons and I'm training for my fourth. My coworkers have started a betting pool on my finish time — no pressure."],
+            ['Any advice for a new grad considering VCA?', "Say yes to every mentoring opportunity you're offered. You never know which conversation or case is going to shape the rest of your career."],
+          ],
+        },
+        sam: {
+          name: 'Sam Lee, CVT',
+          role: 'Veterinary Technician &middot; VCA North Atlantic',
+          initials: 'SL',
+          gradient: ['var(--teal-dark)', 'var(--heading-purple)'],
+          ctaLabel: 'View Open Technician Roles',
+          qas: [
+            ['Why did you choose to build your career at VCA North Atlantic?', "I wanted to work somewhere that saw technicians as clinical partners, not just extra hands. Here, my opinion in a treatment plan actually gets asked for — that changes how invested you feel in every case."],
+            ['What does a typical shift look like for you?', "A lot of variety — placing catheters, running labwork, monitoring anesthesia, comforting anxious patients (and sometimes anxious pet parents). I'm usually working side-by-side with a doctor, but I own my part of the case."],
+            ["What's the most rewarding part of the job?", "Building trust with a scared patient in just a few minutes. There's a moment mid-appointment where they stop shaking and let you help them — that's the whole job, right there."],
+            ["What's something people might not know about you?", "I foster kittens on the side, so it's not unusual for me to show up to a shift with cat hair on my scrubs from a completely different set of patients."],
+            ['What would you tell someone considering a technician role here?', "Ask about growth opportunities in the interview. I started in general practice and moved into a leadership track within two years because the team actually invested in getting me there."],
+          ],
+        },
+        jamie: {
+          name: 'Jamie Wilson, Practice Manager',
+          role: 'Practice Manager &middot; VCA North Atlantic',
+          initials: 'JW',
+          gradient: ['var(--heading-purple)', 'var(--coral-dark)'],
+          ctaLabel: 'View Open Leadership Roles',
+          qas: [
+            ['What drew you to VCA North Atlantic?', "I'd managed practices before, but here I actually get the autonomy and the resources to build the culture I always wanted — not just hit numbers, but create a place people are proud to work."],
+            ['What does your day-to-day actually involve?', "A bit of everything — scheduling and staffing, checking in with the care teams, handling client concerns that need a manager's touch, and a lot of one-on-ones making sure my team has what they need to do their best work."],
+            ["What's the most rewarding part of leading a practice?", "Watching a team member grow into a role they didn't think they were ready for. Some of my proudest moments have nothing to do with revenue targets — they're about people."],
+            ['Something fun about you outside the hospital?', "I'm a pretty serious home cook — Sunday meal prep for my team is basically a running tradition at this point."],
+            ['Advice for someone considering a management role at VCA?', "Lead with curiosity before authority. The best decisions I've made came from actually listening to my technicians and CSRs before making a call."],
+          ],
+        },
+      };
+
+      const spotlightModal = document.getElementById('spotlightModal');
+      const spotlightModalPanel = spotlightModal.querySelector('.spotlight-modal-panel');
+      const spotlightModalHeader = document.getElementById('spotlightModalHeader');
+      const spotlightModalAvatar = document.getElementById('spotlightModalAvatar');
+      const spotlightModalName = document.getElementById('spotlightModalName');
+      const spotlightModalRole = document.getElementById('spotlightModalRole');
+      const spotlightModalQHeading = document.getElementById('spotlightModalQHeading');
+      const spotlightModalInterview = document.getElementById('spotlightModalInterview');
+      const spotlightModalCta = document.getElementById('spotlightModalCta');
+      const spotlightModalCtaHeading = document.getElementById('spotlightModalCtaHeading');
+      const spotlightModalCtaBtn = document.getElementById('spotlightModalCtaBtn');
+      let spotlightLastTrigger = null;
+
+      function openSpotlightModal(key, trigger) {
+        const data = spotlightData[key];
+        if (!data) return;
+        spotlightLastTrigger = trigger;
+
+        const gradientCss = `linear-gradient(135deg, ${data.gradient[0]}, ${data.gradient[1]})`;
+        spotlightModalHeader.style.background = gradientCss;
+        spotlightModalCta.style.background = `linear-gradient(to right, ${data.gradient[0]}, ${data.gradient[1]})`;
+        spotlightModalAvatar.textContent = data.initials;
+        spotlightModalName.textContent = data.name;
+        spotlightModalRole.innerHTML = data.role;
+        spotlightModalQHeading.textContent = `5 Questions with ${data.name.split(',')[0].split(' ')[0]}`;
+        spotlightModalCtaHeading.textContent = `Inspired by ${data.name.split(',')[0].split(' ')[0]}’s story?`;
+        spotlightModalCtaBtn.textContent = data.ctaLabel;
+
+        spotlightModalInterview.innerHTML = '';
+        data.qas.forEach((qa, i) => {
+          const item = document.createElement('div');
+          item.className = 'spotlight-interview-item';
+          item.style.setProperty('--item-color', data.gradient[i % 2]);
+          const num = document.createElement('div');
+          num.className = 'spotlight-q-number';
+          num.style.background = gradientCss;
+          num.textContent = String(i + 1);
+          const body = document.createElement('div');
+          const q = document.createElement('h4');
+          q.className = 'spotlight-q-text';
+          q.textContent = qa[0];
+          const a = document.createElement('p');
+          a.className = 'spotlight-a-text';
+          a.textContent = qa[1];
+          body.append(q, a);
+          item.append(num, body);
+          spotlightModalInterview.appendChild(item);
+        });
+
+        spotlightModal.classList.add('active');
+        spotlightModal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('spotlight-modal-open');
+        spotlightModalPanel.scrollTop = 0;
+        spotlightModal.querySelector('.spotlight-modal-close').focus();
+        document.addEventListener('keydown', handleSpotlightKeydown);
+      }
+
+      function closeSpotlightModal() {
+        spotlightModal.classList.remove('active');
+        spotlightModal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('spotlight-modal-open');
+        document.removeEventListener('keydown', handleSpotlightKeydown);
+        if (spotlightLastTrigger) spotlightLastTrigger.focus();
+      }
+
+      function handleSpotlightKeydown(e) {
+        if (e.key === 'Escape') {
+          closeSpotlightModal();
+          return;
+        }
+        if (e.key === 'Tab') {
+          const focusable = spotlightModal.querySelectorAll('button, a[href]');
+          const list = Array.from(focusable).filter(el => el.offsetParent !== null);
+          if (!list.length) return;
+          const first = list[0];
+          const last = list[list.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
+
+      document.querySelectorAll('[data-spotlight]').forEach(trigger => {
+        trigger.addEventListener('click', () => {
+          openSpotlightModal(trigger.getAttribute('data-spotlight'), trigger);
+        });
+      });
+
+      spotlightModal.querySelectorAll('[data-spotlight-close]').forEach(el => {
+        el.addEventListener('click', () => closeSpotlightModal());
+      });
+
+      spotlightModalCtaBtn.addEventListener('click', () => {
+        closeSpotlightModal();
+        requestAnimationFrame(() => {
+          const target = document.getElementById('careers');
+          if (target) {
+            window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+          }
+        });
+      });
 
       // Mobile spotlight enhancement
       function setupMobileSpotlights() {
