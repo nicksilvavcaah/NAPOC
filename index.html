@@ -492,6 +492,11 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
     @media (min-width:768px) and (max-width:991px){.grid-3{grid-template-columns:repeat(2,1fr) !important;}}
     @media (max-width:767px){.grid-3{grid-template-columns:1fr !important;}}
 
+    .grid-4{max-width:1300px !important;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)) !important;}
+    @media (min-width:1200px){.grid-4{grid-template-columns:repeat(4,1fr) !important;}}
+    @media (min-width:768px) and (max-width:1199px){.grid-4{grid-template-columns:repeat(2,1fr) !important;}}
+    @media (max-width:767px){.grid-4{grid-template-columns:1fr !important;}}
+
     /* Image Grid with Overlay for Employee Spotlights */
     .spotlight-grid {
       display: grid;
@@ -1089,7 +1094,7 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
   <section class="section" id="careers">
     <h2>Open Roles</h2>
     <p style="text-align: center; max-width: 800px; margin: 0 auto 20px;">Join our team and make a difference in the lives of pets and their families across the North Atlantic region. We're currently hiring for the following positions:</p>
-    <div class="grid grid-3">
+    <div class="grid grid-4">
       <div class="card">
         <span class="card-icon">🩺</span>
         <strong>Veterinarians</strong>
@@ -1107,6 +1112,12 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
         <strong>Client Service Representatives</strong>
         <p>Be the welcoming face of our hospitals</p>
         <a href="https://careers.vca.com" target="_blank" rel="noopener" class="btn" title="Placeholder — replace with the specific job requisition link">Apply Now</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🗺️</span>
+        <strong>Travel ER</strong>
+        <p>Relief support in emergency &amp; specialty hospitals nationwide, with competitive pay and travel accommodations covered</p>
+        <a href="https://vcatravelerdoctor.github.io/travelER/" target="_blank" rel="noopener" class="btn">Learn More</a>
       </div>
     </div>
     <div style="text-align: center; margin-top: 40px;">
