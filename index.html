@@ -342,7 +342,6 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     .benefit-tile:nth-child(2){border-top-color:var(--heading-purple);}
     .benefit-tile:nth-child(3){border-top-color:var(--coral-dark);}
     .benefit-tile:nth-child(4){border-top-color:var(--blue);}
-    .benefit-tile:nth-child(5){border-top-color:var(--teal-dark);}
     .benefit-tile-icon{font-size:2.1em;margin-bottom:10px;}
     .benefit-tile h3{font-family:'Playfair Display',serif;color:var(--heading-purple);font-size:1.2em;margin:0 0 8px;}
     .benefit-tile p{color:#555;margin:0;font-size:0.93em;line-height:1.6;}
@@ -359,8 +358,10 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     .diff-tile-icon{font-size:2.1em;margin-bottom:10px;}
     .diff-tile h3{font-family:'Playfair Display',serif;color:var(--heading-purple);font-size:1.2em;margin:0 0 8px;}
     .diff-tile p{color:#555;margin:0;font-size:0.93em;line-height:1.6;}
-    .diff-quote{margin-top:14px;padding-top:12px;border-top:1px solid #eee;font-style:italic;color:#777;font-size:0.85em;}
-    .diff-quote span{display:block;margin-top:4px;font-style:normal;font-weight:600;color:var(--heading-purple);}
+    .diff-quotes{display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:30px;max-width:900px;margin:40px auto 0;padding:0 15px;}
+    .diff-quotes blockquote{position:relative;margin:0;padding-top:24px;text-align:center;font-style:italic;color:#555;font-size:1.03em;line-height:1.6;}
+    .diff-quotes blockquote::before{content:'\201C';position:absolute;top:-8px;left:50%;transform:translateX(-50%);font-family:'Playfair Display',serif;font-size:3em;color:var(--coral-dark);opacity:0.35;line-height:1;}
+    .diff-quotes cite{display:block;margin-top:12px;font-style:normal;font-weight:600;color:var(--heading-purple);font-size:0.85em;}
 
     /* FAQ accordion */
     .faq-list{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:14px;padding:15px;}
@@ -1222,25 +1223,33 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       <div class="diff-tile">
         <div class="diff-tile-icon" aria-hidden="true">🎓</div>
         <h3>The Largest Postgraduate Training Network</h3>
-        <p>VCA Academy is North America's largest provider of postgraduate veterinary education — real infrastructure behind the mentorship we talk about, not just a talking point.</p>
+        <p>VCA Academy is North America's largest provider of postgraduate veterinary education — real infrastructure behind the mentorship we talk about, not just a talking point. Every doctor has access to ongoing learning resources throughout their career.</p>
       </div>
       <div class="diff-tile">
         <div class="diff-tile-icon" aria-hidden="true">🩺</div>
         <h3>Real Mentorship for New Grads</h3>
-        <p>New doctors join a structured 6-month program, paired one-on-one with a mentor and compensated on salary only — so you can focus on learning, not production numbers, from day one.</p>
-        <p class="diff-quote">"I loved how I could definitely customize it to how I wanted to learn and what I wanted to work on."<span>&mdash; Dr. Taylor Goslin, VCA mentee</span></p>
+        <p>New doctors join a structured 6-month program, paired one-on-one with a mentor and compensated on salary only — so you can focus on learning, not production numbers, from day one. You won't be scheduled alone during your first 60&ndash;90 days.</p>
       </div>
       <div class="diff-tile">
         <div class="diff-tile-icon" aria-hidden="true">⚖️</div>
         <h3>We've Got Your Back</h3>
-        <p>Free License Defense coverage means if you're ever the subject of a state board complaint, VCA covers your legal fees and assigns you an attorney — at no cost to you.</p>
+        <p>Free License Defense coverage means if you're ever the subject of a state board complaint, VCA covers your legal fees and assigns you an attorney — at no cost to you. One less thing to worry about while you focus on medicine.</p>
       </div>
       <div class="diff-tile">
         <div class="diff-tile-icon" aria-hidden="true">🏥</div>
         <h3>National Resources, Hometown Feel</h3>
-        <p>Access to the resources, technology, and network of one of the country's largest veterinary groups — without losing the feel of a hometown hospital.</p>
-        <p class="diff-quote">"With a formal mentorship program, we have the opportunity to get doctors up to speed quicker."<span>&mdash; Dr. Frank McAleer, VCA mentor</span></p>
+        <p>Access to the resources, technology, and network of one of the country's largest veterinary groups — without losing the feel of a hometown hospital. Scale when you need it, community every day.</p>
       </div>
+    </div>
+    <div class="diff-quotes">
+      <blockquote>
+        "I loved how I could definitely customize it to how I wanted to learn and what I wanted to work on."
+        <cite>&mdash; Dr. Taylor Goslin, VCA mentee</cite>
+      </blockquote>
+      <blockquote>
+        "With a formal mentorship program, we have the opportunity to get doctors up to speed quicker."
+        <cite>&mdash; Dr. Frank McAleer, VCA mentor</cite>
+      </blockquote>
     </div>
   </section>
 
@@ -1329,8 +1338,8 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       </div>
       <div class="benefit-tile">
         <div class="benefit-tile-icon" aria-hidden="true">💰</div>
-        <h3>Financial Security</h3>
-        <p>A 401(k) with a 3.5% company match — you're 100% vested in your own contributions from day one. Full-time associates also get Life and Disability insurance at no cost.</p>
+        <h3>Financial Security &amp; Growth</h3>
+        <p>A 401(k) with a 3.5% company match, plus free Life and Disability insurance for full-time associates. Also includes free legal assistance, identity theft protection, student loan repayment guidance, and online learning through VCA Academy.</p>
       </div>
       <div class="benefit-tile">
         <div class="benefit-tile-icon" aria-hidden="true">👶</div>
@@ -1340,12 +1349,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       <div class="benefit-tile">
         <div class="benefit-tile-icon" aria-hidden="true">🐾</div>
         <h3>For the Veterinary Team</h3>
-        <p>Generous discounts on care for your own pets — including 100% off vaccines and free care from any VCA DVM — plus free License Defense coverage if you're ever the subject of a state board complaint.</p>
-      </div>
-      <div class="benefit-tile">
-        <div class="benefit-tile-icon" aria-hidden="true">📚</div>
-        <h3>Growth &amp; Everyday Support</h3>
-        <p>Online learning through VCA Academy, free legal assistance for everyday matters, identity theft protection, student loan repayment guidance, and hundreds of everyday discounts.</p>
+        <p>Generous discounts on care for your own pets — including 100% off vaccines and free care from any VCA DVM — plus free License Defense coverage and hundreds of everyday discounts through our associate perks program.</p>
       </div>
     </div>
     <div class="benefits-cta">
