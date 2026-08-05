@@ -14,6 +14,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <!-- Photo CDN (spotlight/values imagery) -->
   <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <!-- Icon set -->
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     html { scroll-behavior: smooth; }
     @keyframes fadeInUp {0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
@@ -21,6 +23,7 @@
     :root{--blue:#003B71;--teal:#00A99D;--teal-dark:#00786F;--purple:#B19CD9;--heading-purple:#7D3F98;--coral:#FF6F61;--coral-dark:#C23B2E;--light:#F7F7F7;--grey:#f8f8f8;}
     /* --coral, --teal and --purple are logo-accent tints for decorative use only (icons, borders, low-opacity overlays).
        Use --coral-dark / --teal-dark / --heading-purple wherever white text sits directly on a solid or gradient fill — the lighter tints fail WCAG AA contrast at 2.9:1–2.4:1. */
+    svg.lucide{width:1em;height:1em;stroke-width:2;vertical-align:-0.125em;flex-shrink:0;}
     *:focus-visible{outline:3px solid var(--heading-purple);outline-offset:2px;}
     @media (prefers-reduced-motion:reduce){
       *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important;}
@@ -50,7 +53,10 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     
     /* Mobile Menu Button */
     .menu-toggle{display:none;background:none;border:none;font-size:1.5rem;color:var(--blue);cursor:pointer;padding:5px;}
-    
+    .menu-toggle-icon-close{display:none;}
+    .menu-toggle[aria-expanded="true"] .menu-toggle-icon-open{display:none;}
+    .menu-toggle[aria-expanded="true"] .menu-toggle-icon-close{display:inline-block;}
+
     /* Navigation Links */
     .nav-links{display:flex;align-items:center;gap:20px;}
     .nav-links a{text-decoration:none;color:var(--blue);font-weight:600;transition:color .3s,transform .2s;position:relative;padding:5px 0;}
@@ -159,8 +165,8 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     }
     .paw-print{position:absolute;font-size:3em;color:rgba(255,255,255,0.8);opacity:0;animation:pawSequence 6s infinite;}
     .section{margin:0;padding:33px 20px;scroll-margin-top:90px;}
-    .section:nth-of-type(odd){background:linear-gradient(180deg,var(--light),rgba(0,169,157,0.1));}
-    .section:nth-of-type(even){background:linear-gradient(180deg,rgba(0,169,157,0.1),var(--light));}
+    .section:nth-of-type(odd){background:var(--light);}
+    .section:nth-of-type(even){background:rgba(0,169,157,0.08);}
     
     /* NEW - Region at a Glance Redesign */
     .region-container {
@@ -187,7 +193,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     }
     
     .hospital-type {
-      background: linear-gradient(to bottom right, #ffffff, #f8f8f8);
+      background: #ffffff;
       border-radius: 20px;
       padding: 25px 25px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -200,18 +206,6 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       overflow: hidden;
       width: 100%;
       box-sizing: border-box;
-    }
-    
-    .hospital-type:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 120px;
-      height: 120px;
-      background: linear-gradient(135deg, rgba(177, 156, 217, 0.2), rgba(255, 255, 255, 0));
-      border-radius: 0 0 0 120px;
-      z-index: 0;
     }
     
     .hospital-type:hover {
@@ -284,7 +278,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     .benefits-cta {
       text-align: center;
       padding: 30px 20px;
-      background: linear-gradient(to right, var(--blue), var(--teal-dark));
+      background: var(--blue);
       border-radius: 15px;
       margin: 30px auto;
       max-width: 800px;
@@ -326,25 +320,30 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     
     .benefits-icon {
       position: absolute;
-      font-size: 12em;
-      opacity: 0.1;
+      font-size: 5em;
+      opacity: 0.06;
       color: white;
       z-index: 0;
-      right: -40px;
-      bottom: -40px;
+      right: -10px;
+      bottom: -10px;
       transform: rotate(-5deg);
     }
 
     /* Benefits tile grid */
     .benefit-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:22px;max-width:1150px;margin:0 auto 35px;padding:15px;}
-    .benefit-tile{background:linear-gradient(145deg,#ffffff,#f8f8f8);border-radius:16px;padding:26px 22px;box-shadow:0 10px 25px rgba(0,0,0,0.07);border-top:4px solid var(--teal-dark);transition:transform .3s ease, box-shadow .3s ease;}
+    .benefit-tile{background:#ffffff;border-radius:16px;padding:26px 22px;box-shadow:0 10px 25px rgba(0,0,0,0.07);border-top:4px solid var(--teal-dark);transition:transform .3s ease, box-shadow .3s ease;}
     .benefit-tile:hover{transform:translateY(-6px);box-shadow:0 15px 30px rgba(0,0,0,0.12);}
     .benefit-tile:nth-child(2){border-top-color:var(--heading-purple);}
     .benefit-tile:nth-child(3){border-top-color:var(--coral-dark);}
     .benefit-tile:nth-child(4){border-top-color:var(--blue);}
     .benefit-tile:nth-child(5){border-top-color:var(--coral-dark);}
     .benefit-tile:nth-child(6){border-top-color:var(--teal-dark);}
-    .benefit-tile-icon{font-size:2.1em;margin-bottom:10px;}
+    .benefit-tile-icon{font-size:2.1em;margin-bottom:10px;color:var(--teal-dark);}
+    .benefit-tile:nth-child(2) .benefit-tile-icon{color:var(--heading-purple);}
+    .benefit-tile:nth-child(3) .benefit-tile-icon{color:var(--coral-dark);}
+    .benefit-tile:nth-child(4) .benefit-tile-icon{color:var(--blue);}
+    .benefit-tile:nth-child(5) .benefit-tile-icon{color:var(--coral-dark);}
+    .benefit-tile:nth-child(6) .benefit-tile-icon{color:var(--teal-dark);}
     .benefit-tile h3{font-family:'Playfair Display',serif;color:var(--heading-purple);font-size:1.2em;margin:0 0 8px;}
     .benefit-tile p{color:#555;margin:0;font-size:0.93em;line-height:1.6;}
     .benefits-comp-note{max-width:760px;margin:0 auto 30px;text-align:center;}
@@ -352,14 +351,19 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
 
     /* Why VCA differentiator grid */
     .diff-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:22px;max-width:1150px;margin:0 auto;padding:15px;}
-    .diff-tile{background:linear-gradient(145deg,#ffffff,#f8f8f8);border-radius:16px;padding:26px 24px;box-shadow:0 10px 25px rgba(0,0,0,0.07);border-left:4px solid var(--coral-dark);transition:transform .3s ease, box-shadow .3s ease;}
+    .diff-tile{background:#ffffff;border-radius:16px;padding:26px 24px;box-shadow:0 10px 25px rgba(0,0,0,0.07);border-left:4px solid var(--coral-dark);transition:transform .3s ease, box-shadow .3s ease;}
     .diff-tile:hover{transform:translateY(-6px);box-shadow:0 15px 30px rgba(0,0,0,0.12);}
     .diff-tile:nth-child(2){border-left-color:var(--teal-dark);}
     .diff-tile:nth-child(3){border-left-color:var(--heading-purple);}
     .diff-tile:nth-child(4){border-left-color:var(--blue);}
     .diff-tile:nth-child(5){border-left-color:var(--coral-dark);}
     .diff-tile:nth-child(6){border-left-color:var(--teal-dark);}
-    .diff-tile-icon{font-size:2.1em;margin-bottom:10px;}
+    .diff-tile-icon{font-size:2.1em;margin-bottom:10px;color:var(--coral-dark);}
+    .diff-tile:nth-child(2) .diff-tile-icon{color:var(--teal-dark);}
+    .diff-tile:nth-child(3) .diff-tile-icon{color:var(--heading-purple);}
+    .diff-tile:nth-child(4) .diff-tile-icon{color:var(--blue);}
+    .diff-tile:nth-child(5) .diff-tile-icon{color:var(--coral-dark);}
+    .diff-tile:nth-child(6) .diff-tile-icon{color:var(--teal-dark);}
     .diff-tile h3{font-family:'Playfair Display',serif;color:var(--heading-purple);font-size:1.2em;margin:0 0 8px;}
     .diff-tile p{color:#555;margin:0;font-size:0.93em;line-height:1.6;}
     .diff-quotes{display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:30px;max-width:900px;margin:40px auto 0;padding:0 15px;}
@@ -369,7 +373,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
 
     /* FAQ accordion */
     .faq-list{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:14px;padding:15px;}
-    .faq-item{background:linear-gradient(145deg,#ffffff,#f8f8f8);border-radius:14px;box-shadow:0 6px 16px rgba(0,0,0,0.06);overflow:hidden;}
+    .faq-item{background:#ffffff;border-radius:14px;box-shadow:0 6px 16px rgba(0,0,0,0.06);overflow:hidden;}
     .faq-item summary{list-style:none;cursor:pointer;padding:18px 22px;font-weight:600;color:var(--heading-purple);display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:'Playfair Display',serif;font-size:1.05em;}
     .faq-item summary::-webkit-details-marker{display:none;}
     .faq-item summary::after{content:'+';font-size:1.4em;color:var(--coral-dark);transition:transform .3s ease;flex-shrink:0;}
@@ -412,13 +416,13 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     }
     
     .testimonial-item.left .testimonial-bubble {
-      background: linear-gradient(120deg, #fff, rgba(0, 169, 157, 0.05));
+      background: rgba(0, 169, 157, 0.06);
       border-bottom-left-radius: 0;
       margin-right: 5%;
     }
     
     .testimonial-item.right .testimonial-bubble {
-      background: linear-gradient(240deg, #fff, rgba(177, 156, 217, 0.08));
+      background: rgba(177, 156, 217, 0.1);
       border-bottom-right-radius: 0;
       margin-left: 5%;
     }
@@ -435,7 +439,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       left: -15px;
       width: 15px;
       height: 15px;
-      background: linear-gradient(120deg, #fff, rgba(0, 169, 157, 0.05));
+      background: rgba(0, 169, 157, 0.06);
       clip-path: polygon(100% 0, 0 0, 100% 100%);
     }
     
@@ -446,7 +450,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       right: -15px;
       width: 15px;
       height: 15px;
-      background: linear-gradient(240deg, #fff, rgba(177, 156, 217, 0.08));
+      background: rgba(177, 156, 217, 0.1);
       clip-path: polygon(0 0, 100% 0, 0 100%);
     }
     
@@ -501,11 +505,11 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     }
     
     .testimonial-item.left .testimonial-avatar {
-      background: linear-gradient(to right, var(--teal), var(--blue));
+      background: var(--teal-dark);
     }
-    
+
     .testimonial-item.right .testimonial-avatar {
-      background: linear-gradient(to right, var(--purple), var(--heading-purple));
+      background: var(--heading-purple);
     }
     
     .testimonial-name {
@@ -797,7 +801,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     .spotlight-modal-body{padding:30px;}
     .spotlight-modal-body h3{font-family:'Playfair Display',serif;color:var(--heading-purple);font-size:1.3em;margin:0 0 20px;}
     .spotlight-interview-list{display:flex;flex-direction:column;gap:16px;}
-    .spotlight-interview-item{display:flex;gap:16px;background:linear-gradient(145deg,#ffffff,#f8f8f8);border-radius:14px;padding:18px 20px;box-shadow:0 6px 16px rgba(0,0,0,0.07);border-left:4px solid var(--item-color, var(--teal-dark));}
+    .spotlight-interview-item{display:flex;gap:16px;background:#ffffff;border-radius:14px;padding:18px 20px;box-shadow:0 6px 16px rgba(0,0,0,0.07);border-left:4px solid var(--item-color, var(--teal-dark));}
     .spotlight-q-number{flex-shrink:0;width:34px;height:34px;border-radius:50%;color:#fff;font-weight:700;font-family:'Playfair Display',serif;font-size:1.05em;display:flex;align-items:center;justify-content:center;}
     .spotlight-q-text{margin:0 0 6px;color:var(--heading-purple);font-size:1.02em;}
     .spotlight-a-text{margin:0;color:#444;font-size:0.97em;}
@@ -831,7 +835,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       width: 100% !important;
       max-width: 320px !important;
       padding: 25px 20px !important;
-      background: linear-gradient(145deg, #ffffff, #f8f8f8) !important;
+      background: #ffffff !important;
       border-radius: 20px !important;
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
       border: none !important;
@@ -852,7 +856,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       justify-content: center !important;
       width: 70px !important;
       height: 70px !important;
-      background: linear-gradient(135deg, rgba(0, 169, 157, 0.1), rgba(177, 156, 217, 0.2)) !important;
+      background: rgba(0, 59, 113, 0.1) !important;
       border-radius: 50% !important;
       font-size: 2.2em !important;
       margin-bottom: 15px !important;
@@ -888,34 +892,23 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       left: 0 !important;
       width: 100% !important;
       height: 8px !important;
-      background: linear-gradient(90deg, var(--coral), var(--teal)) !important;
+      background: var(--coral) !important;
       display: block !important;
-    }
-    
-    .card::after {
-      content: '' !important;
-      position: absolute !important;
-      top: 0 !important;
-      right: 0 !important;
-      width: 150px !important;
-      height: 150px !important;
-      background: radial-gradient(circle, rgba(177, 156, 217, 0.2) 0%, rgba(255, 255, 255, 0) 70%) !important;
-      z-index: 0 !important;
     }
     
     .card .btn {
       margin-top: auto !important;
-      background: linear-gradient(to right, var(--coral-dark), var(--heading-purple)) !important;
+      background: var(--heading-purple) !important;
       border-radius: 30px !important;
       padding: 12px 28px !important;
-      box-shadow: 0 8px 20px rgba(194, 59, 46, 0.25) !important;
+      box-shadow: 0 8px 20px rgba(125, 63, 152, 0.25) !important;
       transition: transform .3s, box-shadow .3s, background .3s !important;
     }
 
     .card .btn:hover {
       transform: translateY(-5px) !important;
-      box-shadow: 0 12px 25px rgba(125, 63, 152, 0.4) !important;
-      background: linear-gradient(to right, var(--heading-purple), var(--teal-dark)) !important;
+      box-shadow: 0 12px 25px rgba(194, 59, 46, 0.4) !important;
+      background: var(--coral-dark) !important;
     }
     
     .card-link {
@@ -1019,7 +1012,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
         <a href="#recruiters">Contact Our Team</a>
       </nav>
       <a href="#careers" class="btn header-cta">View Roles</a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks"><i data-lucide="menu" class="menu-toggle-icon-open" aria-hidden="true"></i><i data-lucide="x" class="menu-toggle-icon-close" aria-hidden="true"></i></button>
     </div>
     <div class="nav-overlay" id="navOverlay"></div>
   </header>
@@ -1091,7 +1084,6 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       
       <div class="testimonial-item right" style="opacity: 0; transform: translateY(20px);">
         <div class="testimonial-bubble">
-          <div class="testimonial-quote" aria-hidden="true">&ldquo;</div>
           <p class="testimonial-content">I love the supportive environment at VCA. My colleagues feel like family, and I'm given all the tools I need to provide the best possible care for our patients.</p>
           <div class="testimonial-author">
             <div class="testimonial-avatar">TJ</div>
@@ -1105,7 +1097,6 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       
       <div class="testimonial-item left" style="opacity: 0; transform: translateY(20px);">
         <div class="testimonial-bubble">
-          <div class="testimonial-quote" aria-hidden="true">&ldquo;</div>
           <p class="testimonial-content">Joining VCA North Atlantic was the best career move I've made. The emphasis on work-life balance combined with excellent professional development has allowed me to thrive both personally and professionally.</p>
           <div class="testimonial-author">
             <div class="testimonial-avatar">MJ</div>
@@ -1193,7 +1184,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       <div class="value-item">
         <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="" class="value-bg" width="800" height="600" loading="lazy">
         <div class="value-content">
-          <div class="value-icon" aria-hidden="true">🤝</div>
+          <div class="value-icon" aria-hidden="true"><i data-lucide="heart-handshake"></i></div>
           <h3 class="value-title">Mentorship</h3>
           <p class="value-description">Fostering growth through guidance & support. We believe in investing in our team's development at every career stage.</p>
         </div>
@@ -1202,7 +1193,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       <div class="value-item">
         <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="" class="value-bg" width="800" height="600" loading="lazy">
         <div class="value-content">
-          <div class="value-icon" aria-hidden="true">👥</div>
+          <div class="value-icon" aria-hidden="true"><i data-lucide="users"></i></div>
           <h3 class="value-title">Collaboration</h3>
           <p class="value-description">Working together to achieve excellence. Our team approach ensures the best outcomes for patients and a supportive environment for staff.</p>
         </div>
@@ -1211,7 +1202,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       <div class="value-item">
         <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="" class="value-bg" width="800" height="600" loading="lazy">
         <div class="value-content">
-          <div class="value-icon" aria-hidden="true">🏆</div>
+          <div class="value-icon" aria-hidden="true"><i data-lucide="award"></i></div>
           <h3 class="value-title">Medical Excellence</h3>
           <p class="value-description">Delivering top-tier care to every patient. We're committed to the highest standards of veterinary medicine and continuous improvement.</p>
         </div>
@@ -1225,32 +1216,32 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Beyond the culture and the people, here's what's actually backing you up.</p>
     <div class="diff-grid">
       <div class="diff-tile">
-        <div class="diff-tile-icon" aria-hidden="true">🧭</div>
+        <div class="diff-tile-icon" aria-hidden="true"><i data-lucide="compass"></i></div>
         <h3>Real Autonomy, Real Trust</h3>
         <p>You make the plan of care — no corporate playbook. Paid on production, quarterly, with no negative accrual.</p>
       </div>
       <div class="diff-tile">
-        <div class="diff-tile-icon" aria-hidden="true">🩺</div>
+        <div class="diff-tile-icon" aria-hidden="true"><i data-lucide="stethoscope"></i></div>
         <h3>Real Mentorship for New Grads</h3>
         <p>6 months, paired one-on-one with a mentor, salary-only while you learn. Never scheduled alone in your first 60&ndash;90 days.</p>
       </div>
       <div class="diff-tile">
-        <div class="diff-tile-icon" aria-hidden="true">🏅</div>
+        <div class="diff-tile-icon" aria-hidden="true"><i data-lucide="medal"></i></div>
         <h3>A Path to Medical Leadership</h3>
         <p>Open to associates with 6+ years of experience or doctors who already lead. Marketing, payroll, and ops are handled for you — MDs focus on teaching and still see patients.</p>
       </div>
       <div class="diff-tile">
-        <div class="diff-tile-icon" aria-hidden="true">🎓</div>
+        <div class="diff-tile-icon" aria-hidden="true"><i data-lucide="graduation-cap"></i></div>
         <h3>The Largest Postgraduate Training Network</h3>
         <p>VCA Academy is North America's largest provider of postgraduate veterinary education — real infrastructure, not just a talking point.</p>
       </div>
       <div class="diff-tile">
-        <div class="diff-tile-icon" aria-hidden="true">⚖️</div>
+        <div class="diff-tile-icon" aria-hidden="true"><i data-lucide="scale"></i></div>
         <h3>We've Got Your Back</h3>
         <p>Free License Defense coverage — if you're ever the subject of a state board complaint, VCA covers your legal fees and assigns you an attorney, at no cost to you.</p>
       </div>
       <div class="diff-tile">
-        <div class="diff-tile-icon" aria-hidden="true">🏥</div>
+        <div class="diff-tile-icon" aria-hidden="true"><i data-lucide="hospital"></i></div>
         <h3>National Resources, Hometown Feel</h3>
         <p>The resources and network of one of the country's largest veterinary groups — without losing the feel of a hometown hospital.</p>
       </div>
@@ -1277,7 +1268,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       
       <div class="hospital-types">
         <div class="hospital-type">
-          <h3><span aria-hidden="true">🏥</span> General Practice</h3>
+          <h3><span aria-hidden="true"><i data-lucide="stethoscope"></i></span> General Practice</h3>
           <p>Our general practice hospitals provide comprehensive preventive care, diagnostics, and treatment for pets across the Northeast. Located in communities large and small, these hospitals offer diverse practice settings and clientele.</p>
           <div class="state-grid">
             <div class="state-item">CT</div>
@@ -1290,7 +1281,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
         </div>
         
         <div class="hospital-type">
-          <h3><span aria-hidden="true">🚑</span> Emergency & Specialty</h3>
+          <h3><span aria-hidden="true"><i data-lucide="siren"></i></span> Emergency & Specialty</h3>
           <p>Our emergency and specialty hospitals provide advanced, 24/7 care for critical cases and specialized treatment. These state-of-the-art facilities offer unique career opportunities in high-acuity medicine.</p>
           <div class="state-grid">
             <div class="state-item">CT</div>
@@ -1311,32 +1302,32 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     <p style="text-align: center; max-width: 800px; margin: 0 auto 20px;">Join our team and make a difference in the lives of pets and their families across the North Atlantic region. We're currently hiring for the following positions:</p>
     <div class="grid grid-4">
       <div class="card">
-        <span class="card-icon" aria-hidden="true">🩺</span>
+        <span class="card-icon" aria-hidden="true"><i data-lucide="stethoscope"></i></span>
         <strong>Veterinarians</strong>
         <p>Multiple locations across New England and New York</p>
         <a href="https://careers.vca.com" target="_blank" rel="noopener" class="btn" data-apply-role="veterinarian" title="Placeholder — will use a specific job requisition link once available">Apply Now</a>
       </div>
       <div class="card">
-        <span class="card-icon" aria-hidden="true">🧪</span>
+        <span class="card-icon" aria-hidden="true"><i data-lucide="test-tube"></i></span>
         <strong>Veterinary Technicians</strong>
         <p>Full-time and part-time positions available</p>
         <a href="https://careers.vca.com" target="_blank" rel="noopener" class="btn" data-apply-role="technician" title="Placeholder — will use a specific job requisition link once available">Apply Now</a>
       </div>
       <div class="card">
-        <span class="card-icon" aria-hidden="true">👋</span>
+        <span class="card-icon" aria-hidden="true"><i data-lucide="hand"></i></span>
         <strong>Client Service Representatives</strong>
         <p>Be the welcoming face of our hospitals</p>
         <a href="https://careers.vca.com" target="_blank" rel="noopener" class="btn" data-apply-role="csr" title="Placeholder — will use a specific job requisition link once available">Apply Now</a>
       </div>
       <div class="card">
-        <span class="card-icon" aria-hidden="true">🗺️</span>
+        <span class="card-icon" aria-hidden="true"><i data-lucide="map"></i></span>
         <strong>Travel ER</strong>
         <p>Relief support in emergency &amp; specialty hospitals nationwide, with competitive pay and travel accommodations covered</p>
         <a href="https://vcatravelerdoctor.github.io/travelER/" target="_blank" rel="noopener" class="btn">Learn More</a>
       </div>
     </div>
     <div style="text-align: center; margin-top: 40px;">
-      <a href="https://careers.vca.com" target="_blank" rel="noopener" class="btn" data-apply-role="general" style="font-size: 1.1rem; padding: 14px 35px; border-radius: 30px; background: linear-gradient(to right, var(--heading-purple), var(--teal-dark)); box-shadow: 0 10px 25px rgba(125, 63, 152, 0.25);">View All Open Positions</a>
+      <a href="https://careers.vca.com" target="_blank" rel="noopener" class="btn" data-apply-role="general" style="font-size: 1.1rem; padding: 14px 35px; border-radius: 30px; background: var(--heading-purple); box-shadow: 0 10px 25px rgba(125, 63, 152, 0.25);">View All Open Positions</a>
     </div>
   </section>
 
@@ -1346,32 +1337,32 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     <p class="benefits-comp-note">We offer <strong>competitive, transparent pay</strong> for every role — including sign-on and anniversary bonuses in many cases — and your recruiter will walk you through specifics for your position and location early in the process. Here's what's on top of that:</p>
     <div class="benefit-grid">
       <div class="benefit-tile">
-        <div class="benefit-tile-icon" aria-hidden="true">🏥</div>
+        <div class="benefit-tile-icon" aria-hidden="true"><i data-lucide="heart-pulse"></i></div>
         <h3>Health &amp; Wellness</h3>
         <p>Choice of medical plans with preventive care covered 100% in-network, plus dental and vision. Mental health support includes up to 12 free Lyra therapy/coaching sessions a year and a free Headspace membership.</p>
       </div>
       <div class="benefit-tile">
-        <div class="benefit-tile-icon" aria-hidden="true">💰</div>
+        <div class="benefit-tile-icon" aria-hidden="true"><i data-lucide="piggy-bank"></i></div>
         <h3>Financial Security</h3>
         <p>A 401(k) with a 3.5% company match — you're 100% vested in your own contributions from day one. Full-time associates also get Life and Disability insurance at no cost.</p>
       </div>
       <div class="benefit-tile">
-        <div class="benefit-tile-icon" aria-hidden="true">🌴</div>
+        <div class="benefit-tile-icon" aria-hidden="true"><i data-lucide="palmtree"></i></div>
         <h3>Time Off &amp; Continuing Education</h3>
         <p>6 weeks of PTO for GP doctors, 5 for ER doctors, plus a $3,500/year continuing education budget to keep growing your skills on your terms.</p>
       </div>
       <div class="benefit-tile">
-        <div class="benefit-tile-icon" aria-hidden="true">👶</div>
+        <div class="benefit-tile-icon" aria-hidden="true"><i data-lucide="baby"></i></div>
         <h3>Family &amp; Life</h3>
         <p>Up to 4 weeks of fully paid parental leave for birth or adoption, fertility care support, and confidential counseling for you and your family whenever you need it.</p>
       </div>
       <div class="benefit-tile">
-        <div class="benefit-tile-icon" aria-hidden="true">🐾</div>
+        <div class="benefit-tile-icon" aria-hidden="true"><i data-lucide="paw-print"></i></div>
         <h3>For the Veterinary Team</h3>
         <p>Generous discounts on care for your own pets — including 100% off vaccines and free care from any VCA DVM — plus free License Defense coverage if you're ever the subject of a state board complaint.</p>
       </div>
       <div class="benefit-tile">
-        <div class="benefit-tile-icon" aria-hidden="true">🎁</div>
+        <div class="benefit-tile-icon" aria-hidden="true"><i data-lucide="gift"></i></div>
         <h3>Everyday Perks</h3>
         <p>Free legal assistance, identity theft protection, student loan repayment guidance, and hundreds of everyday discounts on things like cell phone plans, gyms, and entertainment.</p>
       </div>
@@ -1380,7 +1371,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       <h3>Want the Full Details?</h3>
       <p>Plan options, rates, and eligibility vary by location and role — see the complete guide for the specifics.</p>
       <a href="benefits-guide.pdf" class="btn" target="_blank" rel="noopener">View Our Benefits Guide</a>
-      <div class="benefits-icon" aria-hidden="true">📋</div>
+      <div class="benefits-icon" aria-hidden="true"><i data-lucide="clipboard-list"></i></div>
     </div>
   </section>
 
@@ -1430,25 +1421,25 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     <!-- TODO: phone numbers below are placeholders — replace with real direct lines before launch -->
     <div class="grid grid-3">
       <div class="card">
-        <span class="card-icon" aria-hidden="true">📧</span>
+        <span class="card-icon" aria-hidden="true"><i data-lucide="mail"></i></span>
         <strong>Nick Silva</strong>
         <p>Veterinarian Recruiter</p>
         <p><a href="mailto:nick.silva@vca.com" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">nick.silva@vca.com</a></p>
-        <p><a href="tel:+1234567890" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i style="margin-right:8px; font-size: 1.2em;" aria-hidden="true">📞</i> (123) 456-7890</a></p>
+        <p><a href="tel:+1234567890" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i data-lucide="phone" style="margin-right:8px; font-size: 1.2em;" aria-hidden="true"></i> (123) 456-7890</a></p>
       </div>
       <div class="card">
-        <span class="card-icon" aria-hidden="true">📧</span>
+        <span class="card-icon" aria-hidden="true"><i data-lucide="mail"></i></span>
         <strong>Amy Trudeau</strong>
         <p>Student/Early Career Recruiter</p>
         <p><a href="mailto:amy.trudeau@vca.com" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">amy.trudeau@vca.com</a></p>
-        <p><a href="tel:+1234567891" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i style="margin-right:8px; font-size: 1.2em;" aria-hidden="true">📞</i> (123) 456-7891</a></p>
+        <p><a href="tel:+1234567891" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i data-lucide="phone" style="margin-right:8px; font-size: 1.2em;" aria-hidden="true"></i> (123) 456-7891</a></p>
       </div>
       <div class="card">
-        <span class="card-icon" aria-hidden="true">📧</span>
+        <span class="card-icon" aria-hidden="true"><i data-lucide="mail"></i></span>
         <strong>Lauren Gerrish</strong>
         <p>CVT & Technician Recruiter</p>
         <p><a href="mailto:lauren.gerrish@vca.com" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">lauren.gerrish@vca.com</a></p>
-        <p><a href="tel:+1234567892" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i style="margin-right:8px; font-size: 1.2em;" aria-hidden="true">📞</i> (123) 456-7892</a></p>
+        <p><a href="tel:+1234567892" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i data-lucide="phone" style="margin-right:8px; font-size: 1.2em;" aria-hidden="true"></i> (123) 456-7892</a></p>
       </div>
     </div>
   </section>
@@ -1473,10 +1464,10 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
         <h3>Connect With Us</h3>
         <p>Follow us on social media for the latest updates and opportunities.</p>
         <div style="display: flex; gap: 15px; margin-top: 15px;">
-          <a href="#" style="font-size: 1.5em;" aria-label="Facebook (placeholder link)" title="Placeholder — add real URL">📱</a>
-          <a href="#" style="font-size: 1.5em;" aria-label="Instagram (placeholder link)" title="Placeholder — add real URL">📷</a>
-          <a href="#" style="font-size: 1.5em;" aria-label="LinkedIn (placeholder link)" title="Placeholder — add real URL">🔗</a>
-          <a href="#" style="font-size: 1.5em;" aria-label="X / Twitter (placeholder link)" title="Placeholder — add real URL">🐦</a>
+          <a href="#" style="font-size: 1.5em;" aria-label="Facebook (placeholder link)" title="Placeholder — add real URL"><i data-lucide="at-sign" aria-hidden="true"></i></a>
+          <a href="#" style="font-size: 1.5em;" aria-label="Instagram (placeholder link)" title="Placeholder — add real URL"><i data-lucide="camera" aria-hidden="true"></i></a>
+          <a href="#" style="font-size: 1.5em;" aria-label="LinkedIn (placeholder link)" title="Placeholder — add real URL"><i data-lucide="link" aria-hidden="true"></i></a>
+          <a href="#" style="font-size: 1.5em;" aria-label="X / Twitter (placeholder link)" title="Placeholder — add real URL"><i data-lucide="message-circle" aria-hidden="true"></i></a>
         </div>
       </div>
     </div>
@@ -1487,6 +1478,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
   </footer>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      if (window.lucide) { lucide.createIcons(); }
       // ============================================================
       // APPLY LINK CONFIG — update this when specific per-role/location
       // job requisition links become available on the careers site
@@ -1550,9 +1542,6 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
 
         // Update aria-expanded attribute for accessibility
         menuToggle.setAttribute('aria-expanded', isExpanded);
-
-        // Change menu icon
-        menuToggle.textContent = isExpanded ? '✕' : '☰';
       }
       
       menuToggle.addEventListener('click', toggleMenu);
@@ -1596,19 +1585,19 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       });
       
       // Culture gallery slides. These are themed placeholder tiles (icon + caption + brand
-      // gradient) rather than hotlinked stock photos, since hotlinked photo URLs are the
+      // color) rather than hotlinked stock photos, since hotlinked photo URLs are the
       // easiest thing on a site to end up dead. Swap in real photos by adding a `src`/`alt`
       // pair per slide once real photography is available — createCarouselItem() below
       // already branches on that.
       const images = [
-        { icon: '🐾', caption: 'Compassionate Patient Care', gradient: 'var(--blue), var(--teal-dark)' },
-        { icon: '🤝', caption: 'Collaborative Care Teams', gradient: 'var(--teal-dark), var(--heading-purple)' },
-        { icon: '🚑', caption: 'Emergency & Critical Care', gradient: 'var(--heading-purple), var(--coral-dark)' },
-        { icon: '🎓', caption: 'Mentorship & Growth', gradient: 'var(--coral-dark), var(--blue)' },
-        { icon: '🔬', caption: 'Hands-On Learning', gradient: 'var(--blue), var(--heading-purple)' },
-        { icon: '🎉', caption: 'Team Celebrations', gradient: 'var(--teal-dark), var(--coral-dark)' },
-        { icon: '☕', caption: 'Work-Life Balance', gradient: 'var(--heading-purple), var(--teal-dark)' },
-        { icon: '🏥', caption: 'State-of-the-Art Hospitals', gradient: 'var(--coral-dark), var(--teal-dark)' }
+        { icon: 'paw-print', caption: 'Compassionate Patient Care', color: 'var(--blue)' },
+        { icon: 'heart-handshake', caption: 'Collaborative Care Teams', color: 'var(--teal-dark)' },
+        { icon: 'siren', caption: 'Emergency & Critical Care', color: 'var(--heading-purple)' },
+        { icon: 'graduation-cap', caption: 'Mentorship & Growth', color: 'var(--coral-dark)' },
+        { icon: 'flask-conical', caption: 'Hands-On Learning', color: 'var(--blue)' },
+        { icon: 'party-popper', caption: 'Team Celebrations', color: 'var(--teal-dark)' },
+        { icon: 'coffee', caption: 'Work-Life Balance', color: 'var(--heading-purple)' },
+        { icon: 'hospital', caption: 'State-of-the-Art Hospitals', color: 'var(--coral-dark)' }
       ];
 
       // Get DOM elements
@@ -1665,15 +1654,16 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
         }
         const tile = document.createElement('div');
         tile.className = 'placeholder-tile';
-        tile.style.background = `linear-gradient(135deg, ${image.gradient})`;
-        const icon = document.createElement('span');
+        tile.style.background = image.color;
+        const icon = document.createElement('i');
         icon.className = 'tile-icon';
+        icon.setAttribute('data-lucide', image.icon);
         icon.setAttribute('aria-hidden', 'true');
-        icon.textContent = image.icon;
         const caption = document.createElement('span');
         caption.className = 'tile-caption';
         caption.textContent = image.caption;
         tile.append(icon, caption);
+        if (window.lucide) { lucide.createIcons({ root: tile }); }
         return tile;
       }
 
@@ -2035,7 +2025,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
           name: 'Alex Doe, DVM',
           role: 'Veterinarian &middot; VCA North Atlantic',
           initials: 'AD',
-          gradient: ['var(--blue)', 'var(--teal-dark)'],
+          accent: ['var(--blue)', 'var(--teal-dark)'],
           ctaLabel: 'View Open Veterinarian Roles',
           qas: [
             ['What made you choose VCA North Atlantic over other practices?', "I wanted a place where I could keep growing clinically without losing the personal side of medicine. The mentorship here was obvious from my very first interview — everyone was genuinely invested in helping me succeed, not just filling a shift."],
@@ -2049,7 +2039,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
           name: 'Sam Lee, CVT',
           role: 'Veterinary Technician &middot; VCA North Atlantic',
           initials: 'SL',
-          gradient: ['var(--teal-dark)', 'var(--heading-purple)'],
+          accent: ['var(--teal-dark)', 'var(--heading-purple)'],
           ctaLabel: 'View Open Technician Roles',
           qas: [
             ['Why did you choose to build your career at VCA North Atlantic?', "I wanted to work somewhere that saw technicians as clinical partners, not just extra hands. Here, my opinion in a treatment plan actually gets asked for — that changes how invested you feel in every case."],
@@ -2063,7 +2053,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
           name: 'Jamie Wilson, Practice Manager',
           role: 'Practice Manager &middot; VCA North Atlantic',
           initials: 'JW',
-          gradient: ['var(--heading-purple)', 'var(--coral-dark)'],
+          accent: ['var(--heading-purple)', 'var(--coral-dark)'],
           ctaLabel: 'View Open Leadership Roles',
           qas: [
             ['What drew you to VCA North Atlantic?', "I'd managed practices before, but here I actually get the autonomy and the resources to build the culture I always wanted — not just hit numbers, but create a place people are proud to work."],
@@ -2093,9 +2083,8 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
         if (!data) return;
         spotlightLastTrigger = trigger;
 
-        const gradientCss = `linear-gradient(135deg, ${data.gradient[0]}, ${data.gradient[1]})`;
-        spotlightModalHeader.style.background = gradientCss;
-        spotlightModalCta.style.background = `linear-gradient(to right, ${data.gradient[0]}, ${data.gradient[1]})`;
+        spotlightModalHeader.style.background = data.accent[0];
+        spotlightModalCta.style.background = data.accent[0];
         spotlightModalAvatar.textContent = data.initials;
         spotlightModalName.textContent = data.name;
         spotlightModalRole.innerHTML = data.role;
@@ -2107,10 +2096,10 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
         data.qas.forEach((qa, i) => {
           const item = document.createElement('div');
           item.className = 'spotlight-interview-item';
-          item.style.setProperty('--item-color', data.gradient[i % 2]);
+          item.style.setProperty('--item-color', data.accent[i % 2]);
           const num = document.createElement('div');
           num.className = 'spotlight-q-number';
-          num.style.background = gradientCss;
+          num.style.background = data.accent[i % 2];
           num.textContent = String(i + 1);
           const body = document.createElement('div');
           const q = document.createElement('h4');
