@@ -14,8 +14,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <!-- Photo CDN (spotlight/values imagery) -->
   <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
-  <!-- Icon set -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Icon set (version-pinned - "@latest" means a future upstream release can
+       change behavior, rename icons, or simply go down with no warning) -->
+  <script src="https://unpkg.com/lucide@1.28.0"></script>
   <style>
     html { scroll-behavior: smooth; }
     @keyframes fadeInUp {0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
@@ -65,10 +66,10 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     .nav-links{display:flex;align-items:center;gap:20px;}
     .nav-links a{text-decoration:none;color:var(--blue);font-weight:600;transition:color .3s,transform .2s;position:relative;padding:5px 0;}
     .nav-links a:hover{color:var(--coral);transform:translateY(-2px);}
-    .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--coral-dark);transition:width .3s ease;}
-    .nav-links a:hover::after{width:100%;}
+    .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:var(--coral-dark);transform:scaleX(0);transform-origin:left;transition:transform .3s ease;}
+    .nav-links a:hover::after{transform:scaleX(1);}
     .nav-links a.active{color:var(--coral-dark);}
-    .nav-links a.active::after{width:100%;}
+    .nav-links a.active::after{transform:scaleX(1);}
     /* Mirrors the desktop .header-cta inside the mobile drawer, where the
        header-cta button itself is hidden - the primary action shouldn't lose
        its button treatment just because the menu is open. */
@@ -828,7 +829,17 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     .carousel-button:hover{background-color:var(--coral-dark);}
     .carousel-button.prev{margin-left:20px;}
     .carousel-button.next{margin-right:20px;}
-    .carousel-indicators{display:flex;justify-content:center;margin-top:20px;}
+    .carousel-controls-row{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:20px;}
+    .carousel-indicators{display:flex;justify-content:center;margin-top:0;}
+    .carousel-playpause{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,0.06);color:var(--blue);cursor:pointer;transition:background-color .2s ease;padding:0;}
+    .carousel-playpause:hover{background:rgba(0,0,0,0.12);}
+    .carousel-playpause svg{width:16px;height:16px;}
+    /* Swap icon visibility rather than replacing DOM nodes (as .menu-toggle
+       already does) - removing/reinserting the element under a stationary
+       cursor can trigger a spurious mouseenter on an ancestor listener. */
+    .carousel-playpause-icon-play{display:none;}
+    .carousel-playpause[aria-pressed="true"] .carousel-playpause-icon-pause{display:none;}
+    .carousel-playpause[aria-pressed="true"] .carousel-playpause-icon-play{display:block;}
     /* Visible dot stays 10px (background-clip:content-box keeps color out of the
        padding), but the actual clickable box grows to 24px - a 10px dot with 5px
        margin was a ~10x10 hit target, under the accessible touch-target minimum. */
@@ -1109,8 +1120,14 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
         <button class="carousel-button next" aria-label="Next photo">&#10095;</button>
       </div>
       
-      <div class="carousel-indicators" id="carouselIndicators">
-        <!-- Indicators will be dynamically generated -->
+      <div class="carousel-controls-row">
+        <div class="carousel-indicators" id="carouselIndicators">
+          <!-- Indicators will be dynamically generated -->
+        </div>
+        <button type="button" class="carousel-playpause" id="carouselPlayPause" aria-pressed="false" aria-label="Pause photo auto-advance">
+          <i data-lucide="pause" class="carousel-playpause-icon-pause" aria-hidden="true"></i>
+          <i data-lucide="play" class="carousel-playpause-icon-play" aria-hidden="true"></i>
+        </button>
       </div>
     </div>
     
@@ -1737,7 +1754,12 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       let currentIndex = 0;
       let autoScrollInterval;
       let isPaused = false;
-      
+      // Separate from isPaused: hover/click/interaction pauses are all temporary
+      // and auto-resume on their own (mouseleave, a setTimeout). An explicit
+      // pause via the play/pause button should stick until the user un-pauses it,
+      // not get silently overridden the next time the mouse leaves a tile.
+      let userPaused = false;
+
       // Initialize carousel
       function initCarousel() {
         // Create original items first in the middle
@@ -1988,7 +2010,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       function startAutoScroll() {
-        if (isPaused || prefersReducedMotion) return;
+        if (isPaused || userPaused || prefersReducedMotion) return;
 
         // Clear any existing interval
         if (autoScrollInterval) {
@@ -2017,6 +2039,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       
       // Resume auto-scrolling
       function resumeAutoScroll() {
+        if (userPaused) return; // an explicit user pause outlives incidental resume attempts
         isPaused = false;
         startAutoScroll();
       }
@@ -2041,7 +2064,28 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
         // Resume auto-scroll after a delay
         setTimeout(resumeAutoScroll, 5000);
       });
-      
+
+      // Explicit play/pause control - independent of the incidental pauses
+      // above, which all auto-resume on their own (hover-leave, a timeout).
+      const carouselPlayPause = document.getElementById('carouselPlayPause');
+      if (carouselPlayPause) {
+        if (prefersReducedMotion) {
+          // Nothing is auto-advancing to pause; the control would be inert.
+          carouselPlayPause.style.display = 'none';
+        } else {
+          carouselPlayPause.addEventListener('click', () => {
+            userPaused = !userPaused;
+            if (userPaused) {
+              pauseAutoScroll();
+            } else {
+              resumeAutoScroll();
+            }
+            carouselPlayPause.setAttribute('aria-pressed', String(userPaused));
+            carouselPlayPause.setAttribute('aria-label', userPaused ? 'Play photo auto-advance' : 'Pause photo auto-advance');
+          });
+        }
+      }
+
       // Close modal and resume auto-scroll
       closeModal.addEventListener('click', () => {
         modal.classList.remove('active');
