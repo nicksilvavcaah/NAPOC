@@ -2,38 +2,63 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>VCA North Atlantic Recruitment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Careers at VCA North Atlantic | Join Our Team</title>
+  <meta name="description" content="Explore veterinarian, technician, and support staff careers with VCA North Atlantic. Discover our culture, benefits, and open roles across New England and New York.">
+  <meta name="theme-color" content="#F7F7F7">
+  <link rel="icon" type="image/png" href="favicon.png">
   <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <!-- Photo CDN (spotlight/values imagery) -->
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
   <style>
     html { scroll-behavior: smooth; }
     @keyframes fadeInUp {0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
     @keyframes pawSequence {0%,100%{opacity:0;transform:scale(1);}16.66%,33.33%{opacity:1;transform:scale(1.1);}}
-    :root{--blue:#003B71;--teal:#00A99D;--purple:#B19CD9;--heading-purple:#7D3F98;--coral:#FF6F61;--light:#F7F7F7;--grey:#f8f8f8;}
+    :root{--blue:#003B71;--teal:#00A99D;--teal-dark:#00786F;--purple:#B19CD9;--heading-purple:#7D3F98;--coral:#FF6F61;--coral-dark:#C23B2E;--light:#F7F7F7;--grey:#f8f8f8;}
+    /* --coral, --teal and --purple are logo-accent tints for decorative use only (icons, borders, low-opacity overlays).
+       Use --coral-dark / --teal-dark / --heading-purple wherever white text sits directly on a solid or gradient fill — the lighter tints fail WCAG AA contrast at 2.9:1–2.4:1. */
+    *:focus-visible{outline:3px solid var(--heading-purple);outline-offset:2px;}
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important;}
+    }
     html{overflow-x:hidden; width:100%; position:relative; scroll-behavior: smooth;}
-body{overflow-x:hidden; width:100%; position:relative; max-width:100%; background:var(--light);margin:0;font-family:'Inter',sans-serif;color:#333;line-height:1.6;}
-    h1{font-size:1.7em;font-weight:700;margin:0 0 .5em;color:#fff;max-width:600px;line-height:1.4;animation:fadeInUp 1s forwards .3s;}
-    h2{font-family:'Playfair Display',serif;font-size:1.8em;font-weight:600;color:var(--heading-purple);text-align:left;max-width:1000px;margin:0 auto 15px;position:relative;animation:fadeInUp 1s forwards .3s;}
+body{width:100%; position:relative; max-width:100%; background:var(--light);margin:0;font-family:'Inter',sans-serif;color:#333;line-height:1.6;}
+    a,button,.spotlight-item,.card-icon,.carousel-button,.indicator,.menu-toggle{-webkit-tap-highlight-color:transparent;}
+    a,button,.spotlight-item,.carousel-button,.indicator,.menu-toggle,.card-link{touch-action:manipulation;}
+    h1{font-family:'Playfair Display',serif;font-size:2em;font-weight:700;margin:0 0 .4em;color:#fff;max-width:650px;line-height:1.3;animation:fadeInUp 1s forwards .15s;text-wrap:balance;}
+    h2{font-family:'Playfair Display',serif;font-size:1.8em;font-weight:600;color:var(--heading-purple);text-align:left;max-width:1000px;margin:0 auto 15px;position:relative;animation:fadeInUp 1s forwards .3s;text-wrap:balance;}
     h2:after{content:'';display:block;width:50px;height:3px;background:var(--coral);margin-top:6px;}
     p,.card p,.benefit-item p{margin:0 0 1em;}strong{font-weight:600;}
-    .btn{font-weight:600;margin-top:20px;padding:12px 24px;background:var(--coral);color:#fff;border:none;border-radius:4px;cursor:pointer;transition:background .3s,transform .2s;text-decoration:none;display:inline-block;animation:fadeInUp 1s forwards .7s;}
-    .btn:hover{background:var(--purple);transform:scale(1.03);}
+    .btn{font-weight:600;margin-top:20px;padding:12px 24px;background:var(--coral-dark);color:#fff;border:none;border-radius:4px;cursor:pointer;transition:background .3s,transform .2s;text-decoration:none;display:inline-block;animation:fadeInUp 1s forwards .7s;}
+    .btn:hover{background:var(--heading-purple);transform:scale(1.03);}
+    button.btn{font-family:inherit;font-size:1em;}
+    /* Skip link */
+    .skip-link{position:absolute;left:-9999px;top:0;background:var(--blue);color:#fff;padding:10px 18px;z-index:2000;border-radius:0 0 6px 0;text-decoration:none;font-weight:600;}
+    .skip-link:focus{left:0;}
+
     /* Header & Navigation Styles */
-    .header{position:sticky;top:0;background:rgba(247,247,247,0.9);backdrop-filter:blur(10px);display:flex;justify-content:space-between;align-items:center;padding:10px 20px;border-bottom:2px solid var(--teal);z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.1);}
-    .header img{height:50px;}
+    .header{position:sticky;top:0;background:rgba(247,247,247,0.9);backdrop-filter:blur(10px);display:flex;justify-content:space-between;align-items:center;gap:16px;padding:10px 20px;border-bottom:2px solid var(--teal);z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.1);}
+    .header img{height:50px;width:auto;}
+    .header-cta{margin:0;padding:10px 20px;font-size:0.95em;white-space:nowrap;animation:none;}
+    .header-right{display:flex;align-items:center;gap:16px;}
+    .nav-overlay{display:none;}
+    @media (max-width:992px){.header-cta{display:none;}}
     
     /* Mobile Menu Button */
     .menu-toggle{display:none;background:none;border:none;font-size:1.5rem;color:var(--blue);cursor:pointer;padding:5px;}
-    .menu-toggle:focus{outline:none;}
     
     /* Navigation Links */
     .nav-links{display:flex;align-items:center;gap:20px;}
     .nav-links a{text-decoration:none;color:var(--blue);font-weight:600;transition:color .3s,transform .2s;position:relative;padding:5px 0;}
     .nav-links a:hover{color:var(--coral);transform:translateY(-2px);}
-    .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--coral);transition:width .3s ease;}
+    .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--coral-dark);transition:width .3s ease;}
     .nav-links a:hover::after{width:100%;}
+    .nav-links a.active{color:var(--coral-dark);}
+    .nav-links a.active::after{width:100%;}
     
     /* Media Queries for Responsive Navigation - UPDATED */
     @media (max-width:992px){
@@ -47,6 +72,9 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
         width: 250px;
         height: calc(100vh - 70px);
         padding: 20px;
+        padding-bottom: calc(20px + env(safe-area-inset-bottom));
+        overflow-y: auto;
+        overscroll-behavior: contain;
         box-shadow: -5px 0 15px rgba(0,0,0,0.1);
         transition: right .3s ease;
         align-items: flex-start;
@@ -60,8 +88,6 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
         display: block; /* Ensure the link takes up the full width */
       }
       .nav-links a:last-child{border-bottom:none;}
-      /* Ensure body doesn't scroll when menu is open */
-      body.menu-open{overflow:hidden;}
       /* Make the overlay less dark */
       .nav-overlay{
         display: none;
@@ -80,12 +106,13 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
     
     @media (max-width:768px){
       .header{padding:10px 15px;}
-      .header img{height:40px;}
+      .header img{height:40px;width:auto;}
       .menu-toggle{font-size:1.3rem;}
       .nav-links{top:60px;height:calc(100vh - 60px);}
       .nav-overlay{top:60px;height:calc(100vh - 60px);}
+      .section{scroll-margin-top:75px;}
     }
-    .hero{position:relative;min-height:50vh;padding:40px 20px;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border-radius:40px;margin-bottom:0;overflow:hidden;}
+    .hero{position:relative;min-height:50vh;padding:40px 20px;background:linear-gradient(135deg,var(--blue),var(--teal-dark));display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border-radius:40px;margin-bottom:0;overflow:hidden;}
     .hero-text{position:relative;z-index:2;max-width:700px;}
     .hero-subtitle{font-size:1.1em;color:rgba(255,255,255,0.9);margin-top:.5em;animation:fadeInUp 1s forwards .5s;}
     
@@ -93,9 +120,21 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
     .leader-quote {
       position: relative;
       padding-left: 20px;
-      margin-bottom: 8px;
+      margin: 0 0 8px;
+      max-width: 600px;
     }
-    
+
+    .leader-quote p {
+      margin: 0;
+      font-size: 1.15em;
+      font-weight: 500;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.95);
+      line-height: 1.5;
+      animation: fadeInUp 1s forwards .4s;
+      opacity: 0;
+    }
+
     .leader-quote:before {
       content: '"';
       position: absolute;
@@ -106,8 +145,9 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
       color: rgba(255, 255, 255, 0.2);
       line-height: 1;
     }
-    
+
     .quote-attribution {
+      display: block;
       font-size: 1em;
       color: rgba(255, 255, 255, 0.9);
       margin-top: 8px;
@@ -118,7 +158,7 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
       opacity: 0;
     }
     .paw-print{position:absolute;font-size:3em;color:rgba(255,255,255,0.8);opacity:0;animation:pawSequence 6s infinite;}
-    .section{margin:0;padding:33px 20px;}
+    .section{margin:0;padding:33px 20px;scroll-margin-top:90px;}
     .section:nth-of-type(odd){background:linear-gradient(180deg,var(--light),rgba(0,169,157,0.1));}
     .section:nth-of-type(even){background:linear-gradient(180deg,rgba(0,169,157,0.1),var(--light));}
     
@@ -229,7 +269,7 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
       text-align: center;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
       font-weight: 600;
-      transition: all 0.3s ease;
+      transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
       border: 1px solid rgba(0, 169, 157, 0.1);
     }
     
@@ -244,7 +284,7 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
     .benefits-cta {
       text-align: center;
       padding: 30px 20px;
-      background: linear-gradient(to right, var(--blue), var(--teal));
+      background: linear-gradient(to right, var(--blue), var(--teal-dark));
       border-radius: 15px;
       margin: 30px auto;
       max-width: 800px;
@@ -294,7 +334,48 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
       bottom: -40px;
       transform: rotate(-5deg);
     }
-    
+
+    /* Benefits tile grid */
+    .benefit-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:22px;max-width:1150px;margin:0 auto 35px;padding:15px;}
+    .benefit-tile{background:linear-gradient(145deg,#ffffff,#f8f8f8);border-radius:16px;padding:26px 22px;box-shadow:0 10px 25px rgba(0,0,0,0.07);border-top:4px solid var(--teal-dark);transition:transform .3s ease, box-shadow .3s ease;}
+    .benefit-tile:hover{transform:translateY(-6px);box-shadow:0 15px 30px rgba(0,0,0,0.12);}
+    .benefit-tile:nth-child(2){border-top-color:var(--heading-purple);}
+    .benefit-tile:nth-child(3){border-top-color:var(--coral-dark);}
+    .benefit-tile:nth-child(4){border-top-color:var(--blue);}
+    .benefit-tile:nth-child(5){border-top-color:var(--coral-dark);}
+    .benefit-tile:nth-child(6){border-top-color:var(--teal-dark);}
+    .benefit-tile-icon{font-size:2.1em;margin-bottom:10px;}
+    .benefit-tile h3{font-family:'Playfair Display',serif;color:var(--heading-purple);font-size:1.2em;margin:0 0 8px;}
+    .benefit-tile p{color:#555;margin:0;font-size:0.93em;line-height:1.6;}
+    .benefits-comp-note{max-width:760px;margin:0 auto 30px;text-align:center;}
+    .benefits-comp-note strong{color:var(--heading-purple);}
+
+    /* Why VCA differentiator grid */
+    .diff-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:22px;max-width:1150px;margin:0 auto;padding:15px;}
+    .diff-tile{background:linear-gradient(145deg,#ffffff,#f8f8f8);border-radius:16px;padding:26px 24px;box-shadow:0 10px 25px rgba(0,0,0,0.07);border-left:4px solid var(--coral-dark);transition:transform .3s ease, box-shadow .3s ease;}
+    .diff-tile:hover{transform:translateY(-6px);box-shadow:0 15px 30px rgba(0,0,0,0.12);}
+    .diff-tile:nth-child(2){border-left-color:var(--teal-dark);}
+    .diff-tile:nth-child(3){border-left-color:var(--heading-purple);}
+    .diff-tile:nth-child(4){border-left-color:var(--blue);}
+    .diff-tile:nth-child(5){border-left-color:var(--coral-dark);}
+    .diff-tile:nth-child(6){border-left-color:var(--teal-dark);}
+    .diff-tile-icon{font-size:2.1em;margin-bottom:10px;}
+    .diff-tile h3{font-family:'Playfair Display',serif;color:var(--heading-purple);font-size:1.2em;margin:0 0 8px;}
+    .diff-tile p{color:#555;margin:0;font-size:0.93em;line-height:1.6;}
+    .diff-quotes{display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:30px;max-width:900px;margin:40px auto 0;padding:0 15px;}
+    .diff-quotes blockquote{position:relative;margin:0;padding-top:24px;text-align:center;font-style:italic;color:#555;font-size:1.03em;line-height:1.6;}
+    .diff-quotes blockquote::before{content:'\201C';position:absolute;top:-8px;left:50%;transform:translateX(-50%);font-family:'Playfair Display',serif;font-size:3em;color:var(--coral-dark);opacity:0.35;line-height:1;}
+    .diff-quotes cite{display:block;margin-top:12px;font-style:normal;font-weight:600;color:var(--heading-purple);font-size:0.85em;}
+
+    /* FAQ accordion */
+    .faq-list{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:14px;padding:15px;}
+    .faq-item{background:linear-gradient(145deg,#ffffff,#f8f8f8);border-radius:14px;box-shadow:0 6px 16px rgba(0,0,0,0.06);overflow:hidden;}
+    .faq-item summary{list-style:none;cursor:pointer;padding:18px 22px;font-weight:600;color:var(--heading-purple);display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:'Playfair Display',serif;font-size:1.05em;}
+    .faq-item summary::-webkit-details-marker{display:none;}
+    .faq-item summary::after{content:'+';font-size:1.4em;color:var(--coral-dark);transition:transform .3s ease;flex-shrink:0;}
+    .faq-item[open] summary::after{transform:rotate(45deg);}
+    .faq-item .faq-answer{padding:0 22px 20px;color:#555;line-height:1.65;font-size:0.96em;}
+
     /* Simplified Speech Bubble Testimonials */
     .testimonials-container {
       max-width: 900px;
@@ -459,6 +540,11 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
     @media (min-width:768px) and (max-width:991px){.grid-3{grid-template-columns:repeat(2,1fr) !important;}}
     @media (max-width:767px){.grid-3{grid-template-columns:1fr !important;}}
 
+    .grid-4{max-width:1300px !important;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)) !important;}
+    @media (min-width:1200px){.grid-4{grid-template-columns:repeat(4,1fr) !important;}}
+    @media (min-width:768px) and (max-width:1199px){.grid-4{grid-template-columns:repeat(2,1fr) !important;}}
+    @media (max-width:767px){.grid-4{grid-template-columns:1fr !important;}}
+
     /* Image Grid with Overlay for Employee Spotlights */
     .spotlight-grid {
       display: grid;
@@ -471,10 +557,19 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
 
     .spotlight-item {
       position: relative;
+      display: block;
+      width: 100%;
       height: 320px;
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      text-decoration: none;
+      color: inherit;
+      background: none;
+      border: none;
+      padding: 0;
+      font: inherit;
+      text-align: left;
       cursor: pointer;
     }
 
@@ -495,50 +590,61 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(to top, rgba(0, 59, 113, 0.9), transparent);
-      padding: 20px;
-      transform: translateY(70%);
-      transition: transform 0.4s ease;
+      background: linear-gradient(to top, rgba(0, 59, 113, 0.95), rgba(0, 59, 113, 0.75) 65%, transparent);
+      padding: 16px 20px;
       pointer-events: none;
-    }
-
-    .spotlight-item:hover .spotlight-overlay {
-      transform: translateY(0);
     }
 
     .spotlight-title {
       color: white;
-      margin: 0 0 5px;
+      margin: 0 0 3px;
       font-weight: 600;
       font-size: 1.2em;
     }
 
     .spotlight-role {
       color: rgba(255, 255, 255, 0.9);
-      margin: 0 0 10px;
+      margin: 0;
       font-size: 0.9em;
+    }
+
+    .spotlight-cta-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      border-radius: 20px;
+      font-size: 0.78em;
+      font-weight: 600;
+      color: #fff;
+      backdrop-filter: blur(2px);
+      transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .spotlight-item:hover .spotlight-cta-chip,
+    .spotlight-item.mobile-active .spotlight-cta-chip {
+      background: var(--coral-dark);
+      border-color: var(--coral-dark);
+      transform: translateY(-2px);
     }
 
     .spotlight-quote {
       color: white;
+      max-height: 0;
+      margin-top: 0;
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      transition-delay: 0.1s;
+      overflow: hidden;
+      transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.3s ease;
     }
 
-    .spotlight-item:hover .spotlight-quote {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .spotlight-item.mobile-active .spotlight-overlay {
-      transform: translateY(0);
-    }
-
+    .spotlight-item:hover .spotlight-quote,
     .spotlight-item.mobile-active .spotlight-quote {
+      max-height: 160px;
+      margin-top: 10px;
       opacity: 1;
-      transform: translateY(0);
     }
 
     /* Values with Background Images */
@@ -645,18 +751,26 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
     /* Carousel for Culture Section */
     .carousel-container{width:100%;max-width:1000px;margin:0 auto;position:relative;overflow:hidden;padding:20px 0;font-family:'Inter',sans-serif;}
     .carousel-track{display:flex;transition:transform 0.5s ease;}
-    .carousel-item{min-width:300px;width:300px;padding:10px;box-sizing:border-box;transition:all 0.3s ease;flex-shrink:0;opacity:0.7;transform:scale(0.85);}
+    .carousel-item{min-width:300px;width:300px;padding:10px;box-sizing:border-box;transition:opacity 0.3s ease, transform 0.3s ease;flex-shrink:0;opacity:0.7;transform:scale(0.85);}
     .carousel-item.active{opacity:1;transform:scale(1);}
     .img-container{width:100%;height:250px;border-radius:10px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,0.2);cursor:pointer;transition:transform 0.3s ease;}
     .img-container:hover{transform:translateY(-5px);}
     .carousel-item img{width:100%;height:100%;object-fit:cover;}
+
+    /* Themed placeholder tiles (stand in for real photography) */
+    .placeholder-tile{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#fff;text-align:center;padding:20px;box-sizing:border-box;}
+    .placeholder-tile .tile-icon{font-size:3em;filter:drop-shadow(0 3px 6px rgba(0,0,0,0.2));}
+    .placeholder-tile .tile-caption{font-family:'Playfair Display',serif;font-weight:600;font-size:1.1em;text-shadow:1px 1px 4px rgba(0,0,0,0.25);}
+    .modal-tile{width:100%;height:60vh;max-height:500px;border-radius:8px;}
+    .modal-tile .tile-icon{font-size:5em;}
+    .modal-tile .tile-caption{font-size:1.5em;}
     .carousel-nav{position:absolute;top:50%;width:100%;display:flex;justify-content:space-between;transform:translateY(-50%);z-index:2;}
     .carousel-button{background-color:var(--blue);color:white;border:none;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background-color 0.3s ease;box-shadow:0 3px 6px rgba(0,0,0,0.2);}
-    .carousel-button:hover{background-color:var(--coral);}
+    .carousel-button:hover{background-color:var(--coral-dark);}
     .carousel-button.prev{margin-left:20px;}
     .carousel-button.next{margin-right:20px;}
     .carousel-indicators{display:flex;justify-content:center;margin-top:20px;}
-    .indicator{width:10px;height:10px;border-radius:50%;background-color:#ccc;margin:0 5px;cursor:pointer;transition:background-color 0.3s ease;}
+    .indicator{width:10px;height:10px;border-radius:50%;background-color:#ccc;border:none;padding:0;margin:0 5px;cursor:pointer;transition:background-color 0.3s ease;}
     .indicator.active{background-color:var(--blue);}
     
     /* Modal for Image Viewing */
@@ -665,7 +779,52 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
     .modal-content{max-width:80%;max-height:80%;position:relative;}
     .modal img{width:100%;height:auto;max-height:80vh;object-fit:contain;border-radius:5px;}
     .close-modal{position:absolute;top:-40px;right:0;color:white;font-size:24px;cursor:pointer;background:transparent;border:none;width:30px;height:30px;display:flex;align-items:center;justify-content:center;}
-    
+
+    /* Employee Spotlight in-page modal */
+    .spotlight-modal{display:none;position:fixed;inset:0;z-index:2000;}
+    .spotlight-modal.active{display:block;}
+    .spotlight-modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.65);opacity:0;transition:opacity .3s ease;}
+    .spotlight-modal.active .spotlight-modal-backdrop{opacity:1;}
+    .spotlight-modal-panel{position:fixed;top:50%;left:50%;transform:translate(-50%,-48%) scale(.97);width:min(700px,92vw);max-height:88vh;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;background:#fff;border-radius:20px;box-shadow:0 25px 60px rgba(0,0,0,0.35);opacity:0;transition:opacity .25s ease, transform .25s ease;padding-bottom:env(safe-area-inset-bottom);}
+    .spotlight-modal.active .spotlight-modal-panel{opacity:1;transform:translate(-50%,-50%) scale(1);}
+    .spotlight-modal-close-bar{position:sticky;top:0;height:0;z-index:10;pointer-events:none;}
+    .spotlight-modal-close{position:absolute;top:14px;right:14px;pointer-events:auto;z-index:2001;width:44px;height:44px;border-radius:50%;background:#fff;color:var(--blue);border:none;font-size:1.6em;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.3);transition:background .2s,color .2s,transform .2s;}
+    .spotlight-modal-close:hover{background:var(--coral-dark);color:#fff;transform:scale(1.08);}
+    .spotlight-modal-header{position:relative;padding:45px 30px 30px;border-radius:20px 20px 0 0;text-align:center;color:#fff;overflow:hidden;}
+    .spotlight-modal-header .avatar-tile{position:relative;width:110px;height:110px;margin:0 auto 16px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.15);border:4px solid rgba(255,255,255,0.5);box-shadow:0 10px 25px rgba(0,0,0,0.2);font-family:'Playfair Display',serif;font-size:2.1em;font-weight:700;color:#fff;}
+    .spotlight-modal-header h2{font-family:'Playfair Display',serif;font-size:1.8em;margin:0 0 6px;color:#fff;animation:none;opacity:1;}
+    .spotlight-modal-header p{margin:0;color:rgba(255,255,255,0.9);}
+    .spotlight-modal-body{padding:30px;}
+    .spotlight-modal-body h3{font-family:'Playfair Display',serif;color:var(--heading-purple);font-size:1.3em;margin:0 0 20px;}
+    .spotlight-interview-list{display:flex;flex-direction:column;gap:16px;}
+    .spotlight-interview-item{display:flex;gap:16px;background:linear-gradient(145deg,#ffffff,#f8f8f8);border-radius:14px;padding:18px 20px;box-shadow:0 6px 16px rgba(0,0,0,0.07);border-left:4px solid var(--item-color, var(--teal-dark));}
+    .spotlight-q-number{flex-shrink:0;width:34px;height:34px;border-radius:50%;color:#fff;font-weight:700;font-family:'Playfair Display',serif;font-size:1.05em;display:flex;align-items:center;justify-content:center;}
+    .spotlight-q-text{margin:0 0 6px;color:var(--heading-purple);font-size:1.02em;}
+    .spotlight-a-text{margin:0;color:#444;font-size:0.97em;}
+    .spotlight-modal-cta{margin-top:28px;text-align:center;padding:26px 20px;border-radius:14px;color:#fff;}
+    .spotlight-modal-cta h4{font-family:'Playfair Display',serif;margin:0 0 8px;font-size:1.25em;}
+    .spotlight-modal-cta p{margin:0 0 5px;color:rgba(255,255,255,0.92);font-size:0.95em;}
+    .spotlight-modal-cta .btn{background:#fff;color:var(--blue);}
+    .spotlight-modal-cta .btn:hover{background:var(--light);}
+    .spotlight-modal-exit{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:22px;padding:14px;background:none;border:none;border-top:1px solid #eee;color:var(--blue);font-weight:600;font-size:1em;cursor:pointer;transition:color .2s;}
+    .spotlight-modal-exit:hover{color:var(--coral-dark);}
+    @media (max-width:600px){
+      .spotlight-modal-panel{width:100vw;max-height:100vh;height:100%;border-radius:0;top:0;left:0;transform:none;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom);}
+      .spotlight-modal.active .spotlight-modal-panel{transform:none;}
+      .spotlight-modal-body{padding:22px;}
+      .spotlight-modal-close-bar{top:env(safe-area-inset-top);}
+    }
+
+    /* Sticky mobile Apply bar */
+    .mobile-apply-bar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:1500;background:rgba(255,255,255,0.97);backdrop-filter:blur(8px);border-top:1px solid rgba(0,0,0,0.08);padding:10px 16px calc(10px + env(safe-area-inset-bottom));box-shadow:0 -4px 15px rgba(0,0,0,0.1);transform:translateY(100%);transition:transform .3s ease;}
+    .mobile-apply-bar.visible{transform:translateY(0);}
+    .mobile-apply-bar a{display:block;text-align:center;margin:0;animation:none;}
+    body.spotlight-modal-open .mobile-apply-bar,
+    body.menu-open .mobile-apply-bar{display:none !important;}
+    @media (max-width:768px){
+      .mobile-apply-bar{display:block;}
+    }
+
     /* Card Styling - modernized for open roles section */
     .card {
       position: relative !important;
@@ -746,17 +905,17 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
     
     .card .btn {
       margin-top: auto !important;
-      background: linear-gradient(to right, var(--coral), var(--purple)) !important;
+      background: linear-gradient(to right, var(--coral-dark), var(--heading-purple)) !important;
       border-radius: 30px !important;
       padding: 12px 28px !important;
-      box-shadow: 0 8px 20px rgba(255, 111, 97, 0.25) !important;
+      box-shadow: 0 8px 20px rgba(194, 59, 46, 0.25) !important;
       transition: transform .3s, box-shadow .3s, background .3s !important;
     }
-    
+
     .card .btn:hover {
       transform: translateY(-5px) !important;
-      box-shadow: 0 12px 25px rgba(255, 111, 97, 0.4) !important;
-      background: linear-gradient(to right, var(--purple), var(--teal)) !important;
+      box-shadow: 0 12px 25px rgba(125, 63, 152, 0.4) !important;
+      background: linear-gradient(to right, var(--heading-purple), var(--teal-dark)) !important;
     }
     
     .card-link {
@@ -774,11 +933,12 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
     .footer-column a{color:#fff;display:block;margin-bottom:8px;text-decoration:none;}
     .footer-column a:hover{color:var(--coral);}
     .copyright{margin-top:30px;color:rgba(255,255,255,0.7);}
+    .copyright p:first-child{max-width:700px;margin:0 auto 10px;font-size:0.85em;line-height:1.6;}
     
     /* Media Queries */
     @media (max-width:768px){
       .header{flex-direction:column;align-items:center;padding:10px 10px; position: sticky;}
-      .header img{height:40px;}
+      .header img{height:40px;width:auto;}
       .hero{min-height:auto;padding:35px 15px;border-radius:0 0 25px 25px;}
       h1{font-size:1.3em;}
       .quote-attribution {
@@ -842,52 +1002,60 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
   </style>
 </head>
 <body id="top">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <header class="header">
-    <a href="#top"><img src="VCA_logo.svg.png" alt="VCA Logo"></a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <a href="#top" aria-label="VCA North Atlantic home"><img src="VCA_logo.svg.png" alt="VCA Animal Hospitals logo" width="1200" height="418"></a>
+    <div class="header-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="#culture">Our Culture</a>
+        <a href="#testimonials">Team Testimonials</a>
+        <a href="#spotlights">Employee Spotlights</a>
+        <a href="#values">Our Values</a>
+        <a href="#why-vca">Why VCA</a>
+        <a href="#region-at-a-glance">Our Region</a>
+        <a href="#careers">Open Roles</a>
+        <a href="#benefits">Benefits</a>
+        <a href="#faq">FAQ</a>
+        <a href="#recruiters">Contact Our Team</a>
+      </nav>
+      <a href="#careers" class="btn header-cta">View Roles</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
     <div class="nav-overlay" id="navOverlay"></div>
-    <nav class="nav-links" id="navLinks">
-      <a href="#culture">Our Culture</a>
-      <a href="#testimonials">Team Testimonials</a>
-      <a href="#spotlights">Employee Spotlights</a>
-      <a href="#values">Our Values</a>
-      <a href="#region-at-a-glance">Our Region</a>
-      <a href="#careers">Open Roles</a>
-      <a href="#benefits">Benefits</a>
-      <a href="#recruiters">Contact Our Team</a>
-    </nav>
   </header>
 
+  <main id="main-content">
   <!-- HERO SECTION -->
   <section class="hero">
     <div class="hero-text">
-      <div class="leader-quote">
-        <h1>"At VCA North Atlantic, we've created something truly special—a supportive community of passionate professionals who elevate each other while delivering exceptional care. Our region combines clinical excellence with genuine connection, making this a place to thrive both professionally and personally."</h1>
-        <p class="quote-attribution">Lauren McVey, Group Vice President</p>
-      </div>
+      <h1>Join a Team That Elevates Great Medicine — and Great People</h1>
+      <blockquote class="leader-quote">
+        <p>&ldquo;At VCA North Atlantic, we&rsquo;ve created something truly special&mdash;a supportive community of passionate professionals who elevate each other while delivering exceptional care. Our region combines clinical excellence with genuine connection, making this a place to thrive both professionally and personally.&rdquo;</p>
+        <cite class="quote-attribution">Lauren McVey, Group Vice President</cite>
+      </blockquote>
       <a href="#careers" class="btn">See Open Roles</a>
     </div>
-    <span class="paw-print" style="bottom:15%; left:15%;animation-delay:0s;">🐾</span>
-    <span class="paw-print" style="top:15%; left:15%;animation-delay:1s;">🐾</span>
-    <span class="paw-print" style="top:10%; left:50%;transform:translateX(-50%);animation-delay:2s;">🐾</span>
-    <span class="paw-print" style="top:15%; right:15%;animation-delay:3s;">🐾</span>
-    <span class="paw-print" style="bottom:15%; right:15%;animation-delay:4s;">🐾</span>
-    <span class="paw-print" style="bottom:5%; left:50%;transform:translateX(-50%);animation-delay:5s;">🐾</span>
+    <span class="paw-print" aria-hidden="true" style="bottom:15%; left:15%;animation-delay:0s;">🐾</span>
+    <span class="paw-print" aria-hidden="true" style="top:15%; left:15%;animation-delay:1s;">🐾</span>
+    <span class="paw-print" aria-hidden="true" style="top:10%; left:50%;transform:translateX(-50%);animation-delay:2s;">🐾</span>
+    <span class="paw-print" aria-hidden="true" style="top:15%; right:15%;animation-delay:3s;">🐾</span>
+    <span class="paw-print" aria-hidden="true" style="bottom:15%; right:15%;animation-delay:4s;">🐾</span>
+    <span class="paw-print" aria-hidden="true" style="bottom:5%; left:50%;transform:translateX(-50%);animation-delay:5s;">🐾</span>
     <div class="hero-overlay"></div>
   </section>
 
   <!-- CULTURE SECTION -->
   <section class="section" id="culture">
     <h2>Our Culture</h2>
-    <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">At VCA North Atlantic, we foster a collaborative environment where learning, growth, and compassion are at the heart of everything we do. Explore our gallery to see our team in action!</p>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">At VCA North Atlantic, we foster a collaborative environment where learning, growth, and compassion are at the heart of everything we do. Here's a glimpse of what life on our team looks like.</p>
     <div class="carousel-container">
       <div class="carousel-track" id="carouselTrack">
         <!-- Items will be dynamically generated -->
       </div>
       
       <div class="carousel-nav">
-        <button class="carousel-button prev">&#10094;</button>
-        <button class="carousel-button next">&#10095;</button>
+        <button class="carousel-button prev" aria-label="Previous photo">&#10094;</button>
+        <button class="carousel-button next" aria-label="Next photo">&#10095;</button>
       </div>
       
       <div class="carousel-indicators" id="carouselIndicators">
@@ -897,8 +1065,8 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
     
     <div class="modal" id="imageModal">
       <div class="modal-content">
-        <button class="close-modal">&times;</button>
-        <img id="modalImage" src="" alt="Enlarged image">
+        <button class="close-modal" aria-label="Close image">&times;</button>
+        <div id="modalTile" class="placeholder-tile modal-tile"></div>
       </div>
     </div>
   </section>
@@ -909,7 +1077,7 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
     <div class="testimonials-container">
       <div class="testimonial-item left" style="opacity: 0; transform: translateY(20px);">
         <div class="testimonial-bubble">
-          <div class="testimonial-quote">"</div>
+          <div class="testimonial-quote" aria-hidden="true">&ldquo;</div>
           <p class="testimonial-content">VCA North Atlantic provided me with incredible growth opportunities and mentorship that helped advance my career. The collaborative team environment makes every day rewarding.</p>
           <div class="testimonial-author">
             <div class="testimonial-avatar">DS</div>
@@ -923,7 +1091,7 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
       
       <div class="testimonial-item right" style="opacity: 0; transform: translateY(20px);">
         <div class="testimonial-bubble">
-          <div class="testimonial-quote">"</div>
+          <div class="testimonial-quote" aria-hidden="true">&ldquo;</div>
           <p class="testimonial-content">I love the supportive environment at VCA. My colleagues feel like family, and I'm given all the tools I need to provide the best possible care for our patients.</p>
           <div class="testimonial-author">
             <div class="testimonial-avatar">TJ</div>
@@ -937,7 +1105,7 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
       
       <div class="testimonial-item left" style="opacity: 0; transform: translateY(20px);">
         <div class="testimonial-bubble">
-          <div class="testimonial-quote">"</div>
+          <div class="testimonial-quote" aria-hidden="true">&ldquo;</div>
           <p class="testimonial-content">Joining VCA North Atlantic was the best career move I've made. The emphasis on work-life balance combined with excellent professional development has allowed me to thrive both personally and professionally.</p>
           <div class="testimonial-author">
             <div class="testimonial-avatar">MJ</div>
@@ -954,66 +1122,148 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
   <!-- EMPLOYEE SPOTLIGHTS SECTION -->
   <section class="section" id="spotlights">
     <h2>Employee Spotlights</h2>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Click on a team member to read their full 5-question interview — in their own words.</p>
     <div class="spotlight-grid">
-      <div class="spotlight-item">
-        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Alex Doe" class="spotlight-image">
+      <button type="button" class="spotlight-item" data-spotlight="alex" aria-haspopup="dialog" aria-label="Read Alex Doe's full spotlight">
+        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Alex Doe" class="spotlight-image" width="800" height="800" loading="lazy">
         <div class="spotlight-overlay">
           <h3 class="spotlight-title">Alex Doe</h3>
           <p class="spotlight-role">Veterinarian</p>
-          <p class="spotlight-quote">"I joined VCA North Atlantic three years ago and have found incredible mentorship and growth opportunities."</p>
+          <span class="spotlight-cta-chip">Read Full Interview <span aria-hidden="true">&rarr;</span></span>
+          <p class="spotlight-quote">&ldquo;I joined VCA North Atlantic three years ago and have found incredible mentorship and growth opportunities.&rdquo;</p>
         </div>
-      </div>
-      
-      <div class="spotlight-item">
-        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Sam Lee" class="spotlight-image">
+      </button>
+
+      <button type="button" class="spotlight-item" data-spotlight="sam" aria-haspopup="dialog" aria-label="Read Sam Lee's full spotlight">
+        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Sam Lee" class="spotlight-image" width="800" height="800" loading="lazy">
         <div class="spotlight-overlay">
           <h3 class="spotlight-title">Sam Lee</h3>
           <p class="spotlight-role">Technician</p>
-          <p class="spotlight-quote">"The supportive culture at VCA has allowed me to expand my skills and take on leadership roles."</p>
+          <span class="spotlight-cta-chip">Read Full Interview <span aria-hidden="true">&rarr;</span></span>
+          <p class="spotlight-quote">&ldquo;The supportive culture at VCA has allowed me to expand my skills and take on leadership roles.&rdquo;</p>
         </div>
-      </div>
-      
-      <div class="spotlight-item">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Jamie Wilson" class="spotlight-image">
+      </button>
+
+      <button type="button" class="spotlight-item" data-spotlight="jamie" aria-haspopup="dialog" aria-label="Read Jamie Wilson's full spotlight">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Jamie Wilson" class="spotlight-image" width="800" height="800" loading="lazy">
         <div class="spotlight-overlay">
           <h3 class="spotlight-title">Jamie Wilson</h3>
           <p class="spotlight-role">Practice Manager</p>
-          <p class="spotlight-quote">"VCA provides the resources and autonomy to create a positive workplace culture and drive practice success."</p>
+          <span class="spotlight-cta-chip">Read Full Interview <span aria-hidden="true">&rarr;</span></span>
+          <p class="spotlight-quote">&ldquo;VCA provides the resources and autonomy to create a positive workplace culture and drive practice success.&rdquo;</p>
         </div>
-      </div>
+      </button>
     </div>
   </section>
+
+  <!-- EMPLOYEE SPOTLIGHT MODAL (shared, populated by JS per employee) -->
+  <div class="spotlight-modal" id="spotlightModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="spotlightModalName">
+    <div class="spotlight-modal-backdrop" data-spotlight-close></div>
+    <div class="spotlight-modal-panel">
+      <div class="spotlight-modal-close-bar">
+        <button type="button" class="spotlight-modal-close" data-spotlight-close aria-label="Close spotlight">&times;</button>
+      </div>
+      <div class="spotlight-modal-header" id="spotlightModalHeader">
+        <div class="avatar-tile" id="spotlightModalAvatar" aria-hidden="true"></div>
+        <h2 id="spotlightModalName"></h2>
+        <p id="spotlightModalRole"></p>
+      </div>
+      <div class="spotlight-modal-body">
+        <h3 id="spotlightModalQHeading"></h3>
+        <div class="spotlight-interview-list" id="spotlightModalInterview"></div>
+        <div class="spotlight-modal-cta" id="spotlightModalCta">
+          <h4 id="spotlightModalCtaHeading"></h4>
+          <p>See where you could fit in at VCA North Atlantic.</p>
+          <button type="button" class="btn" id="spotlightModalCtaBtn"></button>
+        </div>
+        <button type="button" class="spotlight-modal-exit" data-spotlight-close>&larr; Back to Employee Spotlights</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky mobile Apply bar, shown once you scroll past the hero -->
+  <div class="mobile-apply-bar" id="mobileApplyBar">
+    <a href="#careers" class="btn">View Open Roles</a>
+  </div>
 
   <!-- VALUES SECTION -->
   <section class="section" id="values">
     <h2>Our Values</h2>
     <div class="values-container">
       <div class="value-item">
-        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="" class="value-bg">
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="" class="value-bg" width="800" height="600" loading="lazy">
         <div class="value-content">
-          <div class="value-icon">🤝</div>
+          <div class="value-icon" aria-hidden="true">🤝</div>
           <h3 class="value-title">Mentorship</h3>
           <p class="value-description">Fostering growth through guidance & support. We believe in investing in our team's development at every career stage.</p>
         </div>
       </div>
       
       <div class="value-item">
-        <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="" class="value-bg">
+        <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="" class="value-bg" width="800" height="600" loading="lazy">
         <div class="value-content">
-          <div class="value-icon">👥</div>
+          <div class="value-icon" aria-hidden="true">👥</div>
           <h3 class="value-title">Collaboration</h3>
           <p class="value-description">Working together to achieve excellence. Our team approach ensures the best outcomes for patients and a supportive environment for staff.</p>
         </div>
       </div>
       
       <div class="value-item">
-        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="" class="value-bg">
+        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="" class="value-bg" width="800" height="600" loading="lazy">
         <div class="value-content">
-          <div class="value-icon">🏆</div>
+          <div class="value-icon" aria-hidden="true">🏆</div>
           <h3 class="value-title">Medical Excellence</h3>
           <p class="value-description">Delivering top-tier care to every patient. We're committed to the highest standards of veterinary medicine and continuous improvement.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- WHY VCA SECTION -->
+  <section class="section" id="why-vca">
+    <h2>Why VCA North Atlantic</h2>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Beyond the culture and the people, here's what's actually backing you up.</p>
+    <div class="diff-grid">
+      <div class="diff-tile">
+        <div class="diff-tile-icon" aria-hidden="true">🧭</div>
+        <h3>Real Autonomy, Real Trust</h3>
+        <p>You make the plan of care — no corporate playbook. Paid on production, quarterly, with no negative accrual.</p>
+      </div>
+      <div class="diff-tile">
+        <div class="diff-tile-icon" aria-hidden="true">🩺</div>
+        <h3>Real Mentorship for New Grads</h3>
+        <p>6 months, paired one-on-one with a mentor, salary-only while you learn. Never scheduled alone in your first 60&ndash;90 days.</p>
+      </div>
+      <div class="diff-tile">
+        <div class="diff-tile-icon" aria-hidden="true">🏅</div>
+        <h3>A Path to Medical Leadership</h3>
+        <p>Open to associates with 6+ years of experience or doctors who already lead. Marketing, payroll, and ops are handled for you — MDs focus on teaching and still see patients.</p>
+      </div>
+      <div class="diff-tile">
+        <div class="diff-tile-icon" aria-hidden="true">🎓</div>
+        <h3>The Largest Postgraduate Training Network</h3>
+        <p>VCA Academy is North America's largest provider of postgraduate veterinary education — real infrastructure, not just a talking point.</p>
+      </div>
+      <div class="diff-tile">
+        <div class="diff-tile-icon" aria-hidden="true">⚖️</div>
+        <h3>We've Got Your Back</h3>
+        <p>Free License Defense coverage — if you're ever the subject of a state board complaint, VCA covers your legal fees and assigns you an attorney, at no cost to you.</p>
+      </div>
+      <div class="diff-tile">
+        <div class="diff-tile-icon" aria-hidden="true">🏥</div>
+        <h3>National Resources, Hometown Feel</h3>
+        <p>The resources and network of one of the country's largest veterinary groups — without losing the feel of a hometown hospital.</p>
+      </div>
+    </div>
+    <div class="diff-quotes">
+      <blockquote>
+        "I loved how I could definitely customize it to how I wanted to learn and what I wanted to work on."
+        <cite>&mdash; Dr. Taylor Goslin, VCA mentee</cite>
+      </blockquote>
+      <blockquote>
+        "With a formal mentorship program, we have the opportunity to get doctors up to speed quicker."
+        <cite>&mdash; Dr. Frank McAleer, VCA mentor</cite>
+      </blockquote>
     </div>
   </section>
 
@@ -1027,7 +1277,7 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
       
       <div class="hospital-types">
         <div class="hospital-type">
-          <h3><span>🏥</span> General Practice</h3>
+          <h3><span aria-hidden="true">🏥</span> General Practice</h3>
           <p>Our general practice hospitals provide comprehensive preventive care, diagnostics, and treatment for pets across the Northeast. Located in communities large and small, these hospitals offer diverse practice settings and clientele.</p>
           <div class="state-grid">
             <div class="state-item">CT</div>
@@ -1040,7 +1290,7 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
         </div>
         
         <div class="hospital-type">
-          <h3><span>🚑</span> Emergency & Specialty</h3>
+          <h3><span aria-hidden="true">🚑</span> Emergency & Specialty</h3>
           <p>Our emergency and specialty hospitals provide advanced, 24/7 care for critical cases and specialized treatment. These state-of-the-art facilities offer unique career opportunities in high-acuity medicine.</p>
           <div class="state-grid">
             <div class="state-item">CT</div>
@@ -1059,39 +1309,117 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
   <section class="section" id="careers">
     <h2>Open Roles</h2>
     <p style="text-align: center; max-width: 800px; margin: 0 auto 20px;">Join our team and make a difference in the lives of pets and their families across the North Atlantic region. We're currently hiring for the following positions:</p>
-    <div class="grid grid-3">
+    <div class="grid grid-4">
       <div class="card">
-        <span class="card-icon">🩺</span>
+        <span class="card-icon" aria-hidden="true">🩺</span>
         <strong>Veterinarians</strong>
         <p>Multiple locations across New England and New York</p>
-        <a href="#" class="btn">Apply Now</a>
+        <a href="https://careers.vca.com" target="_blank" rel="noopener" class="btn" data-apply-role="veterinarian" title="Placeholder — will use a specific job requisition link once available">Apply Now</a>
       </div>
       <div class="card">
-        <span class="card-icon">🧪</span>
+        <span class="card-icon" aria-hidden="true">🧪</span>
         <strong>Veterinary Technicians</strong>
         <p>Full-time and part-time positions available</p>
-        <a href="#" class="btn">Apply Now</a>
+        <a href="https://careers.vca.com" target="_blank" rel="noopener" class="btn" data-apply-role="technician" title="Placeholder — will use a specific job requisition link once available">Apply Now</a>
       </div>
       <div class="card">
-        <span class="card-icon">👋</span>
+        <span class="card-icon" aria-hidden="true">👋</span>
         <strong>Client Service Representatives</strong>
         <p>Be the welcoming face of our hospitals</p>
-        <a href="#" class="btn">Apply Now</a>
+        <a href="https://careers.vca.com" target="_blank" rel="noopener" class="btn" data-apply-role="csr" title="Placeholder — will use a specific job requisition link once available">Apply Now</a>
+      </div>
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">🗺️</span>
+        <strong>Travel ER</strong>
+        <p>Relief support in emergency &amp; specialty hospitals nationwide, with competitive pay and travel accommodations covered</p>
+        <a href="https://vcatravelerdoctor.github.io/travelER/" target="_blank" rel="noopener" class="btn">Learn More</a>
       </div>
     </div>
     <div style="text-align: center; margin-top: 40px;">
-      <a href="https://careers.vca.com" class="btn" style="font-size: 1.1rem; padding: 14px 35px; border-radius: 30px; background: linear-gradient(to right, var(--heading-purple), var(--teal)); box-shadow: 0 10px 25px rgba(125, 63, 152, 0.25);">View All Open Positions</a>
+      <a href="https://careers.vca.com" target="_blank" rel="noopener" class="btn" data-apply-role="general" style="font-size: 1.1rem; padding: 14px 35px; border-radius: 30px; background: linear-gradient(to right, var(--heading-purple), var(--teal-dark)); box-shadow: 0 10px 25px rgba(125, 63, 152, 0.25);">View All Open Positions</a>
     </div>
   </section>
 
   <!-- BENEFITS SECTION -->
   <section class="section" id="benefits">
     <h2>Benefits</h2>
+    <p class="benefits-comp-note">We offer <strong>competitive, transparent pay</strong> for every role — including sign-on and anniversary bonuses in many cases — and your recruiter will walk you through specifics for your position and location early in the process. Here's what's on top of that:</p>
+    <div class="benefit-grid">
+      <div class="benefit-tile">
+        <div class="benefit-tile-icon" aria-hidden="true">🏥</div>
+        <h3>Health &amp; Wellness</h3>
+        <p>Choice of medical plans with preventive care covered 100% in-network, plus dental and vision. Mental health support includes up to 12 free Lyra therapy/coaching sessions a year and a free Headspace membership.</p>
+      </div>
+      <div class="benefit-tile">
+        <div class="benefit-tile-icon" aria-hidden="true">💰</div>
+        <h3>Financial Security</h3>
+        <p>A 401(k) with a 3.5% company match — you're 100% vested in your own contributions from day one. Full-time associates also get Life and Disability insurance at no cost.</p>
+      </div>
+      <div class="benefit-tile">
+        <div class="benefit-tile-icon" aria-hidden="true">🌴</div>
+        <h3>Time Off &amp; Continuing Education</h3>
+        <p>6 weeks of PTO for GP doctors, 5 for ER doctors, plus a $3,500/year continuing education budget to keep growing your skills on your terms.</p>
+      </div>
+      <div class="benefit-tile">
+        <div class="benefit-tile-icon" aria-hidden="true">👶</div>
+        <h3>Family &amp; Life</h3>
+        <p>Up to 4 weeks of fully paid parental leave for birth or adoption, fertility care support, and confidential counseling for you and your family whenever you need it.</p>
+      </div>
+      <div class="benefit-tile">
+        <div class="benefit-tile-icon" aria-hidden="true">🐾</div>
+        <h3>For the Veterinary Team</h3>
+        <p>Generous discounts on care for your own pets — including 100% off vaccines and free care from any VCA DVM — plus free License Defense coverage if you're ever the subject of a state board complaint.</p>
+      </div>
+      <div class="benefit-tile">
+        <div class="benefit-tile-icon" aria-hidden="true">🎁</div>
+        <h3>Everyday Perks</h3>
+        <p>Free legal assistance, identity theft protection, student loan repayment guidance, and hundreds of everyday discounts on things like cell phone plans, gyms, and entertainment.</p>
+      </div>
+    </div>
     <div class="benefits-cta">
-      <h3>Comprehensive Benefits Package</h3>
-      <p>We're proud to offer an industry-leading benefits package including health insurance, 401(k) matching, CE allowance, pet care discounts, and more.</p>
-      <a href="benefits.pdf" class="btn" target="_blank">View Our Benefits Guide</a>
-      <div class="benefits-icon">📋</div>
+      <h3>Want the Full Details?</h3>
+      <p>Plan options, rates, and eligibility vary by location and role — see the complete guide for the specifics.</p>
+      <a href="benefits-guide.pdf" class="btn" target="_blank" rel="noopener">View Our Benefits Guide</a>
+      <div class="benefits-icon" aria-hidden="true">📋</div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="section" id="faq">
+    <h2>Common Questions</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>What does the hiring process look like?</summary>
+        <p class="faq-answer">It starts with a conversation with one of our recruiters (see Contact Our Team below), who will walk you through next steps specific to the role, hospital, and location you're interested in.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How does compensation work?</summary>
+        <p class="faq-answer">Doctors are paid on a production salary model, with payouts quarterly and no negative accrual — a slower quarter never means paying anything back. Offers often include sign-on and/or anniversary bonuses at the 1- and 2-year marks as well. Your recruiter will walk you through the specifics for your role and location.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What kind of clinical autonomy do I have as a doctor here?</summary>
+        <p class="faq-answer">Full autonomy on medical decisions. We collaborate as a team to find the best path for each patient, but there's no corporate playbook dictating what you have to do when a given case walks in the door — ultimately, you make the plan of care.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is there a path to medical leadership?</summary>
+        <p class="faq-answer">Yes. Our Medical Director track is open to associates with 6+ years of experience as well as doctors who already have medical leadership experience. MDs are backed by dedicated marketing, payroll, and operations teams, so you can focus on medical teaching and leadership — while still seeing your own patients and clients on the floor.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What's the mentorship experience like for new grads?</summary>
+        <p class="faq-answer">New doctors join VCA Academy's structured 6-month mentorship program — paired one-on-one with a mentor, working a modified schedule that gradually eases you into a full caseload, and compensated on salary only so you're never pressured by production numbers while you're still learning. You won't be scheduled alone during your first 60&ndash;90 days.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I use my benefits for my own pets?</summary>
+        <p class="faq-answer">Yes. Full- and part-time associates get discounted care for up to four pets at their home hospital — including 100% off vaccinations — and any service a DVM provides on their own pet is covered in full.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What happens if I face a state board complaint?</summary>
+        <p class="faq-answer">You're covered. VCA's License Defense program provides a dedicated attorney and covers your legal fees for board complaints related to your veterinary work at VCA, at no cost to you.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What benefits am I eligible for, and when?</summary>
+        <p class="faq-answer">Full-time associates are generally eligible for health, dental, and vision coverage the first of the month after 30 days of employment, and the 401(k) after 60 days. Your recruiter can confirm exact timing for your role.</p>
+      </details>
     </div>
   </section>
 
@@ -1099,30 +1427,32 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
   <section class="section" id="recruiters">
     <h2>Contact Our Team</h2>
     <p style="text-align: center; max-width: 800px; margin: 0 auto 20px;">Have questions about joining VCA North Atlantic? Our dedicated recruitment team is here to help you find the perfect position.</p>
+    <!-- TODO: phone numbers below are placeholders — replace with real direct lines before launch -->
     <div class="grid grid-3">
       <div class="card">
-        <span class="card-icon">📧</span>
+        <span class="card-icon" aria-hidden="true">📧</span>
         <strong>Nick Silva</strong>
         <p>Veterinarian Recruiter</p>
-        <p><a href="mailto:jane.roe@vca.com" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">nick.silva@vca.com</a></p>
-        <p><a href="tel:+1234567890" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i style="margin-right:8px; font-size: 1.2em;">📞</i> (123) 456-7890</a></p>
+        <p><a href="mailto:nick.silva@vca.com" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">nick.silva@vca.com</a></p>
+        <p><a href="tel:+1234567890" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i style="margin-right:8px; font-size: 1.2em;" aria-hidden="true">📞</i> (123) 456-7890</a></p>
       </div>
       <div class="card">
-        <span class="card-icon">📧</span>
+        <span class="card-icon" aria-hidden="true">📧</span>
         <strong>Amy Trudeau</strong>
         <p>Student/Early Career Recruiter</p>
-        <p><a href="mailto:john.roe@vca.com" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">john.doe@vca.com</a></p>
-        <p><a href="tel:+1234567891" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i style="margin-right:8px; font-size: 1.2em;">📞</i> (123) 456-7891</a></p>
+        <p><a href="mailto:amy.trudeau@vca.com" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">amy.trudeau@vca.com</a></p>
+        <p><a href="tel:+1234567891" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i style="margin-right:8px; font-size: 1.2em;" aria-hidden="true">📞</i> (123) 456-7891</a></p>
       </div>
       <div class="card">
-        <span class="card-icon">📧</span>
+        <span class="card-icon" aria-hidden="true">📧</span>
         <strong>Lauren Gerrish</strong>
         <p>CVT & Technician Recruiter</p>
-        <p><a href="mailto:sarah.johnson@vca.com" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">sarah.johnson@vca.com</a></p>
-        <p><a href="tel:+1234567892" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i style="margin-right:8px; font-size: 1.2em;">📞</i> (123) 456-7892</a></p>
+        <p><a href="mailto:lauren.gerrish@vca.com" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">lauren.gerrish@vca.com</a></p>
+        <p><a href="tel:+1234567892" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i style="margin-right:8px; font-size: 1.2em;" aria-hidden="true">📞</i> (123) 456-7892</a></p>
       </div>
     </div>
   </section>
+  </main>
 
   <footer class="footer">
     <div class="footer-content">
@@ -1134,43 +1464,93 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
       </div>
       <div class="footer-column">
         <h3>Resources</h3>
-        <a href="https://vcacareersite.com" target="_blank">VCA Careers</a>
-        <a href="#">New Grad Programs</a>
-        <a href="#">Internships</a>
-        <a href="#">Continuing Education</a>
+        <a href="https://careers.vca.com" target="_blank" rel="noopener">VCA Careers</a>
+        <a href="#" title="Placeholder — add real URL">New Grad Programs</a>
+        <a href="#" title="Placeholder — add real URL">Internships</a>
+        <a href="#" title="Placeholder — add real URL">Continuing Education</a>
       </div>
       <div class="footer-column">
         <h3>Connect With Us</h3>
         <p>Follow us on social media for the latest updates and opportunities.</p>
         <div style="display: flex; gap: 15px; margin-top: 15px;">
-          <a href="#" style="color: white; font-size: 1.5em;">📱</a>
-          <a href="#" style="color: white; font-size: 1.5em;">📷</a>
-          <a href="#" style="color: white; font-size: 1.5em;">🔗</a>
-          <a href="#" style="color: white; font-size: 1.5em;">🐦</a>
+          <a href="#" style="font-size: 1.5em;" aria-label="Facebook (placeholder link)" title="Placeholder — add real URL">📱</a>
+          <a href="#" style="font-size: 1.5em;" aria-label="Instagram (placeholder link)" title="Placeholder — add real URL">📷</a>
+          <a href="#" style="font-size: 1.5em;" aria-label="LinkedIn (placeholder link)" title="Placeholder — add real URL">🔗</a>
+          <a href="#" style="font-size: 1.5em;" aria-label="X / Twitter (placeholder link)" title="Placeholder — add real URL">🐦</a>
         </div>
       </div>
     </div>
     <div class="copyright">
-      <p>&copy; 2025 VCA North Atlantic. All rights reserved.</p>
+      <p>VCA is an equal opportunity employer. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, sexual orientation, gender identity, national origin, disability, veteran status, or any other protected characteristic.</p>
+      <p>&copy; <span id="copyright-year"></span> VCA North Atlantic. All rights reserved.</p>
     </div>
   </footer>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // ============================================================
+      // APPLY LINK CONFIG — update this when specific per-role/location
+      // job requisition links become available on the careers site
+      // backend. Every element with a matching data-apply-role
+      // attribute (Open Roles "Apply Now" buttons, "View All Open
+      // Positions", the sticky mobile Apply bar) picks up its href
+      // from here automatically — no need to hunt through the HTML.
+      // Until real per-role links exist, everything safely falls
+      // back to the general careers search page.
+      // ============================================================
+      const APPLY_LINKS = {
+        veterinarian: 'https://careers.vca.com',
+        technician: 'https://careers.vca.com',
+        csr: 'https://careers.vca.com',
+        general: 'https://careers.vca.com',
+      };
+      document.querySelectorAll('[data-apply-role]').forEach(el => {
+        const url = APPLY_LINKS[el.getAttribute('data-apply-role')];
+        if (url) el.href = url;
+      });
+
+      const yearEl = document.getElementById('copyright-year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // Freezes the page at its current scroll position (no jump-to-top like
+      // overflow:hidden causes) by pinning body in place with position:fixed,
+      // then restores the exact same scroll position on unlock.
+      let lockedScrollY = 0;
+      function lockPageScroll() {
+        lockedScrollY = window.scrollY;
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${lockedScrollY}px`;
+        document.body.style.left = '0';
+        document.body.style.right = '0';
+      }
+      function unlockPageScroll() {
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+        document.body.style.right = '';
+        void document.body.offsetHeight; // force layout so the browser knows the real scroll range before we set it
+        window.scrollTo({ top: lockedScrollY, left: 0, behavior: 'instant' });
+      }
+
       // Mobile Menu Toggle - UPDATED
       const menuToggle = document.getElementById('menuToggle');
       const navLinks = document.getElementById('navLinks');
       const navOverlay = document.getElementById('navOverlay');
-      const body = document.body;
-      
+
       function toggleMenu() {
         navLinks.classList.toggle('active');
         navOverlay.classList.toggle('active');
-        body.classList.toggle('menu-open');
-        
-        // Update aria-expanded attribute for accessibility
+
         const isExpanded = navLinks.classList.contains('active');
+        document.body.classList.toggle('menu-open', isExpanded);
+        if (isExpanded) {
+          lockPageScroll();
+        } else {
+          unlockPageScroll();
+        }
+
+        // Update aria-expanded attribute for accessibility
         menuToggle.setAttribute('aria-expanded', isExpanded);
-        
+
         // Change menu icon
         menuToggle.textContent = isExpanded ? '✕' : '☰';
       }
@@ -1215,15 +1595,20 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
         });
       });
       
-      // Image data for carousel
+      // Culture gallery slides. These are themed placeholder tiles (icon + caption + brand
+      // gradient) rather than hotlinked stock photos, since hotlinked photo URLs are the
+      // easiest thing on a site to end up dead. Swap in real photos by adding a `src`/`alt`
+      // pair per slide once real photography is available — createCarouselItem() below
+      // already branches on that.
       const images = [
-        { src: 'https://images.unsplash.com/photo-1551887373-2a2a2a9e678d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Veterinary team during procedure' },
-        { src: 'https://images.unsplash.com/photo-1599443015574-be5fe8a05783?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Veterinarian examining dog' },
-        { src: 'https://images.unsplash.com/photo-1516734212186-a967f081c1f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Team building event' },
-        { src: 'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Veterinary staff meeting' },
-        { src: 'https://images.unsplash.com/photo-1579165466949-3180a3d056d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Veterinarian with cat' },
-        { src: 'https://images.unsplash.com/photo-1570624090866-d3496a3d9291?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Veterinary team with pet owner' },
-        { src: 'https://images.unsplash.com/photo-1588943211346-0908a1fb0b01?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Hospital tour' }
+        { icon: '🐾', caption: 'Compassionate Patient Care', gradient: 'var(--blue), var(--teal-dark)' },
+        { icon: '🤝', caption: 'Collaborative Care Teams', gradient: 'var(--teal-dark), var(--heading-purple)' },
+        { icon: '🚑', caption: 'Emergency & Critical Care', gradient: 'var(--heading-purple), var(--coral-dark)' },
+        { icon: '🎓', caption: 'Mentorship & Growth', gradient: 'var(--coral-dark), var(--blue)' },
+        { icon: '🔬', caption: 'Hands-On Learning', gradient: 'var(--blue), var(--heading-purple)' },
+        { icon: '🎉', caption: 'Team Celebrations', gradient: 'var(--teal-dark), var(--coral-dark)' },
+        { icon: '☕', caption: 'Work-Life Balance', gradient: 'var(--heading-purple), var(--teal-dark)' },
+        { icon: '🏥', caption: 'State-of-the-Art Hospitals', gradient: 'var(--coral-dark), var(--teal-dark)' }
       ];
 
       // Get DOM elements
@@ -1232,7 +1617,7 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
       const prevButton = document.querySelector('.carousel-button.prev');
       const nextButton = document.querySelector('.carousel-button.next');
       const modal = document.getElementById('imageModal');
-      const modalImage = document.getElementById('modalImage');
+      const modalTile = document.getElementById('modalTile');
       const closeModal = document.querySelector('.close-modal');
       const container = document.querySelector('.carousel-container');
       
@@ -1268,38 +1653,76 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
         }, 100);
       }
       
+      // Builds either a real <img> (when a slide supplies src/alt) or a themed
+      // placeholder tile (icon + caption + brand gradient) for slides that don't.
+      function buildSlideVisual(image) {
+        if (image.src) {
+          const img = document.createElement('img');
+          img.src = image.src;
+          img.alt = image.alt || image.caption || '';
+          img.loading = 'lazy';
+          return img;
+        }
+        const tile = document.createElement('div');
+        tile.className = 'placeholder-tile';
+        tile.style.background = `linear-gradient(135deg, ${image.gradient})`;
+        const icon = document.createElement('span');
+        icon.className = 'tile-icon';
+        icon.setAttribute('aria-hidden', 'true');
+        icon.textContent = image.icon;
+        const caption = document.createElement('span');
+        caption.className = 'tile-caption';
+        caption.textContent = image.caption;
+        tile.append(icon, caption);
+        return tile;
+      }
+
       // Create carousel item
       function createCarouselItem(image, index, className = '') {
         const item = document.createElement('div');
         item.className = `carousel-item ${className}`;
         item.dataset.index = index;
-        
+
         const imgContainer = document.createElement('div');
         imgContainer.className = 'img-container';
-        
-        const img = document.createElement('img');
-        img.src = image.src;
-        img.alt = image.alt;
-        img.loading = 'lazy';
-        
-        imgContainer.appendChild(img);
+        imgContainer.setAttribute('role', 'button');
+        imgContainer.setAttribute('tabindex', '0');
+        imgContainer.setAttribute('aria-label', `View larger: ${image.caption || image.alt || ''}`);
+
+        imgContainer.appendChild(buildSlideVisual(image));
         item.appendChild(imgContainer);
-        
+
         // If it's a clone for the start, prepend it
         if (className === 'clone-start') {
           track.prepend(item);
         } else {
           track.appendChild(item);
         }
-        
-        // Add click event for modal
-        imgContainer.addEventListener('click', () => {
+
+        // Add click/keyboard event for modal
+        const openModal = () => {
           pauseAutoScroll();
-          modalImage.src = image.src;
-          modalImage.alt = image.alt;
+          modalTile.innerHTML = '';
+          modalTile.style.background = '';
+          const visual = buildSlideVisual(image);
+          if (visual.tagName === 'IMG') {
+            visual.style.width = '100%';
+            visual.style.height = 'auto';
+            visual.style.maxHeight = '80vh';
+            visual.style.objectFit = 'contain';
+            visual.style.borderRadius = '5px';
+          }
+          modalTile.appendChild(visual);
           modal.classList.add('active');
+        };
+        imgContainer.addEventListener('click', openModal);
+        imgContainer.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openModal();
+          }
         });
-        
+
         // Add hover events to pause/resume auto-scroll
         imgContainer.addEventListener('mouseenter', pauseAutoScroll);
         
@@ -1312,10 +1735,12 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
       
       // Create indicator
       function createIndicator(index) {
-        const indicator = document.createElement('div');
+        const indicator = document.createElement('button');
+        indicator.type = 'button';
         indicator.className = `indicator ${index === currentIndex ? 'active' : ''}`;
         indicator.dataset.index = index;
-        
+        indicator.setAttribute('aria-label', `Go to photo ${index + 1}`);
+
         indicator.addEventListener('click', () => {
           pauseAutoScroll();
           goToSlide(parseInt(index));
@@ -1424,9 +1849,11 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
       }
       
       // Start auto-scrolling
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
       function startAutoScroll() {
-        if (isPaused) return;
-        
+        if (isPaused || prefersReducedMotion) return;
+
         // Clear any existing interval
         if (autoScrollInterval) {
           clearInterval(autoScrollInterval);
@@ -1571,6 +1998,191 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
         }, index * 100);
       });
       
+      // Active nav-link highlighting based on scroll position
+      const navAnchorLinks = Array.from(document.querySelectorAll('.nav-links a'));
+      const sections = navAnchorLinks
+        .map(link => document.querySelector(link.getAttribute('href')))
+        .filter(Boolean);
+
+      const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = navAnchorLinks.find(a => a.getAttribute('href') === `#${entry.target.id}`);
+          if (!link) return;
+          if (entry.isIntersecting) {
+            navAnchorLinks.forEach(a => a.classList.remove('active'));
+            link.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+      sections.forEach(section => navObserver.observe(section));
+
+      // Sticky mobile Apply bar — visible once the hero has scrolled out of view
+      const heroSection = document.querySelector('.hero');
+      const mobileApplyBar = document.getElementById('mobileApplyBar');
+      if (heroSection && mobileApplyBar) {
+        const heroObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            mobileApplyBar.classList.toggle('visible', !entry.isIntersecting);
+          });
+        }, { threshold: 0 });
+        heroObserver.observe(heroSection);
+      }
+
+      // Employee Spotlight in-page modal
+      const spotlightData = {
+        alex: {
+          name: 'Alex Doe, DVM',
+          role: 'Veterinarian &middot; VCA North Atlantic',
+          initials: 'AD',
+          gradient: ['var(--blue)', 'var(--teal-dark)'],
+          ctaLabel: 'View Open Veterinarian Roles',
+          qas: [
+            ['What made you choose VCA North Atlantic over other practices?', "I wanted a place where I could keep growing clinically without losing the personal side of medicine. The mentorship here was obvious from my very first interview — everyone was genuinely invested in helping me succeed, not just filling a shift."],
+            ['What does a typical day look like for you?', "No two days are exactly alike, but it usually starts with morning rounds, a mix of wellness exams and more complex cases, and a lot of collaborating with our technicians — they catch things I'd miss if I were working solo."],
+            ["What's the most rewarding part of being a vet here?", "Watching a really sick patient walk out the door healthy. It sounds simple, but that moment never gets old, and having a team around me that celebrates those wins together makes it even better."],
+            ["What's one fun fact about you outside of work?", "I've run three marathons and I'm training for my fourth. My coworkers have started a betting pool on my finish time — no pressure."],
+            ['Any advice for a new grad considering VCA?', "Say yes to every mentoring opportunity you're offered. You never know which conversation or case is going to shape the rest of your career."],
+          ],
+        },
+        sam: {
+          name: 'Sam Lee, CVT',
+          role: 'Veterinary Technician &middot; VCA North Atlantic',
+          initials: 'SL',
+          gradient: ['var(--teal-dark)', 'var(--heading-purple)'],
+          ctaLabel: 'View Open Technician Roles',
+          qas: [
+            ['Why did you choose to build your career at VCA North Atlantic?', "I wanted to work somewhere that saw technicians as clinical partners, not just extra hands. Here, my opinion in a treatment plan actually gets asked for — that changes how invested you feel in every case."],
+            ['What does a typical shift look like for you?', "A lot of variety — placing catheters, running labwork, monitoring anesthesia, comforting anxious patients (and sometimes anxious pet parents). I'm usually working side-by-side with a doctor, but I own my part of the case."],
+            ["What's the most rewarding part of the job?", "Building trust with a scared patient in just a few minutes. There's a moment mid-appointment where they stop shaking and let you help them — that's the whole job, right there."],
+            ["What's something people might not know about you?", "I foster kittens on the side, so it's not unusual for me to show up to a shift with cat hair on my scrubs from a completely different set of patients."],
+            ['What would you tell someone considering a technician role here?', "Ask about growth opportunities in the interview. I started in general practice and moved into a leadership track within two years because the team actually invested in getting me there."],
+          ],
+        },
+        jamie: {
+          name: 'Jamie Wilson, Practice Manager',
+          role: 'Practice Manager &middot; VCA North Atlantic',
+          initials: 'JW',
+          gradient: ['var(--heading-purple)', 'var(--coral-dark)'],
+          ctaLabel: 'View Open Leadership Roles',
+          qas: [
+            ['What drew you to VCA North Atlantic?', "I'd managed practices before, but here I actually get the autonomy and the resources to build the culture I always wanted — not just hit numbers, but create a place people are proud to work."],
+            ['What does your day-to-day actually involve?', "A bit of everything — scheduling and staffing, checking in with the care teams, handling client concerns that need a manager's touch, and a lot of one-on-ones making sure my team has what they need to do their best work."],
+            ["What's the most rewarding part of leading a practice?", "Watching a team member grow into a role they didn't think they were ready for. Some of my proudest moments have nothing to do with revenue targets — they're about people."],
+            ['Something fun about you outside the hospital?', "I'm a pretty serious home cook — Sunday meal prep for my team is basically a running tradition at this point."],
+            ['Advice for someone considering a management role at VCA?', "Lead with curiosity before authority. The best decisions I've made came from actually listening to my technicians and CSRs before making a call."],
+          ],
+        },
+      };
+
+      const spotlightModal = document.getElementById('spotlightModal');
+      const spotlightModalPanel = spotlightModal.querySelector('.spotlight-modal-panel');
+      const spotlightModalHeader = document.getElementById('spotlightModalHeader');
+      const spotlightModalAvatar = document.getElementById('spotlightModalAvatar');
+      const spotlightModalName = document.getElementById('spotlightModalName');
+      const spotlightModalRole = document.getElementById('spotlightModalRole');
+      const spotlightModalQHeading = document.getElementById('spotlightModalQHeading');
+      const spotlightModalInterview = document.getElementById('spotlightModalInterview');
+      const spotlightModalCta = document.getElementById('spotlightModalCta');
+      const spotlightModalCtaHeading = document.getElementById('spotlightModalCtaHeading');
+      const spotlightModalCtaBtn = document.getElementById('spotlightModalCtaBtn');
+      let spotlightLastTrigger = null;
+
+      function openSpotlightModal(key, trigger) {
+        const data = spotlightData[key];
+        if (!data) return;
+        spotlightLastTrigger = trigger;
+
+        const gradientCss = `linear-gradient(135deg, ${data.gradient[0]}, ${data.gradient[1]})`;
+        spotlightModalHeader.style.background = gradientCss;
+        spotlightModalCta.style.background = `linear-gradient(to right, ${data.gradient[0]}, ${data.gradient[1]})`;
+        spotlightModalAvatar.textContent = data.initials;
+        spotlightModalName.textContent = data.name;
+        spotlightModalRole.innerHTML = data.role;
+        spotlightModalQHeading.textContent = `5 Questions with ${data.name.split(',')[0].split(' ')[0]}`;
+        spotlightModalCtaHeading.textContent = `Inspired by ${data.name.split(',')[0].split(' ')[0]}’s story?`;
+        spotlightModalCtaBtn.textContent = data.ctaLabel;
+
+        spotlightModalInterview.innerHTML = '';
+        data.qas.forEach((qa, i) => {
+          const item = document.createElement('div');
+          item.className = 'spotlight-interview-item';
+          item.style.setProperty('--item-color', data.gradient[i % 2]);
+          const num = document.createElement('div');
+          num.className = 'spotlight-q-number';
+          num.style.background = gradientCss;
+          num.textContent = String(i + 1);
+          const body = document.createElement('div');
+          const q = document.createElement('h4');
+          q.className = 'spotlight-q-text';
+          q.textContent = qa[0];
+          const a = document.createElement('p');
+          a.className = 'spotlight-a-text';
+          a.textContent = qa[1];
+          body.append(q, a);
+          item.append(num, body);
+          spotlightModalInterview.appendChild(item);
+        });
+
+        spotlightModal.classList.add('active');
+        spotlightModal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('spotlight-modal-open');
+        lockPageScroll();
+        spotlightModalPanel.scrollTop = 0;
+        spotlightModal.querySelector('.spotlight-modal-close').focus({ preventScroll: true });
+        document.addEventListener('keydown', handleSpotlightKeydown);
+      }
+
+      function closeSpotlightModal() {
+        spotlightModal.classList.remove('active');
+        spotlightModal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('spotlight-modal-open');
+        unlockPageScroll();
+        document.removeEventListener('keydown', handleSpotlightKeydown);
+        if (spotlightLastTrigger) spotlightLastTrigger.focus({ preventScroll: true });
+      }
+
+      function handleSpotlightKeydown(e) {
+        if (e.key === 'Escape') {
+          closeSpotlightModal();
+          return;
+        }
+        if (e.key === 'Tab') {
+          const focusable = spotlightModal.querySelectorAll('button, a[href]');
+          const list = Array.from(focusable).filter(el => el.offsetParent !== null);
+          if (!list.length) return;
+          const first = list[0];
+          const last = list[list.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
+
+      document.querySelectorAll('[data-spotlight]').forEach(trigger => {
+        trigger.addEventListener('click', () => {
+          openSpotlightModal(trigger.getAttribute('data-spotlight'), trigger);
+        });
+      });
+
+      spotlightModal.querySelectorAll('[data-spotlight-close]').forEach(el => {
+        el.addEventListener('click', () => closeSpotlightModal());
+      });
+
+      spotlightModalCtaBtn.addEventListener('click', () => {
+        closeSpotlightModal();
+        requestAnimationFrame(() => {
+          const target = document.getElementById('careers');
+          if (target) {
+            window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+          }
+        });
+      });
+
       // Mobile spotlight enhancement
       function setupMobileSpotlights() {
         // Only run this code on mobile devices
