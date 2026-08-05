@@ -561,6 +561,29 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
       font-size: 0.9em;
     }
 
+    .spotlight-cta-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      border-radius: 20px;
+      font-size: 0.78em;
+      font-weight: 600;
+      color: #fff;
+      backdrop-filter: blur(2px);
+      transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .spotlight-item:hover .spotlight-cta-chip,
+    .spotlight-item.mobile-active .spotlight-cta-chip {
+      background: var(--coral-dark);
+      border-color: var(--coral-dark);
+      transform: translateY(-2px);
+    }
+
     .spotlight-quote {
       color: white;
       max-height: 0;
@@ -1039,13 +1062,15 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
   <!-- EMPLOYEE SPOTLIGHTS SECTION -->
   <section class="section" id="spotlights">
     <h2>Employee Spotlights</h2>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Click on a team member to read their full 5-question interview — in their own words.</p>
     <div class="spotlight-grid">
       <button type="button" class="spotlight-item" data-spotlight="alex" aria-haspopup="dialog" aria-label="Read Alex Doe's full spotlight">
         <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Alex Doe" class="spotlight-image">
         <div class="spotlight-overlay">
           <h3 class="spotlight-title">Alex Doe</h3>
           <p class="spotlight-role">Veterinarian</p>
-          <p class="spotlight-quote">"I joined VCA North Atlantic three years ago and have found incredible mentorship and growth opportunities." <span style="text-decoration:underline;">Read more &rarr;</span></p>
+          <span class="spotlight-cta-chip">Read Full Interview <span aria-hidden="true">&rarr;</span></span>
+          <p class="spotlight-quote">"I joined VCA North Atlantic three years ago and have found incredible mentorship and growth opportunities."</p>
         </div>
       </button>
 
@@ -1054,7 +1079,8 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
         <div class="spotlight-overlay">
           <h3 class="spotlight-title">Sam Lee</h3>
           <p class="spotlight-role">Technician</p>
-          <p class="spotlight-quote">"The supportive culture at VCA has allowed me to expand my skills and take on leadership roles." <span style="text-decoration:underline;">Read more &rarr;</span></p>
+          <span class="spotlight-cta-chip">Read Full Interview <span aria-hidden="true">&rarr;</span></span>
+          <p class="spotlight-quote">"The supportive culture at VCA has allowed me to expand my skills and take on leadership roles."</p>
         </div>
       </button>
 
@@ -1063,7 +1089,8 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
         <div class="spotlight-overlay">
           <h3 class="spotlight-title">Jamie Wilson</h3>
           <p class="spotlight-role">Practice Manager</p>
-          <p class="spotlight-quote">"VCA provides the resources and autonomy to create a positive workplace culture and drive practice success." <span style="text-decoration:underline;">Read more &rarr;</span></p>
+          <span class="spotlight-cta-chip">Read Full Interview <span aria-hidden="true">&rarr;</span></span>
+          <p class="spotlight-quote">"VCA provides the resources and autonomy to create a positive workplace culture and drive practice success."</p>
         </div>
       </button>
     </div>
