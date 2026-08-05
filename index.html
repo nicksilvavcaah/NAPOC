@@ -531,50 +531,38 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(to top, rgba(0, 59, 113, 0.9), transparent);
-      padding: 20px;
-      transform: translateY(70%);
-      transition: transform 0.4s ease;
+      background: linear-gradient(to top, rgba(0, 59, 113, 0.95), rgba(0, 59, 113, 0.75) 65%, transparent);
+      padding: 16px 20px;
       pointer-events: none;
-    }
-
-    .spotlight-item:hover .spotlight-overlay {
-      transform: translateY(0);
     }
 
     .spotlight-title {
       color: white;
-      margin: 0 0 5px;
+      margin: 0 0 3px;
       font-weight: 600;
       font-size: 1.2em;
     }
 
     .spotlight-role {
       color: rgba(255, 255, 255, 0.9);
-      margin: 0 0 10px;
+      margin: 0;
       font-size: 0.9em;
     }
 
     .spotlight-quote {
       color: white;
+      max-height: 0;
+      margin-top: 0;
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      transition-delay: 0.1s;
+      overflow: hidden;
+      transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.3s ease;
     }
 
-    .spotlight-item:hover .spotlight-quote {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .spotlight-item.mobile-active .spotlight-overlay {
-      transform: translateY(0);
-    }
-
+    .spotlight-item:hover .spotlight-quote,
     .spotlight-item.mobile-active .spotlight-quote {
+      max-height: 160px;
+      margin-top: 10px;
       opacity: 1;
-      transform: translateY(0);
     }
 
     /* Values with Background Images */
