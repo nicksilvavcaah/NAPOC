@@ -3,90 +3,128 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alex Doe – Spotlight</title>
+  <title>Alex Doe – Employee Spotlight | VCA North Atlantic</title>
+  <meta name="description" content="Meet Alex Doe, DVM, a veterinarian at VCA North Atlantic.">
+  <meta name="theme-color" content="#003B71">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --blue: #003B71;
       --teal: #00A99D;
-      --purple: #7D3F98;
-      --coral: #FF6F61;
+      --heading-purple: #7D3F98;
+      --coral-dark: #C23B2E;
       --light: #F7F7F7;
     }
+    *:focus-visible{outline:3px solid var(--heading-purple);outline-offset:2px;}
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Inter', sans-serif;
       color: #333;
-      line-height: 1.5;
+      line-height: 1.6;
+      background: var(--light);
+    }
+    .page {
       max-width: 800px;
       padding: 20px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0 auto;
     }
     a.back {
       text-decoration: none;
       color: var(--blue);
-      font-weight: bold;
+      font-weight: 600;
       display: inline-block;
       margin-bottom: 20px;
     }
+    a.back:hover { color: var(--coral-dark); }
+    .profile-card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      padding: 40px 30px;
+      text-align: center;
+    }
     img.profile {
       width: 150px;
+      height: 150px;
+      object-fit: cover;
       border-radius: 50%;
       display: block;
       margin: 0 auto;
+      border: 4px solid var(--light);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
     h1 {
-      margin-top: 10px;
-      color: var(--purple);
-      text-align: center;
+      font-family: 'Playfair Display', serif;
+      margin: 20px 0 5px;
+      color: var(--heading-purple);
+    }
+    .role {
+      color: #666;
+      font-style: italic;
+      margin: 0;
     }
     .qa {
       margin-top: 30px;
+      text-align: left;
     }
     .qa h3 {
       color: var(--teal);
       margin-bottom: 5px;
+      font-size: 1.05em;
     }
     .qa p {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
     .video {
       margin-top: 30px;
-      text-align: center;
+    }
+    .video h3 {
+      color: var(--heading-purple);
+      font-family: 'Playfair Display', serif;
     }
     .video-placeholder {
-      background: #ccc;
+      background: #e9e9e9;
+      border: 2px dashed #ccc;
+      border-radius: 10px;
       width: 100%;
       height: 200px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #666;
+      color: #888;
+      font-weight: 600;
+      box-sizing: border-box;
     }
   </style>
 </head>
 <body>
-  <a href="vca_recruitment_poc_full.html#spotlights" class="back">← Back to Spotlights</a>
-  <section>
-    <img src="/mnt/data/a6b29e20-01e6-47d5-9693-fc4c1537de6b.png" alt="Alex Doe" class="profile" />
-    <h1>Alex Doe, DVM</h1>
-    <p style="text-align:center"><em>Veterinarian, VCA North Atlantic</em></p>
-  </section>
+  <div class="page">
+    <a href="index.html#spotlights" class="back">&larr; Back to Spotlights</a>
+    <div class="profile-card">
+      <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Alex Doe" class="profile" />
+      <h1>Alex Doe, DVM</h1>
+      <p class="role">Veterinarian, VCA North Atlantic</p>
 
-  <section class="qa">
-    <h3>Q: What’s your favorite part about working here?</h3>
-    <p>A: I love the collaborative environment—every day feels like learning something new!</p>
+      <section class="qa">
+        <h3>Q: What's your favorite part about working here?</h3>
+        <p>A: I love the collaborative environment—every day feels like learning something new!</p>
 
-    <h3>Q: What’s one fun fact about you?</h3>
-    <p>A: I’ve run three marathons and I’m training for my fourth.</p>
+        <h3>Q: What's one fun fact about you?</h3>
+        <p>A: I've run three marathons and I'm training for my fourth.</p>
 
-    <h3>Q: Any tips for new grads?</h3>
-    <p>A: Say yes to every mentoring opportunity—you never know who will shape your career.</p>
-  </section>
+        <h3>Q: Any tips for new grads?</h3>
+        <p>A: Say yes to every mentoring opportunity—you never know who will shape your career.</p>
+      </section>
 
-  <section class="video">
-    <h3>Watch Alex in Action</h3>
-    <div class="video-placeholder">[Video Embed Placeholder]</div>
-  </section>
+      <section class="video">
+        <h3>Watch Alex in Action</h3>
+        <div class="video-placeholder">Video embed placeholder — add real video URL</div>
+      </section>
+    </div>
+  </div>
 </body>
 </html>

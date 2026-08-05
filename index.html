@@ -2,38 +2,58 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>VCA North Atlantic Recruitment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Careers at VCA North Atlantic | Join Our Team</title>
+  <meta name="description" content="Explore veterinarian, technician, and support staff careers with VCA North Atlantic. Discover our culture, benefits, and open roles across New England and New York.">
+  <meta name="theme-color" content="#003B71">
+  <link rel="icon" type="image/png" href="favicon.png">
   <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <style>
     html { scroll-behavior: smooth; }
     @keyframes fadeInUp {0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
     @keyframes pawSequence {0%,100%{opacity:0;transform:scale(1);}16.66%,33.33%{opacity:1;transform:scale(1.1);}}
-    :root{--blue:#003B71;--teal:#00A99D;--purple:#B19CD9;--heading-purple:#7D3F98;--coral:#FF6F61;--light:#F7F7F7;--grey:#f8f8f8;}
+    :root{--blue:#003B71;--teal:#00A99D;--teal-dark:#00786F;--purple:#B19CD9;--heading-purple:#7D3F98;--coral:#FF6F61;--coral-dark:#C23B2E;--light:#F7F7F7;--grey:#f8f8f8;}
+    /* --coral, --teal and --purple are logo-accent tints for decorative use only (icons, borders, low-opacity overlays).
+       Use --coral-dark / --teal-dark / --heading-purple wherever white text sits directly on a solid or gradient fill — the lighter tints fail WCAG AA contrast at 2.9:1–2.4:1. */
+    *:focus-visible{outline:3px solid var(--heading-purple);outline-offset:2px;}
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important;}
+    }
     html{overflow-x:hidden; width:100%; position:relative; scroll-behavior: smooth;}
 body{overflow-x:hidden; width:100%; position:relative; max-width:100%; background:var(--light);margin:0;font-family:'Inter',sans-serif;color:#333;line-height:1.6;}
-    h1{font-size:1.7em;font-weight:700;margin:0 0 .5em;color:#fff;max-width:600px;line-height:1.4;animation:fadeInUp 1s forwards .3s;}
+    h1{font-family:'Playfair Display',serif;font-size:2em;font-weight:700;margin:0 0 .4em;color:#fff;max-width:650px;line-height:1.3;animation:fadeInUp 1s forwards .15s;}
     h2{font-family:'Playfair Display',serif;font-size:1.8em;font-weight:600;color:var(--heading-purple);text-align:left;max-width:1000px;margin:0 auto 15px;position:relative;animation:fadeInUp 1s forwards .3s;}
     h2:after{content:'';display:block;width:50px;height:3px;background:var(--coral);margin-top:6px;}
     p,.card p,.benefit-item p{margin:0 0 1em;}strong{font-weight:600;}
-    .btn{font-weight:600;margin-top:20px;padding:12px 24px;background:var(--coral);color:#fff;border:none;border-radius:4px;cursor:pointer;transition:background .3s,transform .2s;text-decoration:none;display:inline-block;animation:fadeInUp 1s forwards .7s;}
-    .btn:hover{background:var(--purple);transform:scale(1.03);}
+    .btn{font-weight:600;margin-top:20px;padding:12px 24px;background:var(--coral-dark);color:#fff;border:none;border-radius:4px;cursor:pointer;transition:background .3s,transform .2s;text-decoration:none;display:inline-block;animation:fadeInUp 1s forwards .7s;}
+    .btn:hover{background:var(--heading-purple);transform:scale(1.03);}
+    /* Skip link */
+    .skip-link{position:absolute;left:-9999px;top:0;background:var(--blue);color:#fff;padding:10px 18px;z-index:2000;border-radius:0 0 6px 0;text-decoration:none;font-weight:600;}
+    .skip-link:focus{left:0;}
+
     /* Header & Navigation Styles */
-    .header{position:sticky;top:0;background:rgba(247,247,247,0.9);backdrop-filter:blur(10px);display:flex;justify-content:space-between;align-items:center;padding:10px 20px;border-bottom:2px solid var(--teal);z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.1);}
+    .header{position:sticky;top:0;background:rgba(247,247,247,0.9);backdrop-filter:blur(10px);display:flex;justify-content:space-between;align-items:center;gap:16px;padding:10px 20px;border-bottom:2px solid var(--teal);z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.1);}
     .header img{height:50px;}
+    .header-cta{margin:0;padding:10px 20px;font-size:0.95em;white-space:nowrap;animation:none;}
+    .header-right{display:flex;align-items:center;gap:16px;}
+    .nav-overlay{display:none;}
+    @media (max-width:992px){.header-cta{display:none;}}
     
     /* Mobile Menu Button */
     .menu-toggle{display:none;background:none;border:none;font-size:1.5rem;color:var(--blue);cursor:pointer;padding:5px;}
-    .menu-toggle:focus{outline:none;}
     
     /* Navigation Links */
     .nav-links{display:flex;align-items:center;gap:20px;}
     .nav-links a{text-decoration:none;color:var(--blue);font-weight:600;transition:color .3s,transform .2s;position:relative;padding:5px 0;}
     .nav-links a:hover{color:var(--coral);transform:translateY(-2px);}
-    .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--coral);transition:width .3s ease;}
+    .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--coral-dark);transition:width .3s ease;}
     .nav-links a:hover::after{width:100%;}
+    .nav-links a.active{color:var(--coral-dark);}
+    .nav-links a.active::after{width:100%;}
     
     /* Media Queries for Responsive Navigation - UPDATED */
     @media (max-width:992px){
@@ -85,7 +105,7 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
       .nav-links{top:60px;height:calc(100vh - 60px);}
       .nav-overlay{top:60px;height:calc(100vh - 60px);}
     }
-    .hero{position:relative;min-height:50vh;padding:40px 20px;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border-radius:40px;margin-bottom:0;overflow:hidden;}
+    .hero{position:relative;min-height:50vh;padding:40px 20px;background:linear-gradient(135deg,var(--blue),var(--teal-dark));display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border-radius:40px;margin-bottom:0;overflow:hidden;}
     .hero-text{position:relative;z-index:2;max-width:700px;}
     .hero-subtitle{font-size:1.1em;color:rgba(255,255,255,0.9);margin-top:.5em;animation:fadeInUp 1s forwards .5s;}
     
@@ -93,9 +113,21 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
     .leader-quote {
       position: relative;
       padding-left: 20px;
-      margin-bottom: 8px;
+      margin: 0 0 8px;
+      max-width: 600px;
     }
-    
+
+    .leader-quote p {
+      margin: 0;
+      font-size: 1.15em;
+      font-weight: 500;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.95);
+      line-height: 1.5;
+      animation: fadeInUp 1s forwards .4s;
+      opacity: 0;
+    }
+
     .leader-quote:before {
       content: '"';
       position: absolute;
@@ -106,8 +138,9 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
       color: rgba(255, 255, 255, 0.2);
       line-height: 1;
     }
-    
+
     .quote-attribution {
+      display: block;
       font-size: 1em;
       color: rgba(255, 255, 255, 0.9);
       margin-top: 8px;
@@ -244,7 +277,7 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
     .benefits-cta {
       text-align: center;
       padding: 30px 20px;
-      background: linear-gradient(to right, var(--blue), var(--teal));
+      background: linear-gradient(to right, var(--blue), var(--teal-dark));
       border-radius: 15px;
       margin: 30px auto;
       max-width: 800px;
@@ -471,12 +504,15 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
 
     .spotlight-item {
       position: relative;
+      display: block;
       height: 320px;
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
     }
+    a.spotlight-item { cursor: pointer; }
 
     .spotlight-image {
       width: 100%;
@@ -652,11 +688,11 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
     .carousel-item img{width:100%;height:100%;object-fit:cover;}
     .carousel-nav{position:absolute;top:50%;width:100%;display:flex;justify-content:space-between;transform:translateY(-50%);z-index:2;}
     .carousel-button{background-color:var(--blue);color:white;border:none;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background-color 0.3s ease;box-shadow:0 3px 6px rgba(0,0,0,0.2);}
-    .carousel-button:hover{background-color:var(--coral);}
+    .carousel-button:hover{background-color:var(--coral-dark);}
     .carousel-button.prev{margin-left:20px;}
     .carousel-button.next{margin-right:20px;}
     .carousel-indicators{display:flex;justify-content:center;margin-top:20px;}
-    .indicator{width:10px;height:10px;border-radius:50%;background-color:#ccc;margin:0 5px;cursor:pointer;transition:background-color 0.3s ease;}
+    .indicator{width:10px;height:10px;border-radius:50%;background-color:#ccc;border:none;padding:0;margin:0 5px;cursor:pointer;transition:background-color 0.3s ease;}
     .indicator.active{background-color:var(--blue);}
     
     /* Modal for Image Viewing */
@@ -746,17 +782,17 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
     
     .card .btn {
       margin-top: auto !important;
-      background: linear-gradient(to right, var(--coral), var(--purple)) !important;
+      background: linear-gradient(to right, var(--coral-dark), var(--heading-purple)) !important;
       border-radius: 30px !important;
       padding: 12px 28px !important;
-      box-shadow: 0 8px 20px rgba(255, 111, 97, 0.25) !important;
+      box-shadow: 0 8px 20px rgba(194, 59, 46, 0.25) !important;
       transition: transform .3s, box-shadow .3s, background .3s !important;
     }
-    
+
     .card .btn:hover {
       transform: translateY(-5px) !important;
-      box-shadow: 0 12px 25px rgba(255, 111, 97, 0.4) !important;
-      background: linear-gradient(to right, var(--purple), var(--teal)) !important;
+      box-shadow: 0 12px 25px rgba(125, 63, 152, 0.4) !important;
+      background: linear-gradient(to right, var(--heading-purple), var(--teal-dark)) !important;
     }
     
     .card-link {
@@ -842,29 +878,35 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
   </style>
 </head>
 <body id="top">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <header class="header">
-    <a href="#top"><img src="VCA_logo.svg.png" alt="VCA Logo"></a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <a href="#top" aria-label="VCA North Atlantic home"><img src="VCA_logo.svg.png" alt="VCA Animal Hospitals logo"></a>
+    <div class="header-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="#culture">Our Culture</a>
+        <a href="#testimonials">Team Testimonials</a>
+        <a href="#spotlights">Employee Spotlights</a>
+        <a href="#values">Our Values</a>
+        <a href="#region-at-a-glance">Our Region</a>
+        <a href="#careers">Open Roles</a>
+        <a href="#benefits">Benefits</a>
+        <a href="#recruiters">Contact Our Team</a>
+      </nav>
+      <a href="#careers" class="btn header-cta">View Roles</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
     <div class="nav-overlay" id="navOverlay"></div>
-    <nav class="nav-links" id="navLinks">
-      <a href="#culture">Our Culture</a>
-      <a href="#testimonials">Team Testimonials</a>
-      <a href="#spotlights">Employee Spotlights</a>
-      <a href="#values">Our Values</a>
-      <a href="#region-at-a-glance">Our Region</a>
-      <a href="#careers">Open Roles</a>
-      <a href="#benefits">Benefits</a>
-      <a href="#recruiters">Contact Our Team</a>
-    </nav>
   </header>
 
+  <main id="main-content">
   <!-- HERO SECTION -->
   <section class="hero">
     <div class="hero-text">
-      <div class="leader-quote">
-        <h1>"At VCA North Atlantic, we've created something truly special—a supportive community of passionate professionals who elevate each other while delivering exceptional care. Our region combines clinical excellence with genuine connection, making this a place to thrive both professionally and personally."</h1>
-        <p class="quote-attribution">Lauren McVey, Group Vice President</p>
-      </div>
+      <h1>Join a Team That Elevates Great Medicine — and Great People</h1>
+      <blockquote class="leader-quote">
+        <p>"At VCA North Atlantic, we've created something truly special—a supportive community of passionate professionals who elevate each other while delivering exceptional care. Our region combines clinical excellence with genuine connection, making this a place to thrive both professionally and personally."</p>
+        <cite class="quote-attribution">Lauren McVey, Group Vice President</cite>
+      </blockquote>
       <a href="#careers" class="btn">See Open Roles</a>
     </div>
     <span class="paw-print" style="bottom:15%; left:15%;animation-delay:0s;">🐾</span>
@@ -886,8 +928,8 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
       </div>
       
       <div class="carousel-nav">
-        <button class="carousel-button prev">&#10094;</button>
-        <button class="carousel-button next">&#10095;</button>
+        <button class="carousel-button prev" aria-label="Previous photo">&#10094;</button>
+        <button class="carousel-button next" aria-label="Next photo">&#10095;</button>
       </div>
       
       <div class="carousel-indicators" id="carouselIndicators">
@@ -897,7 +939,7 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
     
     <div class="modal" id="imageModal">
       <div class="modal-content">
-        <button class="close-modal">&times;</button>
+        <button class="close-modal" aria-label="Close image">&times;</button>
         <img id="modalImage" src="" alt="Enlarged image">
       </div>
     </div>
@@ -955,14 +997,14 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
   <section class="section" id="spotlights">
     <h2>Employee Spotlights</h2>
     <div class="spotlight-grid">
-      <div class="spotlight-item">
+      <a href="alex-doe.html" class="spotlight-item" aria-label="Read Alex Doe's full spotlight">
         <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Alex Doe" class="spotlight-image">
         <div class="spotlight-overlay">
           <h3 class="spotlight-title">Alex Doe</h3>
           <p class="spotlight-role">Veterinarian</p>
-          <p class="spotlight-quote">"I joined VCA North Atlantic three years ago and have found incredible mentorship and growth opportunities."</p>
+          <p class="spotlight-quote">"I joined VCA North Atlantic three years ago and have found incredible mentorship and growth opportunities." <span style="text-decoration:underline;">Read more &rarr;</span></p>
         </div>
-      </div>
+      </a>
       
       <div class="spotlight-item">
         <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Sam Lee" class="spotlight-image">
@@ -1064,23 +1106,23 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
         <span class="card-icon">🩺</span>
         <strong>Veterinarians</strong>
         <p>Multiple locations across New England and New York</p>
-        <a href="#" class="btn">Apply Now</a>
+        <a href="https://careers.vca.com" target="_blank" rel="noopener" class="btn" title="Placeholder — replace with the specific job requisition link">Apply Now</a>
       </div>
       <div class="card">
         <span class="card-icon">🧪</span>
         <strong>Veterinary Technicians</strong>
         <p>Full-time and part-time positions available</p>
-        <a href="#" class="btn">Apply Now</a>
+        <a href="https://careers.vca.com" target="_blank" rel="noopener" class="btn" title="Placeholder — replace with the specific job requisition link">Apply Now</a>
       </div>
       <div class="card">
         <span class="card-icon">👋</span>
         <strong>Client Service Representatives</strong>
         <p>Be the welcoming face of our hospitals</p>
-        <a href="#" class="btn">Apply Now</a>
+        <a href="https://careers.vca.com" target="_blank" rel="noopener" class="btn" title="Placeholder — replace with the specific job requisition link">Apply Now</a>
       </div>
     </div>
     <div style="text-align: center; margin-top: 40px;">
-      <a href="https://careers.vca.com" class="btn" style="font-size: 1.1rem; padding: 14px 35px; border-radius: 30px; background: linear-gradient(to right, var(--heading-purple), var(--teal)); box-shadow: 0 10px 25px rgba(125, 63, 152, 0.25);">View All Open Positions</a>
+      <a href="https://careers.vca.com" target="_blank" rel="noopener" class="btn" style="font-size: 1.1rem; padding: 14px 35px; border-radius: 30px; background: linear-gradient(to right, var(--heading-purple), var(--teal-dark)); box-shadow: 0 10px 25px rgba(125, 63, 152, 0.25);">View All Open Positions</a>
     </div>
   </section>
 
@@ -1090,7 +1132,7 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
     <div class="benefits-cta">
       <h3>Comprehensive Benefits Package</h3>
       <p>We're proud to offer an industry-leading benefits package including health insurance, 401(k) matching, CE allowance, pet care discounts, and more.</p>
-      <a href="benefits.pdf" class="btn" target="_blank">View Our Benefits Guide</a>
+      <a href="benefits-guide.pdf" class="btn" target="_blank" rel="noopener">View Our Benefits Guide</a>
       <div class="benefits-icon">📋</div>
     </div>
   </section>
@@ -1099,30 +1141,32 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
   <section class="section" id="recruiters">
     <h2>Contact Our Team</h2>
     <p style="text-align: center; max-width: 800px; margin: 0 auto 20px;">Have questions about joining VCA North Atlantic? Our dedicated recruitment team is here to help you find the perfect position.</p>
+    <!-- TODO: phone numbers below are placeholders — replace with real direct lines before launch -->
     <div class="grid grid-3">
       <div class="card">
         <span class="card-icon">📧</span>
         <strong>Nick Silva</strong>
         <p>Veterinarian Recruiter</p>
-        <p><a href="mailto:jane.roe@vca.com" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">nick.silva@vca.com</a></p>
-        <p><a href="tel:+1234567890" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i style="margin-right:8px; font-size: 1.2em;">📞</i> (123) 456-7890</a></p>
+        <p><a href="mailto:nick.silva@vca.com" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">nick.silva@vca.com</a></p>
+        <p><a href="tel:+1234567890" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i style="margin-right:8px; font-size: 1.2em;" aria-hidden="true">📞</i> (123) 456-7890</a></p>
       </div>
       <div class="card">
         <span class="card-icon">📧</span>
         <strong>Amy Trudeau</strong>
         <p>Student/Early Career Recruiter</p>
-        <p><a href="mailto:john.roe@vca.com" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">john.doe@vca.com</a></p>
-        <p><a href="tel:+1234567891" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i style="margin-right:8px; font-size: 1.2em;">📞</i> (123) 456-7891</a></p>
+        <p><a href="mailto:amy.trudeau@vca.com" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">amy.trudeau@vca.com</a></p>
+        <p><a href="tel:+1234567891" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i style="margin-right:8px; font-size: 1.2em;" aria-hidden="true">📞</i> (123) 456-7891</a></p>
       </div>
       <div class="card">
         <span class="card-icon">📧</span>
         <strong>Lauren Gerrish</strong>
         <p>CVT & Technician Recruiter</p>
-        <p><a href="mailto:sarah.johnson@vca.com" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">sarah.johnson@vca.com</a></p>
-        <p><a href="tel:+1234567892" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i style="margin-right:8px; font-size: 1.2em;">📞</i> (123) 456-7892</a></p>
+        <p><a href="mailto:lauren.gerrish@vca.com" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">lauren.gerrish@vca.com</a></p>
+        <p><a href="tel:+1234567892" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i style="margin-right:8px; font-size: 1.2em;" aria-hidden="true">📞</i> (123) 456-7892</a></p>
       </div>
     </div>
   </section>
+  </main>
 
   <footer class="footer">
     <div class="footer-content">
@@ -1134,28 +1178,31 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
       </div>
       <div class="footer-column">
         <h3>Resources</h3>
-        <a href="https://vcacareersite.com" target="_blank">VCA Careers</a>
-        <a href="#">New Grad Programs</a>
-        <a href="#">Internships</a>
-        <a href="#">Continuing Education</a>
+        <a href="https://careers.vca.com" target="_blank" rel="noopener">VCA Careers</a>
+        <a href="#" title="Placeholder — add real URL">New Grad Programs</a>
+        <a href="#" title="Placeholder — add real URL">Internships</a>
+        <a href="#" title="Placeholder — add real URL">Continuing Education</a>
       </div>
       <div class="footer-column">
         <h3>Connect With Us</h3>
         <p>Follow us on social media for the latest updates and opportunities.</p>
         <div style="display: flex; gap: 15px; margin-top: 15px;">
-          <a href="#" style="color: white; font-size: 1.5em;">📱</a>
-          <a href="#" style="color: white; font-size: 1.5em;">📷</a>
-          <a href="#" style="color: white; font-size: 1.5em;">🔗</a>
-          <a href="#" style="color: white; font-size: 1.5em;">🐦</a>
+          <a href="#" style="color: white; font-size: 1.5em;" aria-label="Facebook (placeholder link)" title="Placeholder — add real URL">📱</a>
+          <a href="#" style="color: white; font-size: 1.5em;" aria-label="Instagram (placeholder link)" title="Placeholder — add real URL">📷</a>
+          <a href="#" style="color: white; font-size: 1.5em;" aria-label="LinkedIn (placeholder link)" title="Placeholder — add real URL">🔗</a>
+          <a href="#" style="color: white; font-size: 1.5em;" aria-label="X / Twitter (placeholder link)" title="Placeholder — add real URL">🐦</a>
         </div>
       </div>
     </div>
     <div class="copyright">
-      <p>&copy; 2025 VCA North Atlantic. All rights reserved.</p>
+      <p>&copy; <span id="copyright-year"></span> VCA North Atlantic. All rights reserved.</p>
     </div>
   </footer>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      const yearEl = document.getElementById('copyright-year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
       // Mobile Menu Toggle - UPDATED
       const menuToggle = document.getElementById('menuToggle');
       const navLinks = document.getElementById('navLinks');
@@ -1312,10 +1359,12 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
       
       // Create indicator
       function createIndicator(index) {
-        const indicator = document.createElement('div');
+        const indicator = document.createElement('button');
+        indicator.type = 'button';
         indicator.className = `indicator ${index === currentIndex ? 'active' : ''}`;
         indicator.dataset.index = index;
-        
+        indicator.setAttribute('aria-label', `Go to photo ${index + 1}`);
+
         indicator.addEventListener('click', () => {
           pauseAutoScroll();
           goToSlide(parseInt(index));
@@ -1424,9 +1473,11 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
       }
       
       // Start auto-scrolling
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
       function startAutoScroll() {
-        if (isPaused) return;
-        
+        if (isPaused || prefersReducedMotion) return;
+
         // Clear any existing interval
         if (autoScrollInterval) {
           clearInterval(autoScrollInterval);
@@ -1571,6 +1622,25 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
         }, index * 100);
       });
       
+      // Active nav-link highlighting based on scroll position
+      const navAnchorLinks = Array.from(document.querySelectorAll('.nav-links a'));
+      const sections = navAnchorLinks
+        .map(link => document.querySelector(link.getAttribute('href')))
+        .filter(Boolean);
+
+      const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = navAnchorLinks.find(a => a.getAttribute('href') === `#${entry.target.id}`);
+          if (!link) return;
+          if (entry.isIntersecting) {
+            navAnchorLinks.forEach(a => a.classList.remove('active'));
+            link.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+      sections.forEach(section => navObserver.observe(section));
+
       // Mobile spotlight enhancement
       function setupMobileSpotlights() {
         // Only run this code on mobile devices
