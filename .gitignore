@@ -1,0 +1,4 @@
+# Ephemeral local dev-server state from the impeccable skill (PID/port of a
+# background server started during a critique/polish run) - not deliverable
+# content, and it churns on every run, so keep it out of version control.
+.impeccable/live/
