@@ -365,27 +365,31 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     }
 
     /* Benefits tile grid */
-    .benefit-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:22px;max-width:1150px;margin:0 auto 35px;padding:15px;}
+    .benefit-grid{max-width:1150px;margin:0 auto 35px;padding:15px;}
     .benefit-tile{background:#ffffff;border-radius:16px;padding:26px 22px;box-shadow:0 10px 25px rgba(0,0,0,0.07);transition:transform .3s ease, box-shadow .3s ease;}
     .benefit-tile:hover{transform:translateY(-6px);box-shadow:0 15px 30px rgba(0,0,0,0.12);}
     .benefit-tile-icon{font-size:2.1em;margin-bottom:10px;color:var(--teal-dark);}
     .benefit-tile h3{font-family:'Playfair Display',serif;color:var(--heading-purple);font-size:1.2em;margin:0 0 8px;}
     .benefit-tile p{color:#555;margin:0;font-size:0.93em;line-height:1.6;}
     /* Explicit accent colors (not structural nth-child) so tile icon variety survives
-       reordering and the grid-group-label rows interleaved into the same grid. */
+       reordering and doesn't depend on every group having exactly the same count. */
     .icon-accent-purple{color:var(--heading-purple) !important;}
     .icon-accent-coral{color:var(--coral-dark) !important;}
     .icon-accent-blue{color:var(--blue) !important;}
     .icon-accent-teal{color:var(--teal-dark) !important;}
-    /* Small full-width eyebrow labels that sub-group a 6-item grid into readable
-       clusters instead of one flat wall of equally-weighted tiles. */
-    .grid-group-label{grid-column:1/-1;font-family:'Playfair Display',serif;font-weight:700;font-size:0.8em;letter-spacing:0.08em;text-transform:uppercase;color:var(--heading-purple);opacity:0.7;margin:14px 0 -10px;}
-    .grid-group-label:first-child{margin-top:0;}
+    /* Each labeled cluster is its own self-contained grid rather than sharing grid
+       tracks with the other clusters - a shared grid left the label's full-width
+       span "claiming" a 3rd column that only 2 tiles then never filled, so the
+       pair rendered stuck to the left with dead space on the right. */
+    .tile-group{margin-top:28px;}
+    .tile-group:first-child{margin-top:0;}
+    .tile-pair{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:22px;margin-top:12px;}
+    .grid-group-label{font-family:'Playfair Display',serif;font-weight:700;font-size:0.8em;letter-spacing:0.08em;text-transform:uppercase;color:var(--heading-purple);opacity:0.7;}
     .benefits-comp-note{max-width:760px;margin:0 auto 30px;text-align:center;}
     .benefits-comp-note strong{color:var(--heading-purple);}
 
     /* Why VCA differentiator grid */
-    .diff-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:22px;max-width:1150px;margin:0 auto;padding:15px;}
+    .diff-grid{max-width:1150px;margin:0 auto;padding:15px;}
     .diff-tile{background:#ffffff;border-radius:16px;padding:26px 24px;box-shadow:0 10px 25px rgba(0,0,0,0.07);transition:transform .3s ease, box-shadow .3s ease;}
     .diff-tile:hover{transform:translateY(-6px);box-shadow:0 15px 30px rgba(0,0,0,0.12);}
     .diff-tile-icon{font-size:2.1em;margin-bottom:10px;color:var(--coral-dark);}
@@ -1235,38 +1239,50 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     <h2>Why VCA North Atlantic</h2>
     <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Beyond the culture and the people, here's what's actually backing you up.</p>
     <div class="diff-grid">
-      <div class="grid-group-label">How You'll Practice</div>
-      <div class="diff-tile">
-        <div class="diff-tile-icon" aria-hidden="true"><i data-lucide="compass"></i></div>
-        <h3>Real Autonomy, Real Trust</h3>
-        <p>You make the plan of care — no corporate playbook. Paid on production, quarterly, with no negative accrual.</p>
+      <div class="tile-group">
+        <div class="grid-group-label">How You'll Practice</div>
+        <div class="tile-pair">
+          <div class="diff-tile">
+            <div class="diff-tile-icon" aria-hidden="true"><i data-lucide="compass"></i></div>
+            <h3>Real Autonomy, Real Trust</h3>
+            <p>You make the plan of care — no corporate playbook. Paid on production, quarterly, with no negative accrual.</p>
+          </div>
+          <div class="diff-tile">
+            <div class="diff-tile-icon icon-accent-teal" aria-hidden="true"><i data-lucide="stethoscope"></i></div>
+            <h3>Real Mentorship for New Grads</h3>
+            <p>6 months, paired one-on-one with a mentor, salary-only while you learn. Never scheduled alone in your first 60&ndash;90 days.</p>
+          </div>
+        </div>
       </div>
-      <div class="diff-tile">
-        <div class="diff-tile-icon icon-accent-teal" aria-hidden="true"><i data-lucide="stethoscope"></i></div>
-        <h3>Real Mentorship for New Grads</h3>
-        <p>6 months, paired one-on-one with a mentor, salary-only while you learn. Never scheduled alone in your first 60&ndash;90 days.</p>
+      <div class="tile-group">
+        <div class="grid-group-label">Room to Grow</div>
+        <div class="tile-pair">
+          <div class="diff-tile">
+            <div class="diff-tile-icon icon-accent-purple" aria-hidden="true"><i data-lucide="medal"></i></div>
+            <h3>A Path to Medical Leadership</h3>
+            <p>Open to associates with 6+ years of experience or doctors who already lead. Marketing, payroll, and ops are handled for you — MDs focus on teaching and still see patients.</p>
+          </div>
+          <div class="diff-tile">
+            <div class="diff-tile-icon icon-accent-blue" aria-hidden="true"><i data-lucide="graduation-cap"></i></div>
+            <h3>The Largest Postgraduate Training Network</h3>
+            <p>VCA Academy is North America's largest provider of postgraduate veterinary education — real infrastructure, not just a talking point.</p>
+          </div>
+        </div>
       </div>
-      <div class="grid-group-label">Room to Grow</div>
-      <div class="diff-tile">
-        <div class="diff-tile-icon icon-accent-purple" aria-hidden="true"><i data-lucide="medal"></i></div>
-        <h3>A Path to Medical Leadership</h3>
-        <p>Open to associates with 6+ years of experience or doctors who already lead. Marketing, payroll, and ops are handled for you — MDs focus on teaching and still see patients.</p>
-      </div>
-      <div class="diff-tile">
-        <div class="diff-tile-icon icon-accent-blue" aria-hidden="true"><i data-lucide="graduation-cap"></i></div>
-        <h3>The Largest Postgraduate Training Network</h3>
-        <p>VCA Academy is North America's largest provider of postgraduate veterinary education — real infrastructure, not just a talking point.</p>
-      </div>
-      <div class="grid-group-label">The Backup You Don't See</div>
-      <div class="diff-tile">
-        <div class="diff-tile-icon" aria-hidden="true"><i data-lucide="scale"></i></div>
-        <h3>We've Got Your Back</h3>
-        <p>Free License Defense coverage — if you're ever the subject of a state board complaint, VCA covers your legal fees and assigns you an attorney, at no cost to you.</p>
-      </div>
-      <div class="diff-tile">
-        <div class="diff-tile-icon icon-accent-teal" aria-hidden="true"><i data-lucide="hospital"></i></div>
-        <h3>National Resources, Hometown Feel</h3>
-        <p>The resources and network of one of the country's largest veterinary groups — without losing the feel of a hometown hospital.</p>
+      <div class="tile-group">
+        <div class="grid-group-label">The Backup You Don't See</div>
+        <div class="tile-pair">
+          <div class="diff-tile">
+            <div class="diff-tile-icon" aria-hidden="true"><i data-lucide="scale"></i></div>
+            <h3>We've Got Your Back</h3>
+            <p>Free License Defense coverage — if you're ever the subject of a state board complaint, VCA covers your legal fees and assigns you an attorney, at no cost to you.</p>
+          </div>
+          <div class="diff-tile">
+            <div class="diff-tile-icon icon-accent-teal" aria-hidden="true"><i data-lucide="hospital"></i></div>
+            <h3>National Resources, Hometown Feel</h3>
+            <p>The resources and network of one of the country's largest veterinary groups — without losing the feel of a hometown hospital.</p>
+          </div>
+        </div>
       </div>
     </div>
     <div class="diff-quotes">
@@ -1359,38 +1375,50 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     <h2>Benefits</h2>
     <p class="benefits-comp-note">We offer <strong>competitive, transparent pay</strong> for every role — including sign-on and anniversary bonuses in many cases — and your recruiter will walk you through specifics for your position and location early in the process. Here's what's on top of that:</p>
     <div class="benefit-grid">
-      <div class="grid-group-label">Health &amp; Family</div>
-      <div class="benefit-tile">
-        <div class="benefit-tile-icon" aria-hidden="true"><i data-lucide="heart-pulse"></i></div>
-        <h3>Health &amp; Wellness</h3>
-        <p>Choice of medical plans with preventive care covered 100% in-network, plus dental and vision. Mental health support includes up to 12 free Lyra therapy/coaching sessions a year and a free Headspace membership.</p>
+      <div class="tile-group">
+        <div class="grid-group-label">Health &amp; Family</div>
+        <div class="tile-pair">
+          <div class="benefit-tile">
+            <div class="benefit-tile-icon" aria-hidden="true"><i data-lucide="heart-pulse"></i></div>
+            <h3>Health &amp; Wellness</h3>
+            <p>Choice of medical plans with preventive care covered 100% in-network, plus dental and vision. Mental health support includes up to 12 free Lyra therapy/coaching sessions a year and a free Headspace membership.</p>
+          </div>
+          <div class="benefit-tile">
+            <div class="benefit-tile-icon icon-accent-purple" aria-hidden="true"><i data-lucide="baby"></i></div>
+            <h3>Family &amp; Life</h3>
+            <p>Up to 4 weeks of fully paid parental leave for birth or adoption, fertility care support, and confidential counseling for you and your family whenever you need it.</p>
+          </div>
+        </div>
       </div>
-      <div class="benefit-tile">
-        <div class="benefit-tile-icon icon-accent-purple" aria-hidden="true"><i data-lucide="baby"></i></div>
-        <h3>Family &amp; Life</h3>
-        <p>Up to 4 weeks of fully paid parental leave for birth or adoption, fertility care support, and confidential counseling for you and your family whenever you need it.</p>
+      <div class="tile-group">
+        <div class="grid-group-label">Money &amp; Time</div>
+        <div class="tile-pair">
+          <div class="benefit-tile">
+            <div class="benefit-tile-icon icon-accent-coral" aria-hidden="true"><i data-lucide="piggy-bank"></i></div>
+            <h3>Financial Security</h3>
+            <p>A 401(k) with a 3.5% company match — you're 100% vested in your own contributions from day one. Full-time associates also get Life and Disability insurance at no cost.</p>
+          </div>
+          <div class="benefit-tile">
+            <div class="benefit-tile-icon icon-accent-blue" aria-hidden="true"><i data-lucide="palmtree"></i></div>
+            <h3>Time Off &amp; Continuing Education</h3>
+            <p>6 weeks of PTO for GP doctors, 5 for ER doctors, plus a $3,500/year continuing education budget to keep growing your skills on your terms.</p>
+          </div>
+        </div>
       </div>
-      <div class="grid-group-label">Money &amp; Time</div>
-      <div class="benefit-tile">
-        <div class="benefit-tile-icon icon-accent-coral" aria-hidden="true"><i data-lucide="piggy-bank"></i></div>
-        <h3>Financial Security</h3>
-        <p>A 401(k) with a 3.5% company match — you're 100% vested in your own contributions from day one. Full-time associates also get Life and Disability insurance at no cost.</p>
-      </div>
-      <div class="benefit-tile">
-        <div class="benefit-tile-icon icon-accent-blue" aria-hidden="true"><i data-lucide="palmtree"></i></div>
-        <h3>Time Off &amp; Continuing Education</h3>
-        <p>6 weeks of PTO for GP doctors, 5 for ER doctors, plus a $3,500/year continuing education budget to keep growing your skills on your terms.</p>
-      </div>
-      <div class="grid-group-label">Everyday Extras</div>
-      <div class="benefit-tile">
-        <div class="benefit-tile-icon" aria-hidden="true"><i data-lucide="paw-print"></i></div>
-        <h3>For the Veterinary Team</h3>
-        <p>Generous discounts on care for your own pets — including 100% off vaccines and free care from any VCA DVM — plus free License Defense coverage if you're ever the subject of a state board complaint.</p>
-      </div>
-      <div class="benefit-tile">
-        <div class="benefit-tile-icon icon-accent-purple" aria-hidden="true"><i data-lucide="gift"></i></div>
-        <h3>Everyday Perks</h3>
-        <p>Free legal assistance, identity theft protection, student loan repayment guidance, and hundreds of everyday discounts on things like cell phone plans, gyms, and entertainment.</p>
+      <div class="tile-group">
+        <div class="grid-group-label">Everyday Extras</div>
+        <div class="tile-pair">
+          <div class="benefit-tile">
+            <div class="benefit-tile-icon" aria-hidden="true"><i data-lucide="paw-print"></i></div>
+            <h3>For the Veterinary Team</h3>
+            <p>Generous discounts on care for your own pets — including 100% off vaccines and free care from any VCA DVM — plus free License Defense coverage if you're ever the subject of a state board complaint.</p>
+          </div>
+          <div class="benefit-tile">
+            <div class="benefit-tile-icon icon-accent-purple" aria-hidden="true"><i data-lucide="gift"></i></div>
+            <h3>Everyday Perks</h3>
+            <p>Free legal assistance, identity theft protection, student loan repayment guidance, and hundreds of everyday discounts on things like cell phone plans, gyms, and entertainment.</p>
+          </div>
+        </div>
       </div>
     </div>
     <div class="benefits-cta">
