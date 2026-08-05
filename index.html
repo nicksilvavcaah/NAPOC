@@ -49,7 +49,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     .header-cta{margin:0;padding:10px 20px;font-size:0.95em;white-space:nowrap;animation:none;}
     .header-right{display:flex;align-items:center;gap:16px;}
     .nav-overlay{display:none;}
-    @media (max-width:992px){.header-cta{display:none;}}
+    @media (max-width:1150px){.header-cta{display:none;}}
     
     /* Mobile Menu Button */
     .menu-toggle{display:none;position:relative;z-index:1001;background:none;border:none;font-size:1.5rem;color:var(--blue);cursor:pointer;padding:5px;}
@@ -65,9 +65,21 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     .nav-links a:hover::after{width:100%;}
     .nav-links a.active{color:var(--coral-dark);}
     .nav-links a.active::after{width:100%;}
-    
+
+    /* "More" dropdown - groups secondary nav links so the always-visible desktop
+       bar stays short. On mobile this flattens into the normal stacked list. */
+    .nav-more{position:relative;}
+    .nav-more-toggle{display:inline-flex;align-items:center;gap:4px;background:none;border:none;font:inherit;font-weight:600;color:var(--blue);cursor:pointer;padding:5px 0;transition:color .3s;}
+    .nav-more-toggle svg{width:16px;height:16px;transition:transform .25s ease;}
+    .nav-more-toggle:hover,.nav-more.active .nav-more-toggle,.nav-more.open .nav-more-toggle{color:var(--coral-dark);}
+    .nav-more.open .nav-more-toggle svg{transform:rotate(180deg);}
+    .nav-more-panel{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);margin-top:14px;background:#fff;border-radius:10px;box-shadow:0 12px 30px rgba(0,0,0,0.15);padding:8px;min-width:190px;flex-direction:column;z-index:1001;}
+    .nav-more.open .nav-more-panel{display:flex;}
+    .nav-more-panel a{padding:10px 14px;border-radius:6px;white-space:nowrap;}
+    .nav-more-panel a:hover{background:rgba(0,59,113,0.06);transform:none;}
+
     /* Media Queries for Responsive Navigation - UPDATED */
-    @media (max-width:992px){
+    @media (max-width:1150px){
       .menu-toggle{display:block;}
       .nav-links{
         position: fixed;
@@ -94,6 +106,12 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
         display: block; /* Ensure the link takes up the full width */
       }
       .nav-links a:last-child{border-bottom:none;}
+      /* On mobile there's no crowding problem, so flatten the "More" dropdown
+         back into one plain stacked list instead of a popover. */
+      .nav-more{width:100%;}
+      .nav-more-toggle{display:none;}
+      .nav-more-panel{display:flex;position:static;transform:none;margin-top:0;background:transparent;box-shadow:none;border-radius:0;padding:0;min-width:0;width:100%;}
+      .nav-more-panel a:last-child{border-bottom:1px solid rgba(0,0,0,0.05);}
       /* Make the overlay less dark */
       .nav-overlay{
         display: none;
@@ -1001,14 +1019,19 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     <div class="header-right">
       <nav class="nav-links" id="navLinks">
         <a href="#culture">Our Culture</a>
-        <a href="#testimonials">Team Testimonials</a>
         <a href="#spotlights">Employee Spotlights</a>
-        <a href="#values">Our Values</a>
         <a href="#why-vca">Why VCA</a>
-        <a href="#region-at-a-glance">Our Region</a>
         <a href="#careers">Open Roles</a>
         <a href="#benefits">Benefits</a>
-        <a href="#faq">FAQ</a>
+        <div class="nav-more" id="navMore">
+          <button type="button" class="nav-more-toggle" id="navMoreToggle" aria-haspopup="true" aria-expanded="false" aria-controls="navMorePanel">More <i data-lucide="chevron-down" aria-hidden="true"></i></button>
+          <div class="nav-more-panel" id="navMorePanel">
+            <a href="#testimonials">Team Testimonials</a>
+            <a href="#values">Our Values</a>
+            <a href="#region-at-a-glance">Our Region</a>
+            <a href="#faq">FAQ</a>
+          </div>
+        </div>
         <a href="#recruiters">Contact Our Team</a>
       </nav>
       <a href="#careers" class="btn header-cta">View Roles</a>
@@ -1581,9 +1604,45 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
           if (navLinks.classList.contains('active')) {
             toggleMenu();
           }
+
+          // Close the desktop "More" dropdown if it's open
+          if (navMore.classList.contains('open')) {
+            closeNavMore();
+          }
         });
       });
-      
+
+      // Desktop "More" nav dropdown (secondary links tucked off the main bar)
+      const navMore = document.getElementById('navMore');
+      const navMoreToggle = document.getElementById('navMoreToggle');
+
+      function openNavMore() {
+        navMore.classList.add('open');
+        navMoreToggle.setAttribute('aria-expanded', 'true');
+      }
+      function closeNavMore() {
+        navMore.classList.remove('open');
+        navMoreToggle.setAttribute('aria-expanded', 'false');
+      }
+      navMoreToggle.addEventListener('click', () => {
+        if (navMore.classList.contains('open')) {
+          closeNavMore();
+        } else {
+          openNavMore();
+        }
+      });
+      document.addEventListener('click', (e) => {
+        if (navMore.classList.contains('open') && !navMore.contains(e.target)) {
+          closeNavMore();
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navMore.classList.contains('open')) {
+          closeNavMore();
+          navMoreToggle.focus();
+        }
+      });
+
       // Culture gallery slides. These are themed placeholder tiles (icon + caption + brand
       // color) rather than hotlinked stock photos, since hotlinked photo URLs are the
       // easiest thing on a site to end up dead. Swap in real photos by adding a `src`/`alt`
@@ -2023,6 +2082,9 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
           if (entry.isIntersecting) {
             navAnchorLinks.forEach(a => a.classList.remove('active'));
             link.classList.add('active');
+            // The active section's link may be tucked inside the collapsed "More"
+            // dropdown - light up the toggle itself so the highlight isn't invisible.
+            navMore.classList.toggle('active', !!link.closest('.nav-more-panel'));
           }
         });
       }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
