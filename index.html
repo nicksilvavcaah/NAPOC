@@ -81,8 +81,6 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
         display: block; /* Ensure the link takes up the full width */
       }
       .nav-links a:last-child{border-bottom:none;}
-      /* Ensure body doesn't scroll when menu is open */
-      html.menu-open, body.menu-open{overflow:hidden;height:100%;}
       /* Make the overlay less dark */
       .nav-overlay{
         display: none;
@@ -734,7 +732,6 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
     .close-modal{position:absolute;top:-40px;right:0;color:white;font-size:24px;cursor:pointer;background:transparent;border:none;width:30px;height:30px;display:flex;align-items:center;justify-content:center;}
 
     /* Employee Spotlight in-page modal */
-    html.spotlight-modal-open, body.spotlight-modal-open{overflow:hidden;height:100%;}
     .spotlight-modal{display:none;position:fixed;inset:0;z-index:2000;}
     .spotlight-modal.active{display:block;}
     .spotlight-modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.65);opacity:0;transition:opacity .3s ease;}
@@ -1304,22 +1301,45 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
       const yearEl = document.getElementById('copyright-year');
       if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+      // Freezes the page at its current scroll position (no jump-to-top like
+      // overflow:hidden causes) by pinning body in place with position:fixed,
+      // then restores the exact same scroll position on unlock.
+      let lockedScrollY = 0;
+      function lockPageScroll() {
+        lockedScrollY = window.scrollY;
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${lockedScrollY}px`;
+        document.body.style.left = '0';
+        document.body.style.right = '0';
+      }
+      function unlockPageScroll() {
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+        document.body.style.right = '';
+        void document.body.offsetHeight; // force layout so the browser knows the real scroll range before we set it
+        window.scrollTo({ top: lockedScrollY, left: 0, behavior: 'instant' });
+      }
+
       // Mobile Menu Toggle - UPDATED
       const menuToggle = document.getElementById('menuToggle');
       const navLinks = document.getElementById('navLinks');
       const navOverlay = document.getElementById('navOverlay');
-      const body = document.body;
-      
+
       function toggleMenu() {
         navLinks.classList.toggle('active');
         navOverlay.classList.toggle('active');
-        body.classList.toggle('menu-open');
-        document.documentElement.classList.toggle('menu-open');
-        
-        // Update aria-expanded attribute for accessibility
+
         const isExpanded = navLinks.classList.contains('active');
+        if (isExpanded) {
+          lockPageScroll();
+        } else {
+          unlockPageScroll();
+        }
+
+        // Update aria-expanded attribute for accessibility
         menuToggle.setAttribute('aria-expanded', isExpanded);
-        
+
         // Change menu icon
         menuToggle.textContent = isExpanded ? '✕' : '☰';
       }
@@ -1883,20 +1903,18 @@ body{overflow-x:hidden; width:100%; position:relative; max-width:100%; backgroun
 
         spotlightModal.classList.add('active');
         spotlightModal.setAttribute('aria-hidden', 'false');
-        document.body.classList.add('spotlight-modal-open');
-        document.documentElement.classList.add('spotlight-modal-open');
+        lockPageScroll();
         spotlightModalPanel.scrollTop = 0;
-        spotlightModal.querySelector('.spotlight-modal-close').focus();
+        spotlightModal.querySelector('.spotlight-modal-close').focus({ preventScroll: true });
         document.addEventListener('keydown', handleSpotlightKeydown);
       }
 
       function closeSpotlightModal() {
         spotlightModal.classList.remove('active');
         spotlightModal.setAttribute('aria-hidden', 'true');
-        document.body.classList.remove('spotlight-modal-open');
-        document.documentElement.classList.remove('spotlight-modal-open');
+        unlockPageScroll();
         document.removeEventListener('keydown', handleSpotlightKeydown);
-        if (spotlightLastTrigger) spotlightLastTrigger.focus();
+        if (spotlightLastTrigger) spotlightLastTrigger.focus({ preventScroll: true });
       }
 
       function handleSpotlightKeydown(e) {
