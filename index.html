@@ -2497,6 +2497,15 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       // ============================================================
       const SHEET_CSV_URL = "PLACEHOLDER_REPLACE_WITH_PUBLISHED_SHEET_URL";
 
+      // The Sheet template ships with "REPLACE — ..." instructional text in
+      // not-yet-filled-in rows (testimonials, spotlights, contact phones).
+      // Treat those exactly like a blank cell — keep this file's existing
+      // fallback content — so an unfinished row never publishes raw
+      // spreadsheet instructions (or a dead image src) to real visitors.
+      function isUnfilledSheetValue(value) {
+        return !value || /^replace\b/i.test(value);
+      }
+
       function buildStateItems(container, statesCsv) {
         const states = statesCsv.split(',').map(s => s.trim()).filter(Boolean);
         if (!states.length) return;
@@ -2518,7 +2527,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
           const raw = data[key];
           if (raw === undefined || raw === null) return;
           const value = String(raw).trim();
-          if (!value) return; // blank cell: leave this field's existing fallback content as-is
+          if (isUnfilledSheetValue(value)) return; // blank or unfilled "REPLACE — ..." cell: leave this field's existing fallback content as-is
 
           const applyValue = () => {
             if (el.tagName === 'IMG') { el.src = value; return; }
@@ -2551,38 +2560,38 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       // grid, as one unit) when its state list comes back empty, and
       // (re)generates the state-item tiles otherwise.
       function applyStateGrids(data) {
-        const gpStates = data.gp_states;
-        const erStates = data.er_states;
-        const gpCard = document.getElementById('hospitalTypeGP');
-        const erCard = document.getElementById('hospitalTypeER');
-        const gpBlank = gpStates !== undefined && gpStates !== null && !String(gpStates).trim();
-        const erBlank = erStates !== undefined && erStates !== null && !String(erStates).trim();
-
-        if (gpStates !== undefined && gpStates !== null) {
-          if (gpBlank) { if (gpCard) gpCard.remove(); }
-          else { buildStateItems(document.getElementById('stateGridGP'), String(gpStates)); }
-        }
-        if (erStates !== undefined && erStates !== null) {
-          if (erBlank) { if (erCard) erCard.remove(); }
-          else { buildStateItems(document.getElementById('stateGridER'), String(erStates)); }
+        // Returns 'removed' | 'rendered' | 'unchanged' (missing field or an
+        // unfilled "REPLACE — ..." placeholder both mean "keep the fallback
+        // list" — only a genuinely blank cell means "remove this card").
+        function handle(raw, card, gridId) {
+          if (raw === undefined || raw === null) return 'unchanged';
+          const trimmed = String(raw).trim();
+          if (/^replace\b/i.test(trimmed)) return 'unchanged';
+          if (!trimmed) { if (card) card.remove(); return 'removed'; }
+          buildStateItems(document.getElementById(gridId), trimmed);
+          return 'rendered';
         }
 
-        if (gpBlank && erBlank) {
+        const gpResult = handle(data.gp_states, document.getElementById('hospitalTypeGP'), 'stateGridGP');
+        const erResult = handle(data.er_states, document.getElementById('hospitalTypeER'), 'stateGridER');
+
+        if (gpResult === 'removed' && erResult === 'removed') {
           console.warn('Sheet issue: both gp_states and er_states are blank. The Region at a Glance section is showing its heading/intro with no hospital-type cards — this should not happen with correctly filled Sheet data.');
         }
       }
 
       // Overlays Sheet-provided interview Q&A text onto the spotlightData
-      // fallback, per question/answer cell (blank cell keeps that one
-      // fallback question or answer, same as every other field).
+      // fallback, per question/answer cell (a blank or unfilled
+      // "REPLACE — ..." cell keeps that one fallback question or answer,
+      // same as every other field).
       function applySpotlightQAs(data) {
         [1, 2, 3].forEach(n => {
           const entry = spotlightData[`spotlight_${n}`];
           for (let q = 1; q <= 5; q++) {
             const qVal = data[`spotlight_${n}_q${q}_question`];
             const aVal = data[`spotlight_${n}_q${q}_answer`];
-            if (qVal !== undefined && qVal !== null && String(qVal).trim()) entry.qas[q - 1][0] = String(qVal).trim();
-            if (aVal !== undefined && aVal !== null && String(aVal).trim()) entry.qas[q - 1][1] = String(aVal).trim();
+            if (qVal !== undefined && qVal !== null && !isUnfilledSheetValue(String(qVal).trim())) entry.qas[q - 1][0] = String(qVal).trim();
+            if (aVal !== undefined && aVal !== null && !isUnfilledSheetValue(String(aVal).trim())) entry.qas[q - 1][1] = String(aVal).trim();
           }
         });
       }
