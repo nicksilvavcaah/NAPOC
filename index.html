@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Careers at VCA North Atlantic | Join Our Team</title>
-  <meta name="description" content="Explore veterinarian, technician, and support staff careers with VCA North Atlantic. Discover our culture, benefits, and open roles across New England and New York.">
+  <title id="pageTitle">Careers at VCA North Atlantic | Join Our Team</title>
+  <meta name="description" id="pageDescription" content="Explore veterinarian, technician, and support staff careers with VCA North Atlantic. Discover our culture, benefits, and open roles across New England and New York.">
   <meta name="theme-color" content="#F7F7F7">
   <link rel="icon" type="image/png" href="favicon.png">
   <!-- Google Fonts -->
@@ -17,6 +17,8 @@
   <!-- Icon set (version-pinned - "@latest" means a future upstream release can
        change behavior, rename icons, or simply go down with no warning) -->
   <script src="https://unpkg.com/lucide@1.28.0"></script>
+  <!-- CSV parser for the region-content Google Sheet (see SHEET_CSV_URL below) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
   <style>
     html { scroll-behavior: smooth; }
     @keyframes fadeInUp {0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
@@ -25,6 +27,8 @@
     /* --coral, --teal and --purple are logo-accent tints for decorative use only (icons, borders, low-opacity overlays).
        Use --coral-dark / --teal-dark / --heading-purple wherever white text sits directly on a solid or gradient fill — the lighter tints fail WCAG AA contrast at 2.9:1–2.4:1. */
     svg.lucide{width:1em;height:1em;stroke-width:2;vertical-align:-0.125em;flex-shrink:0;}
+    /* Fade transition used when Sheet-loaded content replaces the hardcoded fallback, so a swap never reads as a flash/flicker. */
+    [data-sheet-key]{transition:opacity .25s ease;}
     *:focus-visible{outline:3px solid var(--heading-purple);outline-offset:2px;}
     @media (prefers-reduced-motion:reduce){
       *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important;}
@@ -1060,7 +1064,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
 <body id="top">
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <header class="header">
-    <a href="#top" aria-label="VCA North Atlantic home"><img src="VCA_logo.svg.png" alt="VCA Animal Hospitals logo" width="1200" height="418"></a>
+    <a href="#top" id="logoHomeLink" aria-label="VCA North Atlantic home"><img src="VCA_logo.svg.png" alt="VCA Animal Hospitals logo" width="1200" height="418"></a>
     <div class="header-right">
       <nav class="nav-links" id="navLinks">
         <a href="#culture">Our Culture</a>
@@ -1092,8 +1096,8 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     <div class="hero-text">
       <h1>Join a Team That Elevates Great Medicine — and Great People</h1>
       <blockquote class="leader-quote">
-        <p>&ldquo;At VCA North Atlantic, we&rsquo;ve created something truly special&mdash;a supportive community of passionate professionals who elevate each other while delivering exceptional care. Our region combines clinical excellence with genuine connection, making this a place to thrive both professionally and personally.&rdquo;</p>
-        <cite class="quote-attribution">Lauren McVey, Group Vice President</cite>
+        <p>&ldquo;<span data-sheet-key="hero_quote">At VCA North Atlantic, we&rsquo;ve created something truly special&mdash;a supportive community of passionate professionals who elevate each other while delivering exceptional care. Our region combines clinical excellence with genuine connection, making this a place to thrive both professionally and personally.</span>&rdquo;</p>
+        <cite class="quote-attribution" data-sheet-key="hero_attribution">Lauren McVey, Group Vice President</cite>
       </blockquote>
       <a href="#careers" class="btn">See Open Roles</a>
     </div>
@@ -1109,7 +1113,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
   <!-- CULTURE SECTION -->
   <section class="section" id="culture">
     <h2>Our Culture</h2>
-    <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">At VCA North Atlantic, we foster a collaborative environment where learning, growth, and compassion are at the heart of everything we do. Here's a glimpse of what life on our team looks like.</p>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">At VCA <span data-sheet-key="region_name">North Atlantic</span>, we foster a collaborative environment where learning, growth, and compassion are at the heart of everything we do. Here's a glimpse of what life on our team looks like.</p>
     <div class="carousel-container">
       <div class="carousel-track" id="carouselTrack">
         <!-- Items will be dynamically generated -->
@@ -1146,12 +1150,12 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       <div class="testimonial-item left" style="opacity: 0; transform: translateY(20px);">
         <div class="testimonial-bubble">
           <div class="testimonial-quote" aria-hidden="true">&ldquo;</div>
-          <p class="testimonial-content">VCA North Atlantic provided me with incredible growth opportunities and mentorship that helped advance my career. The collaborative team environment makes every day rewarding.</p>
+          <p class="testimonial-content" data-sheet-key="testimonial_1_quote">VCA North Atlantic provided me with incredible growth opportunities and mentorship that helped advance my career. The collaborative team environment makes every day rewarding.</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">DS</div>
+            <div class="testimonial-avatar" id="testimonialAvatar1">DS</div>
             <div>
-              <div class="testimonial-name">Dr. Smith</div>
-              <div class="testimonial-role">Veterinarian</div>
+              <div class="testimonial-name" data-sheet-key="testimonial_1_name">Dr. Smith</div>
+              <div class="testimonial-role" data-sheet-key="testimonial_1_role">Veterinarian</div>
             </div>
           </div>
         </div>
@@ -1159,12 +1163,12 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       
       <div class="testimonial-item right" style="opacity: 0; transform: translateY(20px);">
         <div class="testimonial-bubble">
-          <p class="testimonial-content">I love the supportive environment at VCA. My colleagues feel like family, and I'm given all the tools I need to provide the best possible care for our patients.</p>
+          <p class="testimonial-content" data-sheet-key="testimonial_2_quote">I love the supportive environment at VCA. My colleagues feel like family, and I'm given all the tools I need to provide the best possible care for our patients.</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">TJ</div>
+            <div class="testimonial-avatar" id="testimonialAvatar2">TJ</div>
             <div>
-              <div class="testimonial-name">Tech Jane</div>
-              <div class="testimonial-role">Technician</div>
+              <div class="testimonial-name" data-sheet-key="testimonial_2_name">Tech Jane</div>
+              <div class="testimonial-role" data-sheet-key="testimonial_2_role">Technician</div>
             </div>
           </div>
         </div>
@@ -1172,12 +1176,12 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       
       <div class="testimonial-item left" style="opacity: 0; transform: translateY(20px);">
         <div class="testimonial-bubble">
-          <p class="testimonial-content">Joining VCA North Atlantic was the best career move I've made. The emphasis on work-life balance combined with excellent professional development has allowed me to thrive both personally and professionally.</p>
+          <p class="testimonial-content" data-sheet-key="testimonial_3_quote">Joining VCA North Atlantic was the best career move I've made. The emphasis on work-life balance combined with excellent professional development has allowed me to thrive both personally and professionally.</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">MJ</div>
+            <div class="testimonial-avatar" id="testimonialAvatar3">MJ</div>
             <div>
-              <div class="testimonial-name">Mark Johnson</div>
-              <div class="testimonial-role">Practice Manager</div>
+              <div class="testimonial-name" data-sheet-key="testimonial_3_name">Mark Johnson</div>
+              <div class="testimonial-role" data-sheet-key="testimonial_3_role">Practice Manager</div>
             </div>
           </div>
         </div>
@@ -1190,33 +1194,33 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     <h2>Employee Spotlights</h2>
     <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Click on a team member to read their full 5-question interview — in their own words.</p>
     <div class="spotlight-grid">
-      <button type="button" class="spotlight-item" data-spotlight="alex" aria-haspopup="dialog" aria-label="Read Alex Doe's full spotlight">
-        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Alex Doe" class="spotlight-image" width="800" height="800" loading="lazy">
+      <button type="button" class="spotlight-item" id="spotlightCard1" data-spotlight="spotlight_1" aria-haspopup="dialog" aria-label="Read Alex Doe's full spotlight">
+        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Alex Doe" class="spotlight-image" data-sheet-key="spotlight_1_photo_url" width="800" height="800" loading="lazy">
         <div class="spotlight-overlay">
-          <h3 class="spotlight-title">Alex Doe</h3>
-          <p class="spotlight-role">Veterinarian</p>
+          <h3 class="spotlight-title" data-sheet-key="spotlight_1_name">Alex Doe</h3>
+          <p class="spotlight-role" data-sheet-key="spotlight_1_role">Veterinarian</p>
           <span class="spotlight-cta-chip">Read Full Interview <span aria-hidden="true">&rarr;</span></span>
-          <p class="spotlight-quote">&ldquo;I joined VCA North Atlantic three years ago and have found incredible mentorship and growth opportunities.&rdquo;</p>
+          <p class="spotlight-quote">&ldquo;<span data-sheet-key="spotlight_1_quote">I joined VCA North Atlantic three years ago and have found incredible mentorship and growth opportunities.</span>&rdquo;</p>
         </div>
       </button>
 
-      <button type="button" class="spotlight-item" data-spotlight="sam" aria-haspopup="dialog" aria-label="Read Sam Lee's full spotlight">
-        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Sam Lee" class="spotlight-image" width="800" height="800" loading="lazy">
+      <button type="button" class="spotlight-item" id="spotlightCard2" data-spotlight="spotlight_2" aria-haspopup="dialog" aria-label="Read Sam Lee's full spotlight">
+        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Sam Lee" class="spotlight-image" data-sheet-key="spotlight_2_photo_url" width="800" height="800" loading="lazy">
         <div class="spotlight-overlay">
-          <h3 class="spotlight-title">Sam Lee</h3>
-          <p class="spotlight-role">Technician</p>
+          <h3 class="spotlight-title" data-sheet-key="spotlight_2_name">Sam Lee</h3>
+          <p class="spotlight-role" data-sheet-key="spotlight_2_role">Technician</p>
           <span class="spotlight-cta-chip">Read Full Interview <span aria-hidden="true">&rarr;</span></span>
-          <p class="spotlight-quote">&ldquo;The supportive culture at VCA has allowed me to expand my skills and take on leadership roles.&rdquo;</p>
+          <p class="spotlight-quote">&ldquo;<span data-sheet-key="spotlight_2_quote">The supportive culture at VCA has allowed me to expand my skills and take on leadership roles.</span>&rdquo;</p>
         </div>
       </button>
 
-      <button type="button" class="spotlight-item" data-spotlight="jamie" aria-haspopup="dialog" aria-label="Read Jamie Wilson's full spotlight">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Jamie Wilson" class="spotlight-image" width="800" height="800" loading="lazy">
+      <button type="button" class="spotlight-item" id="spotlightCard3" data-spotlight="spotlight_3" aria-haspopup="dialog" aria-label="Read Jamie Wilson's full spotlight">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Jamie Wilson" class="spotlight-image" data-sheet-key="spotlight_3_photo_url" width="800" height="800" loading="lazy">
         <div class="spotlight-overlay">
-          <h3 class="spotlight-title">Jamie Wilson</h3>
-          <p class="spotlight-role">Practice Manager</p>
+          <h3 class="spotlight-title" data-sheet-key="spotlight_3_name">Jamie Wilson</h3>
+          <p class="spotlight-role" data-sheet-key="spotlight_3_role">Practice Manager</p>
           <span class="spotlight-cta-chip">Read Full Interview <span aria-hidden="true">&rarr;</span></span>
-          <p class="spotlight-quote">&ldquo;VCA provides the resources and autonomy to create a positive workplace culture and drive practice success.&rdquo;</p>
+          <p class="spotlight-quote">&ldquo;<span data-sheet-key="spotlight_3_quote">VCA provides the resources and autonomy to create a positive workplace culture and drive practice success.</span>&rdquo;</p>
         </div>
       </button>
     </div>
@@ -1239,7 +1243,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
         <div class="spotlight-interview-list" id="spotlightModalInterview"></div>
         <div class="spotlight-modal-cta" id="spotlightModalCta">
           <h4 id="spotlightModalCtaHeading"></h4>
-          <p>See where you could fit in at VCA North Atlantic.</p>
+          <p>See where you could fit in at VCA <span data-sheet-key="region_name">North Atlantic</span>.</p>
           <button type="button" class="btn" id="spotlightModalCtaBtn"></button>
         </div>
         <button type="button" class="spotlight-modal-exit" data-spotlight-close>&larr; Back to Employee Spotlights</button>
@@ -1287,7 +1291,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
 
   <!-- WHY VCA SECTION -->
   <section class="section" id="why-vca">
-    <h2>Why VCA North Atlantic</h2>
+    <h2>Why VCA <span data-sheet-key="region_name">North Atlantic</span></h2>
     <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Beyond the culture and the people, here's what's actually backing you up.</p>
     <div class="diff-grid">
       <div class="tile-group">
@@ -1353,14 +1357,14 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     <h2>Our Region at a Glance</h2>
     <div class="region-container">
       <div class="region-intro">
-        <p>Our North Atlantic region offers diverse opportunities in both general practice and emergency medicine across multiple states, providing a wide range of clinical experiences in both urban and rural settings.</p>
+        <p>Our <span data-sheet-key="region_name">North Atlantic</span> region offers diverse opportunities in both general practice and emergency medicine across multiple states, providing a wide range of clinical experiences in both urban and rural settings.</p>
       </div>
       
-      <div class="hospital-types">
-        <div class="hospital-type">
+      <div class="hospital-types" id="hospitalTypesContainer">
+        <div class="hospital-type" id="hospitalTypeGP">
           <h3><span aria-hidden="true"><i data-lucide="stethoscope"></i></span> General Practice</h3>
           <p>Our general practice hospitals provide comprehensive preventive care, diagnostics, and treatment for pets across the Northeast. Located in communities large and small, these hospitals offer diverse practice settings and clientele.</p>
-          <div class="state-grid">
+          <div class="state-grid" id="stateGridGP">
             <div class="state-item">CT</div>
             <div class="state-item">MA</div>
             <div class="state-item">RI</div>
@@ -1369,11 +1373,11 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
             <div class="state-item">NH</div>
           </div>
         </div>
-        
-        <div class="hospital-type">
+
+        <div class="hospital-type" id="hospitalTypeER">
           <h3><span aria-hidden="true"><i data-lucide="siren"></i></span> Emergency & Specialty</h3>
           <p>Our emergency and specialty hospitals provide advanced, 24/7 care for critical cases and specialized treatment. These state-of-the-art facilities offer unique career opportunities in high-acuity medicine.</p>
-          <div class="state-grid">
+          <div class="state-grid" id="stateGridER">
             <div class="state-item">CT</div>
             <div class="state-item">MA</div>
             <div class="state-item">NH</div>
@@ -1389,12 +1393,12 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
   <!-- OPEN ROLES SECTION -->
   <section class="section" id="careers">
     <h2>Open Roles</h2>
-    <p style="text-align: center; max-width: 800px; margin: 0 auto 20px;">Join our team and make a difference in the lives of pets and their families across the North Atlantic region. We're currently hiring for the following positions:</p>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 20px;">Join our team and make a difference in the lives of pets and their families across the <span data-sheet-key="region_name">North Atlantic</span> region. We're currently hiring for the following positions:</p>
     <div class="grid grid-4">
       <div class="card">
         <span class="card-icon" aria-hidden="true"><i data-lucide="stethoscope"></i></span>
         <strong>Veterinarians</strong>
-        <p>Multiple locations across New England and New York</p>
+        <p>Multiple locations across <span data-sheet-key="states_blurb">New England and New York</span></p>
         <a href="https://careers.vca.com" target="_blank" rel="noopener" class="btn" data-apply-role="veterinarian" title="Placeholder — will use a specific job requisition link once available">Apply Now</a>
       </div>
       <div class="card">
@@ -1522,29 +1526,29 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
   <!-- CONTACT INFO SECTION -->
   <section class="section" id="recruiters">
     <h2>Contact Our Team</h2>
-    <p style="text-align: center; max-width: 800px; margin: 0 auto 20px;">Have questions about joining VCA North Atlantic? Our dedicated recruitment team is here to help you find the perfect position.</p>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 20px;">Have questions about joining VCA <span data-sheet-key="region_name">North Atlantic</span>? Our dedicated recruitment team is here to help you find the perfect position.</p>
     <!-- TODO: phone numbers below are placeholders — replace with real direct lines before launch -->
     <div class="grid grid-3">
       <div class="card">
         <span class="card-icon" aria-hidden="true"><i data-lucide="mail"></i></span>
-        <strong>Nick Silva</strong>
-        <p>Veterinarian Recruiter</p>
-        <p><a href="mailto:nick.silva@vca.com" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">nick.silva@vca.com</a></p>
-        <p><a href="tel:+1234567890" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i data-lucide="phone" style="margin-right:8px; font-size: 1.2em;" aria-hidden="true"></i> (123) 456-7890</a></p>
+        <strong data-sheet-key="contact_1_name">Nick Silva</strong>
+        <p data-sheet-key="contact_1_title">Veterinarian Recruiter</p>
+        <p><a href="mailto:nick.silva@vca.com" data-sheet-key="contact_1_email" data-sheet-link-type="mailto" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">nick.silva@vca.com</a></p>
+        <p><a href="tel:+1234567890" data-sheet-key="contact_1_phone" data-sheet-link-type="tel" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i data-lucide="phone" style="margin-right:8px; font-size: 1.2em;" aria-hidden="true"></i> <span data-sheet-key="contact_1_phone">(123) 456-7890</span></a></p>
       </div>
       <div class="card">
         <span class="card-icon" aria-hidden="true"><i data-lucide="mail"></i></span>
-        <strong>Amy Trudeau</strong>
-        <p>Student/Early Career Recruiter</p>
-        <p><a href="mailto:amy.trudeau@vca.com" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">amy.trudeau@vca.com</a></p>
-        <p><a href="tel:+1234567891" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i data-lucide="phone" style="margin-right:8px; font-size: 1.2em;" aria-hidden="true"></i> (123) 456-7891</a></p>
+        <strong data-sheet-key="contact_2_name">Amy Trudeau</strong>
+        <p data-sheet-key="contact_2_title">Student/Early Career Recruiter</p>
+        <p><a href="mailto:amy.trudeau@vca.com" data-sheet-key="contact_2_email" data-sheet-link-type="mailto" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">amy.trudeau@vca.com</a></p>
+        <p><a href="tel:+1234567891" data-sheet-key="contact_2_phone" data-sheet-link-type="tel" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i data-lucide="phone" style="margin-right:8px; font-size: 1.2em;" aria-hidden="true"></i> <span data-sheet-key="contact_2_phone">(123) 456-7891</span></a></p>
       </div>
       <div class="card">
         <span class="card-icon" aria-hidden="true"><i data-lucide="mail"></i></span>
-        <strong>Lauren Gerrish</strong>
-        <p>CVT & Technician Recruiter</p>
-        <p><a href="mailto:lauren.gerrish@vca.com" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">lauren.gerrish@vca.com</a></p>
-        <p><a href="tel:+1234567892" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i data-lucide="phone" style="margin-right:8px; font-size: 1.2em;" aria-hidden="true"></i> (123) 456-7892</a></p>
+        <strong data-sheet-key="contact_3_name">Lauren Gerrish</strong>
+        <p data-sheet-key="contact_3_title">CVT & Technician Recruiter</p>
+        <p><a href="mailto:lauren.gerrish@vca.com" data-sheet-key="contact_3_email" data-sheet-link-type="mailto" style="color: var(--heading-purple); text-decoration: none; position: relative; z-index: 2; transition: color 0.3s;">lauren.gerrish@vca.com</a></p>
+        <p><a href="tel:+1234567892" data-sheet-key="contact_3_phone" data-sheet-link-type="tel" style="color: var(--blue); position: relative; z-index: 2; text-decoration: none; display: inline-flex; align-items: center; transition: color 0.3s;"><i data-lucide="phone" style="margin-right:8px; font-size: 1.2em;" aria-hidden="true"></i> <span data-sheet-key="contact_3_phone">(123) 456-7892</span></a></p>
       </div>
     </div>
   </section>
@@ -1578,7 +1582,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     </div>
     <div class="copyright">
       <p>VCA is an equal opportunity employer. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, sexual orientation, gender identity, national origin, disability, veteran status, or any other protected characteristic.</p>
-      <p>&copy; <span id="copyright-year"></span> VCA North Atlantic. All rights reserved.</p>
+      <p>&copy; <span id="copyright-year"></span> VCA <span data-sheet-key="region_name">North Atlantic</span>. All rights reserved.</p>
     </div>
   </footer>
   <script>
@@ -2214,13 +2218,16 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       }
 
       // Employee Spotlight in-page modal
+      // Fallback identity/role/interview content for the three Employee
+      // Spotlight cards. Keyed positionally (spotlight_1/2/3) to match the
+      // Sheet's own field naming — see loadSheetContent() below, which
+      // overlays real Sheet values on top of these per-field, so a blank
+      // cell in the Sheet quietly falls back to the value here instead of
+      // rendering blank.
       const spotlightData = {
-        alex: {
-          name: 'Alex Doe, DVM',
-          role: 'Veterinarian &middot; VCA North Atlantic',
-          initials: 'AD',
-          accent: ['var(--blue)', 'var(--teal-dark)'],
-          ctaLabel: 'View Open Veterinarian Roles',
+        spotlight_1: {
+          name: 'Alex Doe',
+          role: 'Veterinarian',
           qas: [
             ['What made you choose VCA North Atlantic over other practices?', "I wanted a place where I could keep growing clinically without losing the personal side of medicine. The mentorship here was obvious from my very first interview — everyone was genuinely invested in helping me succeed, not just filling a shift."],
             ['What does a typical day look like for you?', "No two days are exactly alike, but it usually starts with morning rounds, a mix of wellness exams and more complex cases, and a lot of collaborating with our technicians — they catch things I'd miss if I were working solo."],
@@ -2229,12 +2236,9 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
             ['Any advice for a new grad considering VCA?', "Say yes to every mentoring opportunity you're offered. You never know which conversation or case is going to shape the rest of your career."],
           ],
         },
-        sam: {
-          name: 'Sam Lee, CVT',
-          role: 'Veterinary Technician &middot; VCA North Atlantic',
-          initials: 'SL',
-          accent: ['var(--teal-dark)', 'var(--heading-purple)'],
-          ctaLabel: 'View Open Technician Roles',
+        spotlight_2: {
+          name: 'Sam Lee',
+          role: 'Technician',
           qas: [
             ['Why did you choose to build your career at VCA North Atlantic?', "I wanted to work somewhere that saw technicians as clinical partners, not just extra hands. Here, my opinion in a treatment plan actually gets asked for — that changes how invested you feel in every case."],
             ['What does a typical shift look like for you?', "A lot of variety — placing catheters, running labwork, monitoring anesthesia, comforting anxious patients (and sometimes anxious pet parents). I'm usually working side-by-side with a doctor, but I own my part of the case."],
@@ -2243,12 +2247,9 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
             ['What would you tell someone considering a technician role here?', "Ask about growth opportunities in the interview. I started in general practice and moved into a leadership track within two years because the team actually invested in getting me there."],
           ],
         },
-        jamie: {
-          name: 'Jamie Wilson, Practice Manager',
-          role: 'Practice Manager &middot; VCA North Atlantic',
-          initials: 'JW',
-          accent: ['var(--heading-purple)', 'var(--coral-dark)'],
-          ctaLabel: 'View Open Leadership Roles',
+        spotlight_3: {
+          name: 'Jamie Wilson',
+          role: 'Practice Manager',
           qas: [
             ['What drew you to VCA North Atlantic?', "I'd managed practices before, but here I actually get the autonomy and the resources to build the culture I always wanted — not just hit numbers, but create a place people are proud to work."],
             ['What does your day-to-day actually involve?', "A bit of everything — scheduling and staffing, checking in with the care teams, handling client concerns that need a manager's touch, and a lot of one-on-ones making sure my team has what they need to do their best work."],
@@ -2258,6 +2259,24 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
           ],
         },
       };
+
+      // Accent colors stay fixed by card position — this is pure visual
+      // styling, not editable content, so it's never sourced from the Sheet.
+      const SPOTLIGHT_ACCENTS = {
+        spotlight_1: ['var(--blue)', 'var(--teal-dark)'],
+        spotlight_2: ['var(--teal-dark)', 'var(--heading-purple)'],
+        spotlight_3: ['var(--heading-purple)', 'var(--coral-dark)'],
+      };
+
+      // Derives "AD" from "Alex Doe" (or "Alex Doe, DVM") for the avatar tile.
+      function spotlightInitials(name) {
+        const clean = (name || '').split(',')[0].trim();
+        const parts = clean.split(/\s+/).filter(Boolean);
+        if (!parts.length) return '';
+        const first = parts[0][0] || '';
+        const last = parts.length > 1 ? parts[parts.length - 1][0] : '';
+        return (first + last).toUpperCase();
+      }
 
       const spotlightModal = document.getElementById('spotlightModal');
       const spotlightModalPanel = spotlightModal.querySelector('.spotlight-modal-panel');
@@ -2276,24 +2295,27 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
         const data = spotlightData[key];
         if (!data) return;
         spotlightLastTrigger = trigger;
+        const accent = SPOTLIGHT_ACCENTS[key] || SPOTLIGHT_ACCENTS.spotlight_1;
+        const initials = spotlightInitials(data.name);
+        const ctaLabel = `View Open ${data.role} Roles`;
 
-        spotlightModalHeader.style.background = data.accent[0];
-        spotlightModalCta.style.background = data.accent[0];
-        spotlightModalAvatar.textContent = data.initials;
+        spotlightModalHeader.style.background = accent[0];
+        spotlightModalCta.style.background = accent[0];
+        spotlightModalAvatar.textContent = initials;
         spotlightModalName.textContent = data.name;
-        spotlightModalRole.innerHTML = data.role;
+        spotlightModalRole.textContent = data.role;
         spotlightModalQHeading.textContent = `5 Questions with ${data.name.split(',')[0].split(' ')[0]}`;
         spotlightModalCtaHeading.textContent = `Inspired by ${data.name.split(',')[0].split(' ')[0]}’s story?`;
-        spotlightModalCtaBtn.textContent = data.ctaLabel;
+        spotlightModalCtaBtn.textContent = ctaLabel;
 
         spotlightModalInterview.innerHTML = '';
         data.qas.forEach((qa, i) => {
           const item = document.createElement('div');
           item.className = 'spotlight-interview-item';
-          item.style.setProperty('--item-color', data.accent[i % 2]);
+          item.style.setProperty('--item-color', accent[i % 2]);
           const num = document.createElement('div');
           num.className = 'spotlight-q-number';
-          num.style.background = data.accent[i % 2];
+          num.style.background = accent[i % 2];
           num.textContent = String(i + 1);
           const body = document.createElement('div');
           const q = document.createElement('h4');
@@ -2452,6 +2474,196 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       
       // Re-run the setup when window resizes (e.g., orientation change)
       window.addEventListener('resize', setupMobileSpotlights);
+
+      // ============================================================
+      // REGION CONTENT (Google Sheet CMS)
+      // ------------------------------------------------------------
+      // Every field listed below loads from a published Google Sheet
+      // CSV so another region can stand up their own version of this
+      // page by editing a spreadsheet — no code changes needed. The
+      // Sheet is two columns: "Field" (matches the data-sheet-key
+      // attributes used throughout this file) and "Content" (the
+      // text/URL to show).
+      //
+      // testimonial_* and spotlight_* fields (including each
+      // spotlight's 5 interview questions/answers) are intended to be
+      // refreshed quarterly with real, current employees — with their
+      // permission — by editing the Sheet directly.
+      //
+      // Fallback behavior: if the fetch fails entirely, or the sheet
+      // loads but one specific cell is blank, this file's existing
+      // hardcoded content (the current VCA North Atlantic copy) stays
+      // in place for that field — the page never renders blank.
+      // ============================================================
+      const SHEET_CSV_URL = "PLACEHOLDER_REPLACE_WITH_PUBLISHED_SHEET_URL";
+
+      // The Sheet template ships with "REPLACE — ..." instructional text in
+      // not-yet-filled-in rows (testimonials, spotlights, contact phones).
+      // Treat those exactly like a blank cell — keep this file's existing
+      // fallback content — so an unfinished row never publishes raw
+      // spreadsheet instructions (or a dead image src) to real visitors.
+      function isUnfilledSheetValue(value) {
+        return !value || /^replace\b/i.test(value);
+      }
+
+      function buildStateItems(container, statesCsv) {
+        const states = statesCsv.split(',').map(s => s.trim()).filter(Boolean);
+        if (!states.length) return;
+        container.innerHTML = '';
+        states.forEach(state => {
+          const item = document.createElement('div');
+          item.className = 'state-item';
+          item.textContent = state;
+          container.appendChild(item);
+        });
+      }
+
+      // Populates every [data-sheet-key] element from the parsed Sheet
+      // lookup. animate=true briefly fades the element out/in at the
+      // moment its content changes, so a swap never reads as a flash.
+      function applySheetFields(data, animate) {
+        document.querySelectorAll('[data-sheet-key]').forEach(el => {
+          const key = el.getAttribute('data-sheet-key');
+          const raw = data[key];
+          if (raw === undefined || raw === null) return;
+          const value = String(raw).trim();
+          if (isUnfilledSheetValue(value)) return; // blank or unfilled "REPLACE — ..." cell: leave this field's existing fallback content as-is
+
+          const applyValue = () => {
+            if (el.tagName === 'IMG') { el.src = value; return; }
+            const linkType = el.getAttribute('data-sheet-link-type');
+            if (linkType === 'mailto') {
+              el.href = 'mailto:' + value;
+              if (!el.children.length) el.textContent = value;
+              return;
+            }
+            if (linkType === 'tel') {
+              el.href = 'tel:' + value.replace(/[^0-9+]/g, '');
+              if (!el.children.length) el.textContent = value;
+              return;
+            }
+            el.textContent = value;
+          };
+
+          // Content is applied synchronously either way — callers that need
+          // derived values (title, aria-labels, spotlightData) right after
+          // this call must see the real text, not a value queued for a
+          // future frame. The fade is purely visual: dip opacity now, then
+          // let the CSS transition ease it back up on the next frame.
+          if (animate) el.style.opacity = '0';
+          applyValue();
+          if (animate) requestAnimationFrame(() => { el.style.opacity = '1'; });
+        });
+      }
+
+      // Removes an entire hospital-type card (heading + paragraph + state
+      // grid, as one unit) when its state list comes back empty, and
+      // (re)generates the state-item tiles otherwise.
+      function applyStateGrids(data) {
+        // Returns 'removed' | 'rendered' | 'unchanged' (missing field or an
+        // unfilled "REPLACE — ..." placeholder both mean "keep the fallback
+        // list" — only a genuinely blank cell means "remove this card").
+        function handle(raw, card, gridId) {
+          if (raw === undefined || raw === null) return 'unchanged';
+          const trimmed = String(raw).trim();
+          if (/^replace\b/i.test(trimmed)) return 'unchanged';
+          if (!trimmed) { if (card) card.remove(); return 'removed'; }
+          buildStateItems(document.getElementById(gridId), trimmed);
+          return 'rendered';
+        }
+
+        const gpResult = handle(data.gp_states, document.getElementById('hospitalTypeGP'), 'stateGridGP');
+        const erResult = handle(data.er_states, document.getElementById('hospitalTypeER'), 'stateGridER');
+
+        if (gpResult === 'removed' && erResult === 'removed') {
+          console.warn('Sheet issue: both gp_states and er_states are blank. The Region at a Glance section is showing its heading/intro with no hospital-type cards — this should not happen with correctly filled Sheet data.');
+        }
+      }
+
+      // Overlays Sheet-provided interview Q&A text onto the spotlightData
+      // fallback, per question/answer cell (a blank or unfilled
+      // "REPLACE — ..." cell keeps that one fallback question or answer,
+      // same as every other field).
+      function applySpotlightQAs(data) {
+        [1, 2, 3].forEach(n => {
+          const entry = spotlightData[`spotlight_${n}`];
+          for (let q = 1; q <= 5; q++) {
+            const qVal = data[`spotlight_${n}_q${q}_question`];
+            const aVal = data[`spotlight_${n}_q${q}_answer`];
+            if (qVal !== undefined && qVal !== null && !isUnfilledSheetValue(String(qVal).trim())) entry.qas[q - 1][0] = String(qVal).trim();
+            if (aVal !== undefined && aVal !== null && !isUnfilledSheetValue(String(aVal).trim())) entry.qas[q - 1][1] = String(aVal).trim();
+          }
+        });
+      }
+
+      // Derives content that can't live in a data-sheet-key element:
+      // <title>/<meta description> (not child-bearing), the logo's
+      // aria-label, each spotlight card's aria-label/alt, spotlightData's
+      // name+role (used by the modal), and the testimonial avatar
+      // initials. Reads from the DOM's already-resolved (sheet-or-fallback)
+      // text, so it's safe to call whether or not the fetch succeeded.
+      function applyDerivedContent() {
+        const regionEl = document.querySelector('[data-sheet-key="region_name"]');
+        const statesBlurbEl = document.querySelector('[data-sheet-key="states_blurb"]');
+        const regionName = regionEl ? regionEl.textContent.trim() : '';
+        const statesBlurb = statesBlurbEl ? statesBlurbEl.textContent.trim() : '';
+
+        const titleEl = document.getElementById('pageTitle');
+        const descEl = document.getElementById('pageDescription');
+        if (titleEl && regionName) titleEl.textContent = `Careers at VCA ${regionName} | Join Our Team`;
+        if (descEl && regionName && statesBlurb) {
+          descEl.setAttribute('content', `Explore veterinarian, technician, and support staff careers with VCA ${regionName}. Discover our culture, benefits, and open roles across ${statesBlurb}.`);
+        }
+        const logoLink = document.getElementById('logoHomeLink');
+        if (logoLink && regionName) logoLink.setAttribute('aria-label', `VCA ${regionName} home`);
+
+        [1, 2, 3].forEach(n => {
+          const key = `spotlight_${n}`;
+          const nameEl = document.querySelector(`[data-sheet-key="${key}_name"]`);
+          const roleEl = document.querySelector(`[data-sheet-key="${key}_role"]`);
+          const cardEl = document.getElementById(`spotlightCard${n}`);
+          const photoEl = document.querySelector(`[data-sheet-key="${key}_photo_url"]`);
+          if (!nameEl || !cardEl) return;
+          const name = nameEl.textContent.trim();
+          const role = roleEl ? roleEl.textContent.trim() : spotlightData[key].role;
+          spotlightData[key].name = name;
+          spotlightData[key].role = role;
+          cardEl.setAttribute('aria-label', `Read ${name}'s full spotlight`);
+          if (photoEl) photoEl.alt = name;
+        });
+
+        [1, 2, 3].forEach(n => {
+          const nameEl = document.querySelector(`[data-sheet-key="testimonial_${n}_name"]`);
+          const avatarEl = document.getElementById(`testimonialAvatar${n}`);
+          if (nameEl && avatarEl) avatarEl.textContent = spotlightInitials(nameEl.textContent);
+        });
+      }
+
+      async function loadSheetContent() {
+        try {
+          const response = await fetch(SHEET_CSV_URL);
+          if (!response.ok) throw new Error(`Sheet fetch failed with status ${response.status}`);
+          const csvText = await response.text();
+          const parsed = Papa.parse(csvText, { header: true, skipEmptyLines: true });
+          const data = {};
+          parsed.data.forEach(row => {
+            const field = (row.Field || '').trim();
+            if (field) data[field] = row.Content;
+          });
+
+          applySheetFields(data, true);
+          applyStateGrids(data);
+          applySpotlightQAs(data);
+          applyDerivedContent();
+        } catch (err) {
+          // Fetch failed (or the sheet was unreachable/malformed) — the
+          // hardcoded fallback content already in the DOM stays as-is.
+          console.warn('Could not load region content from the Sheet; showing built-in fallback content instead.', err);
+          applyDerivedContent();
+        }
+      }
+
+      loadSheetContent();
     });
   </script>
 </body>
