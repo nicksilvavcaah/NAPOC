@@ -868,7 +868,8 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     .spotlight-modal-close{position:absolute;top:14px;right:14px;pointer-events:auto;z-index:2001;width:44px;height:44px;border-radius:50%;background:#fff;color:var(--blue);border:none;font-size:1.6em;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.3);transition:background .2s,color .2s,transform .2s;}
     .spotlight-modal-close:hover{background:var(--coral-dark);color:#fff;transform:scale(1.08);}
     .spotlight-modal-header{position:relative;padding:45px 30px 30px;border-radius:20px 20px 0 0;text-align:center;color:#fff;overflow:hidden;}
-    .spotlight-modal-header .avatar-tile{position:relative;width:110px;height:110px;margin:0 auto 16px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.15);border:4px solid rgba(255,255,255,0.5);box-shadow:0 10px 25px rgba(0,0,0,0.2);font-family:'Playfair Display',serif;font-size:2.1em;font-weight:700;color:#fff;}
+    .spotlight-modal-header .avatar-tile{position:relative;width:110px;height:110px;margin:0 auto 16px;border-radius:50%;overflow:hidden;background:rgba(255,255,255,0.15);border:4px solid rgba(255,255,255,0.5);box-shadow:0 10px 25px rgba(0,0,0,0.2);}
+    .spotlight-modal-header .avatar-tile img{width:100%;height:100%;object-fit:cover;display:block;}
     .spotlight-modal-header h2{font-family:'Playfair Display',serif;font-size:1.8em;margin:0 0 6px;color:#fff;animation:none;opacity:1;}
     .spotlight-modal-header p{margin:0;color:rgba(255,255,255,0.9);}
     .spotlight-modal-body{padding:30px;}
@@ -1234,7 +1235,9 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
         <button type="button" class="spotlight-modal-close" data-spotlight-close aria-label="Close spotlight">&times;</button>
       </div>
       <div class="spotlight-modal-header" id="spotlightModalHeader">
-        <div class="avatar-tile" id="spotlightModalAvatar" aria-hidden="true"></div>
+        <div class="avatar-tile">
+          <img id="spotlightModalAvatar" alt="" width="110" height="110" loading="lazy">
+        </div>
         <h2 id="spotlightModalName"></h2>
         <p id="spotlightModalRole"></p>
       </div>
@@ -1791,7 +1794,21 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
           startAutoScroll();
         }, 100);
       }
-      
+
+      // Swaps in a Sheet-provided photo list and rebuilds the carousel from
+      // scratch (same initCarousel() used on first load). Only called once,
+      // after a successful Sheet fetch that actually supplied at least one
+      // carousel_N_photo_url — an empty/failed fetch leaves the carousel
+      // exactly as initCarousel() already rendered it on page load.
+      function rebuildCarouselImages(newImages) {
+        if (autoScrollInterval) { clearInterval(autoScrollInterval); autoScrollInterval = null; }
+        images.length = 0;
+        images.push(...newImages);
+        track.innerHTML = '';
+        indicators.innerHTML = '';
+        initCarousel();
+      }
+
       // Builds either a real <img> (when a slide supplies src/alt) or a themed
       // placeholder tile (icon + caption + brand gradient) for slides that don't.
       function buildSlideVisual(image) {
@@ -2228,6 +2245,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
         spotlight_1: {
           name: 'Alex Doe',
           role: 'Veterinarian',
+          photo: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
           qas: [
             ['What made you choose VCA North Atlantic over other practices?', "I wanted a place where I could keep growing clinically without losing the personal side of medicine. The mentorship here was obvious from my very first interview — everyone was genuinely invested in helping me succeed, not just filling a shift."],
             ['What does a typical day look like for you?', "No two days are exactly alike, but it usually starts with morning rounds, a mix of wellness exams and more complex cases, and a lot of collaborating with our technicians — they catch things I'd miss if I were working solo."],
@@ -2239,6 +2257,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
         spotlight_2: {
           name: 'Sam Lee',
           role: 'Technician',
+          photo: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
           qas: [
             ['Why did you choose to build your career at VCA North Atlantic?', "I wanted to work somewhere that saw technicians as clinical partners, not just extra hands. Here, my opinion in a treatment plan actually gets asked for — that changes how invested you feel in every case."],
             ['What does a typical shift look like for you?', "A lot of variety — placing catheters, running labwork, monitoring anesthesia, comforting anxious patients (and sometimes anxious pet parents). I'm usually working side-by-side with a doctor, but I own my part of the case."],
@@ -2250,6 +2269,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
         spotlight_3: {
           name: 'Jamie Wilson',
           role: 'Practice Manager',
+          photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
           qas: [
             ['What drew you to VCA North Atlantic?', "I'd managed practices before, but here I actually get the autonomy and the resources to build the culture I always wanted — not just hit numbers, but create a place people are proud to work."],
             ['What does your day-to-day actually involve?', "A bit of everything — scheduling and staffing, checking in with the care teams, handling client concerns that need a manager's touch, and a lot of one-on-ones making sure my team has what they need to do their best work."],
@@ -2296,12 +2316,12 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
         if (!data) return;
         spotlightLastTrigger = trigger;
         const accent = SPOTLIGHT_ACCENTS[key] || SPOTLIGHT_ACCENTS.spotlight_1;
-        const initials = spotlightInitials(data.name);
         const ctaLabel = `View Open ${data.role} Roles`;
 
         spotlightModalHeader.style.background = accent[0];
         spotlightModalCta.style.background = accent[0];
-        spotlightModalAvatar.textContent = initials;
+        spotlightModalAvatar.src = data.photo;
+        spotlightModalAvatar.alt = data.name;
         spotlightModalName.textContent = data.name;
         spotlightModalRole.textContent = data.role;
         spotlightModalQHeading.textContent = `5 Questions with ${data.name.split(',')[0].split(' ')[0]}`;
@@ -2580,6 +2600,25 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
         }
       }
 
+      // Culture-section carousel: carousel_1_photo_url..carousel_6_photo_url.
+      // A filled slot becomes a real photo tile; a blank or unfilled
+      // "REPLACE — ..." slot is skipped entirely (no broken/empty tile) —
+      // same pattern as the hospital-type cards above. If none of the 6 are
+      // filled in, the carousel is left exactly as initCarousel() already
+      // rendered it on page load (today's hardcoded placeholder tiles).
+      function applyCarouselPhotos(data, regionName) {
+        const alt = `VCA ${regionName} team culture photo`;
+        const photos = [];
+        for (let n = 1; n <= 6; n++) {
+          const raw = data[`carousel_${n}_photo_url`];
+          if (raw === undefined || raw === null) continue;
+          const trimmed = String(raw).trim();
+          if (isUnfilledSheetValue(trimmed)) continue;
+          photos.push({ src: trimmed, alt });
+        }
+        if (photos.length) rebuildCarouselImages(photos);
+      }
+
       // Overlays Sheet-provided interview Q&A text onto the spotlightData
       // fallback, per question/answer cell (a blank or unfilled
       // "REPLACE — ..." cell keeps that one fallback question or answer,
@@ -2599,9 +2638,11 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       // Derives content that can't live in a data-sheet-key element:
       // <title>/<meta description> (not child-bearing), the logo's
       // aria-label, each spotlight card's aria-label/alt, spotlightData's
-      // name+role (used by the modal), and the testimonial avatar
-      // initials. Reads from the DOM's already-resolved (sheet-or-fallback)
-      // text, so it's safe to call whether or not the fetch succeeded.
+      // name+role+photo (used by the modal — same spotlight_N_photo_url
+      // that drives the closed card also drives the modal avatar here),
+      // and the testimonial avatar initials. Reads from the DOM's
+      // already-resolved (sheet-or-fallback) text, so it's safe to call
+      // whether or not the fetch succeeded.
       function applyDerivedContent() {
         const regionEl = document.querySelector('[data-sheet-key="region_name"]');
         const statesBlurbEl = document.querySelector('[data-sheet-key="states_blurb"]');
@@ -2629,7 +2670,13 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
           spotlightData[key].name = name;
           spotlightData[key].role = role;
           cardEl.setAttribute('aria-label', `Read ${name}'s full spotlight`);
-          if (photoEl) photoEl.alt = name;
+          if (photoEl) {
+            photoEl.alt = name;
+            // Same photo everywhere this person appears: the modal avatar
+            // reads whatever spotlight_N_photo_url actually resolved to on
+            // the card (Sheet value or fallback), not a second copy of it.
+            spotlightData[key].photo = photoEl.src;
+          }
         });
 
         [1, 2, 3].forEach(n => {
@@ -2655,6 +2702,9 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
           applyStateGrids(data);
           applySpotlightQAs(data);
           applyDerivedContent();
+
+          const regionEl = document.querySelector('[data-sheet-key="region_name"]');
+          applyCarouselPhotos(data, regionEl ? regionEl.textContent.trim() : '');
         } catch (err) {
           // Fetch failed (or the sheet was unreachable/malformed) — the
           // hardcoded fallback content already in the DOM stays as-is.
