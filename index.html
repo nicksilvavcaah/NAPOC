@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="pageTitle">Careers at VCA North Atlantic | Join Our Team</title>
-  <meta name="description" id="pageDescription" content="Explore veterinarian, technician, and support staff careers with VCA North Atlantic. Discover our culture, benefits, and open roles across New England and New York.">
+  <meta name="description" id="pageDescription" content="Explore veterinarian, technician, and support staff careers with VCA North Atlantic. Discover our culture and open roles across New England and New York.">
   <meta name="theme-color" content="#F7F7F7">
   <link rel="icon" type="image/png" href="favicon.png">
   <!-- Google Fonts -->
@@ -317,6 +317,17 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       border-color: var(--teal);
       box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
     }
+
+    /* Linked state items (tourism site) vs. plain-text ones (no link available) */
+    a.state-item {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    a.state-item:hover {
+      text-decoration: underline;
+    }
     
     /* Benefits Button */
     .benefits-cta {
@@ -417,6 +428,17 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     .faq-item summary::after{content:'+';font-size:1.4em;color:var(--coral-dark);transition:transform .3s ease;flex-shrink:0;}
     .faq-item[open] summary::after{transform:rotate(45deg);}
     .faq-item .faq-answer{padding:0 22px 20px;color:#555;line-height:1.65;font-size:0.96em;}
+
+    /* "Life in {region_name}" section: subsection labels, pull-quote, closing note */
+    .life-here-subheading{font-family:'Playfair Display',serif;color:var(--heading-purple);font-size:1.2em;margin:0 0 16px;text-align:center;}
+    .info-card{max-width:700px;margin:35px auto;padding:28px 30px;background:#fff;border-radius:20px;box-shadow:0 15px 35px rgba(0,0,0,0.1);text-align:left;}
+    .info-card p{color:#555;line-height:1.65;margin:0 0 12px;}
+    .info-card p:last-child{margin-bottom:0;}
+    .pull-quote{max-width:700px;margin:35px auto;padding:10px 15px 10px 35px;position:relative;}
+    .pull-quote:before{content:'\201C';position:absolute;left:0;top:-18px;font-size:70px;font-family:'Playfair Display',serif;color:var(--purple);line-height:1;opacity:.5;}
+    .pull-quote p{font-family:'Playfair Display',serif;font-size:1.25em;font-style:italic;color:var(--heading-purple);line-height:1.6;margin:0;}
+    .life-here-closing-note{text-align:center;font-size:0.9em;color:#777;margin-top:35px;}
+    .life-here-closing-note a{color:var(--heading-purple);}
 
     /* Simplified Speech Bubble Testimonials */
     .testimonials-container {
@@ -1072,14 +1094,14 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
         <a href="#spotlights">Employee Spotlights</a>
         <a href="#why-vca">Why VCA</a>
         <a href="#careers">Open Roles</a>
-        <a href="#benefits">Benefits</a>
+        <a href="#life-here">Life in <span data-sheet-key="region_name">North Atlantic</span></a>
         <div class="nav-more" id="navMore">
           <button type="button" class="nav-more-toggle" id="navMoreToggle" aria-haspopup="true" aria-expanded="false" aria-controls="navMorePanel">More <i data-lucide="chevron-down" aria-hidden="true"></i></button>
           <div class="nav-more-panel" id="navMorePanel">
             <a href="#testimonials">Team Testimonials</a>
             <a href="#values">Our Values</a>
             <a href="#region-at-a-glance">Our Region</a>
-            <a href="#faq">FAQ</a>
+            <a href="#faq" id="navFaqLink" style="display: none;">Regional FAQ</a>
           </div>
         </div>
         <a href="#recruiters">Contact Our Team</a>
@@ -1115,7 +1137,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
   <section class="section" id="culture">
     <h2>Our Culture</h2>
     <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">At VCA <span data-sheet-key="region_name">North Atlantic</span>, we foster a collaborative environment where learning, growth, and compassion are at the heart of everything we do. Here's a glimpse of what life on our team looks like.</p>
-    <div class="carousel-container">
+    <div class="carousel-container" id="cultureCarouselContainer">
       <div class="carousel-track" id="carouselTrack">
         <!-- Items will be dynamically generated -->
       </div>
@@ -1368,12 +1390,12 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
           <h3><span aria-hidden="true"><i data-lucide="stethoscope"></i></span> General Practice</h3>
           <p>Our general practice hospitals provide comprehensive preventive care, diagnostics, and treatment for pets across the Northeast. Located in communities large and small, these hospitals offer diverse practice settings and clientele.</p>
           <div class="state-grid" id="stateGridGP">
-            <div class="state-item">CT</div>
-            <div class="state-item">MA</div>
-            <div class="state-item">RI</div>
-            <div class="state-item">ME</div>
-            <div class="state-item">VT</div>
-            <div class="state-item">NH</div>
+            <a class="state-item" href="https://ctvisit.com" target="_blank" rel="noopener">CT</a>
+            <a class="state-item" href="https://www.visitma.com" target="_blank" rel="noopener">MA</a>
+            <a class="state-item" href="https://www.visitrhodeisland.com" target="_blank" rel="noopener">RI</a>
+            <a class="state-item" href="https://visitmaine.com" target="_blank" rel="noopener">ME</a>
+            <a class="state-item" href="https://www.vermontvacation.com" target="_blank" rel="noopener">VT</a>
+            <a class="state-item" href="https://www.visitnh.gov" target="_blank" rel="noopener">NH</a>
           </div>
         </div>
 
@@ -1381,12 +1403,12 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
           <h3><span aria-hidden="true"><i data-lucide="siren"></i></span> Emergency & Specialty</h3>
           <p>Our emergency and specialty hospitals provide advanced, 24/7 care for critical cases and specialized treatment. These state-of-the-art facilities offer unique career opportunities in high-acuity medicine.</p>
           <div class="state-grid" id="stateGridER">
-            <div class="state-item">CT</div>
-            <div class="state-item">MA</div>
-            <div class="state-item">NH</div>
-            <div class="state-item">NY</div>
-            <div class="state-item">MI</div>
-            <div class="state-item">OH</div>
+            <a class="state-item" href="https://ctvisit.com" target="_blank" rel="noopener">CT</a>
+            <a class="state-item" href="https://www.visitma.com" target="_blank" rel="noopener">MA</a>
+            <a class="state-item" href="https://www.visitnh.gov" target="_blank" rel="noopener">NH</a>
+            <a class="state-item" href="https://www.iloveny.com" target="_blank" rel="noopener">NY</a>
+            <a class="state-item" href="https://www.michigan.org" target="_blank" rel="noopener">MI</a>
+            <a class="state-item" href="https://ohio.org" target="_blank" rel="noopener">OH</a>
           </div>
         </div>
       </div>
@@ -1428,102 +1450,86 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
     </div>
   </section>
 
-  <!-- BENEFITS SECTION -->
-  <section class="section" id="benefits">
-    <h2>Benefits</h2>
-    <p class="benefits-comp-note">We offer <strong>competitive, transparent pay</strong> for every role — including sign-on and anniversary bonuses in many cases — and your recruiter will walk you through specifics for your position and location early in the process. Here's what's on top of that:</p>
-    <div class="benefit-grid">
-      <div class="tile-group">
-        <div class="grid-group-label">Health &amp; Family</div>
-        <div class="tile-pair">
-          <div class="benefit-tile">
-            <div class="benefit-tile-icon" aria-hidden="true"><i data-lucide="heart-pulse"></i></div>
-            <h3>Health &amp; Wellness</h3>
-            <p>Choice of medical plans with preventive care covered 100% in-network, plus dental and vision. Mental health support includes up to 12 free Lyra therapy/coaching sessions a year and a free Headspace membership.</p>
-          </div>
-          <div class="benefit-tile">
-            <div class="benefit-tile-icon icon-accent-purple" aria-hidden="true"><i data-lucide="baby"></i></div>
-            <h3>Family &amp; Life</h3>
-            <p>Up to 4 weeks of fully paid parental leave for birth or adoption, fertility care support, and confidential counseling for you and your family whenever you need it.</p>
-          </div>
+  <!-- LIFE IN REGION SECTION -->
+  <section class="section" id="life-here">
+    <h2>Life in <span data-sheet-key="region_name">North Atlantic</span></h2>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 30px; display: none;" id="lifeHereBlurb"></p>
+
+    <!-- Cost-of-living comparison cards: col_1..3_anchor_city / col_1..3_comparison_text.
+         Sheet-driven only, no fallback content — hidden by default, shown per-card,
+         whole subsection hidden if all 3 are blank. -->
+    <div id="colSubsection" style="display: none;">
+      <h3 class="life-here-subheading">Cost of Living</h3>
+      <div class="grid grid-3">
+        <div class="card" id="colCard1" style="display: none !important;">
+          <span class="card-icon" aria-hidden="true"><i data-lucide="map-pin"></i></span>
+          <strong id="colCity1"></strong>
+          <p id="colText1"></p>
         </div>
-      </div>
-      <div class="tile-group">
-        <div class="grid-group-label">Money &amp; Time</div>
-        <div class="tile-pair">
-          <div class="benefit-tile">
-            <div class="benefit-tile-icon icon-accent-coral" aria-hidden="true"><i data-lucide="piggy-bank"></i></div>
-            <h3>Financial Security</h3>
-            <p>A 401(k) with a 3.5% company match — you're 100% vested in your own contributions from day one. Full-time associates also get Life and Disability insurance at no cost.</p>
-          </div>
-          <div class="benefit-tile">
-            <div class="benefit-tile-icon icon-accent-blue" aria-hidden="true"><i data-lucide="palmtree"></i></div>
-            <h3>Time Off &amp; Continuing Education</h3>
-            <p>6 weeks of PTO for GP doctors, 5 for ER doctors, plus a $3,500/year continuing education budget to keep growing your skills on your terms.</p>
-          </div>
+        <div class="card" id="colCard2" style="display: none !important;">
+          <span class="card-icon" aria-hidden="true"><i data-lucide="map-pin"></i></span>
+          <strong id="colCity2"></strong>
+          <p id="colText2"></p>
         </div>
-      </div>
-      <div class="tile-group">
-        <div class="grid-group-label">Everyday Extras</div>
-        <div class="tile-pair">
-          <div class="benefit-tile">
-            <div class="benefit-tile-icon" aria-hidden="true"><i data-lucide="paw-print"></i></div>
-            <h3>For the Veterinary Team</h3>
-            <p>Generous discounts on care for your own pets — including 100% off vaccines and free care from any VCA DVM — plus free License Defense coverage if you're ever the subject of a state board complaint.</p>
-          </div>
-          <div class="benefit-tile">
-            <div class="benefit-tile-icon icon-accent-purple" aria-hidden="true"><i data-lucide="gift"></i></div>
-            <h3>Everyday Perks</h3>
-            <p>Free legal assistance, identity theft protection, student loan repayment guidance, and hundreds of everyday discounts on things like cell phone plans, gyms, and entertainment.</p>
-          </div>
+        <div class="card" id="colCard3" style="display: none !important;">
+          <span class="card-icon" aria-hidden="true"><i data-lucide="map-pin"></i></span>
+          <strong id="colCity3"></strong>
+          <p id="colText3"></p>
         </div>
       </div>
     </div>
-    <div class="benefits-cta">
-      <h3>Want the Full Details?</h3>
-      <p>Plan options, rates, and eligibility vary by location and role — see the complete guide for the specifics.</p>
-      <a href="benefits-guide.pdf" class="btn" target="_blank" rel="noopener">View Our Benefits Guide</a>
-      <div class="benefits-icon" aria-hidden="true"><i data-lucide="clipboard-list"></i></div>
+
+    <!-- Family & Relocation card: family_spouse_career_blurb / family_schools_blurb.
+         Sheet-driven only — hidden if both blank, shows just the one present if only one is filled. -->
+    <div class="info-card" id="familyCard" style="display: none;">
+      <h3 class="life-here-subheading" style="margin-top: 0;">Family &amp; Relocation</h3>
+      <p id="familySpouseBlurb" style="display: none;"></p>
+      <p id="familySchoolsBlurb" style="display: none;"></p>
     </div>
+
+    <!-- "A Weekend Here": weekend_here_blurb. Sheet-driven only — hidden if blank. -->
+    <blockquote class="pull-quote" id="weekendHereQuote" style="display: none;">
+      <p id="weekendHereText"></p>
+    </blockquote>
+
+    <!-- Regional Highlights carousel: highlight_1..6_photo_url / _caption.
+         Independent carousel instance from the Culture carousel above (see
+         createImageCarousel()). No stock-photo fallback — only instantiated
+         (and shown) once the Sheet actually supplies at least one photo. -->
+    <div id="highlightsSubsection" style="display: none;">
+      <h3 class="life-here-subheading" style="text-align: center;">Regional Highlights</h3>
+      <div class="carousel-container" id="highlightsCarouselContainer">
+        <div class="carousel-track" id="highlightsCarouselTrack"></div>
+        <div class="carousel-nav">
+          <button class="carousel-button prev" aria-label="Previous photo">&#10094;</button>
+          <button class="carousel-button next" aria-label="Next photo">&#10095;</button>
+        </div>
+        <div class="carousel-controls-row">
+          <div class="carousel-indicators" id="highlightsCarouselIndicators"></div>
+          <button type="button" class="carousel-playpause" id="highlightsCarouselPlayPause" aria-pressed="false" aria-label="Pause photo auto-advance">
+            <i data-lucide="pause" class="carousel-playpause-icon-pause" aria-hidden="true"></i>
+            <i data-lucide="play" class="carousel-playpause-icon-play" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <div class="modal" id="highlightsImageModal">
+        <div class="modal-content">
+          <button class="close-modal" aria-label="Close image">&times;</button>
+          <div id="highlightsModalTile" class="placeholder-tile modal-tile"></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="life-here-closing-note">For benefits, compensation, and other company-wide details, visit <a href="https://careers.vca.com" target="_blank" rel="noopener">VCA Careers</a>.</p>
   </section>
 
-  <!-- FAQ SECTION -->
-  <section class="section" id="faq">
-    <h2>Common Questions</h2>
-    <div class="faq-list">
-      <details class="faq-item">
-        <summary>What does the hiring process look like?</summary>
-        <p class="faq-answer">It starts with a conversation with one of our recruiters (see Contact Our Team below), who will walk you through next steps specific to the role, hospital, and location you're interested in.</p>
-      </details>
-      <details class="faq-item">
-        <summary>How does compensation work?</summary>
-        <p class="faq-answer">Doctors are paid on a production salary model, with payouts quarterly and no negative accrual — a slower quarter never means paying anything back. Offers often include sign-on and/or anniversary bonuses at the 1- and 2-year marks as well. Your recruiter will walk you through the specifics for your role and location.</p>
-      </details>
-      <details class="faq-item">
-        <summary>What kind of clinical autonomy do I have as a doctor here?</summary>
-        <p class="faq-answer">Full autonomy on medical decisions. We collaborate as a team to find the best path for each patient, but there's no corporate playbook dictating what you have to do when a given case walks in the door — ultimately, you make the plan of care.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Is there a path to medical leadership?</summary>
-        <p class="faq-answer">Yes. Our Medical Director track is open to associates with 6+ years of experience as well as doctors who already have medical leadership experience. MDs are backed by dedicated marketing, payroll, and operations teams, so you can focus on medical teaching and leadership — while still seeing your own patients and clients on the floor.</p>
-      </details>
-      <details class="faq-item">
-        <summary>What's the mentorship experience like for new grads?</summary>
-        <p class="faq-answer">New doctors join VCA Academy's structured 6-month mentorship program — paired one-on-one with a mentor, working a modified schedule that gradually eases you into a full caseload, and compensated on salary only so you're never pressured by production numbers while you're still learning. You won't be scheduled alone during your first 60&ndash;90 days.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Can I use my benefits for my own pets?</summary>
-        <p class="faq-answer">Yes. Full- and part-time associates get discounted care for up to four pets at their home hospital — including 100% off vaccinations — and any service a DVM provides on their own pet is covered in full.</p>
-      </details>
-      <details class="faq-item">
-        <summary>What happens if I face a state board complaint?</summary>
-        <p class="faq-answer">You're covered. VCA's License Defense program provides a dedicated attorney and covers your legal fees for board complaints related to your veterinary work at VCA, at no cost to you.</p>
-      </details>
-      <details class="faq-item">
-        <summary>What benefits am I eligible for, and when?</summary>
-        <p class="faq-answer">Full-time associates are generally eligible for health, dental, and vision coverage the first of the month after 30 days of employment, and the 401(k) after 60 days. Your recruiter can confirm exact timing for your role.</p>
-      </details>
-    </div>
+  <!-- REGIONAL FAQ SECTION -->
+  <!-- Sheet-driven only (faq_1..6_question/_answer), no hardcoded fallback:
+       populated by applyRegionalFaq() in the script below. If every pair is
+       blank, this whole section (and its "Regional FAQ" nav entry) stays hidden. -->
+  <section class="section" id="faq" style="display: none;">
+    <h2>Questions About the Region</h2>
+    <div class="faq-list" id="faqList"></div>
   </section>
 
   <!-- CONTACT INFO SECTION -->
@@ -1737,407 +1743,425 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
       // easiest thing on a site to end up dead. Swap in real photos by adding a `src`/`alt`
       // pair per slide once real photography is available — createCarouselItem() below
       // already branches on that.
-      const images = [
-        { icon: 'paw-print', caption: 'Compassionate Patient Care', color: 'var(--blue)' },
-        { icon: 'heart-handshake', caption: 'Collaborative Care Teams', color: 'var(--teal-dark)' },
-        { icon: 'siren', caption: 'Emergency & Critical Care', color: 'var(--heading-purple)' },
-        { icon: 'graduation-cap', caption: 'Mentorship & Growth', color: 'var(--coral-dark)' },
-        { icon: 'flask-conical', caption: 'Hands-On Learning', color: 'var(--blue)' },
-        { icon: 'party-popper', caption: 'Team Celebrations', color: 'var(--teal-dark)' },
-        { icon: 'coffee', caption: 'Work-Life Balance', color: 'var(--heading-purple)' },
-        { icon: 'hospital', caption: 'State-of-the-Art Hospitals', color: 'var(--coral-dark)' }
-      ];
+      // ============================================================
+      // REUSABLE IMAGE CAROUSEL — auto-scroll, click-to-center,
+      // click-to-enlarge modal, pause-on-hover, explicit play/pause.
+      // Each call to createImageCarousel() sets up one fully independent
+      // instance (own state, own DOM scope) so multiple carousels can run
+      // on the same page without colliding — used below for both the
+      // Culture section carousel and the Regional Highlights carousel in
+      // "Life in {region_name}".
+      // ============================================================
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      // Get DOM elements
-      const track = document.getElementById('carouselTrack');
-      const indicators = document.getElementById('carouselIndicators');
-      const prevButton = document.querySelector('.carousel-button.prev');
-      const nextButton = document.querySelector('.carousel-button.next');
-      const modal = document.getElementById('imageModal');
-      const modalTile = document.getElementById('modalTile');
-      const closeModal = document.querySelector('.close-modal');
-      const container = document.querySelector('.carousel-container');
-      
-      let currentIndex = 0;
-      let autoScrollInterval;
-      let isPaused = false;
-      // Separate from isPaused: hover/click/interaction pauses are all temporary
-      // and auto-resume on their own (mouseleave, a setTimeout). An explicit
-      // pause via the play/pause button should stick until the user un-pauses it,
-      // not get silently overridden the next time the mouse leaves a tile.
-      let userPaused = false;
+      function createImageCarousel({ container, track, indicators, modal, modalTile, playPauseButton, images }) {
+        const prevButton = container.querySelector('.carousel-button.prev');
+        const nextButton = container.querySelector('.carousel-button.next');
+        const closeModalBtn = modal.querySelector('.close-modal');
 
-      // Initialize carousel
-      function initCarousel() {
-        // Create original items first in the middle
-        images.forEach((image, index) => {
-          createCarouselItem(image, index, 'original');
-          createIndicator(index);
-        });
-        
-        // Clone images for beginning and end to create illusion of infinite scroll
-        for (let i = 0; i < images.length; i++) {
-          // Add clones at the beginning (show end of carousel)
-          createCarouselItem(images[images.length - 1 - i], images.length - 1 - i, 'clone-start');
-          
-          // Add clones at the end (show beginning of carousel)
-          createCarouselItem(images[i], i, 'clone-end');
+        let currentIndex = 0;
+        let autoScrollInterval;
+        let isPaused = false;
+        // Separate from isPaused: hover/click/interaction pauses are all temporary
+        // and auto-resume on their own (mouseleave, a setTimeout). An explicit
+        // pause via the play/pause button should stick until the user un-pauses it,
+        // not get silently overridden the next time the mouse leaves a tile.
+        let userPaused = false;
+
+        // Initialize carousel
+        function initCarousel() {
+          // Create original items first in the middle
+          images.forEach((image, index) => {
+            createCarouselItem(image, index, 'original');
+            createIndicator(index);
+          });
+
+          // Clone images for beginning and end to create illusion of infinite scroll
+          for (let i = 0; i < images.length; i++) {
+            // Add clones at the beginning (show end of carousel)
+            createCarouselItem(images[images.length - 1 - i], images.length - 1 - i, 'clone-start');
+
+            // Add clones at the end (show beginning of carousel)
+            createCarouselItem(images[i], i, 'clone-end');
+          }
+
+          // Arrange items for initial view (show the originals in center)
+          setTimeout(() => {
+            // Position to show the first non-clone item
+            currentIndex = 0;
+            repositionCarousel(false);
+
+            // Start auto-scrolling
+            startAutoScroll();
+          }, 100);
         }
-        
-        // Arrange items for initial view (show the originals in center)
-        setTimeout(() => {
-          // Position to show the first non-clone item
-          currentIndex = 0;
-          repositionCarousel(false);
-          
-          // Start auto-scrolling
+
+        // Swaps in a Sheet-provided photo list and rebuilds the carousel from
+        // scratch (same initCarousel() used on first load). Only called once,
+        // after a successful Sheet fetch that actually supplied at least one
+        // photo — an empty/failed fetch leaves the carousel exactly as
+        // initCarousel() already rendered it on page load.
+        function rebuildImages(newImages) {
+          if (autoScrollInterval) { clearInterval(autoScrollInterval); autoScrollInterval = null; }
+          images.length = 0;
+          images.push(...newImages);
+          track.innerHTML = '';
+          indicators.innerHTML = '';
+          initCarousel();
+        }
+
+        // Builds either a real <img> (when a slide supplies src/alt) or a themed
+        // placeholder tile (icon + caption + brand gradient) for slides that don't.
+        function buildSlideVisual(image) {
+          if (image.src) {
+            const img = document.createElement('img');
+            img.src = image.src;
+            img.alt = image.alt || image.caption || '';
+            img.loading = 'lazy';
+            return img;
+          }
+          const tile = document.createElement('div');
+          tile.className = 'placeholder-tile';
+          tile.style.background = image.color;
+          const icon = document.createElement('i');
+          icon.className = 'tile-icon';
+          icon.setAttribute('data-lucide', image.icon);
+          icon.setAttribute('aria-hidden', 'true');
+          const caption = document.createElement('span');
+          caption.className = 'tile-caption';
+          caption.textContent = image.caption;
+          tile.append(icon, caption);
+          if (window.lucide) { lucide.createIcons({ root: tile }); }
+          return tile;
+        }
+
+        // Create carousel item
+        function createCarouselItem(image, index, className = '') {
+          const item = document.createElement('div');
+          item.className = `carousel-item ${className}`;
+          item.dataset.index = index;
+
+          const imgContainer = document.createElement('div');
+          imgContainer.className = 'img-container';
+          imgContainer.setAttribute('role', 'button');
+          imgContainer.setAttribute('tabindex', '0');
+          imgContainer.setAttribute('aria-label', `View larger: ${image.caption || image.alt || ''}`);
+
+          imgContainer.appendChild(buildSlideVisual(image));
+          item.appendChild(imgContainer);
+
+          // If it's a clone for the start, prepend it
+          if (className === 'clone-start') {
+            track.prepend(item);
+          } else {
+            track.appendChild(item);
+          }
+
+          // Add click/keyboard event for modal
+          const openModal = () => {
+            pauseAutoScroll();
+            modalTile.innerHTML = '';
+            modalTile.style.background = '';
+            const visual = buildSlideVisual(image);
+            if (visual.tagName === 'IMG') {
+              visual.style.width = '100%';
+              visual.style.height = 'auto';
+              visual.style.maxHeight = '80vh';
+              visual.style.objectFit = 'contain';
+              visual.style.borderRadius = '5px';
+            }
+            modalTile.appendChild(visual);
+            modal.classList.add('active');
+          };
+          // Centered tile enlarges on activation; an off-center tile is pulled to
+          // center first instead, giving a second way to navigate besides the arrows.
+          const activateTile = () => {
+            if (item.classList.contains('active')) {
+              openModal();
+              return;
+            }
+            pauseAutoScroll();
+            const allItems = Array.from(track.querySelectorAll('.carousel-item'));
+            const delta = allItems.indexOf(item) - (images.length + currentIndex);
+            goToSlide(currentIndex + delta);
+            setTimeout(resumeAutoScroll, 5000);
+          };
+          imgContainer.addEventListener('click', activateTile);
+          imgContainer.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              activateTile();
+            }
+          });
+
+          // Add hover events to pause/resume auto-scroll
+          imgContainer.addEventListener('mouseenter', pauseAutoScroll);
+
+          imgContainer.addEventListener('mouseleave', () => {
+            if (!modal.classList.contains('active')) {
+              resumeAutoScroll();
+            }
+          });
+        }
+
+        // Create indicator
+        function createIndicator(index) {
+          const indicator = document.createElement('button');
+          indicator.type = 'button';
+          indicator.className = `indicator ${index === currentIndex ? 'active' : ''}`;
+          indicator.dataset.index = index;
+          indicator.setAttribute('aria-label', `Go to photo ${index + 1}`);
+
+          indicator.addEventListener('click', () => {
+            pauseAutoScroll();
+            goToSlide(parseInt(index));
+
+            // Resume auto-scroll after a delay
+            setTimeout(resumeAutoScroll, 5000);
+          });
+
+          indicators.appendChild(indicator);
+        }
+
+        // Reposition carousel based on current index
+        function repositionCarousel(animate = true) {
+          // Get all items to calculate width properly
+          const items = track.querySelectorAll('.carousel-item');
+          const itemWidth = items[0].offsetWidth;
+
+          // Calculate center position for the carousel
+          // We need to offset by the number of clones at the beginning (images.length)
+          // and then move based on current index
+          const centerOffset = (container.offsetWidth / 2) - (itemWidth / 2);
+          const offset = centerOffset - ((currentIndex + images.length) * itemWidth);
+
+          // Apply or remove transition based on animate parameter
+          if (!animate) {
+            track.style.transition = 'none';
+          } else {
+            track.style.transition = 'transform 0.5s ease';
+          }
+
+          // Update transform
+          track.style.transform = `translateX(${offset}px)`;
+
+          // Force reflow if not animating
+          if (!animate) {
+            void track.offsetWidth;
+            track.style.transition = 'transform 0.5s ease';
+          }
+
+          // Update active classes and indicators
+          updateActiveItems();
+          updateIndicators(currentIndex);
+        }
+
+        // Update active items
+        function updateActiveItems() {
+          const items = track.querySelectorAll('.carousel-item');
+
+          // Remove active class from all items
+          items.forEach(item => item.classList.remove('active'));
+
+          // Calculate which item should be active (centered)
+          const centerIndex = images.length + currentIndex;
+
+          // Make center item active
+          if (items[centerIndex]) {
+            items[centerIndex].classList.add('active');
+          }
+
+          // Keep each tile's label in sync with what clicking it will actually do
+          items.forEach(item => {
+            const imgContainer = item.querySelector('.img-container');
+            if (!imgContainer) return;
+            const image = images[item.dataset.index];
+            const caption = (image && (image.caption || image.alt)) || '';
+            imgContainer.setAttribute('aria-label', item.classList.contains('active') ? `View larger: ${caption}` : `Center: ${caption}`);
+          });
+        }
+
+        // Update indicators
+        function updateIndicators(index) {
+          const allIndicators = indicators.querySelectorAll('.indicator');
+          allIndicators.forEach(ind => ind.classList.remove('active'));
+
+          // Calculate proper index using modulo to handle wrapping
+          const normalizedIndex = ((index % images.length) + images.length) % images.length;
+          const activeIndicator = indicators.querySelector(`.indicator[data-index="${normalizedIndex}"]`);
+
+          if (activeIndicator) {
+            activeIndicator.classList.add('active');
+          }
+        }
+
+        // Go to specific slide
+        function goToSlide(index) {
+          currentIndex = index;
+          repositionCarousel(true);
+
+          // Handle infinite scroll transition if needed
+          handleInfiniteScrollTransition();
+        }
+
+        // Handle transitions for infinite scrolling
+        function handleInfiniteScrollTransition() {
+          // Check if we've scrolled to a clone and need to seamlessly jump to the original
+          const totalOriginalItems = images.length;
+
+          // If we've gone too far right (into the cloned section at the end)
+          if (currentIndex >= totalOriginalItems) {
+            setTimeout(() => {
+              // Calculate equivalent position at the beginning
+              currentIndex = currentIndex % totalOriginalItems;
+              repositionCarousel(false);
+            }, 500); // Wait for animation to complete
+          }
+
+          // If we've gone too far left (into the cloned section at the beginning)
+          else if (currentIndex < 0) {
+            setTimeout(() => {
+              // Calculate equivalent position at the end
+              currentIndex = totalOriginalItems + (currentIndex % totalOriginalItems);
+              repositionCarousel(false);
+            }, 500); // Wait for animation to complete
+          }
+        }
+
+        // Start auto-scrolling
+        function startAutoScroll() {
+          if (isPaused || userPaused || prefersReducedMotion) return;
+
+          // Clear any existing interval
+          if (autoScrollInterval) {
+            clearInterval(autoScrollInterval);
+          }
+
+          // Set new interval
+          autoScrollInterval = setInterval(() => {
+            // Move to next slide
+            currentIndex++;
+            repositionCarousel(true);
+
+            // Handle infinite scroll transition if needed
+            handleInfiniteScrollTransition();
+          }, 3000); // Change slides every 3 seconds
+        }
+
+        // Pause auto-scrolling
+        function pauseAutoScroll() {
+          isPaused = true;
+          if (autoScrollInterval) {
+            clearInterval(autoScrollInterval);
+            autoScrollInterval = null;
+          }
+        }
+
+        // Resume auto-scrolling
+        function resumeAutoScroll() {
+          if (userPaused) return; // an explicit user pause outlives incidental resume attempts
+          isPaused = false;
           startAutoScroll();
-        }, 100);
-      }
-
-      // Swaps in a Sheet-provided photo list and rebuilds the carousel from
-      // scratch (same initCarousel() used on first load). Only called once,
-      // after a successful Sheet fetch that actually supplied at least one
-      // carousel_N_photo_url — an empty/failed fetch leaves the carousel
-      // exactly as initCarousel() already rendered it on page load.
-      function rebuildCarouselImages(newImages) {
-        if (autoScrollInterval) { clearInterval(autoScrollInterval); autoScrollInterval = null; }
-        images.length = 0;
-        images.push(...newImages);
-        track.innerHTML = '';
-        indicators.innerHTML = '';
-        initCarousel();
-      }
-
-      // Builds either a real <img> (when a slide supplies src/alt) or a themed
-      // placeholder tile (icon + caption + brand gradient) for slides that don't.
-      function buildSlideVisual(image) {
-        if (image.src) {
-          const img = document.createElement('img');
-          img.src = image.src;
-          img.alt = image.alt || image.caption || '';
-          img.loading = 'lazy';
-          return img;
-        }
-        const tile = document.createElement('div');
-        tile.className = 'placeholder-tile';
-        tile.style.background = image.color;
-        const icon = document.createElement('i');
-        icon.className = 'tile-icon';
-        icon.setAttribute('data-lucide', image.icon);
-        icon.setAttribute('aria-hidden', 'true');
-        const caption = document.createElement('span');
-        caption.className = 'tile-caption';
-        caption.textContent = image.caption;
-        tile.append(icon, caption);
-        if (window.lucide) { lucide.createIcons({ root: tile }); }
-        return tile;
-      }
-
-      // Create carousel item
-      function createCarouselItem(image, index, className = '') {
-        const item = document.createElement('div');
-        item.className = `carousel-item ${className}`;
-        item.dataset.index = index;
-
-        const imgContainer = document.createElement('div');
-        imgContainer.className = 'img-container';
-        imgContainer.setAttribute('role', 'button');
-        imgContainer.setAttribute('tabindex', '0');
-        imgContainer.setAttribute('aria-label', `View larger: ${image.caption || image.alt || ''}`);
-
-        imgContainer.appendChild(buildSlideVisual(image));
-        item.appendChild(imgContainer);
-
-        // If it's a clone for the start, prepend it
-        if (className === 'clone-start') {
-          track.prepend(item);
-        } else {
-          track.appendChild(item);
         }
 
-        // Add click/keyboard event for modal
-        const openModal = () => {
+        // Event listeners for navigation buttons
+        prevButton.addEventListener('click', () => {
           pauseAutoScroll();
-          modalTile.innerHTML = '';
-          modalTile.style.background = '';
-          const visual = buildSlideVisual(image);
-          if (visual.tagName === 'IMG') {
-            visual.style.width = '100%';
-            visual.style.height = 'auto';
-            visual.style.maxHeight = '80vh';
-            visual.style.objectFit = 'contain';
-            visual.style.borderRadius = '5px';
-          }
-          modalTile.appendChild(visual);
-          modal.classList.add('active');
-        };
-        // Centered tile enlarges on activation; an off-center tile is pulled to
-        // center first instead, giving a second way to navigate besides the arrows.
-        const activateTile = () => {
-          if (item.classList.contains('active')) {
-            openModal();
-            return;
-          }
-          pauseAutoScroll();
-          const allItems = Array.from(document.querySelectorAll('.carousel-item'));
-          const delta = allItems.indexOf(item) - (images.length + currentIndex);
-          goToSlide(currentIndex + delta);
+          currentIndex--;
+          repositionCarousel(true);
+          handleInfiniteScrollTransition();
+
+          // Resume auto-scroll after a delay
           setTimeout(resumeAutoScroll, 5000);
-        };
-        imgContainer.addEventListener('click', activateTile);
-        imgContainer.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            activateTile();
+        });
+
+        nextButton.addEventListener('click', () => {
+          pauseAutoScroll();
+          currentIndex++;
+          repositionCarousel(true);
+          handleInfiniteScrollTransition();
+
+          // Resume auto-scroll after a delay
+          setTimeout(resumeAutoScroll, 5000);
+        });
+
+        // Explicit play/pause control - independent of the incidental pauses
+        // above, which all auto-resume on their own (hover-leave, a timeout).
+        if (playPauseButton) {
+          if (prefersReducedMotion) {
+            // Nothing is auto-advancing to pause; the control would be inert.
+            playPauseButton.style.display = 'none';
+          } else {
+            playPauseButton.addEventListener('click', () => {
+              userPaused = !userPaused;
+              if (userPaused) {
+                pauseAutoScroll();
+              } else {
+                resumeAutoScroll();
+              }
+              playPauseButton.setAttribute('aria-pressed', String(userPaused));
+              playPauseButton.setAttribute('aria-label', userPaused ? 'Play photo auto-advance' : 'Pause photo auto-advance');
+            });
+          }
+        }
+
+        // Close modal and resume auto-scroll
+        closeModalBtn.addEventListener('click', () => {
+          modal.classList.remove('active');
+          setTimeout(resumeAutoScroll, 1000);
+        });
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            modal.classList.remove('active');
+            setTimeout(resumeAutoScroll, 1000);
           }
         });
 
-        // Add hover events to pause/resume auto-scroll
-        imgContainer.addEventListener('mouseenter', pauseAutoScroll);
-        
-        imgContainer.addEventListener('mouseleave', () => {
+        // Carousel container hover events
+        container.addEventListener('mouseenter', pauseAutoScroll);
+
+        container.addEventListener('mouseleave', () => {
           if (!modal.classList.contains('active')) {
             resumeAutoScroll();
           }
         });
-      }
-      
-      // Create indicator
-      function createIndicator(index) {
-        const indicator = document.createElement('button');
-        indicator.type = 'button';
-        indicator.className = `indicator ${index === currentIndex ? 'active' : ''}`;
-        indicator.dataset.index = index;
-        indicator.setAttribute('aria-label', `Go to photo ${index + 1}`);
 
-        indicator.addEventListener('click', () => {
-          pauseAutoScroll();
-          goToSlide(parseInt(index));
-          
-          // Resume auto-scroll after a delay
-          setTimeout(resumeAutoScroll, 5000);
+        // Window resize handling
+        window.addEventListener('resize', () => {
+          repositionCarousel(false);
         });
-        
-        indicators.appendChild(indicator);
-      }
-      
-      // Reposition carousel based on current index
-      function repositionCarousel(animate = true) {
-        // Get all items to calculate width properly
-        const items = document.querySelectorAll('.carousel-item');
-        const itemWidth = items[0].offsetWidth;
-        
-        // Calculate center position for the carousel
-        // We need to offset by the number of clones at the beginning (images.length)
-        // and then move based on current index
-        const centerOffset = (container.offsetWidth / 2) - (itemWidth / 2);
-        const offset = centerOffset - ((currentIndex + images.length) * itemWidth);
-        
-        // Apply or remove transition based on animate parameter
-        if (!animate) {
-          track.style.transition = 'none';
-        } else {
-          track.style.transition = 'transform 0.5s ease';
-        }
-        
-        // Update transform
-        track.style.transform = `translateX(${offset}px)`;
-        
-        // Force reflow if not animating
-        if (!animate) {
-          void track.offsetWidth;
-          track.style.transition = 'transform 0.5s ease';
-        }
-        
-        // Update active classes and indicators
-        updateActiveItems();
-        updateIndicators(currentIndex);
-      }
-      
-      // Update active items
-      function updateActiveItems() {
-        const items = document.querySelectorAll('.carousel-item');
 
-        // Remove active class from all items
-        items.forEach(item => item.classList.remove('active'));
+        // Initialize the carousel
+        initCarousel();
 
-        // Calculate which item should be active (centered)
-        const centerIndex = images.length + currentIndex;
+        return { rebuildImages, images };
+      }
 
-        // Make center item active
-        if (items[centerIndex]) {
-          items[centerIndex].classList.add('active');
-        }
-
-        // Keep each tile's label in sync with what clicking it will actually do
-        items.forEach(item => {
-          const imgContainer = item.querySelector('.img-container');
-          if (!imgContainer) return;
-          const image = images[item.dataset.index];
-          const caption = (image && (image.caption || image.alt)) || '';
-          imgContainer.setAttribute('aria-label', item.classList.contains('active') ? `View larger: ${caption}` : `Center: ${caption}`);
-        });
-      }
-      
-      // Update indicators
-      function updateIndicators(index) {
-        const allIndicators = document.querySelectorAll('.indicator');
-        allIndicators.forEach(ind => ind.classList.remove('active'));
-        
-        // Calculate proper index using modulo to handle wrapping
-        const normalizedIndex = ((index % images.length) + images.length) % images.length;
-        const activeIndicator = document.querySelector(`.indicator[data-index="${normalizedIndex}"]`);
-        
-        if (activeIndicator) {
-          activeIndicator.classList.add('active');
-        }
-      }
-      
-      // Go to specific slide
-      function goToSlide(index) {
-        currentIndex = index;
-        repositionCarousel(true);
-        
-        // Handle infinite scroll transition if needed
-        handleInfiniteScrollTransition();
-      }
-      
-      // Handle transitions for infinite scrolling
-      function handleInfiniteScrollTransition() {
-        // Check if we've scrolled to a clone and need to seamlessly jump to the original
-        const totalOriginalItems = images.length;
-        
-        // If we've gone too far right (into the cloned section at the end)
-        if (currentIndex >= totalOriginalItems) {
-          setTimeout(() => {
-            // Calculate equivalent position at the beginning
-            currentIndex = currentIndex % totalOriginalItems;
-            repositionCarousel(false);
-          }, 500); // Wait for animation to complete
-        }
-        
-        // If we've gone too far left (into the cloned section at the beginning)
-        else if (currentIndex < 0) {
-          setTimeout(() => {
-            // Calculate equivalent position at the end
-            currentIndex = totalOriginalItems + (currentIndex % totalOriginalItems);
-            repositionCarousel(false);
-          }, 500); // Wait for animation to complete
-        }
-      }
-      
-      // Start auto-scrolling
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      function startAutoScroll() {
-        if (isPaused || userPaused || prefersReducedMotion) return;
-
-        // Clear any existing interval
-        if (autoScrollInterval) {
-          clearInterval(autoScrollInterval);
-        }
-        
-        // Set new interval
-        autoScrollInterval = setInterval(() => {
-          // Move to next slide
-          currentIndex++;
-          repositionCarousel(true);
-          
-          // Handle infinite scroll transition if needed
-          handleInfiniteScrollTransition();
-        }, 3000); // Change slides every 3 seconds
-      }
-      
-      // Pause auto-scrolling
-      function pauseAutoScroll() {
-        isPaused = true;
-        if (autoScrollInterval) {
-          clearInterval(autoScrollInterval);
-          autoScrollInterval = null;
-        }
-      }
-      
-      // Resume auto-scrolling
-      function resumeAutoScroll() {
-        if (userPaused) return; // an explicit user pause outlives incidental resume attempts
-        isPaused = false;
-        startAutoScroll();
-      }
-      
-      // Event listeners for navigation buttons
-      prevButton.addEventListener('click', () => {
-        pauseAutoScroll();
-        currentIndex--;
-        repositionCarousel(true);
-        handleInfiniteScrollTransition();
-        
-        // Resume auto-scroll after a delay
-        setTimeout(resumeAutoScroll, 5000);
-      });
-      
-      nextButton.addEventListener('click', () => {
-        pauseAutoScroll();
-        currentIndex++;
-        repositionCarousel(true);
-        handleInfiniteScrollTransition();
-        
-        // Resume auto-scroll after a delay
-        setTimeout(resumeAutoScroll, 5000);
+      // Culture section carousel — initializes immediately with the current
+      // hardcoded fallback tiles, exactly as before. Sheet-driven photos (if
+      // any) replace these via cultureCarousel.rebuildImages() once the CSV
+      // fetch resolves — see applyCarouselPhotos() below.
+      const cultureCarousel = createImageCarousel({
+        container: document.getElementById('cultureCarouselContainer'),
+        track: document.getElementById('carouselTrack'),
+        indicators: document.getElementById('carouselIndicators'),
+        modal: document.getElementById('imageModal'),
+        modalTile: document.getElementById('modalTile'),
+        playPauseButton: document.getElementById('carouselPlayPause'),
+        images: [
+          { icon: 'paw-print', caption: 'Compassionate Patient Care', color: 'var(--blue)' },
+          { icon: 'heart-handshake', caption: 'Collaborative Care Teams', color: 'var(--teal-dark)' },
+          { icon: 'siren', caption: 'Emergency & Critical Care', color: 'var(--heading-purple)' },
+          { icon: 'graduation-cap', caption: 'Mentorship & Growth', color: 'var(--coral-dark)' },
+          { icon: 'flask-conical', caption: 'Hands-On Learning', color: 'var(--blue)' },
+          { icon: 'party-popper', caption: 'Team Celebrations', color: 'var(--teal-dark)' },
+          { icon: 'coffee', caption: 'Work-Life Balance', color: 'var(--heading-purple)' },
+          { icon: 'hospital', caption: 'State-of-the-Art Hospitals', color: 'var(--coral-dark)' },
+        ],
       });
 
-      // Explicit play/pause control - independent of the incidental pauses
-      // above, which all auto-resume on their own (hover-leave, a timeout).
-      const carouselPlayPause = document.getElementById('carouselPlayPause');
-      if (carouselPlayPause) {
-        if (prefersReducedMotion) {
-          // Nothing is auto-advancing to pause; the control would be inert.
-          carouselPlayPause.style.display = 'none';
-        } else {
-          carouselPlayPause.addEventListener('click', () => {
-            userPaused = !userPaused;
-            if (userPaused) {
-              pauseAutoScroll();
-            } else {
-              resumeAutoScroll();
-            }
-            carouselPlayPause.setAttribute('aria-pressed', String(userPaused));
-            carouselPlayPause.setAttribute('aria-label', userPaused ? 'Play photo auto-advance' : 'Pause photo auto-advance');
-          });
-        }
-      }
-
-      // Close modal and resume auto-scroll
-      closeModal.addEventListener('click', () => {
-        modal.classList.remove('active');
-        setTimeout(resumeAutoScroll, 1000);
-      });
-      
-      // Close modal when clicking outside
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.classList.remove('active');
-          setTimeout(resumeAutoScroll, 1000);
-        }
-      });
-      
-      // Carousel container hover events
-      container.addEventListener('mouseenter', pauseAutoScroll);
-      
-      container.addEventListener('mouseleave', () => {
-        if (!modal.classList.contains('active')) {
-          resumeAutoScroll();
-        }
-      });
-      
-      // Window resize handling
-      window.addEventListener('resize', () => {
-        repositionCarousel(false);
-      });
-      
-      // Initialize the carousel
-      initCarousel();
-      
       // Smooth scrolling for anchor links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -2526,14 +2550,34 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
         return !value || /^replace\b/i.test(value);
       }
 
+      // Official state tourism sites linked from the Region at a Glance state
+      // grids. Extend this table as new regions (and their states) get added.
+      const STATE_TOURISM_LINKS = {
+        CT: "https://ctvisit.com",
+        MA: "https://www.visitma.com",
+        RI: "https://www.visitrhodeisland.com",
+        ME: "https://visitmaine.com",
+        VT: "https://www.vermontvacation.com",
+        NH: "https://www.visitnh.gov",
+        NY: "https://www.iloveny.com",
+        MI: "https://www.michigan.org",
+        OH: "https://ohio.org",
+      };
+
       function buildStateItems(container, statesCsv) {
         const states = statesCsv.split(',').map(s => s.trim()).filter(Boolean);
         if (!states.length) return;
         container.innerHTML = '';
         states.forEach(state => {
-          const item = document.createElement('div');
+          const href = STATE_TOURISM_LINKS[state.toUpperCase()];
+          const item = document.createElement(href ? 'a' : 'div');
           item.className = 'state-item';
           item.textContent = state;
+          if (href) {
+            item.href = href;
+            item.target = '_blank';
+            item.rel = 'noopener';
+          }
           container.appendChild(item);
         });
       }
@@ -2616,7 +2660,127 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
           if (isUnfilledSheetValue(trimmed)) continue;
           photos.push({ src: trimmed, alt });
         }
-        if (photos.length) rebuildCarouselImages(photos);
+        if (photos.length) cultureCarousel.rebuildImages(photos);
+      }
+
+      // Returns the trimmed cell value for `key`, or null if the cell is
+      // missing, blank, or an unfilled "REPLACE — ..." placeholder. Used by
+      // the section 4-7 fields below, which have NO hardcoded fallback —
+      // null always means "hide this element," unlike the rest of the Sheet
+      // system where a blank cell means "keep the existing fallback text."
+      function sheetValueOrNull(data, key) {
+        const raw = data[key];
+        if (raw === undefined || raw === null) return null;
+        const trimmed = String(raw).trim();
+        return isUnfilledSheetValue(trimmed) ? null : trimmed;
+      }
+
+      // "Life in {region_name}" section — every field here is brand new
+      // with no hardcoded fallback content, so a blank or unfilled cell
+      // means the corresponding element (or whole subsection) simply stays
+      // hidden, rather than falling back to placeholder copy. Only called
+      // after a successful Sheet fetch; on failure the section stays in its
+      // default hidden state, same as if every field were blank.
+      function applyLifeHere(data) {
+        const blurb = sheetValueOrNull(data, 'region_lifestyle_blurb');
+        if (blurb) {
+          const el = document.getElementById('lifeHereBlurb');
+          el.textContent = blurb;
+          el.style.display = '';
+        }
+
+        // Cost-of-living cards: skip blank slots individually, hide the
+        // whole subsection only if all 3 are blank.
+        let anyCol = false;
+        for (let n = 1; n <= 3; n++) {
+          const city = sheetValueOrNull(data, `col_${n}_anchor_city`);
+          const text = sheetValueOrNull(data, `col_${n}_comparison_text`);
+          if (!city || !text) continue;
+          document.getElementById(`colCity${n}`).textContent = city;
+          document.getElementById(`colText${n}`).textContent = text;
+          document.getElementById(`colCard${n}`).style.display = '';
+          anyCol = true;
+        }
+        if (anyCol) document.getElementById('colSubsection').style.display = '';
+
+        // Family & Relocation: show whichever of the two blurbs is filled
+        // in, hide the card entirely if both are blank.
+        const spouse = sheetValueOrNull(data, 'family_spouse_career_blurb');
+        const schools = sheetValueOrNull(data, 'family_schools_blurb');
+        if (spouse || schools) {
+          document.getElementById('familyCard').style.display = '';
+          if (spouse) {
+            const el = document.getElementById('familySpouseBlurb');
+            el.textContent = spouse;
+            el.style.display = '';
+          }
+          if (schools) {
+            const el = document.getElementById('familySchoolsBlurb');
+            el.textContent = schools;
+            el.style.display = '';
+          }
+        }
+
+        // "A Weekend Here" pull-quote
+        const weekend = sheetValueOrNull(data, 'weekend_here_blurb');
+        if (weekend) {
+          document.getElementById('weekendHereText').textContent = weekend;
+          document.getElementById('weekendHereQuote').style.display = '';
+        }
+
+        // Regional Highlights carousel — independent instance from the
+        // Culture carousel (see createImageCarousel() above). No stock-photo
+        // fallback here: it's only created (and shown) once the Sheet
+        // actually supplies at least one highlight photo; an empty/failed
+        // fetch leaves this whole subsection hidden.
+        const highlightImages = [];
+        for (let n = 1; n <= 6; n++) {
+          const src = sheetValueOrNull(data, `highlight_${n}_photo_url`);
+          if (!src) continue;
+          const caption = sheetValueOrNull(data, `highlight_${n}_caption`) || '';
+          highlightImages.push({ src, alt: caption, caption });
+        }
+        if (highlightImages.length) {
+          document.getElementById('highlightsSubsection').style.display = '';
+          createImageCarousel({
+            container: document.getElementById('highlightsCarouselContainer'),
+            track: document.getElementById('highlightsCarouselTrack'),
+            indicators: document.getElementById('highlightsCarouselIndicators'),
+            modal: document.getElementById('highlightsImageModal'),
+            modalTile: document.getElementById('highlightsModalTile'),
+            playPauseButton: document.getElementById('highlightsCarouselPlayPause'),
+            images: highlightImages,
+          });
+        }
+      }
+
+      // Regional FAQ (faq_1..6_question/_answer) — fully Sheet-driven, no
+      // hardcoded fallback. A pair only renders if BOTH its question and
+      // its answer are filled in; if every pair is blank, the whole section
+      // and its "Regional FAQ" nav entry stay hidden. Only called after a
+      // successful Sheet fetch.
+      function applyRegionalFaq(data) {
+        const list = document.getElementById('faqList');
+        let count = 0;
+        for (let n = 1; n <= 6; n++) {
+          const question = sheetValueOrNull(data, `faq_${n}_question`);
+          const answer = sheetValueOrNull(data, `faq_${n}_answer`);
+          if (!question || !answer) continue;
+          const details = document.createElement('details');
+          details.className = 'faq-item';
+          const summary = document.createElement('summary');
+          summary.textContent = question;
+          const p = document.createElement('p');
+          p.className = 'faq-answer';
+          p.textContent = answer;
+          details.append(summary, p);
+          list.appendChild(details);
+          count++;
+        }
+        if (count > 0) {
+          document.getElementById('faq').style.display = '';
+          document.getElementById('navFaqLink').style.display = '';
+        }
       }
 
       // Overlays Sheet-provided interview Q&A text onto the spotlightData
@@ -2653,7 +2817,7 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
         const descEl = document.getElementById('pageDescription');
         if (titleEl && regionName) titleEl.textContent = `Careers at VCA ${regionName} | Join Our Team`;
         if (descEl && regionName && statesBlurb) {
-          descEl.setAttribute('content', `Explore veterinarian, technician, and support staff careers with VCA ${regionName}. Discover our culture, benefits, and open roles across ${statesBlurb}.`);
+          descEl.setAttribute('content', `Explore veterinarian, technician, and support staff careers with VCA ${regionName}. Discover our culture and open roles across ${statesBlurb}.`);
         }
         const logoLink = document.getElementById('logoHomeLink');
         if (logoLink && regionName) logoLink.setAttribute('aria-label', `VCA ${regionName} home`);
@@ -2705,6 +2869,8 @@ body{width:100%; position:relative; max-width:100%; background:var(--light);marg
 
           const regionEl = document.querySelector('[data-sheet-key="region_name"]');
           applyCarouselPhotos(data, regionEl ? regionEl.textContent.trim() : '');
+          applyLifeHere(data);
+          applyRegionalFaq(data);
         } catch (err) {
           // Fetch failed (or the sheet was unreachable/malformed) — the
           // hardcoded fallback content already in the DOM stays as-is.
